@@ -1,0 +1,7 @@
+﻿@model Maklak.Models.TabRowModel
+
+
+@{ 
+    string elementClass = this.Model.Row.IsActive ? "hTabElement hTabActive" : "hTabElement";   
+} 
+<div class="@elementClass" onclick="hTabMgr.TabClick(@this.Model.Row.Id)" >@this.Model.Row.Name</div>

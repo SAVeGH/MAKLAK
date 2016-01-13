@@ -1,0 +1,82 @@
+﻿
+@model Maklak.Models.TabModel
+
+
+
+@{
+    Maklak.Models.DataSets.TabDS.TabDataDataTable dataTable = this.Model.TabData.TabData;
+    int tabWidth = 130;
+    int gapWidth = 2;
+    int tabHeight = 33;
+    int borderWidth = 1;
+    int tabsStubLeft = dataTable.Rows.Count * (tabWidth + gapWidth) + gapWidth + borderWidth * dataTable.Rows.Count * 2;
+    int tabsStubTop = dataTable.Rows.Count * (tabHeight + gapWidth) + gapWidth + borderWidth * dataTable.Rows.Count * 2;
+
+
+
+    string tabStripPrefix = this.Model.IsVertical ? "v": "h";
+    string tabStripClass = string.Format("{0}TabsStrip", tabStripPrefix);
+    string tabGapClass = string.Format("{0}TabGap", tabStripPrefix);
+    string tabStubClass = string.Format("{0}TabStub", tabStripPrefix);
+    string selectedValue = string.Format("{0}SelectedValue", tabStripPrefix);
+    string actionName = string.Format("{0}TabElement", tabStripPrefix);
+    string tabId = string.Format("{0}TabStrip", tabStripPrefix); 
+
+
+    if (this.Model.IsVertical)
+    {        
+        tabsStubLeft = 0;        
+    }
+    else
+    {
+        tabsStubTop = 0;
+    }
+
+    string callbackEvent = string.Format("{0}TabMgr.OnComplete()", tabStripPrefix);
+    string stubLeft = string.Format("{0}px", tabsStubLeft.ToString());
+    string stubTop = string.Format("{0}px", tabsStubTop.ToString());
+
+
+
+    using (Ajax.BeginForm("TabContent",
+                           null,
+                           new AjaxOptions()
+                           {
+                               HttpMethod = "POST",
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = tabId,
+                               OnComplete = callbackEvent
+                           },
+                           new { id = tabId }))
+    {
+
+        <div class="@tabStripClass" style="min-width:@stubLeft;">
+            <div class="@tabGapClass"></div>
+
+            @{foreach (Maklak.Models.DataSets.TabDS.TabDataRow row in dataTable)
+                {
+                    Maklak.Models.TabRowModel rm = new Maklak.Models.TabRowModel();
+                    rm.Row = row;
+                    RouteValueDictionary dict = new RouteValueDictionary();
+                    dict.Add("tabRow", rm);
+
+
+                    Html.RenderAction(actionName, "Tab", dict);
+
+
+                    <div class="@tabGapClass"></div>
+                }
+            }
+
+            <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>
+
+            @Html.HiddenFor(m => m.SelectedIndex, new { id = selectedValue })
+            @Html.HiddenFor(m => m.IsVertical)
+
+        </div>
+
+    }
+
+
+}
+

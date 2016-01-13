@@ -1,0 +1,57 @@
+﻿html, boby
+{
+    height: 100%;
+    margin:0px;
+    padding:0px;
+}
+
+div
+{
+    display: block;
+    /*position: absolute;*/
+}
+
+.mainDIV
+{
+    background-color:aqua; 
+    top:0; 
+    bottom:0; 
+    right:0; 
+    left:0; 
+    position: absolute;
+}
+
+.topDIV
+{
+    background-color:azure; 
+    top:0;    
+    right:0; 
+    left:0; 
+    position:fixed;
+    height:100px;
+    
+}
+.bottomDIV
+{
+    background-color:azure; 
+    bottom:0;    
+    position:fixed;
+    right:0; 
+    left:0; 
+    height:25px;
+    
+}
+
+
+.contentDIV
+{
+    background-color:lightblue;    
+    left:301px;
+    top:100px;
+    right:0; 
+    bottom:25px;
+    position: absolute; 
+    border-bottom: 1px solid black; 
+    border-right: 1px solid black; 
+}
+

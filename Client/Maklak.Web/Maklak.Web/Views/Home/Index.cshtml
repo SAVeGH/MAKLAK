@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@DateTime.Now</h2>
+
+@section TabHStrip
+{
+    @Html.Action("hTabStrip", "Tab")
+}
+
+@section TabVStrip
+{
+    @Html.Action("vTabStrip", "Tab")
+
+
+}
