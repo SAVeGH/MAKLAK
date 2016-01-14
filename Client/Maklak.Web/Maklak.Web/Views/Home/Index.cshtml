@@ -3,7 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@DateTime.Now</h2>
+@{
+    @Html.Action("IndexMain", "Home")
+}
 
 @section TabHStrip
 {

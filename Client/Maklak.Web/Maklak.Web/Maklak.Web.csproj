@@ -157,6 +157,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\App\AppScripts.js" />
     <Content Include="Scripts\App\TabScripts.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -210,6 +211,7 @@
     <Content Include="Views\Tab\HorisontalTabElement.cshtml" />
     <Content Include="Views\Tab\TabStrip.cshtml" />
     <Content Include="Views\Tab\VerticalTabElement.cshtml" />
+    <Content Include="Views\Home\IndexMain.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

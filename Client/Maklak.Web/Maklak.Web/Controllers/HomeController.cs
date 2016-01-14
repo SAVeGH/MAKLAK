@@ -13,5 +13,10 @@ namespace Maklak.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult IndexMain()
+        {
+            return PartialView();
+        }
     }
 }

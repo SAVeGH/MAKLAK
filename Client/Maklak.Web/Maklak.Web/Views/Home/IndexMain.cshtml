@@ -1,0 +1,17 @@
+﻿@{
+    string mainFormId = "mainForm";
+
+    using (Ajax.BeginForm("IndexMain",
+                               null,
+                               new AjaxOptions()
+                               {
+                                   HttpMethod = "POST",
+                                   InsertionMode = InsertionMode.Replace,
+                                   UpdateTargetId = mainFormId
+                               },
+                               new { id = mainFormId }))
+    {
+
+        <h2>@DateTime.Now</h2>
+    }
+}

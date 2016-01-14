@@ -20,7 +20,9 @@
 
         $.validator.unobtrusive.parse(form);
 
-        this.OnUpdate(isVertical);
+        var completedTabId = $(indexName).val();
+
+        this.OnUpdate(completedTabId);
 
     }
     
@@ -32,9 +34,4 @@ var hTabMgr = new TabManager(false);
 var vTabMgr = new TabManager(true);
 
 
-function FF(arg) {
-    alert(arg);
-}
 
-vTabMgr.OnUpdate = hTabMgr.TabClick;
-hTabMgr.OnUpdate = FF;
