@@ -23,14 +23,7 @@ namespace Maklak.Web.Controllers
             return PartialView("TabStrip", model);
         }
 
-        //public ActionResult TabHStrip(TabModel m)
-        //{
-        //    TabModel model = new TabModel();
-        //    model.IsVertical = false;
-
-        //    return PartialView("TabStrip", model);
-        //}
-
+        
         public ActionResult hTabElement(TabRowModel tabRow)
         {
 
@@ -47,9 +40,7 @@ namespace Maklak.Web.Controllers
 
         [HttpPost]
         public ActionResult TabContent(TabModel model)
-        {
-            
-            //model.IsVertical = true;
+        {           
 
             return PartialView("TabStrip", model);
         }
