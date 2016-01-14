@@ -1,5 +1,0 @@
-D:\!ALEX\MAKLAK\Client\Maklak.Web\Maklak.Models\bin\Debug\Maklak.Models.dll
-D:\!ALEX\MAKLAK\Client\Maklak.Web\Maklak.Models\bin\Debug\Maklak.Models.pdb
-D:\!ALEX\MAKLAK\Client\Maklak.Web\Maklak.Models\obj\Debug\Maklak.Models.dll
-D:\!ALEX\MAKLAK\Client\Maklak.Web\Maklak.Models\obj\Debug\Maklak.Models.pdb
-D:\!ALEX\MAKLAK\Client\Maklak.Web\Maklak.Models\obj\Debug\Maklak.Models.csprojResolveAssemblyReference.cache
