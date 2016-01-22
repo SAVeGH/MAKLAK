@@ -13,6 +13,7 @@ AppManager.Init = function ()
 
 AppManager.VTabClick = function (arg)
 {
+    $('#hReset').val(true);
     hTabMgr.TabClick(null);
 }
 

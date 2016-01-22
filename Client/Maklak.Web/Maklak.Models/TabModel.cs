@@ -11,7 +11,8 @@ namespace Maklak.Models
     public class TabModel
     {
         protected int selectedIndex;
-
+        public bool AutoSelect { get; set; }
+        public bool Reset { get; set; }
         public TabModel() 
         {
             
