@@ -8,6 +8,11 @@
     
 
     this.TabClick = function (tabId) {
+
+        var currentSelection = $(indexName).val();
+
+        if (tabId == currentSelection)
+            return;
         
         $(indexName).val(tabId);
 

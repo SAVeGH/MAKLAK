@@ -12,19 +12,10 @@ AppManager.Init = function ()
 }
 
 AppManager.VTabClick = function (arg)
-{
-    $('#hReset').val(true);
+{    
     hTabMgr.TabClick(null);
 }
 
 AppManager.RefreshMainView = function (arg) {
     $('#mainForm').submit();
 }
-
-
-//function FF(arg) {
-//    alert(arg);
-//}
-
-//vTabMgr.OnUpdate = hTabMgr.TabClick;
-//hTabMgr.OnUpdate = FF;

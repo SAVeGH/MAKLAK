@@ -10,9 +10,8 @@ namespace Maklak.Models
 {
     public class TabModel
     {
-        protected int selectedIndex;
-        public bool AutoSelect { get; set; }
-        public bool Reset { get; set; }
+        protected int? selectedIndex;
+        
         public TabModel() 
         {
             
@@ -23,7 +22,7 @@ namespace Maklak.Models
             TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
             row.Id = 1;
             row.Name = "item 1";
-            row.IsActive = true;
+            row.IsActive = false;
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
@@ -42,7 +41,7 @@ namespace Maklak.Models
 
         public bool IsVertical { get; set; }
         public TabDS TabData { get; set; }
-        public int SelectedIndex 
+        public int? SelectedIndex 
         {
             get
             { 
@@ -51,17 +50,24 @@ namespace Maklak.Models
             }
             set
             {
-                TabDS.TabDataRow newSelectedRow = TabData.TabData.AsEnumerable().Where(r => r.Id == value).FirstOrDefault();
-                TabDS.TabDataRow currentSelectedRow = TabData.TabData.AsEnumerable().Where(r => r.IsActive).FirstOrDefault();
-                if (newSelectedRow == null)
-                    return;
+                selectedIndex = value;
+
+                TabDS.TabDataRow currentSelectedRow = TabData.TabData.AsEnumerable().Where(r => r.IsActive).FirstOrDefault();                
 
                 if (currentSelectedRow != null)
                     currentSelectedRow.IsActive = false;
 
+                if (value == null)
+                    return;
+
+                TabDS.TabDataRow newSelectedRow = TabData.TabData.AsEnumerable().Where(r => r.Id == value).FirstOrDefault();
+
+                if (newSelectedRow == null)
+                    return;
+
                 newSelectedRow.IsActive = true;
 
-                selectedIndex = value;
+                
 
             }
 
@@ -70,7 +76,7 @@ namespace Maklak.Models
 
     public class TabHModel : TabModel 
     {
-        public int SelectedHIndex 
+        public int? SelectedHIndex 
         {
             get { return base.SelectedIndex; }
             set { base.SelectedIndex = value; }
@@ -78,7 +84,7 @@ namespace Maklak.Models
     }
     public class TabVModel : TabModel
     {
-        public int SelectedVIndex
+        public int? SelectedVIndex
         {
             get { return base.SelectedIndex; }
             set { base.SelectedIndex = value; }
