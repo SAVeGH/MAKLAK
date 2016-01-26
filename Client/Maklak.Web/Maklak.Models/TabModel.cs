@@ -10,7 +10,7 @@ namespace Maklak.Models
 {
     public class TabModel
     {
-        protected int? selectedIndex;
+        protected int? selectedId;
         
         public TabModel() 
         {
@@ -41,16 +41,16 @@ namespace Maklak.Models
 
         public bool IsVertical { get; set; }
         public TabDS TabData { get; set; }
-        public int? SelectedIndex 
+        public int? SelectedId
         {
             get
             { 
-                selectedIndex = TabData.TabData.AsEnumerable().Where(r => r.IsActive).Select(r => r.Id).FirstOrDefault(); 
-                return selectedIndex; 
+                selectedId = TabData.TabData.AsEnumerable().Where(r => r.IsActive).Select(r => r.Id).FirstOrDefault(); 
+                return selectedId; 
             }
             set
             {
-                selectedIndex = value;
+                selectedId = value;
 
                 TabDS.TabDataRow currentSelectedRow = TabData.TabData.AsEnumerable().Where(r => r.IsActive).FirstOrDefault();                
 
@@ -70,24 +70,26 @@ namespace Maklak.Models
                 
 
             }
-
         }
+
+        public int DefaultId { get; set; }        
+        
     }
 
     public class TabHModel : TabModel 
     {
         public int? SelectedHIndex 
         {
-            get { return base.SelectedIndex; }
-            set { base.SelectedIndex = value; }
+            get { return base.SelectedId; }
+            set { base.SelectedId = value; }
         }
     }
     public class TabVModel : TabModel
     {
         public int? SelectedVIndex
         {
-            get { return base.SelectedIndex; }
-            set { base.SelectedIndex = value; }
+            get { return base.SelectedId; }
+            set { base.SelectedId = value; }
         }
     }
 

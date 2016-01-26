@@ -21,7 +21,7 @@ namespace Maklak.Web.Controllers
             string tabLineKey = "Y";
 
             Dictionary<int, int> state = GetTabState();
-            int selectedValue = (int)model.SelectedIndex;
+            int selectedValue = (int)model.SelectedId;
             int selectedY = (int)this.Session[tabLineKey];
             
             if (!state.ContainsKey(selectedY))
@@ -30,16 +30,16 @@ namespace Maklak.Web.Controllers
             if (!model.IsVertical)
             {
                 tabLineKey = "X";
-                
-                int xState = state[selectedY] == 0 ? 1 : state[selectedY];
+                int defaultId = model.DefaultId == 0 ? 1 : model.DefaultId;
+                int xState = state[selectedY] == 0 ? defaultId : state[selectedY];
                 int selectedX = selectedValue == 0 ? xState : selectedValue;
 
-                model.SelectedIndex = selectedX;
+                model.SelectedId = selectedX;
 
                 state[selectedY] = selectedX;
             }
 
-            this.Session[tabLineKey] = model.SelectedIndex;
+            this.Session[tabLineKey] = model.SelectedId;
 
             return PartialView("TabStrip", model);
         }
@@ -64,8 +64,9 @@ namespace Maklak.Web.Controllers
         {
             TabModel model = new TabHModel();
             model.IsVertical = false;
-            model.SelectedIndex = 1;
-            this.Session["X"] = model.SelectedIndex;
+            model.SelectedId = 1;
+            model.DefaultId = 1;
+            this.Session["X"] = model.SelectedId;
                      
             return PartialView("TabStrip", model);
         }
@@ -80,8 +81,9 @@ namespace Maklak.Web.Controllers
         {
             TabModel model = new TabVModel();
             model.IsVertical = true;
-            model.SelectedIndex = 1;
-            this.Session["Y"] = model.SelectedIndex;
+            model.SelectedId = 1;
+            model.DefaultId = 1;
+            this.Session["Y"] = model.SelectedId;
             
             return PartialView("TabStrip", model);
         }        
