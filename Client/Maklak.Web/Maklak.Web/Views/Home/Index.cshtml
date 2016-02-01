@@ -7,14 +7,15 @@
     @Html.Action("IndexMain", "Home")
 }
 
+@*vTabStrip must be loaded first as it defines hTabStrip context*@
+
+@section TabVStrip
+{
+    @Html.Action("vTabStrip", "Tab")
+}
+
 @section TabHStrip
 {
     @Html.Action("hTabStrip", "Tab")
 }
 
-@section TabVStrip
-{
-    @Html.Action("vTabStrip", "Tab")
-
-
-}

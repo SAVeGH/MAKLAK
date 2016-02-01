@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using Maklak.Models;
 using Maklak.Models.DataSets;
+using Maklak.Web.ModelBinder;
 
 namespace Maklak.Web.Controllers
 {
@@ -15,7 +16,7 @@ namespace Maklak.Web.Controllers
         // GET: /Tab/
 
         [HttpPost]
-        public ActionResult TabContent(TabModel model)
+        public ActionResult TabContent( [ModelBinder(typeof(TabModelBinder))]   TabModel model)
         {
 
             string tabLineKey = "Y";
@@ -23,10 +24,10 @@ namespace Maklak.Web.Controllers
             Dictionary<int, int> state = GetTabState();
             int selectedValue = (int)model.SelectedId;
             int selectedY = (int)this.Session[tabLineKey];
-            
+
             if (!state.ContainsKey(selectedY))
                 state.Add(selectedY, 0);
-                        
+
             if (!model.IsVertical)
             {
                 tabLineKey = "X";
@@ -43,7 +44,6 @@ namespace Maklak.Web.Controllers
 
             return PartialView("TabStrip", model);
         }
-      
 
         private Dictionary<int, int> GetTabState()
         {

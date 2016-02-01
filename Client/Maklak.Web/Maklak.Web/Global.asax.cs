@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Optimization;
 
+using Maklak.Models;
+using Maklak.Web.ModelBinder;
+
 namespace Maklak.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,7 +19,8 @@ namespace Maklak.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+            ModelBinders.Binders.Add(typeof(TabModel), new TabModelBinder());
+
         }
     }
 }

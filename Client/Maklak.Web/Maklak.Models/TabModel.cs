@@ -14,29 +14,29 @@ namespace Maklak.Models
         
         public TabModel() 
         {
-            
-            IsVertical = false;
+            Init();
+            //IsVertical = false;
 
-            TabData = new TabDS();
+            //TabData = new TabDS();
 
-            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            row.Id = 1;
-            row.Name = "item 1";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 2;
-            row.Name = "item 2";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 3;
-            row.Name = "item 3";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
+            //TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+            //row.Id = 1;
+            //row.Name = "item 1";
+            //row.IsActive = false;
+            //row.IsVisible = true;
+            //TabData.TabData.Rows.Add(row);
+            //row = TabData.TabData.NewTabDataRow();
+            //row.Id = 2;
+            //row.Name = "item 2";
+            //row.IsActive = false;
+            //row.IsVisible = true;
+            //TabData.TabData.Rows.Add(row);
+            //row = TabData.TabData.NewTabDataRow();
+            //row.Id = 3;
+            //row.Name = "item 3";
+            //row.IsActive = false;
+            //row.IsVisible = true;
+            //TabData.TabData.Rows.Add(row);
         }
 
         public bool IsVertical { get; set; }
@@ -72,25 +72,114 @@ namespace Maklak.Models
             }
         }
 
-        public int DefaultId { get; set; }        
+        public int DefaultId { get; set; }
+
+        public virtual void Init()
+        {
+            IsVertical = false;
+
+            TabData = new TabDS();
+
+            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+            row.Id = 1;
+            row.Name = "item 1";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 2;
+            row.Name = "item 2";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 3;
+            row.Name = "item 3";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+        }  
+        public string Code { get; set; }  
         
     }
 
     public class TabHModel : TabModel 
     {
+        public TabHModel()
+        {
+            Code = "HM";
+        }
+
         public int? SelectedHIndex 
         {
             get { return base.SelectedId; }
             set { base.SelectedId = value; }
         }
+
+        //public override void Init()
+        //{
+        //    IsVertical = false;
+
+        //    TabData = new TabDS();
+
+        //    TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+        //    row.Id = 1;
+        //    row.Name = "item 1";
+        //    row.IsActive = false;
+        //    row.IsVisible = true;
+        //    TabData.TabData.Rows.Add(row);
+        //    row = TabData.TabData.NewTabDataRow();
+        //    row.Id = 2;
+        //    row.Name = "item 2";
+        //    row.IsActive = false;
+        //    row.IsVisible = true;
+        //    TabData.TabData.Rows.Add(row);
+        //    row = TabData.TabData.NewTabDataRow();
+        //    row.Id = 3;
+        //    row.Name = "item 3";
+        //    row.IsActive = false;
+        //    row.IsVisible = true;
+        //    TabData.TabData.Rows.Add(row);
+        //}
     }
     public class TabVModel : TabModel
     {
+        public TabVModel()
+        {
+            Code = "VM";
+        }
+
         public int? SelectedVIndex
         {
             get { return base.SelectedId; }
             set { base.SelectedId = value; }
         }
+
+        //public override void Init()
+        //{
+        //    IsVertical = false;
+
+        //    TabData = new TabDS();
+
+        //    TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+        //    row.Id = 1;
+        //    row.Name = "item 1";
+        //    row.IsActive = false;
+        //    row.IsVisible = true;
+        //    TabData.TabData.Rows.Add(row);
+        //    row = TabData.TabData.NewTabDataRow();
+        //    row.Id = 2;
+        //    row.Name = "item 2";
+        //    row.IsActive = false;
+        //    row.IsVisible = true;
+        //    TabData.TabData.Rows.Add(row);
+        //    row = TabData.TabData.NewTabDataRow();
+        //    row.Id = 3;
+        //    row.Name = "item 3";
+        //    row.IsActive = false;
+        //    row.IsVisible = true;
+        //    TabData.TabData.Rows.Add(row);
+        //}
     }
 
     public class TabRowModel 
