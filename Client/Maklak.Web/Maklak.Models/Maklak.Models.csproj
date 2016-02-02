@@ -46,6 +46,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TabModel.cs" />
+    <Compile Include="TabModelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSets\TabDS.xsc">

@@ -8,35 +8,13 @@ using Maklak.Models.DataSets;
 
 namespace Maklak.Models
 {
-    public class TabModel
+    public abstract class TabModel
     {
         protected int? selectedId;
         
         public TabModel() 
         {
-            Init();
-            //IsVertical = false;
-
-            //TabData = new TabDS();
-
-            //TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            //row.Id = 1;
-            //row.Name = "item 1";
-            //row.IsActive = false;
-            //row.IsVisible = true;
-            //TabData.TabData.Rows.Add(row);
-            //row = TabData.TabData.NewTabDataRow();
-            //row.Id = 2;
-            //row.Name = "item 2";
-            //row.IsActive = false;
-            //row.IsVisible = true;
-            //TabData.TabData.Rows.Add(row);
-            //row = TabData.TabData.NewTabDataRow();
-            //row.Id = 3;
-            //row.Name = "item 3";
-            //row.IsActive = false;
-            //row.IsVisible = true;
-            //TabData.TabData.Rows.Add(row);
+            Init();            
         }
 
         public bool IsVertical { get; set; }
@@ -74,7 +52,27 @@ namespace Maklak.Models
 
         public int DefaultId { get; set; }
 
-        public virtual void Init()
+        public abstract void Init();
+
+        
+        public string Code { get; set; }  
+        
+    }
+
+    public class TabHModel : TabModel 
+    {
+        public TabHModel()
+        {
+            Code = "HM";
+        }
+
+        public int? SelectedHIndex 
+        {
+            get { return base.SelectedId; }
+            set { base.SelectedId = value; }
+        }
+
+        public override void Init()
         {
             IsVertical = false;
 
@@ -98,49 +96,7 @@ namespace Maklak.Models
             row.IsActive = false;
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);
-        }  
-        public string Code { get; set; }  
-        
-    }
-
-    public class TabHModel : TabModel 
-    {
-        public TabHModel()
-        {
-            Code = "HM";
         }
-
-        public int? SelectedHIndex 
-        {
-            get { return base.SelectedId; }
-            set { base.SelectedId = value; }
-        }
-
-        //public override void Init()
-        //{
-        //    IsVertical = false;
-
-        //    TabData = new TabDS();
-
-        //    TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-        //    row.Id = 1;
-        //    row.Name = "item 1";
-        //    row.IsActive = false;
-        //    row.IsVisible = true;
-        //    TabData.TabData.Rows.Add(row);
-        //    row = TabData.TabData.NewTabDataRow();
-        //    row.Id = 2;
-        //    row.Name = "item 2";
-        //    row.IsActive = false;
-        //    row.IsVisible = true;
-        //    TabData.TabData.Rows.Add(row);
-        //    row = TabData.TabData.NewTabDataRow();
-        //    row.Id = 3;
-        //    row.Name = "item 3";
-        //    row.IsActive = false;
-        //    row.IsVisible = true;
-        //    TabData.TabData.Rows.Add(row);
-        //}
     }
     public class TabVModel : TabModel
     {
@@ -155,31 +111,37 @@ namespace Maklak.Models
             set { base.SelectedId = value; }
         }
 
-        //public override void Init()
-        //{
-        //    IsVertical = false;
+        public override void Init()
+        {
+            IsVertical = false;
 
-        //    TabData = new TabDS();
+            TabData = new TabDS();
 
-        //    TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-        //    row.Id = 1;
-        //    row.Name = "item 1";
-        //    row.IsActive = false;
-        //    row.IsVisible = true;
-        //    TabData.TabData.Rows.Add(row);
-        //    row = TabData.TabData.NewTabDataRow();
-        //    row.Id = 2;
-        //    row.Name = "item 2";
-        //    row.IsActive = false;
-        //    row.IsVisible = true;
-        //    TabData.TabData.Rows.Add(row);
-        //    row = TabData.TabData.NewTabDataRow();
-        //    row.Id = 3;
-        //    row.Name = "item 3";
-        //    row.IsActive = false;
-        //    row.IsVisible = true;
-        //    TabData.TabData.Rows.Add(row);
-        //}
+            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+            row.Id = 1;
+            row.Name = "Search & Order";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 2;
+            row.Name = "In & Out";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 3;
+            row.Name = "Manage";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 4;
+            row.Name = "Login & Profile";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+        }
     }
 
     public class TabRowModel 
