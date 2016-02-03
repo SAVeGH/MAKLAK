@@ -15,11 +15,9 @@ namespace Maklak.Web.ModelBinder
 
             HttpRequestBase request = controllerContext.HttpContext.Request;
 
-            //bool isVertical = Convert.ToBoolean(request.Form.Get("IsVertical"));
-
             string modelCode = request.Form.Get("Code");
-
-            TabModel model = TabModelHelper.GenerateModel(modelCode); //isVertical ? new TabVModel() as TabModel : new TabHModel() as TabModel;
+            TabModelHelper.TabModelType tabModelType = (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), modelCode);
+            TabModel model = TabModelHelper.GenerateModel(tabModelType); 
 
             return model;
         }

@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 namespace Maklak.Models
 {
     public static class TabModelHelper
-    {
-        public static TabModel GenerateModel(string modelCode)
+    {        
+
+        public enum TabModelType { VERTICAL, LOGIN, INOUT, SEARCH, MANAGE }
+
+        public static TabModel GenerateModel(TabModelType modelType)
         {
-            switch (modelCode)
+            switch (modelType)
             {
-                case "VM":
+                case TabModelType.VERTICAL:
                     return new TabVModel();
-                case "HM":
-                    return new TabHModel();
+                case TabModelType.LOGIN:
+                    return new LoginModel();
             }
 
             return null;

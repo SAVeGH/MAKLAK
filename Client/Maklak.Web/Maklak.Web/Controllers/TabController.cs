@@ -62,10 +62,8 @@ namespace Maklak.Web.Controllers
 
         public ActionResult hTabStrip()
         {
-            TabModel model = new TabHModel();
-            model.IsVertical = false;
-            model.SelectedId = 1;
-            model.DefaultId = 1;
+            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.LOGIN);
+            
             this.Session["X"] = model.SelectedId;
                      
             return PartialView("TabStrip", model);
@@ -79,10 +77,8 @@ namespace Maklak.Web.Controllers
 
         public ActionResult vTabStrip()
         {
-            TabModel model = new TabVModel();
-            model.IsVertical = true;
-            model.SelectedId = 1;
-            model.DefaultId = 1;
+            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.VERTICAL);
+
             this.Session["Y"] = model.SelectedId;
             
             return PartialView("TabStrip", model);

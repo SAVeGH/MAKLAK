@@ -3,9 +3,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-    @Html.Action("IndexMain", "Home")
-}
 
 @*vTabStrip must be loaded first as it defines hTabStrip context*@
 
@@ -17,5 +14,9 @@
 @section TabHStrip
 {
     @Html.Action("hTabStrip", "Tab")
+}
+
+@{
+    @Html.Action("IndexMain", "Home")
 }
 

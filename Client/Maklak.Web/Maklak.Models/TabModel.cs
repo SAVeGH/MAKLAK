@@ -55,61 +55,19 @@ namespace Maklak.Models
         public abstract void Init();
 
         
-        public string Code { get; set; }  
+        public TabModelHelper.TabModelType Code { get; set; }  
         
     }
 
-    public class TabHModel : TabModel 
-    {
-        public TabHModel()
-        {
-            Code = "HM";
-        }
-
-        public int? SelectedHIndex 
-        {
-            get { return base.SelectedId; }
-            set { base.SelectedId = value; }
-        }
-
-        public override void Init()
-        {
-            IsVertical = false;
-
-            TabData = new TabDS();
-
-            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            row.Id = 1;
-            row.Name = "item 1";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 2;
-            row.Name = "item 2";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 3;
-            row.Name = "item 3";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-        }
-    }
     public class TabVModel : TabModel
     {
         public TabVModel()
         {
-            Code = "VM";
-        }
-
-        public int? SelectedVIndex
-        {
-            get { return base.SelectedId; }
-            set { base.SelectedId = value; }
-        }
+            Code = TabModelHelper.TabModelType.VERTICAL;
+            IsVertical = true;            
+            SelectedId = 1;
+            DefaultId = 1;
+        }        
 
         public override void Init()
         {
@@ -143,6 +101,75 @@ namespace Maklak.Models
             TabData.TabData.Rows.Add(row);
         }
     }
+
+    public class LoginModel : TabModel 
+    {
+        public LoginModel()
+        {
+            Code = TabModelHelper.TabModelType.LOGIN;            
+            SelectedId = 1;
+            DefaultId = 1;
+        }        
+
+        public override void Init()
+        {
+            IsVertical = false;
+
+            TabData = new TabDS();
+
+            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+            row.Id = 1;
+            row.Name = "Login";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 2;
+            row.Name = "Profile";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            
+        }
+    }
+
+    public class SearchModel : TabModel
+    {
+        public SearchModel()
+        {
+            Code = TabModelHelper.TabModelType.SEARCH;
+            SelectedId = 1;
+            DefaultId = 1;
+        }
+
+        public override void Init()
+        {
+            IsVertical = false;
+
+            TabData = new TabDS();
+
+            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+            row.Id = 1;
+            row.Name = "Search";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 2;
+            row.Name = "Order";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 2;
+            row.Name = "Summary";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+
+        }
+    }
+
 
     public class TabRowModel 
     {
