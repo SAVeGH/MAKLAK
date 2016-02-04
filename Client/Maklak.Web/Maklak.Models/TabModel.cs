@@ -14,6 +14,8 @@ namespace Maklak.Models
         
         public TabModel() 
         {
+            TabData = new TabDS();
+
             Init();            
         }
 
@@ -70,34 +72,34 @@ namespace Maklak.Models
         }        
 
         public override void Init()
-        {
-            IsVertical = false;
-
-            TabData = new TabDS();
+        {                       
 
             TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
             row.Id = 1;
             row.Name = "Search & Order";
             row.IsActive = false;
-            row.IsVisible = true;
+            row.IsVisible = true;            
             TabData.TabData.Rows.Add(row);
+
             row = TabData.TabData.NewTabDataRow();
             row.Id = 2;
             row.Name = "In & Out";
             row.IsActive = false;
-            row.IsVisible = true;
+            row.IsVisible = true;            
             TabData.TabData.Rows.Add(row);
+
             row = TabData.TabData.NewTabDataRow();
             row.Id = 3;
             row.Name = "Manage";
             row.IsActive = false;
-            row.IsVisible = true;
+            row.IsVisible = true;            
             TabData.TabData.Rows.Add(row);
+
             row = TabData.TabData.NewTabDataRow();
             row.Id = 4;
             row.Name = "Login & Profile";
             row.IsActive = false;
-            row.IsVisible = true;
+            row.IsVisible = true;            
             TabData.TabData.Rows.Add(row);
         }
     }
@@ -112,10 +114,7 @@ namespace Maklak.Models
         }        
 
         public override void Init()
-        {
-            IsVertical = false;
-
-            TabData = new TabDS();
+        {                  
 
             TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
             row.Id = 1;

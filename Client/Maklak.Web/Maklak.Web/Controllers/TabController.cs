@@ -35,6 +35,9 @@ namespace Maklak.Web.Controllers
                 int xState = state[selectedY] == 0 ? defaultId : state[selectedY];
                 int selectedX = selectedValue == 0 ? xState : selectedValue;
 
+                //TabModelHelper.TabModelType modelType = model
+                model = selectedValue == 0 ? TabModelHelper.GenerateModel(TabModelHelper.TabModelType.VERTICAL, selectedY) : model;
+
                 model.SelectedId = selectedX;
 
                 state[selectedY] = selectedX;

@@ -12,7 +12,7 @@
   <xs:element name="TabDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TabDS" msprop:Generator_UserDSName="TabDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TabData" msprop:Generator_TableClassName="TabDataDataTable" msprop:Generator_TableVarName="tableTabData" msprop:Generator_TablePropName="TabData" msprop:Generator_RowDeletingName="TabDataRowDeleting" msprop:Generator_RowChangingName="TabDataRowChanging" msprop:Generator_RowEvHandlerName="TabDataRowChangeEventHandler" msprop:Generator_RowDeletedName="TabDataRowDeleted" msprop:Generator_UserTableName="TabData" msprop:Generator_RowChangedName="TabDataRowChanged" msprop:Generator_RowEvArgName="TabDataRowChangeEvent" msprop:Generator_RowClassName="TabDataRow">
+        <xs:element name="TabData" msprop:Generator_TableClassName="TabDataDataTable" msprop:Generator_TableVarName="tableTabData" msprop:Generator_RowChangedName="TabDataRowChanged" msprop:Generator_TablePropName="TabData" msprop:Generator_RowDeletingName="TabDataRowDeleting" msprop:Generator_RowChangingName="TabDataRowChanging" msprop:Generator_RowEvHandlerName="TabDataRowChangeEventHandler" msprop:Generator_RowDeletedName="TabDataRowDeleted" msprop:Generator_RowClassName="TabDataRow" msprop:Generator_UserTableName="TabData" msprop:Generator_RowEvArgName="TabDataRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
