@@ -65,7 +65,7 @@ namespace Maklak.Web.Controllers
 
         public ActionResult hTabStrip()
         {
-            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.LOGIN);
+            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.SEARCH);
             
             this.Session["X"] = model.SelectedId;
                      

@@ -33,6 +33,12 @@ namespace Maklak.Models
                     return new TabVModel();
                 case TabModelType.LOGIN:
                     return new LoginModel();
+                case TabModelType.SEARCH:
+                    return new SearchModel();
+                case TabModelType.INOUT:
+                    return new InOutModel();
+                case TabModelType.MANAGE:
+                    return new ManageModel();
             }
 
             return null;

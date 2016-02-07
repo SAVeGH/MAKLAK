@@ -90,7 +90,7 @@ namespace Maklak.Models
 
             row = TabData.TabData.NewTabDataRow();
             row.Id = 3;
-            row.Name = "Manage";
+            row.Name = "Add & Manage";
             row.IsActive = false;
             row.IsVisible = true;            
             TabData.TabData.Rows.Add(row);
@@ -143,8 +143,7 @@ namespace Maklak.Models
 
         public override void Init()
         {
-            IsVertical = false;
-
+            
             TabData = new TabDS();
 
             TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
@@ -160,7 +159,83 @@ namespace Maklak.Models
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
+            row.Id = 3;
+            row.Name = "Summary";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+
+        }
+    }
+
+    public class InOutModel : TabModel
+    {
+        public InOutModel()
+        {
+            Code = TabModelHelper.TabModelType.INOUT;
+            SelectedId = 1;
+            DefaultId = 1;
+        }
+
+        public override void Init()
+        {            
+            TabData = new TabDS();
+
+            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+            row.Id = 1;
+            row.Name = "In";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
             row.Id = 2;
+            row.Name = "Out";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 3;
+            row.Name = "Summary";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+
+        }
+    }
+
+    public class ManageModel : TabModel
+    {
+        public ManageModel()
+        {
+            Code = TabModelHelper.TabModelType.MANAGE;
+            SelectedId = 1;
+            DefaultId = 1;
+        }
+
+        public override void Init()
+        {
+            TabData = new TabDS();
+
+            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+            row.Id = 1;
+            row.Name = "Search";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 2;
+            row.Name = "Add";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 3;
+            row.Name = "Manage";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 4;
             row.Name = "Summary";
             row.IsActive = false;
             row.IsVisible = true;

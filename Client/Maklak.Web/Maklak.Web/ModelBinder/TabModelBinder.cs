@@ -20,7 +20,7 @@ namespace Maklak.Web.ModelBinder
             int selectedY = (int)request.RequestContext.HttpContext.Session["Y"];
 
             TabModelHelper.TabModelType tabModelType = (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), modelCode);
-            TabModel model = TabModelHelper.GenerateModel(tabModelType); 
+            TabModel model = tabModelType == TabModelHelper.TabModelType.VERTICAL ? TabModelHelper.GenerateModel(tabModelType) : TabModelHelper.GenerateModel(TabModelHelper.TabModelType.VERTICAL, selectedY); 
 
             return model;
         }
