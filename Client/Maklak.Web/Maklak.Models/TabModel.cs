@@ -8,7 +8,7 @@ using Maklak.Models.DataSets;
 
 namespace Maklak.Models
 {
-    public abstract class TabModel
+    public abstract class TabModel : BaseModel
     {
         protected int? selectedId;
         
@@ -154,12 +154,18 @@ namespace Maklak.Models
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
             row.Id = 2;
-            row.Name = "Order";
+            row.Name = "Determine";
             row.IsActive = false;
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
             row.Id = 3;
+            row.Name = "Order";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 4;
             row.Name = "Summary";
             row.IsActive = false;
             row.IsVisible = true;
@@ -224,19 +230,19 @@ namespace Maklak.Models
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
             row.Id = 2;
-            row.Name = "Add";
+            row.Name = "Determine";
             row.IsActive = false;
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
             row.Id = 3;
-            row.Name = "Manage";
+            row.Name = "Consistance";
             row.IsActive = false;
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
             row.Id = 4;
-            row.Name = "Summary";
+            row.Name = "Manage";
             row.IsActive = false;
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);

@@ -27,21 +27,30 @@ namespace Maklak.Models
 
         public static TabModel GenerateModel(TabModelType modelType)
         {
+            TabModel model = null;
+
             switch (modelType)
             {
                 case TabModelType.VERTICAL:
-                    return new TabVModel();
+                    model = new TabVModel();
+                    break;
                 case TabModelType.LOGIN:
-                    return new LoginModel();
+                    model = new LoginModel();
+                    break;
                 case TabModelType.SEARCH:
-                    return new SearchModel();
+                    model = new SearchModel();
+                    break;
                 case TabModelType.INOUT:
-                    return new InOutModel();
+                    model = new InOutModel();
+                    break;
                 case TabModelType.MANAGE:
-                    return new ManageModel();
+                    model = new ManageModel();
+                    break;
             }
 
-            return null;
+            model.Action = "TabContent";
+
+            return model;
         }
 
         public static TabModel GenerateModel(TabModelType keyModelType, int selectedId)
