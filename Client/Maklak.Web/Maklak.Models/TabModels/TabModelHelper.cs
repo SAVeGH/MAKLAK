@@ -35,16 +35,16 @@ namespace Maklak.Models
                     model = new TabVModel();
                     break;
                 case TabModelType.LOGIN:
-                    model = new LoginModel();
+                    model = new LoginTabModel();
                     break;
                 case TabModelType.SEARCH:
-                    model = new SearchModel();
+                    model = new SearchTabModel();
                     break;
                 case TabModelType.INOUT:
-                    model = new InOutModel();
+                    model = new InOutTabModel();
                     break;
                 case TabModelType.MANAGE:
-                    model = new ManageModel();
+                    model = new ManageTabModel();
                     break;
             }
 

@@ -45,9 +45,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TabDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TabModel.cs" />
-    <Compile Include="TabModelHelper.cs" />
+    <Compile Include="TabModels\TabModel.cs" />
+    <Compile Include="TabModels\TabModelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSets\TabDS.xsc">

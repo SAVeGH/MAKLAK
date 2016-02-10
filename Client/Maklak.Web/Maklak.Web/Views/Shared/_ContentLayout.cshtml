@@ -1,0 +1,19 @@
+﻿@model Maklak.Models.BaseModel
+
+@{
+    string mainFormId = "mainForm";
+
+    using (Ajax.BeginForm(Model.Action,
+                          Model.Controller,
+                               new AjaxOptions()
+                               {
+                                   HttpMethod = "POST",
+                                   InsertionMode = InsertionMode.Replace,
+                                   UpdateTargetId = mainFormId
+                               },
+                               new { id = mainFormId }))
+    {
+
+        @RenderSection("Content", false)
+    }
+}

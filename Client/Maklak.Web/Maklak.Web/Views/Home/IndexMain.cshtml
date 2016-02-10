@@ -1,17 +1,28 @@
-﻿@{
-    string mainFormId = "mainForm";
+﻿@model Maklak.Models.BaseModel
 
-    using (Ajax.BeginForm("IndexMain",
-                               null,
-                               new AjaxOptions()
-                               {
-                                   HttpMethod = "POST",
-                                   InsertionMode = InsertionMode.Replace,
-                                   UpdateTargetId = mainFormId
-                               },
-                               new { id = mainFormId }))
-    {
 
-        <h2>@DateTime.Now</h2>
-    }
+
+@{
+
+    this.Layout = "~/Views/Shared/_ContentLayout.cshtml";
+    this.Model.Action = "IndexPost";
+    this.Model.Controller = "Home";   
+
+}
+
+
+
+@section Content
+ {
+
+    
+    @{string dt = DateTime.Now.ToString();}
+    
+        <text>@dt</text>
+     
+
+    
+
+
+
 }

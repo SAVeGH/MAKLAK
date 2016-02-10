@@ -1,0 +1,19 @@
+﻿@model Maklak.Models.LoginModel
+
+@{ 
+using (Ajax.BeginForm(Model.Action,
+                           null,
+                           new AjaxOptions()
+                           {
+                               HttpMethod = "POST",
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = "LoginPage"
+                           },
+                           new { id = "LoginPage" }))
+    {
+@Html.Label("Login:")
+@Html.TextBoxFor(m=> m.Login)
+@Html.Label("Password")
+@Html.PasswordFor(m=> m.Password)
+}
+}

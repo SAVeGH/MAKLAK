@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Maklak.Models;
+
 namespace Maklak.Web.Controllers
 {
     public class HomeController : Controller
@@ -11,12 +13,21 @@ namespace Maklak.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            BaseModel model = new BaseModel();
+            model.Action = "IndexMain";
+            model.Controller = "Home";
+            return View(model);
         }
 
-        public ActionResult IndexMain()
+        public ActionResult IndexMain(BaseModel model)
         {
-            return PartialView();
+            return PartialView("IndexMain",model);
+        }
+
+        [HttpPost]
+        public ActionResult IndexPost(BaseModel model)
+        {
+            return PartialView("IndexMain", model);
         }
     }
 }

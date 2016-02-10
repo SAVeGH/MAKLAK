@@ -104,9 +104,9 @@ namespace Maklak.Models
         }
     }
 
-    public class LoginModel : TabModel 
+    public class LoginTabModel : TabModel 
     {
-        public LoginModel()
+        public LoginTabModel()
         {
             Code = TabModelHelper.TabModelType.LOGIN;            
             SelectedId = 1;
@@ -124,17 +124,23 @@ namespace Maklak.Models
             TabData.TabData.Rows.Add(row);
             row = TabData.TabData.NewTabDataRow();
             row.Id = 2;
+            row.Name = "Register";
+            row.IsActive = false;
+            row.IsVisible = true;
+            TabData.TabData.Rows.Add(row);
+            row = TabData.TabData.NewTabDataRow();
+            row.Id = 3;
             row.Name = "Profile";
             row.IsActive = false;
             row.IsVisible = true;
             TabData.TabData.Rows.Add(row);
-            
+
         }
     }
 
-    public class SearchModel : TabModel
+    public class SearchTabModel : TabModel
     {
-        public SearchModel()
+        public SearchTabModel()
         {
             Code = TabModelHelper.TabModelType.SEARCH;
             SelectedId = 1;
@@ -174,9 +180,9 @@ namespace Maklak.Models
         }
     }
 
-    public class InOutModel : TabModel
+    public class InOutTabModel : TabModel
     {
-        public InOutModel()
+        public InOutTabModel()
         {
             Code = TabModelHelper.TabModelType.INOUT;
             SelectedId = 1;
@@ -209,9 +215,9 @@ namespace Maklak.Models
         }
     }
 
-    public class ManageModel : TabModel
+    public class ManageTabModel : TabModel
     {
-        public ManageModel()
+        public ManageTabModel()
         {
             Code = TabModelHelper.TabModelType.MANAGE;
             SelectedId = 1;
