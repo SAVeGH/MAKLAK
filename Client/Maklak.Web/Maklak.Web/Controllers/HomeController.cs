@@ -14,8 +14,8 @@ namespace Maklak.Web.Controllers
         public ActionResult Index()
         {
             BaseModel model = new BaseModel();
-            model.Action = "IndexMain";
-            model.Controller = "Home";
+            model.Action = "Login";
+            model.Controller = "User";
             return View(model);
         }
 

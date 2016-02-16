@@ -8,7 +8,7 @@ using Maklak.Models;
 
 namespace Maklak.Web.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         // GET: User
         public ActionResult Index()
@@ -18,6 +18,17 @@ namespace Maklak.Web.Controllers
 
         public ActionResult Login(LoginModel model)
         {
+            int y = Session["Y"] == null ? 1 : (int)Session["Y"];
+            int x = Session["X"] == null ? 1 : (int)Session["X"];
+
+            if (x != 1 || y != 1)
+            {
+                //RedirectToAction("IndexMain", "Home");
+                //this.TransferToAction("IndexMain", "Home");
+                
+                //return RedirectToAction("IndexMain", "Home"); ;
+            }
+
             return PartialView(model);
         }
     }
