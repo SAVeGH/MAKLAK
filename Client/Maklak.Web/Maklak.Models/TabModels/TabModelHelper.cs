@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MvcSiteMapProvider;
+using MvcSiteMapProvider.Web.Html.Models;
+
 namespace Maklak.Models
 {
     public static class TabModelHelper
@@ -48,8 +51,14 @@ namespace Maklak.Models
                     break;
             }
 
-            model.Action = "TabContent";
+            ISiteMap sm = MvcSiteMapProvider.SiteMaps.Current;
 
+            ISiteMapNode node = sm.RootNode;
+           
+            model.Action = "TabContent";
+            //SiteMapFactory
+            //SiteMap. sm = new SiteMap();
+            //MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModel model = new MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModel();
             return model;
         }
 
