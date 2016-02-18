@@ -14,8 +14,9 @@ namespace Maklak.Web.Controllers
         public ActionResult Index()
         {
             BaseModel model = new BaseModel();
-            model.Action = "Login";
-            model.Controller = "User";
+            
+            model.Action = SiteMapHelper.DefaultAction;
+            model.Controller = SiteMapHelper.DefaultController;
             return View(model);
         }
 

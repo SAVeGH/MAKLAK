@@ -3,7 +3,7 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="Home" controller="Home" action="Index" DefaultY="1" DefaultX ="1" key="ROOT">
+  <mvcSiteMapNode title="Home" controller="Home" action="Index" DefaultY="4" DefaultX ="1" key="ROOT">
     
     <mvcSiteMapNode title="Search &amp; Order" controller="Tab" action="TabContent" Code ="VERTICAL" Y ="1" key="VERTICAL">
       <mvcSiteMapNode title="Search" controller="Search" action="Search" X ="1" key="VERTICAL_SEARCH"/>
@@ -26,7 +26,7 @@
     </mvcSiteMapNode>
     
     <mvcSiteMapNode title="Login &amp; Profile" controller="Tab" action="TabContent" Code ="LOGIN" Y ="4" key="LOGIN">
-      <mvcSiteMapNode title="Login" controller="User" action="Logon" X ="1" key="LOGIN_LOGIN" />
+      <mvcSiteMapNode title="Login" controller="User" action="Login" X ="1" key="LOGIN_LOGIN" />
       <mvcSiteMapNode title="Register" controller="User" action="Register" X ="2" key="LOGIN_REGISTER" />      
       <mvcSiteMapNode title="Profile" controller="User" action="Profile" X ="3" key="LOGIN_PROFILE" />
     </mvcSiteMapNode>

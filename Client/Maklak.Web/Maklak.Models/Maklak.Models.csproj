@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteMapHelper.cs" />
     <Compile Include="TabModels\TabModel.cs" />
     <Compile Include="TabModels\TabModelHelper.cs" />
   </ItemGroup>
