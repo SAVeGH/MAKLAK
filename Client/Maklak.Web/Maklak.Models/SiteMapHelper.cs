@@ -31,48 +31,21 @@ namespace Maklak.Models
         {
             get { return SiteMapHelper.SiteMap.RootNode.Action; }
         }
+        
 
-        public static int DefaultY
-        {
-            get { return Convert.ToInt32(SiteMapHelper.SiteMap.RootNode.Attributes["DefaultY"]); }
-        }
-
-        public static int DefaultX
-        {
-            get { return Convert.ToInt32(SiteMapHelper.SiteMap.RootNode.Attributes["DefaultX"]); }
-        }
-
-        private static ISiteMapNode NodeByAttributeValue(ISiteMapNode node, string attributeName, string attributeValue)
-        {
-            if (node == null)
-                return null;
+        //private static ISiteMapNode NodeByAttributeValue(ISiteMapNode node, string attributeName, string attributeValue)
+        //{
+        //    if (node == null)
+        //        return null;
             
-            if (node.Attributes.Where(a => a.Key == attributeName && Convert.ToString(a.Value) == attributeValue).Any())
-                return node;
+        //    if (node.Attributes.Where(a => a.Key == attributeName && Convert.ToString(a.Value) == attributeValue).Any())
+        //        return node;
 
-            if (!node.HasChildNodes)
-                return null;
+        //    if (!node.HasChildNodes)
+        //        return null;
 
-            return node.ChildNodes.Where(n => SiteMapHelper.NodeByAttributeValue(n, attributeName, attributeValue) != null).FirstOrDefault();               
-        }
-
-        private static ISiteMapNode FindYXNode(int y, int x)
-        {
-            ISiteMapNode yNode = NodeByAttributeValue(SiteMapHelper.SiteMap.RootNode, "Y", y.ToString());
-            ISiteMapNode xNode = NodeByAttributeValue(yNode, "X", x.ToString());
-            return xNode;
-        }
-
-        public static string DefaultController
-        {
-            get
-            {
-                return FindYXNode(SiteMapHelper.DefaultY, SiteMapHelper.DefaultX).Controller;               
-            }
-        }
-        public static string DefaultAction
-        {
-            get { return FindYXNode(SiteMapHelper.DefaultY, SiteMapHelper.DefaultX).Action; }
-        }
+        //    return node.ChildNodes.Where(n => SiteMapHelper.NodeByAttributeValue(n, attributeName, attributeValue) != null).FirstOrDefault();               
+        //}        
+        
     }
 }

@@ -19,31 +19,30 @@ namespace Maklak.Web.Controllers
         public ActionResult TabContent( [ModelBinder(typeof(TabModelBinder))]   TabModel model)
         {
 
-            string tabLineKey = "Y";
+            //string tabLineKey = "Y";
 
-            Dictionary<int, int> state = GetTabState();
-            int selectedValue = (int)model.SelectedId;
-            int selectedY = (int)this.Session[tabLineKey];
+            //Dictionary<int, int> state = GetTabState();
+            //int selectedValue = (int)model.SelectedId;
+            //int selectedY = (int)this.Session[tabLineKey];
 
-            if (!state.ContainsKey(selectedY))
-                state.Add(selectedY, 0);
+            //if (!state.ContainsKey(selectedY))
+            //    state.Add(selectedY, 0);
 
-            if (!model.IsVertical)
-            {
-                tabLineKey = "X";
-                int defaultId = model.DefaultId == 0 ? 1 : model.DefaultId;
-                int xState = state[selectedY] == 0 ? defaultId : state[selectedY];
-                int selectedX = selectedValue == 0 ? xState : selectedValue;
+            //if (!model.IsVertical)
+            //{
+            //    tabLineKey = "X";
+            //    int defaultId = model.DefaultId == 0 ? 1 : model.DefaultId;
+            //    int xState = state[selectedY] == 0 ? defaultId : state[selectedY];
+            //    int selectedX = selectedValue == 0 ? xState : selectedValue;
+                
+            //    model = selectedValue == 0 ? TabModelHelper.GenerateModel(TabModelHelper.TabModelType.VERTICAL, selectedY) : model;
 
-                //TabModelHelper.TabModelType modelType = model
-                model = selectedValue == 0 ? TabModelHelper.GenerateModel(TabModelHelper.TabModelType.VERTICAL, selectedY) : model;
+            //    model.SelectedId = selectedX;
 
-                model.SelectedId = selectedX;
+            //    state[selectedY] = selectedX;
+            //}
 
-                state[selectedY] = selectedX;
-            }
-
-            this.Session[tabLineKey] = model.SelectedId;
+            //this.Session[tabLineKey] = model.SelectedId;
 
             return PartialView("TabStrip", model);
         }
@@ -67,7 +66,7 @@ namespace Maklak.Web.Controllers
         {
             TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.SEARCH);
             
-            this.Session["X"] = model.SelectedId;
+            //this.Session["X"] = model.SelectedId;
                      
             return PartialView("TabStrip", model);
         }
@@ -80,9 +79,9 @@ namespace Maklak.Web.Controllers
 
         public ActionResult vTabStrip()
         {
-            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.VERTICAL);
+            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.CATEGORY);
 
-            this.Session["Y"] = model.SelectedId;
+            //this.Session["Y"] = model.SelectedId;
             
             return PartialView("TabStrip", model);
         }        

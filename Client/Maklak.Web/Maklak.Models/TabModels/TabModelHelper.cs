@@ -12,20 +12,20 @@ namespace Maklak.Models
     public static class TabModelHelper
     {        
 
-        public enum TabModelType { VERTICAL, LOGIN, INOUT, SEARCH, MANAGE }
+        public enum TabModelType { CATEGORY, SEARCH, INOUT, MANAGE, LOGIN }
 
-        private static Dictionary<TabModelType, Dictionary<int,TabModelType>> tabReference;
+        //private static Dictionary<TabModelType, Dictionary<int,TabModelType>> tabReference;
 
         static TabModelHelper()
         {
-            Dictionary<int, TabModelType> hTab = new Dictionary<int, TabModelType>() { { 4,TabModelType.LOGIN },
-                                                                                       { 1,TabModelType.SEARCH },
-                                                                                       { 3,TabModelType.MANAGE},
-                                                                                       { 2,TabModelType.INOUT}
-                                                                                     };
+            //Dictionary<int, TabModelType> hTab = new Dictionary<int, TabModelType>() { { 4,TabModelType.LOGIN },
+            //                                                                           { 1,TabModelType.SEARCH },
+            //                                                                           { 3,TabModelType.MANAGE},
+            //                                                                           { 2,TabModelType.INOUT}
+            //                                                                         };
 
 
-            tabReference = new Dictionary<TabModelType, Dictionary<int, TabModelType>>() { { TabModelType.VERTICAL,hTab} };
+            //tabReference = new Dictionary<TabModelType, Dictionary<int, TabModelType>>() { { TabModelType.VERTICAL,hTab} };
         }
 
         public static TabModel GenerateModel(TabModelType modelType)
@@ -34,8 +34,8 @@ namespace Maklak.Models
 
             switch (modelType)
             {
-                case TabModelType.VERTICAL:
-                    model = new TabVModel();
+                case TabModelType.CATEGORY:
+                    model = new CategoryTabModel();
                     break;
                 case TabModelType.LOGIN:
                     model = new LoginTabModel();
@@ -51,24 +51,46 @@ namespace Maklak.Models
                     break;
             }
 
-            ISiteMap sm = MvcSiteMapProvider.SiteMaps.Current;
-
-            ISiteMapNode node = sm.RootNode;
-           
-            model.Action = "TabContent";
-            //SiteMapFactory
-            //SiteMap. sm = new SiteMap();
-            //MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModel model = new MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModel();
+            
             return model;
         }
 
-        public static TabModel GenerateModel(TabModelType keyModelType, int selectedId)
+        public static ISiteMapNode RootTabNode
         {
-            Dictionary<int, TabModelType> hTab = tabReference[keyModelType];
-
-            TabModelType modelType = hTab[selectedId];
-
-            return GenerateModel(modelType);
+            get
+            {
+                return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(TabModelType.CATEGORY.ToString());
+            }
         }
+
+        public static string DefaultKey(ISiteMapNode node)
+        {
+            return node.Attributes["defaultkey"] == null ? string.Empty : Convert.ToString(node.Attributes["defaultkey"]);
+        }
+
+        public static string DefaultAction
+        {
+            get
+            {
+                return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(RootTabNode)))).Action;
+            }
+        }
+
+        public static string DefaultController
+        {
+            get
+            {
+                return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(RootTabNode)))).Controller;
+            }
+        }
+
+        //public static TabModel GenerateModel(TabModelType keyModelType, int selectedId)
+        //{
+        //    Dictionary<int, TabModelType> hTab = tabReference[keyModelType];
+
+        //    TabModelType modelType = hTab[selectedId];
+
+        //    return GenerateModel(modelType);
+        //}
     }
 }

@@ -72,9 +72,9 @@
 
             <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>
 
-            @Html.HiddenFor(m => m.SelectedId, new { id = selectedValue })            
+            @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })            
             @Html.HiddenFor(m => m.IsVertical, new { id = tabIsVerticalId })
-            @Html.HiddenFor(m => m.Code)            
+            @Html.HiddenFor(m => m.Key)            
             
 
         </div>

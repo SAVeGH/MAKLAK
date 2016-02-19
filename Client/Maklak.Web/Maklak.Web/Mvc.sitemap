@@ -3,34 +3,41 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="Home" controller="Home" action="Index" DefaultY="4" DefaultX ="1" key="ROOT">
+  <mvcSiteMapNode title="Home" controller="Home" action="Index"  key="ROOT">
     
-    <mvcSiteMapNode title="Search &amp; Order" controller="Tab" action="TabContent" Code ="VERTICAL" Y ="1" key="VERTICAL">
-      <mvcSiteMapNode title="Search" controller="Search" action="Search" X ="1" key="VERTICAL_SEARCH"/>
-      <mvcSiteMapNode title="Determine" controller="Search" action="Determine" X ="2" key="VERTICAL_DETERMINE" />
-      <mvcSiteMapNode title="Order" controller="Search" action="Order" X ="3" key="VERTICAL_ORDER" />
-      <mvcSiteMapNode title="Summary" controller="Search" action="Summary" X ="4" key="VERTICAL_SUMMARY" />
+    <!-- describes vertical tab area (vertical tabs). Defined Action and Controller will be default for all tabs--> 
+    <mvcSiteMapNode title="Partitions" controller="Tab" action="TabContent"  key="CATEGORY" defaultkey="SEARCH">
+     
+      <!-- one vertical tab --> 
+    <mvcSiteMapNode title="Search &amp; Order" controller="Tab" action="TabContent" key="SEARCH" defaultkey="SEARCH_SEARCH">
+      <!-- horizontal tabs in context of current category tab. Represent Action and Controller for content area--> 
+      <mvcSiteMapNode title="Search" controller="Home" action="IndexMain"  key="SEARCH_SEARCH"/>
+      <mvcSiteMapNode title="Determine" controller="Search" action="Determine"  key="SEARCH_DETERMINE" />
+      <mvcSiteMapNode title="Order" controller="Search" action="Order"  key="SEARCH_ORDER" />
+      <mvcSiteMapNode title="Summary" controller="Search" action="Summary"  key="SEARCH_SUMMARY" />
     </mvcSiteMapNode>
     
-    <mvcSiteMapNode title="In &amp; Out" controller="Tab" action="TabContent" Code ="INOUT" Y ="2" key="INOUT">
-      <mvcSiteMapNode title="In" controller="InOut" action="In" X ="1" key="INOUT_IN" />
-      <mvcSiteMapNode title="Out" controller="InOut" action="Out" X ="2" key="INOUT_OUT"/>      
-      <mvcSiteMapNode title="Summary" controller="InOut" action="Summary" X ="3" key="INOUT_SUMMARY" />
+    <mvcSiteMapNode title="In &amp; Out" controller="Tab" action="TabContent"  key="INOUT" defaultkey="INOUT_IN">
+      <mvcSiteMapNode title="In" controller="InOut" action="In" key="INOUT_IN" />
+      <mvcSiteMapNode title="Out" controller="InOut" action="Out" key="INOUT_OUT"/>      
+      <mvcSiteMapNode title="Summary" controller="InOut" action="Summary" key="INOUT_SUMMARY" />
     </mvcSiteMapNode>
     
-    <mvcSiteMapNode title="Add &amp; Manage" controller="Tab" action="TabContent" Code ="MANAGE" Y ="3" key="MANAGE">
-      <mvcSiteMapNode title="Search" controller="Search" action="Search" X ="1" key="MANAGE_SEARCH" />
-      <mvcSiteMapNode title="Determine" controller="Search" action="Determine" X ="2" key="MANAGE_DETERMINE" />
-      <mvcSiteMapNode title="Consistence" controller="Manage" action="Consistence" X ="3" key="MANAGE_CONSISTENCE" />
-      <mvcSiteMapNode title="Manage" controller="Manage" action="Manage" X ="4"  key="MANAGE_MANAGE" />
+    <mvcSiteMapNode title="Add &amp; Manage" controller="Tab" action="TabContent" key="MANAGE"  defaultkey="MANAGE_SEARCH">
+      <mvcSiteMapNode title="Search" controller="Search" action="Search" key="MANAGE_SEARCH" />
+      <mvcSiteMapNode title="Determine" controller="Search" action="Determine" key="MANAGE_DETERMINE" />
+      <mvcSiteMapNode title="Consistence" controller="Manage" action="Consistence" key="MANAGE_CONSISTENCE" />
+      <mvcSiteMapNode title="Manage" controller="Manage" action="Manage" key="MANAGE_MANAGE" />
     </mvcSiteMapNode>
     
-    <mvcSiteMapNode title="Login &amp; Profile" controller="Tab" action="TabContent" Code ="LOGIN" Y ="4" key="LOGIN">
-      <mvcSiteMapNode title="Login" controller="User" action="Login" X ="1" key="LOGIN_LOGIN" />
-      <mvcSiteMapNode title="Register" controller="User" action="Register" X ="2" key="LOGIN_REGISTER" />      
-      <mvcSiteMapNode title="Profile" controller="User" action="Profile" X ="3" key="LOGIN_PROFILE" />
+    <mvcSiteMapNode title="Login &amp; Profile" controller="Tab" action="TabContent" key="LOGIN"   defaultkey="LOGIN_LOGIN">
+      <mvcSiteMapNode title="Login" controller="User" action="Login" key="LOGIN_LOGIN" />
+      <mvcSiteMapNode title="Register" controller="User" action="Register" key="LOGIN_REGISTER" />      
+      <mvcSiteMapNode title="Profile" controller="User" action="Profile" key="LOGIN_PROFILE" />
     </mvcSiteMapNode>
   
   </mvcSiteMapNode>
+  
+</mvcSiteMapNode>
 
 </mvcSiteMap>

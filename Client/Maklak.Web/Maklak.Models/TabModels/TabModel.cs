@@ -5,254 +5,90 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Maklak.Models.DataSets;
+using MvcSiteMapProvider;
 
 namespace Maklak.Models
 {
-    public abstract class TabModel : BaseModel
+    public class TabModel : BaseModel
     {
-        protected int? selectedId;
+        protected string selectedKey;
         
         public TabModel() 
         {
             TabData = new TabDS();
+            ISiteMapNode rootTabNode = TabModelHelper.RootTabNode;
+            this.Action = rootTabNode.Action;
+            this.Controller = rootTabNode.Controller;
 
             Init();            
         }
 
         public bool IsVertical { get; set; }
-        public TabDS TabData { get; set; }
-        public int? SelectedId
+        public TabDS TabData { get; set; }       
+
+
+        public virtual void Init()
         {
-            get
-            { 
-                selectedId = TabData.TabData.AsEnumerable().Where(r => r.IsActive).Select(r => r.Id).FirstOrDefault(); 
-                return selectedId; 
-            }
-            set
+            DefaultKey = TabModelHelper.DefaultKey(SiteMapHelper.NodeByKey(this.Key));
+
+            foreach (ISiteMapNode node in TabModelHelper.RootTabNode.ChildNodes)
             {
-                selectedId = value;
-
-                TabDS.TabDataRow currentSelectedRow = TabData.TabData.AsEnumerable().Where(r => r.IsActive).FirstOrDefault();                
-
-                if (currentSelectedRow != null)
-                    currentSelectedRow.IsActive = false;
-
-                if (value == null)
-                    return;
-
-                TabDS.TabDataRow newSelectedRow = TabData.TabData.AsEnumerable().Where(r => r.Id == value).FirstOrDefault();
-
-                if (newSelectedRow == null)
-                    return;
-
-                newSelectedRow.IsActive = true;
-
-                
-
+                TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+                row.Key = node.Key;
+                row.Name = node.Title;
+                TabData.TabData.Rows.Add(row);
             }
         }
 
-        public int DefaultId { get; set; }
+        // Ключь самой модели
+        public string Key { get; protected set; }
+        // Ключь дочерней модели
+        public string DefaultKey { get; protected set; }
+        // Ключь выбранного таба в дочерней модели
+        public string SelectedKey { get; set; }
 
-        public abstract void Init();
 
-        
-        public TabModelHelper.TabModelType Code { get; set; }  
-        
     }
 
-    public class TabVModel : TabModel
+    public class CategoryTabModel : TabModel
     {
-        public TabVModel()
-        {
-            Code = TabModelHelper.TabModelType.VERTICAL;
-            IsVertical = true;            
-            SelectedId = 1;
-            DefaultId = 1;
-        }        
-
-        public override void Init()
-        {                       
-
-            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            row.Id = 1;
-            row.Name = "Search & Order";
-            row.IsActive = false;
-            row.IsVisible = true;            
-            TabData.TabData.Rows.Add(row);
-
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 2;
-            row.Name = "In & Out";
-            row.IsActive = false;
-            row.IsVisible = true;            
-            TabData.TabData.Rows.Add(row);
-
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 3;
-            row.Name = "Add & Manage";
-            row.IsActive = false;
-            row.IsVisible = true;            
-            TabData.TabData.Rows.Add(row);
-
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 4;
-            row.Name = "Login & Profile";
-            row.IsActive = false;
-            row.IsVisible = true;            
-            TabData.TabData.Rows.Add(row);
-        }
+        public CategoryTabModel()
+        {            
+            IsVertical = true;
+            Key = TabModelHelper.TabModelType.CATEGORY.ToString();            
+        }       
     }
 
     public class LoginTabModel : TabModel 
     {
         public LoginTabModel()
         {
-            Code = TabModelHelper.TabModelType.LOGIN;            
-            SelectedId = 1;
-            DefaultId = 1;
+            Key = TabModelHelper.TabModelType.LOGIN.ToString();           
+            
         }        
-
-        public override void Init()
-        {                  
-
-            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            row.Id = 1;
-            row.Name = "Login";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 2;
-            row.Name = "Register";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 3;
-            row.Name = "Profile";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-
-        }
     }
 
     public class SearchTabModel : TabModel
     {
         public SearchTabModel()
         {
-            Code = TabModelHelper.TabModelType.SEARCH;
-            SelectedId = 1;
-            DefaultId = 1;
-        }
-
-        public override void Init()
-        {
-            
-            TabData = new TabDS();
-
-            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            row.Id = 1;
-            row.Name = "Search";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 2;
-            row.Name = "Determine";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 3;
-            row.Name = "Order";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 4;
-            row.Name = "Summary";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-
-        }
+            Key = TabModelHelper.TabModelType.SEARCH.ToString();            
+        }        
     }
 
     public class InOutTabModel : TabModel
     {
         public InOutTabModel()
         {
-            Code = TabModelHelper.TabModelType.INOUT;
-            SelectedId = 1;
-            DefaultId = 1;
-        }
-
-        public override void Init()
-        {            
-            TabData = new TabDS();
-
-            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            row.Id = 1;
-            row.Name = "In";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 2;
-            row.Name = "Out";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 3;
-            row.Name = "Summary";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-
-        }
+            Key = TabModelHelper.TabModelType.INOUT.ToString();            
+        }        
     }
 
     public class ManageTabModel : TabModel
     {
         public ManageTabModel()
         {
-            Code = TabModelHelper.TabModelType.MANAGE;
-            SelectedId = 1;
-            DefaultId = 1;
-        }
-
-        public override void Init()
-        {
-            TabData = new TabDS();
-
-            TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-            row.Id = 1;
-            row.Name = "Search";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 2;
-            row.Name = "Determine";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 3;
-            row.Name = "Consistance";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-            row = TabData.TabData.NewTabDataRow();
-            row.Id = 4;
-            row.Name = "Manage";
-            row.IsActive = false;
-            row.IsVisible = true;
-            TabData.TabData.Rows.Add(row);
-
+            Key = TabModelHelper.TabModelType.MANAGE.ToString();            
         }
     }
 

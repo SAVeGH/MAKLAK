@@ -279,13 +279,13 @@ namespace Maklak.Models.DataSets {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class TabDataDataTable : global::System.Data.TypedTableBase<TabDataRow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnKey;
             
             private global::System.Data.DataColumn columnName;
             
-            private global::System.Data.DataColumn columnIsActive;
+            private global::System.Data.DataColumn columnDisabled;
             
-            private global::System.Data.DataColumn columnIsVisible;
+            private global::System.Data.DataColumn columnHidden;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -322,9 +322,9 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn KeyColumn {
                 get {
-                    return this.columnId;
+                    return this.columnKey;
                 }
             }
             
@@ -338,17 +338,17 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IsActiveColumn {
+            public global::System.Data.DataColumn DisabledColumn {
                 get {
-                    return this.columnIsActive;
+                    return this.columnDisabled;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IsVisibleColumn {
+            public global::System.Data.DataColumn HiddenColumn {
                 get {
-                    return this.columnIsVisible;
+                    return this.columnHidden;
                 }
             }
             
@@ -389,13 +389,13 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TabDataRow AddTabDataRow(int Id, string Name, bool IsActive, bool IsVisible) {
+            public TabDataRow AddTabDataRow(string Key, string Name, bool Disabled, bool Hidden) {
                 TabDataRow rowTabDataRow = ((TabDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        Key,
                         Name,
-                        IsActive,
-                        IsVisible};
+                        Disabled,
+                        Hidden};
                 rowTabDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTabDataRow);
                 return rowTabDataRow;
@@ -418,23 +418,25 @@ namespace Maklak.Models.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
+                this.columnKey = base.Columns["Key"];
                 this.columnName = base.Columns["Name"];
-                this.columnIsActive = base.Columns["IsActive"];
-                this.columnIsVisible = base.Columns["IsVisible"];
+                this.columnDisabled = base.Columns["Disabled"];
+                this.columnHidden = base.Columns["Hidden"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
+                this.columnKey = new global::System.Data.DataColumn("Key", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKey);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
-                this.columnIsActive = new global::System.Data.DataColumn("IsActive", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsActive);
-                this.columnIsVisible = new global::System.Data.DataColumn("IsVisible", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsVisible);
+                this.columnDisabled = new global::System.Data.DataColumn("Disabled", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDisabled);
+                this.columnHidden = new global::System.Data.DataColumn("Hidden", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHidden);
+                this.columnDisabled.DefaultValue = ((bool)(false));
+                this.columnHidden.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -577,17 +579,17 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Id {
+            public string Key {
                 get {
                     try {
-                        return ((int)(this[this.tableTabData.IdColumn]));
+                        return ((string)(this[this.tableTabData.KeyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'TabData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Key\' in table \'TabData\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTabData.IdColumn] = value;
+                    this[this.tableTabData.KeyColumn] = value;
                 }
             }
             
@@ -609,46 +611,46 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsActive {
+            public bool Disabled {
                 get {
                     try {
-                        return ((bool)(this[this.tableTabData.IsActiveColumn]));
+                        return ((bool)(this[this.tableTabData.DisabledColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IsActive\' in table \'TabData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Disabled\' in table \'TabData\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTabData.IsActiveColumn] = value;
+                    this[this.tableTabData.DisabledColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVisible {
+            public bool Hidden {
                 get {
                     try {
-                        return ((bool)(this[this.tableTabData.IsVisibleColumn]));
+                        return ((bool)(this[this.tableTabData.HiddenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IsVisible\' in table \'TabData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Hidden\' in table \'TabData\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTabData.IsVisibleColumn] = value;
+                    this[this.tableTabData.HiddenColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tableTabData.IdColumn);
+            public bool IsKeyNull() {
+                return this.IsNull(this.tableTabData.KeyColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIdNull() {
-                this[this.tableTabData.IdColumn] = global::System.Convert.DBNull;
+            public void SetKeyNull() {
+                this[this.tableTabData.KeyColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -665,26 +667,26 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIsActiveNull() {
-                return this.IsNull(this.tableTabData.IsActiveColumn);
+            public bool IsDisabledNull() {
+                return this.IsNull(this.tableTabData.DisabledColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIsActiveNull() {
-                this[this.tableTabData.IsActiveColumn] = global::System.Convert.DBNull;
+            public void SetDisabledNull() {
+                this[this.tableTabData.DisabledColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIsVisibleNull() {
-                return this.IsNull(this.tableTabData.IsVisibleColumn);
+            public bool IsHiddenNull() {
+                return this.IsNull(this.tableTabData.HiddenColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIsVisibleNull() {
-                this[this.tableTabData.IsVisibleColumn] = global::System.Convert.DBNull;
+            public void SetHiddenNull() {
+                this[this.tableTabData.HiddenColumn] = global::System.Convert.DBNull;
             }
         }
         
