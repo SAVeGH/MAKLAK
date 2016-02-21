@@ -19,8 +19,8 @@ namespace Maklak.Web.ModelBinder
             
             //int selectedY = request.RequestContext.HttpContext.Session["Y"] == null ? 0 : Convert.ToInt32(request.RequestContext.HttpContext.Session["Y"]);
 
-            TabModelHelper.TabModelType tabModelType = (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), modelKey);
-            TabModel model = TabModelHelper.GenerateModel(tabModelType); 
+            //TabModelHelper.TabModelType tabModelType = (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), modelKey);
+            TabModel model = TabModelHelper.GenerateModel(modelKey); 
 
             return model;
         }

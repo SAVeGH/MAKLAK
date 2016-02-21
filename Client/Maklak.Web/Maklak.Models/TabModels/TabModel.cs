@@ -9,17 +9,16 @@ using MvcSiteMapProvider;
 
 namespace Maklak.Models
 {
-    public class TabModel : BaseModel
-    {
-        protected string selectedKey;
-        
+    public abstract class TabModel : BaseModel
+    {        
         public TabModel() 
-        {
+        {           
+
             TabData = new TabDS();
             ISiteMapNode rootTabNode = TabModelHelper.RootTabNode;
             this.Action = rootTabNode.Action;
             this.Controller = rootTabNode.Controller;
-
+                        
             Init();            
         }
 
@@ -29,23 +28,68 @@ namespace Maklak.Models
 
         public virtual void Init()
         {
-            DefaultKey = TabModelHelper.DefaultKey(SiteMapHelper.NodeByKey(this.Key));
+            ISiteMapNode rootNode = SiteMapHelper.NodeByKey(this.Key);
 
-            foreach (ISiteMapNode node in TabModelHelper.RootTabNode.ChildNodes)
+            DefaultKey = TabModelHelper.DefaultKey(rootNode);
+
+            foreach (ISiteMapNode node in rootNode.ChildNodes)
             {
                 TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
                 row.Key = node.Key;
                 row.Name = node.Title;
+                row.Enabled = DefaultKey == node.Key;
                 TabData.TabData.Rows.Add(row);
             }
         }
 
         // Ключь самой модели
-        public string Key { get; protected set; }
+        public string Key
+        {
+            get
+            {
+                return ModelKey();
+            }
+         }
+
         // Ключь дочерней модели
         public string DefaultKey { get; protected set; }
         // Ключь выбранного таба в дочерней модели
-        public string SelectedKey { get; set; }
+        public string SelectedKey
+        {
+            get
+            {
+                TabDS.TabDataRow row = TabData.TabData.AsEnumerable().Where(r => r.Enabled).FirstOrDefault();
+
+                if (row == null)
+                    return string.Empty;
+
+                return row.Key;
+
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                    return;
+
+                TabDS.TabDataRow row = TabData.TabData.AsEnumerable().Where(r => r.Enabled).FirstOrDefault();
+
+                if (row == null)
+                    return;
+
+                row.Enabled = false;
+
+                row = TabData.TabData.AsEnumerable().Where(r => r.Key == value).FirstOrDefault();
+
+                if (row == null)
+                    return;
+
+                row.Enabled = true;
+
+            }
+        }
+
+        protected abstract string ModelKey();
 
 
     }
@@ -54,41 +98,44 @@ namespace Maklak.Models
     {
         public CategoryTabModel()
         {            
-            IsVertical = true;
-            Key = TabModelHelper.TabModelType.CATEGORY.ToString();            
-        }       
+            IsVertical = true;                      
+        }
+
+        protected override string ModelKey()
+        {
+            return TabModelHelper.TabModelType.CATEGORY.ToString();
+        }
     }
 
     public class LoginTabModel : TabModel 
     {
-        public LoginTabModel()
+        protected override string ModelKey()
         {
-            Key = TabModelHelper.TabModelType.LOGIN.ToString();           
-            
+            return TabModelHelper.TabModelType.LOGIN.ToString();           
         }        
     }
 
     public class SearchTabModel : TabModel
     {
-        public SearchTabModel()
+        protected override string ModelKey()
         {
-            Key = TabModelHelper.TabModelType.SEARCH.ToString();            
+            return TabModelHelper.TabModelType.SEARCH.ToString();            
         }        
     }
 
     public class InOutTabModel : TabModel
     {
-        public InOutTabModel()
+        protected override string ModelKey()
         {
-            Key = TabModelHelper.TabModelType.INOUT.ToString();            
+            return TabModelHelper.TabModelType.INOUT.ToString();            
         }        
     }
 
     public class ManageTabModel : TabModel
     {
-        public ManageTabModel()
+        protected override string ModelKey()
         {
-            Key = TabModelHelper.TabModelType.MANAGE.ToString();            
+            return TabModelHelper.TabModelType.MANAGE.ToString();            
         }
     }
 

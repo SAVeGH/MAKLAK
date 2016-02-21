@@ -12,12 +12,12 @@
   <xs:element name="TabDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TabDS" msprop:Generator_UserDSName="TabDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TabData" msprop:Generator_TableClassName="TabDataDataTable" msprop:Generator_TableVarName="tableTabData" msprop:Generator_TablePropName="TabData" msprop:Generator_RowDeletingName="TabDataRowDeleting" msprop:Generator_RowChangingName="TabDataRowChanging" msprop:Generator_RowEvHandlerName="TabDataRowChangeEventHandler" msprop:Generator_RowDeletedName="TabDataRowDeleted" msprop:Generator_UserTableName="TabData" msprop:Generator_RowChangedName="TabDataRowChanged" msprop:Generator_RowEvArgName="TabDataRowChangeEvent" msprop:Generator_RowClassName="TabDataRow">
+        <xs:element name="TabData" msprop:Generator_TableClassName="TabDataDataTable" msprop:Generator_TableVarName="tableTabData" msprop:Generator_RowChangedName="TabDataRowChanged" msprop:Generator_TablePropName="TabData" msprop:Generator_RowDeletingName="TabDataRowDeleting" msprop:Generator_RowChangingName="TabDataRowChanging" msprop:Generator_RowEvHandlerName="TabDataRowChangeEventHandler" msprop:Generator_RowDeletedName="TabDataRowDeleted" msprop:Generator_RowClassName="TabDataRow" msprop:Generator_UserTableName="TabData" msprop:Generator_RowEvArgName="TabDataRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Key" msprop:Generator_ColumnVarNameInTable="columnKey" msprop:Generator_ColumnPropNameInRow="Key" msprop:Generator_ColumnPropNameInTable="KeyColumn" msprop:Generator_UserColumnName="Key" type="xs:string" minOccurs="0" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
-              <xs:element name="Disabled" msprop:Generator_ColumnVarNameInTable="columnDisabled" msprop:Generator_ColumnPropNameInRow="Disabled" msprop:Generator_ColumnPropNameInTable="DisabledColumn" msprop:Generator_UserColumnName="Disabled" type="xs:boolean" default="false" minOccurs="0" />
+              <xs:element name="Enabled" msprop:Generator_ColumnVarNameInTable="columnEnabled" msprop:Generator_ColumnPropNameInRow="Enabled" msprop:Generator_ColumnPropNameInTable="EnabledColumn" msprop:Generator_UserColumnName="Enabled" type="xs:boolean" default="false" minOccurs="0" />
               <xs:element name="Hidden" msprop:Generator_ColumnVarNameInTable="columnHidden" msprop:Generator_ColumnPropNameInRow="Hidden" msprop:Generator_ColumnPropNameInTable="HiddenColumn" msprop:Generator_UserColumnName="Hidden" type="xs:boolean" default="false" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

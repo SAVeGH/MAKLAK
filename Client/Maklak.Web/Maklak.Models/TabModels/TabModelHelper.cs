@@ -28,6 +28,14 @@ namespace Maklak.Models
             //tabReference = new Dictionary<TabModelType, Dictionary<int, TabModelType>>() { { TabModelType.VERTICAL,hTab} };
         }
 
+        public static TabModel GenerateModel(string key)
+        {
+            //SiteMapHelper.SiteMap.
+            TabModelHelper.TabModelType tabModelType = (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), key);
+
+            return GenerateModel(tabModelType);
+        }
+
         public static TabModel GenerateModel(TabModelType modelType)
         {
             TabModel model = null;
