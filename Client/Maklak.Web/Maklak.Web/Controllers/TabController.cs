@@ -31,12 +31,10 @@ namespace Maklak.Web.Controllers
             if (!model.IsVertical)
             {
                 tabLineKey = "X";
-                //int defaultId = model.DefaultId == 0 ? 1 : model.DefaultId;
+                
                 string xState = string.IsNullOrEmpty(state[selectedY]) ? model.DefaultKey : state[selectedY];
                 string selectedX = string.IsNullOrEmpty(selectedKey) ? xState : selectedKey;
-
-                //model = selectedValue == 0 ? TabModelHelper.GenerateModel(TabModelHelper.TabModelType.VERTICAL, selectedY) : model;
-
+                
                 model.SelectedKey = selectedX;
 
                 state[selectedY] = selectedX;
