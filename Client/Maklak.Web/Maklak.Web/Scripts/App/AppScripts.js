@@ -12,7 +12,8 @@ AppManager.Init = function ()
 }
 
 AppManager.VTabClick = function (arg)
-{    
+{
+    hTabMgr.ChangeKey(arg);
     hTabMgr.TabClick(null);
 }
 

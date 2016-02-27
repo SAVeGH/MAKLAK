@@ -20,9 +20,10 @@
     string tabStubClass = string.Format("{0}TabStub", tabStripPrefix);
     string selectedValue = string.Format("{0}SelectedValue", tabStripPrefix);
     string actionName = string.Format("{0}TabElement", tabStripPrefix);
-    string tabId = string.Format("{0}TabStrip", tabStripPrefix);    
+    string tabId = string.Format("{0}TabStrip", tabStripPrefix);
     string tabIsVerticalId = string.Format("{0}TabIsVertical", tabStripPrefix);
-    
+    string keyName = string.Format("{0}Key", tabStripPrefix);
+
 
 
     if (this.Model.IsVertical)
@@ -74,7 +75,7 @@
 
             @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })            
             @Html.HiddenFor(m => m.IsVertical, new { id = tabIsVerticalId })
-            @Html.HiddenFor(m => m.Key)            
+            @Html.HiddenFor(m => m.Key, new { id = keyName})            
             
 
         </div>

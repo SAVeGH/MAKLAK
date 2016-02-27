@@ -2,7 +2,7 @@
 {
     var indexName = isVertical ? '#vSelectedValue' : '#hSelectedValue';
     var tabStripId = isVertical ? '#vTabStrip' : '#hTabStrip';
-
+    var keyName = isVertical ? '#vKey' : '#hKey';
     
     this.OnUpdate;
     
@@ -29,6 +29,10 @@
 
         this.OnUpdate(completedTabId);
 
+    }
+
+    this.ChangeKey = function (newKey) {
+        $(keyName).val(newKey);
     }
     
 
