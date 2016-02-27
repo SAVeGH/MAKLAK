@@ -68,16 +68,15 @@ namespace Maklak.Models
             }
 
             set
-            {
-                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
-                    return;
+            {                
 
                 TabDS.TabDataRow row = TabData.TabData.AsEnumerable().Where(r => r.Enabled).FirstOrDefault();
 
-                if (row == null)
-                    return;
+                if (row != null)
+                    row.Enabled = false;
 
-                row.Enabled = false;
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                    return;
 
                 row = TabData.TabData.AsEnumerable().Where(r => r.Key == value).FirstOrDefault();
 
