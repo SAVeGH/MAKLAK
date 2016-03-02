@@ -16,16 +16,24 @@ namespace Maklak.Web.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (filterContext.IsChildAction)
-                return;            
-
-            int y = Session["Y"] == null ? 1 : (int)Session["Y"];
-            int x = Session["X"] == null ? 1 : (int)Session["X"];
-
-            if (x != 1 || y != 1)
-            {
-                filterContext.Result = RedirectToAction("IndexMain", "Home");
                 return;
-            }
+
+            ActionDescriptor actionDescriptor = filterContext.ActionDescriptor;
+            
+            ControllerDescriptor controllerDescriptor = actionDescriptor.ControllerDescriptor;
+
+            string aName = actionDescriptor.ActionName;
+            string cName = controllerDescriptor.ControllerName;
+
+            string requestKey = (string)Session["X"];
+
+
+
+            //string controller = filterContext.Controller;
+
+            //filterContext.Result = RedirectToAction("IndexMain", "Home");
+                //return;
+            
 
             base.OnActionExecuting(filterContext);
         }

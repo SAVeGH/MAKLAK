@@ -63,7 +63,7 @@ namespace Maklak.Web.Controllers
 
         public ActionResult hTabStrip()
         {
-            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.SEARCH);
+            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.DefaultXModelKey);
             
             this.Session["X"] = model.SelectedKey;
                      
@@ -78,7 +78,7 @@ namespace Maklak.Web.Controllers
 
         public ActionResult vTabStrip()
         {
-            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.TabModelType.CATEGORY);
+            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.DefaultYModelKey);
 
             this.Session["Y"] = model.SelectedKey;
             

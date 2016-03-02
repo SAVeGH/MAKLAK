@@ -31,6 +31,11 @@ namespace Maklak.Models
         {
             get { return SiteMapHelper.SiteMap.RootNode.Action; }
         }
+
+        //public static string ActionControllerKey(string action, string controller)
+        //{
+        //    SiteMapHelper.SiteMap.RootNode.
+        //}
         
 
         //private static ISiteMapNode NodeByAttributeValue(ISiteMapNode node, string attributeName, string attributeValue)

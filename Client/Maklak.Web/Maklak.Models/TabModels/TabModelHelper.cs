@@ -31,7 +31,7 @@ namespace Maklak.Models
         public static TabModel GenerateModel(string key)
         {
             //SiteMapHelper.SiteMap.
-            TabModelHelper.TabModelType tabModelType = (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), key);
+            TabModelHelper.TabModelType tabModelType = ModelType(key);
 
             return GenerateModel(tabModelType);
         }
@@ -89,6 +89,44 @@ namespace Maklak.Models
             get
             {
                 return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(RootTabNode)))).Controller;
+            }
+        }
+
+        public static TabModelType ModelType(string key)
+        {
+
+            ISiteMapNode node = SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(key);
+
+            return TabModelHelper.ModelType(node);
+
+
+        }
+
+        public static TabModelType ModelType(ISiteMapNode node)
+        {            
+
+            if (Enum.GetNames(typeof(TabModelHelper.TabModelType)).Contains(node.Key))
+                return (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), node.Key);
+
+            ISiteMapNode parentNode = node.ParentNode;
+
+            return TabModelHelper.ModelType(node);
+        }
+
+        public static string DefaultYModelKey
+        {
+            get
+            {
+                return ModelType(TabModelHelper.RootTabNode).ToString();
+            }
+        }
+
+        public static string DefaultXModelKey
+        {
+            get
+            {
+                ISiteMapNode xNode = RootTabNode.ChildNodes.Where(n => n.Key == DefaultKey(RootTabNode)).FirstOrDefault();
+                return TabModelHelper.ModelType(xNode).ToString();
             }
         }
 

@@ -17,8 +17,7 @@ namespace Maklak.Web.Controllers
         }
 
         public ActionResult Login(LoginModel model)
-        {
-            
+        {           
 
             return PartialView(model);
         }
