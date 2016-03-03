@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 
 using Maklak.Web.Extension;
-
+using Maklak.Models;
 namespace Maklak.Web.Controllers
 {
     public class BaseController : Controller
@@ -22,18 +22,18 @@ namespace Maklak.Web.Controllers
             
             ControllerDescriptor controllerDescriptor = actionDescriptor.ControllerDescriptor;
 
-            string aName = actionDescriptor.ActionName;
-            string cName = controllerDescriptor.ControllerName;
+            string actionName = actionDescriptor.ActionName;
+            string controllerName = controllerDescriptor.ControllerName;
 
-            string requestKey = (string)Session["X"];
+            string requestedKey = (string)Session["X"];
 
+            string currentKey = SiteMapHelper.ActionControllerKey(actionName, controllerName);
 
-
-            //string controller = filterContext.Controller;
-
-            //filterContext.Result = RedirectToAction("IndexMain", "Home");
-                //return;
-            
+            if (!requestedKey.Equals(currentKey))
+            {
+                filterContext.Result = RedirectToAction(SiteMapHelper.ActionByKey(requestedKey), SiteMapHelper.ControllerByKey(requestedKey));
+                return;
+            }           
 
             base.OnActionExecuting(filterContext);
         }

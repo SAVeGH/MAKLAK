@@ -32,17 +32,42 @@ namespace Maklak.Models
             get { return SiteMapHelper.SiteMap.RootNode.Action; }
         }
 
-        //public static string ActionControllerKey(string action, string controller)
-        //{
-        //    SiteMapHelper.SiteMap.RootNode.
-        //}
-        
+        public static string ActionControllerKey(string action, string controller)
+        {
+            return ActionControllerKey(SiteMapHelper.SiteMap.RootNode, action, controller);
+        }
+
+        private static string ActionControllerKey(ISiteMapNode  node, string action, string controller)
+        {
+            if (node.Action == action && node.Controller == controller)
+                return node.Key;
+
+            foreach (ISiteMapNode n in node.ChildNodes)
+            {
+                string key = ActionControllerKey(n, action, controller);
+
+                if (!string.IsNullOrEmpty(key))
+                    return key;
+            }
+
+            return string.Empty;
+        }
+
+        public static string ActionByKey(string key)
+        {
+            return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(key).Action;
+        }
+
+        public static string ControllerByKey(string key)
+        {
+            return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(key).Controller;
+        }
 
         //private static ISiteMapNode NodeByAttributeValue(ISiteMapNode node, string attributeName, string attributeValue)
         //{
         //    if (node == null)
         //        return null;
-            
+
         //    if (node.Attributes.Where(a => a.Key == attributeName && Convert.ToString(a.Value) == attributeValue).Any())
         //        return node;
 
@@ -51,6 +76,6 @@ namespace Maklak.Models
 
         //    return node.ChildNodes.Where(n => SiteMapHelper.NodeByAttributeValue(n, attributeName, attributeValue) != null).FirstOrDefault();               
         //}        
-        
+
     }
 }
