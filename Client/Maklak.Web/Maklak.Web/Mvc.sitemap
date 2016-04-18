@@ -6,12 +6,12 @@
   <mvcSiteMapNode title="Home" controller="Home" action="Index"  key="ROOT">
     
     <!-- describes vertical tab area (vertical tabs). Defined Action and Controller will be default for all tabs--> 
-    <mvcSiteMapNode title="Partitions" controller="Tab" action="TabContent"  key="CATEGORY" defaultkey="LOGIN">
+    <mvcSiteMapNode title="Partitions" controller="Tab" action="TabContent"  key="CATEGORY" defaultkey="SEARCH">
      
       <!-- one vertical tab --> 
     <mvcSiteMapNode title="Search &amp; Order" controller="Tab" action="TabContent" key="SEARCH" defaultkey="SEARCH_SEARCH">
       <!-- horizontal tabs in context of current category tab. Represent Action and Controller for content area--> 
-      <mvcSiteMapNode title="Search" controller="Home" action="IndexMain"  key="SEARCH_SEARCH"/>
+      <mvcSiteMapNode title="Search" controller="Search" action="Search"  key="SEARCH_SEARCH"/>
       <mvcSiteMapNode title="Determine" controller="Search" action="Determine"  key="SEARCH_DETERMINE" />
       <mvcSiteMapNode title="Order" controller="Search" action="Order"  key="SEARCH_ORDER" />
       <mvcSiteMapNode title="Summary" controller="Search" action="Summary"  key="SEARCH_SUMMARY" />
