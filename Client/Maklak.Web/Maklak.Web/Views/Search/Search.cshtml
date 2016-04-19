@@ -1,0 +1,19 @@
+﻿@model Maklak.Models.LoginModel
+
+@{
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+    Model.Action = "Search";
+    Model.Controller = "Search";
+}
+
+@section Content{
+
+    <text>Search</text>
+
+    @{string dt = DateTime.Now.ToString();}
+
+    <text>@dt</text>
+
+    <input type="submit" value="Refresh" />
+
+}

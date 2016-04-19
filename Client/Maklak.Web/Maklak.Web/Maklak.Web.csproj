@@ -179,7 +179,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Mvc.sitemap" />
+    <Content Include="Mvc.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="MvcSiteMapSchema.xsd">
@@ -209,6 +211,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TabController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extension\ControllerExtension.cs" />
@@ -234,8 +237,12 @@
     <Content Include="Views\Home\IndexMain.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_ContentLayout.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
+=======
+    <Content Include="Views\Search\Search.cshtml" />
+>>>>>>> ee326a51756633e0bec70c38792b2473a96b843f
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
