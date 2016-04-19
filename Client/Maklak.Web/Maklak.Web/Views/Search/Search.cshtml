@@ -6,12 +6,30 @@
 
 @section Content{
 
-    <text>Search</text>
 
-    @{string dt = DateTime.Now.ToString();}
+    <fieldset>
+        <legend>Product</legend>
+    <div style="display:inline-block">Product Name: @Html.TextBox("productName") </div>
+    <div style="display:inline-block">Model Name: @Html.TextBox("modelName")</div>
+    <div style="display:inline-block">Producer Name: @Html.TextBox("producerName")</div>
+    </fieldset>
 
-    <text>@dt</text>
+<fieldset style="display:inline-block">
+    <legend>Properties</legend>
+    <div>Property Search: @Html.TextBox("propertySearch")</div>
+    <div>@Html.Label("Available Properties") @Html.Label("Property values")</div>
+    <div style="display:inline-block; left:0;"><select multiple size="10" style="width:250px"></select></div>
+    <div style="display:inline-block"><div style="background-color:aquamarine"><input type="button" value=">" style="display:block; top:0" /><input type="button" value=">>" style="display:block" /><input type="button" value="<" style="display:block" /><input type="button" value="<<" style="display:block" /></div></div>
+    <div style="display:inline-block"><select multiple size="10" style="width:400px"></select></div>
+</fieldset>
 
-    <input type="submit" value="Refresh" />
+<fieldset style="display:inline-block">
+    <legend>Tags</legend>
+    <div>Tag Search: @Html.TextBox("tagSearch")</div>
+    
+    <div style="display:inline-block; left:0;"><select multiple size="10" style="width:250px"></select></div>
+    
+</fieldset>
+
 
 }
