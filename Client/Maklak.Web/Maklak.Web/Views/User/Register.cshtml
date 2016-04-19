@@ -1,0 +1,20 @@
+﻿@model Maklak.Models.LoginModel
+
+@{
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+}
+
+@section Content{
+    @Html.Raw("Register")
+    @Html.Label("Login:")
+    @Html.TextBoxFor(m => m.Login)
+    @Html.Label("Password")
+    @Html.PasswordFor(m => m.Password)
+
+    @{string dt = DateTime.Now.ToString();}
+
+    <text>@dt</text>
+
+    <input type="submit" value="Refresh" />
+
+}

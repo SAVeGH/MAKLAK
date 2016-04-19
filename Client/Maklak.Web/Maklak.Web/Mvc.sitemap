@@ -33,7 +33,7 @@
     <mvcSiteMapNode title="Login &amp; Profile" controller="Tab" action="TabContent" key="LOGIN"   defaultkey="LOGIN_LOGIN">
       <mvcSiteMapNode title="Login" controller="User" action="Login" key="LOGIN_LOGIN" />
       <mvcSiteMapNode title="Register" controller="User" action="Register" key="LOGIN_REGISTER" />      
-      <mvcSiteMapNode title="Profile" controller="User" action="Profile" key="LOGIN_PROFILE" />
+      <mvcSiteMapNode title="Profile" controller="User" action="UserProfile" key="LOGIN_PROFILE" />
     </mvcSiteMapNode>
   
   </mvcSiteMapNode>

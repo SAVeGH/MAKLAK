@@ -21,5 +21,17 @@ namespace Maklak.Web.Controllers
 
             return PartialView(model);
         }
+
+        public ActionResult Register(LoginModel model)
+        {
+
+            return PartialView(model);
+        }
+
+        public ActionResult UserProfile(LoginModel model)
+        {
+
+            return PartialView(model);
+        }
     }
 }
