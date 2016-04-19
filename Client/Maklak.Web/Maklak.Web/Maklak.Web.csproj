@@ -237,12 +237,9 @@
     <Content Include="Views\Home\IndexMain.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_ContentLayout.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
-=======
     <Content Include="Views\Search\Search.cshtml" />
->>>>>>> ee326a51756633e0bec70c38792b2473a96b843f
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
