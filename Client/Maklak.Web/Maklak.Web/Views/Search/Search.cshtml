@@ -16,7 +16,15 @@
 
 <fieldset style="display:inline-block">
     <legend>Properties</legend>
-    <div>Property Search: @Html.TextBox("propertySearch")</div>
+    <div >
+        <div style="display:block; left:0">
+           <span style="font-size:0.8em">Property Search:</span>
+        </div> 
+        <div style="display:block; left:0">
+            @Html.TextBox("propertySearch")
+        </div>  
+    </div>
+
     <div>@Html.Label("Available Properties") @Html.Label("Property values")</div>
     <div style="display:inline-block; left:0;"><select multiple size="10" style="width:250px"></select></div>
     <div style="display:inline-block"><div style="background-color:aquamarine"><input type="button" value=">" style="display:block; top:0" /><input type="button" value=">>" style="display:block" /><input type="button" value="<" style="display:block" /><input type="button" value="<<" style="display:block" /></div></div>
