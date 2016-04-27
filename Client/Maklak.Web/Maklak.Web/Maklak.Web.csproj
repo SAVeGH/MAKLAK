@@ -170,6 +170,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\App\AppScripts.js" />
+    <Content Include="Scripts\App\Suggestion.js" />
     <Content Include="Scripts\App\TabScripts.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -184,7 +185,7 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="App_Code\SuggestionPopUp.cshtml" />
+    <Content Include="App_Code\SuggestionHelper.cshtml" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -213,6 +214,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="Controllers\TabController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extension\ControllerExtension.cs" />
@@ -220,6 +222,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HelperPage.cs" />
+    <Compile Include="ModelBinder\SuggestionModelBinder.cs" />
     <Compile Include="ModelBinder\TabModelBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -242,6 +245,7 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Suggestion\MakeSuggestion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

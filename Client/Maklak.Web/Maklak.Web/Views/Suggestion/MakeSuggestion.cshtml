@@ -1,0 +1,72 @@
+﻿@model Maklak.Models.SuggestionModel
+
+<style type="text/css">
+    .suggestFont {
+        font-size: 10;
+    }
+
+    .highlightedCell {
+        background-color: #fffcd5;
+    }
+</style>
+<table class="maxWidth suggestFont" id="suggestionTable">
+    @foreach (string name in this.Model.SuggestionValues.Values)
+    {
+        <tr highlited="false">
+            <td>
+                <span onclick="Suggest.SetSuggestion('@name')">@name</span>
+            </td>
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    function sgCleanHighlite() {
+
+        var rows = $("tr[highlited=true]");
+
+        if (rows.length == 0)
+            return;
+
+        rows.each(function () {
+
+            var row = $(this);
+
+            row.attr("highlited", "false");
+
+            row.children("td").each(function () {
+                var rowCell = $(this);
+                var cls = rowCell.attr("class");
+                cls = cls.replace("highlightedCell", "");
+                rowCell.attr("class", cls);
+
+            });
+        });
+
+
+    }
+
+    function sgHighlightRow(e) {
+
+        sgCleanHighlite();
+
+        var cell = e.srcElement == null ? e.target : e.srcElement;
+
+        var cellObject = $(cell);
+
+        var row = cellObject.parent();
+
+        row.attr("highlited", "true");
+        row.children("td").each(function () {
+            var rowCell = $(this);
+            var cls = rowCell.attr("class");
+            cls = cls + " highlightedCell";
+            rowCell.attr("class", cls);
+
+        });
+    }
+
+    $("#suggestionTable tr").mouseenter(sgHighlightRow);
+    $("#suggestionTable tr").mouseleave(sgCleanHighlite);
+</script>
+

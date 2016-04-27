@@ -1,0 +1,70 @@
+﻿@inherits Maklak.Web.Helpers.HelperPage
+@using System.Web.Mvc;
+@using System.Web.Mvc.Html;
+
+@helper SuggestionPopUp()
+{
+
+    <style type="text/css">
+        .closeSGStripCell {
+            width: 100%;
+        }
+
+        .xSGCell {
+            color: Red;
+            cursor: pointer;
+            padding-right: 3px;
+        }
+
+        .sgContentTable {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sgTopRow {
+            font-size: 7;
+            background-color: Gray;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+        }
+
+        .sgContentRow {
+            height: 100%;
+        }
+
+        .sgContentCell {
+            vertical-align: top;
+        }
+
+        .suggestionDIV {
+            display: none;
+            position: absolute;
+            background-color: White;
+            border-style: solid;
+            border-width: 1px;
+            border-color: Black;
+        }
+    </style>
+
+    <script src="~/Scripts/App/Suggestion.js"></script>
+
+    <div class="suggestionDIV" id="suggestiontPopUp">
+        <table class="sgContentTable">
+
+            <tr class="sgTopRow">
+                <td class="closeSGStripCell">&nbsp;</td>
+                <td class="xSGCell rightAlign" onclick="Suggest.HideSuggestion()">x</td>
+            </tr>
+
+            <tr class="sgContentRow">
+                <td class="sgContentCell" colspan="2"><div id="suggestionContent"></div></td>
+            </tr>
+
+        </table>
+    </div>
+
+   
+
+}

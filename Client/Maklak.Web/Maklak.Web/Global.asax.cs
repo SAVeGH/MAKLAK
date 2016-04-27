@@ -20,6 +20,7 @@ namespace Maklak.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders.Add(typeof(TabModel), new TabModelBinder());
+            ModelBinders.Binders.Add(typeof(SuggestionModel), new SuggestionModelBinder());
 
         }
     }

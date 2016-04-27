@@ -26,10 +26,10 @@ namespace Maklak.Web.Controllers
             string controllerName = controllerDescriptor.ControllerName;
 
             string requestedKey = (string)Session["X"];
-
+            
             string currentKey = SiteMapHelper.ActionControllerKey(actionName, controllerName);
-
-            if (!requestedKey.Equals(currentKey))
+            // для Search POST запросов ключ currentKey пустой
+            if (!string.IsNullOrEmpty(currentKey) && !requestedKey.Equals(currentKey))
             {
                 filterContext.Result = RedirectToAction(SiteMapHelper.ActionByKey(requestedKey), SiteMapHelper.ControllerByKey(requestedKey));
                 return;
