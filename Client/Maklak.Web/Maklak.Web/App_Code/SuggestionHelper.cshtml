@@ -5,52 +5,49 @@
 @helper SuggestionPopUp()
 {
 
+
     <style type="text/css">
-        .closeSGStripCell {
-            width: 100%;
-        }
 
-        .xSGCell {
-            color: Red;
-            cursor: pointer;
-            padding-right: 3px;
-        }
 
-        .sgContentTable {
-            width: 100%;
-            height: 100%;
-        }
 
         .sgTopRow {
-            font-size: 7;
-            background-color: Gray;
-            margin-bottom: 0px;
-            margin-top: 0px;
-            padding-bottom: 0px;
-            padding-top: 0px;
-        }
+    font-size: 0.8em;
+    background-color: Gray;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    text-align:right;
+    padding-right:4px;
+}
 
-        .sgContentRow {
-            height: 100%;
-        }
+        .sgCloseSign {
+    font-size: 0.8em;
+color:red;
+cursor:pointer;
+}
 
-        .sgContentCell {
-            vertical-align: top;
-        }
+        
 
         .suggestionDIV {
-            display: none;
-            position: absolute;
-            background-color: White;
-            border-style: solid;
-            border-width: 1px;
-            border-color: Black;
-        }
+display: none;
+position: absolute;
+    background-color: White;
+    border-style: solid;
+    border-width: 1px;
+    border-color: Black;
+}
     </style>
 
     <script src="~/Scripts/App/Suggestion.js"></script>
 
     <div class="suggestionDIV" id="suggestiontPopUp">
+        <div id="suggestionTopStrip" class="sgTopRow"><span class="sgCloseSign">x</span></div>
+        <div id="suggestionContent"></div>
+        @Html.Hidden("suggestionSelectedKey",null,new { id = "suggestionSelectedKey" })
+    </div>
+
+    @*<div class="suggestionDIV" id="suggestiontPopUp">
         <table class="sgContentTable">
 
             <tr class="sgTopRow">
@@ -63,7 +60,7 @@
             </tr>
 
         </table>
-    </div>
+    </div>*@
 
    
 

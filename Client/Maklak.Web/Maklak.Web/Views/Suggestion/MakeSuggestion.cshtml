@@ -10,14 +10,18 @@
     }
 </style>
 <table class="maxWidth suggestFont" id="suggestionTable">
-    @foreach (string name in this.Model.SuggestionValues.Values)
+    @foreach (int idKey in this.Model.SuggestionValues.Keys)
     {
+        string name = this.Model.SuggestionValues[idKey];
+        
         <tr highlited="false">
+            <td>@idKey</td>
             <td>
                 <span onclick="Suggest.SetSuggestion('@name')">@name</span>
             </td>
         </tr>
     }
+    
 </table>
 
 <script type="text/javascript">

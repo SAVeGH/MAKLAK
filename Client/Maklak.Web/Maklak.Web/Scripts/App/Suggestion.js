@@ -16,7 +16,9 @@ Suggest.HideSuggestion = function (event) {
 
     if (event != 'undefined' && event != null) {
         //Если мышь в эелементе ввода или над окном подсказки - выход
-        if (Suggest.pointInRect(event.clientX, event.clientY, clientRect) || Suggest.pointInRect(event.clientX, event.clientY, inputRect))
+        // Если событие типа onblur (клик на закрывающий крестик) - то event.clientX, event.clientY имеют значение "undefined" 
+        // в этом случае pointInRect возвращает false и происходит закрытие окна
+        if (Suggest.pointInRect(event.clientX , event.clientY , clientRect) || Suggest.pointInRect(event.clientX , event.clientY , inputRect))
             return;
     }
 
