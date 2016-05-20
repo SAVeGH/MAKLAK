@@ -42,26 +42,9 @@ position: absolute;
     <script src="~/Scripts/App/Suggestion.js"></script>
 
     <div class="suggestionDIV" id="suggestiontPopUp" >
-        <div id="suggestionTopStrip" class="sgTopRow" ><span class="sgCloseSign">x</span></div>
+        <div id="suggestionTopStrip" class="sgTopRow" ><span class="sgCloseSign" onclick="Suggest.HideSuggestion()">x</span></div>
         <div id="suggestionContent" ></div>
         @Html.Hidden("suggestionSelectedKey",null,new { id = "suggestionSelectedKey" })
     </div>
-
-    @*<div class="suggestionDIV" id="suggestiontPopUp">
-        <table class="sgContentTable">
-
-            <tr class="sgTopRow">
-                <td class="closeSGStripCell">&nbsp;</td>
-                <td class="xSGCell rightAlign" onclick="Suggest.HideSuggestion()">x</td>
-            </tr>
-
-            <tr class="sgContentRow">
-                <td class="sgContentCell" colspan="2"><div id="suggestionContent"></div></td>
-            </tr>
-
-        </table>
-    </div>*@
-
-   
 
 }

@@ -1,7 +1,7 @@
 ﻿function Suggest() { }
 
     Suggest.currentInput;
-    //Suggest.docClick;
+    
 
     Suggest.HideSuggestion = function (e) {
 
@@ -18,18 +18,13 @@
 
         if (e) {
             // Если мышь в эелементе ввода или над окном подсказки - выход
-            // event.clientX, event.clientY приходят из события $(document).click. Для blur имеют значение "undefined"        
+            // event.clientX, event.clientY приходят из события $(document).click. Для события onblur они имеют значение "undefined"        
             if (Suggest.pointInRect(e.clientX, e.clientY, clientRect) || Suggest.pointInRect(e.clientX, e.clientY, inputRect))
                 return;
-        }
-
-        // вернуть старый обработчик клика на документе
-        //$(document).click(this.docClick)
-        //this.docClick = null;
+        }        
 
         suggestElement.hide();
-        Suggest.currentInput = null;
-        
+        Suggest.currentInput = null;       
 
     }
 
@@ -40,12 +35,7 @@
         return false;
     }
 
-    Suggest.ShowSuggestion = function (inputElement) {
-
-        // сохранить обработчик клика на документе и 
-        // установить обработчик закрытия PopUp окна
-        //this.docClick = $(document).click;
-        //$(document).click(Suggest.HideSuggestion)
+    Suggest.ShowSuggestion = function (inputElement) {        
 
         Suggest.currentInput = inputElement;
         
@@ -87,7 +77,7 @@
     }
 
     Suggest.SetSuggestion = function (suggestionValue) {
-        //alert(Suggest.currentInput);
+        
         Suggest.currentInput.value = suggestionValue;
         
         Suggest.HideSuggestion();
@@ -101,3 +91,7 @@
         y = y = (window.scrollY) ? window.scrollY : document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop;
         return { x: x, y: y };
     }
+
+    // Делается подписка на событие click документа для закрытия PopUp окон (Suggestion,Calendar...)  т.к. элемент div не имеет события onblur
+    
+    $(document).click(Suggest.HideSuggestion)
