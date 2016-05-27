@@ -1,77 +1,22 @@
 ﻿@model Maklak.Models.SuggestionModel
 
-<style type="text/css">
-    .suggestFont {
-        font-size: 10;
-    }
+@*содержимое выпадающего списка*@
 
-    .highlightedCell {
-        background-color: #fffcd5;
-    }
-</style>
+
 <table class="maxWidth suggestFont" id="suggestionTable">
     @foreach (int idKey in this.Model.SuggestionValues.Keys)
     {
         string name = this.Model.SuggestionValues[idKey];
         
-        <tr highlited="false">
-            <td>@idKey</td>
+        <tr highlited="false" class="highlightedRow">
+            
             <td>
-                <span onclick="Suggest.SetSuggestion('@name')">@name</span>
-                
+                <span class="sgItemFont" onclick="Suggest.SetSuggestion(@idKey,'@name')">@name</span>                
             </td>
         </tr>
     }
     
 </table>
 
-<script type="text/javascript">
-    function sgCleanHighlite() {
 
-        var rows = $("tr[highlited=true]");
-
-        if (rows.length == 0)
-            return;
-
-        rows.each(function () {
-
-            var row = $(this);
-
-            row.attr("highlited", "false");
-
-            row.children("td").each(function () {
-                var rowCell = $(this);
-                var cls = rowCell.attr("class");
-                cls = cls.replace("highlightedCell", "");
-                rowCell.attr("class", cls);
-
-            });
-        });
-
-
-    }
-
-    function sgHighlightRow(e) {
-
-        sgCleanHighlite();
-
-        var cell = e.srcElement == null ? e.target : e.srcElement;
-
-        var cellObject = $(cell);
-
-        var row = cellObject.parent();
-
-        row.attr("highlited", "true");
-        row.children("td").each(function () {
-            var rowCell = $(this);
-            var cls = rowCell.attr("class");
-            cls = cls + " highlightedCell";
-            rowCell.attr("class", cls);
-
-        });
-    }
-
-    $("#suggestionTable tr").mouseenter(sgHighlightRow);
-    $("#suggestionTable tr").mouseleave(sgCleanHighlite);
-</script>
 

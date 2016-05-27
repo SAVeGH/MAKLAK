@@ -1,7 +1,7 @@
 ﻿function Suggest() { }
 
     Suggest.currentInput;
-    
+    Suggest.currentInputValue;
 
     Suggest.HideSuggestion = function (e) {
 
@@ -24,7 +24,8 @@
         }        
 
         suggestElement.hide();
-        Suggest.currentInput = null;       
+        Suggest.currentInput = null;
+        Suggest.currentInputValue = null;
 
     }
 
@@ -35,10 +36,11 @@
         return false;
     }
 
-    Suggest.ShowSuggestion = function (inputElement) {        
+    Suggest.ShowSuggestion = function (inputElement,valueElement) {        
 
         Suggest.currentInput = inputElement;
-        
+        Suggest.currentInputValue = valueElement;
+
         var suggestElement = $("#suggestiontPopUp");
         var suggestContentElement = $("#suggestionContent");
         var inputID = "#" + inputElement.id;
@@ -69,17 +71,17 @@
         var url = GetURL() + '/Suggestion/MakeSuggestion';
 
         var suggestionKey = input.attr('suggestionKey');
-        var formValue = input.serialize() + '&suggestionKey=' + suggestionKey;
+        var formValue = 'InputValue=' + input.val() + '&suggestionKey=' + suggestionKey;
 
         $.post(url, formValue, fillSuggestion);
 
 
     }
 
-    Suggest.SetSuggestion = function (suggestionValue) {
+    Suggest.SetSuggestion = function (suggestionKey,suggestionValue) {
         
         Suggest.currentInput.value = suggestionValue;
-        
+        Suggest.currentInputValue.value = suggestionKey;
         Suggest.HideSuggestion();
     }
 

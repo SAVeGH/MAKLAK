@@ -8,7 +8,7 @@ namespace Maklak.Models
 {
     public static class SuggestionModelHelper
     {
-        public enum SuggestionKeys { PROUDUCT, MODEL, PRODUCER, PROPERTY, PROPERTYVALUE }
+        public enum SuggestionKeys { PROUDUCT, MODEL, PRODUCER, PROPERTY, PROPERTYVALUE, TAG }
 
         public static SuggestionModel GenerateModel(string inputValue, string key )
         {

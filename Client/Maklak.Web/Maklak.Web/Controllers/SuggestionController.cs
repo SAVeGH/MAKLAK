@@ -18,9 +18,11 @@ namespace Maklak.Web.Controllers
             this.ModelState.Clear();            
 
             if (model.SuggestionValues.Count == 0)
-                return Content(string.Empty);
+                return new EmptyResult(); //Content(string.Empty);
 
             return PartialView("MakeSuggestion", model);
         }
+
+        
     }
 }

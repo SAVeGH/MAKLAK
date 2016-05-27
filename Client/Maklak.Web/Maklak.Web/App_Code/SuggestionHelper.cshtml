@@ -1,50 +1,29 @@
 ﻿@inherits Maklak.Web.Helpers.HelperPage
 @using System.Web.Mvc;
 @using System.Web.Mvc.Html;
+@using Maklak.Models
 
 @helper SuggestionPopUp()
 {
 
 
-    <style type="text/css">
-
-
-
-        .sgTopRow {
-    font-size: 0.8em;
-    background-color: Gray;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    text-align:right;
-    padding-right:4px;
-}
-
-        .sgCloseSign {
-    font-size: 0.8em;
-color:red;
-cursor:pointer;
-}
-
-        
-
-        .suggestionDIV {
-display: none;
-position: absolute;
-    background-color: White;
-    border-style: solid;
-    border-width: 1px;
-    border-color: Black;
-}
-    </style>
-
-    <script src="~/Scripts/App/Suggestion.js"></script>
-
     <div class="suggestionDIV" id="suggestiontPopUp" >
         <div id="suggestionTopStrip" class="sgTopRow" ><span class="sgCloseSign" onclick="Suggest.HideSuggestion()">x</span></div>
-        <div id="suggestionContent" ></div>
-        @Html.Hidden("suggestionSelectedKey",null,new { id = "suggestionSelectedKey" })
+        <div id="suggestionContent" ></div>        
     </div>
+
+}
+
+@helper SuggestionInput(SuggestionModelHelper.SuggestionKeys suggestionInputKey, string inputId,string inputName)
+{
+string sgKey = suggestionInputKey.ToString();
+string hiddenId = inputId.ToString() + "_SelectedValue";
+    <div>
+        <span class="sgInputName">@inputName:</span>
+        <input type="text" id="@inputId" suggestionKey ="@sgKey" onKeyUp = "Suggest.ShowSuggestion(this,document.getElementById('@hiddenId'))"/>
+        <input type="hidden" id="@hiddenId"/>
+        
+    </div>
+    
 
 }

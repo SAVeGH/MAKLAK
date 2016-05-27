@@ -9,21 +9,16 @@
 
     <fieldset>
         <legend>Product</legend>
-    <div style="display:inline-block">Product Name: @Html.TextBox("productName") </div>
-    <div style="display:inline-block">Model Name: @Html.TextBox("modelName")</div>
-    <div style="display:inline-block">Producer Name: @Html.TextBox("producerName")</div>
+    <div style="display:inline-block"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.PROUDUCT, "ProductInput", "Product Name")</div>
+    <div style="display:inline-block"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.MODEL, "ModelInput", "Model Name")</div>
+    <div style="display:inline-block"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.PRODUCER, "ProducerInput", "Producer Name")</div>
     </fieldset>
 
 <fieldset style="display:inline-block">
     <legend>Properties</legend>
-    <div >
-        <div style="display:block; left:0">
-           <span style="font-size:0.8em">Property Search:</span>
-        </div> 
-        <div style="display:block; left:0">
-            @Html.TextBoxFor(m =>  m.PropertyInput, new { suggestionKey = SuggestionModelHelper.SuggestionKeys.PROPERTY.ToString(), onKeyUp = "Suggest.ShowSuggestion(this)", @class = "maxWidth" })
-        </div>  
-    </div>
+    
+    @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.PROPERTY, "PropertyInput", "Property Search")
+           
 
     <div>@Html.Label("Available Properties") @Html.Label("Property values")</div>
     <div style="display:inline-block; left:0;"><select multiple size="10" style="width:250px"></select></div>
@@ -34,7 +29,7 @@
 
 <fieldset style="display:inline-block">
     <legend>Tags</legend>
-    <div>Tag Search: @Html.TextBox("tagSearch")</div>
+     @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.TAG, "TagInput", "Tag Search")
     
     <div style="display:inline-block; left:0;"><select multiple size="10" style="width:250px"></select></div>
     
