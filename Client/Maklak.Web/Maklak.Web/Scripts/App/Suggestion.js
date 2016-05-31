@@ -2,6 +2,7 @@
 
     Suggest.currentInput;
     Suggest.currentInputValue;
+    Suggest.lockClear = false;
 
     Suggest.HideSuggestion = function (e) {
 
@@ -24,6 +25,10 @@
         }        
 
         suggestElement.hide();
+        
+        if (Suggest.currentInputValue.value == '')
+            Suggest.currentInput.value = ''; // ничего небыло выбрано из списка
+
         Suggest.currentInput = null;
         Suggest.currentInputValue = null;
 
@@ -59,8 +64,7 @@
         function fillSuggestion(data) {
 
             if (data == '') {
-                suggestElement.hide();
-                Suggest.currentInput = null;
+                Suggest.HideSuggestion(null);
                 return;
             }
 
@@ -71,17 +75,36 @@
         var url = GetURL() + '/Suggestion/MakeSuggestion';
 
         var suggestionKey = input.attr('suggestionKey');
-        var formValue = 'InputValue=' + input.val() + '&suggestionKey=' + suggestionKey;
+        var valueEntered = input.val();
+
+        if (valueEntered == '') {
+            Suggest.HideSuggestion(null); // не открывать подсказку при пустом вводе
+            return;
+        }
+
+        var formValue = 'InputValue=' + valueEntered + '&suggestionKey=' + suggestionKey;
+        // удалить выбранное в предыдущий раз значение
+        Suggest.currentInputValue.value = '';        
 
         $.post(url, formValue, fillSuggestion);
 
 
     }
 
+    Suggest.Clear = function (inputElement, valueElement) {
+        if (Suggest.lockClear)
+            return;
+        // при вводе символов очищаем valueElement. Он устанавливается только при выборе из списка.
+        valueElement.value = "";
+
+    }
+
     Suggest.SetSuggestion = function (suggestionKey,suggestionValue) {
         
+        Suggest.lockClear = true; // блокируем стирание выбранного значения
         Suggest.currentInput.value = suggestionValue;
-        Suggest.currentInputValue.value = suggestionKey;
+        Suggest.currentInputValue.value = suggestionKey; // устанавливаем выбор
+        Suggest.lockClear = false;
         Suggest.HideSuggestion();
     }
 

@@ -20,7 +20,7 @@ string sgKey = suggestionInputKey.ToString();
 string hiddenId = inputId.ToString() + "_SelectedValue";
     <div>
         <span class="sgInputName">@inputName:</span>
-        <input type="text" id="@inputId" suggestionKey ="@sgKey" onKeyUp = "Suggest.ShowSuggestion(this,document.getElementById('@hiddenId'))"/>
+        <input type="text" id="@inputId" suggestionKey ="@sgKey" onKeyUp = "Suggest.ShowSuggestion(this,document.getElementById('@hiddenId'))" oninput="Suggest.Clear(this, document.getElementById('@hiddenId'))"/>
         <input type="hidden" id="@hiddenId"/>
         
     </div>
