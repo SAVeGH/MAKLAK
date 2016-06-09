@@ -2,7 +2,8 @@
 
     Suggest.currentInput;
     Suggest.currentInputValue;
-    Suggest.lockClear = false;
+    Suggest.lockInput = false;
+    Suggest.ctrlPressed = false;
 
     Suggest.HideSuggestion = function (e) {
 
@@ -26,8 +27,12 @@
 
         suggestElement.hide();
         
+        var lastText = Suggest.currentInputValue.textvalue;
+
         if (Suggest.currentInputValue.value == '')
             Suggest.currentInput.value = ''; // ничего небыло выбрано из списка
+        else
+            Suggest.currentInput.value = lastText; // если ничего нового не выбрано - вернуть текст предыдущего выбора
 
         Suggest.currentInput = null;
         Suggest.currentInputValue = null;
@@ -41,7 +46,10 @@
         return false;
     }
 
-    Suggest.ShowSuggestion = function (inputElement,valueElement) {        
+    Suggest.ShowSuggestion = function (e,inputElement,valueElement) {
+        
+        if (e.ctrlKey || e.keyCode == 17) // нажат ctrl
+            return;
 
         Suggest.currentInput = inputElement;
         Suggest.currentInputValue = valueElement;
@@ -83,28 +91,34 @@
         }
 
         var formValue = 'InputValue=' + valueEntered + '&suggestionKey=' + suggestionKey;
-        // удалить выбранное в предыдущий раз значение
-        Suggest.currentInputValue.value = '';        
-
+        
         $.post(url, formValue, fillSuggestion);
 
 
     }
 
-    Suggest.Clear = function (inputElement, valueElement) {
-        if (Suggest.lockClear)
-            return;
-        // при вводе символов очищаем valueElement. Он устанавливается только при выборе из списка.
+    
+
+    Suggest.CheckInput = function (inputElement, valueElement) {
+        if (Suggest.lockInput)
+            return;        
+
+        if (inputElement.value != '')
+            return; // если не пустой ввод - не затирать id предыдущего выбора
+
+        // при пустом вводе символов очищаем valueElement. Он устанавливается только при выборе из списка.
         valueElement.value = "";
 
-    }
+    }    
 
     Suggest.SetSuggestion = function (suggestionKey,suggestionValue) {
         
-        Suggest.lockClear = true; // блокируем стирание выбранного значения
+        Suggest.lockInput = true; // блокируем стирание выбранного значения
         Suggest.currentInput.value = suggestionValue;
         Suggest.currentInputValue.value = suggestionKey; // устанавливаем выбор
-        Suggest.lockClear = false;
+        Suggest.currentInputValue.textvalue = suggestionValue; // последнее выбранное значение
+        
+        Suggest.lockInput = false;
         Suggest.HideSuggestion();
     }
 
