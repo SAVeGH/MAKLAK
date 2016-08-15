@@ -17,12 +17,11 @@
 @helper SuggestionInput(SuggestionModelHelper.SuggestionKeys suggestionInputKey, string inputId,string inputName)
 {
 string sgKey = suggestionInputKey.ToString();
-string hiddenId = inputId.ToString() + "_SelectedValue";
+
     <div>
         <span class="sgInputName">@inputName:</span>
-        <input type="text" id="@inputId" suggestionKey ="@sgKey" onkeyup = "Suggest.ShowSuggestion(event,this,document.getElementById('@hiddenId'))" oninput="Suggest.CheckInput(this, document.getElementById('@hiddenId'))"/>
-        <input type="hidden" id="@hiddenId" textvalue=""/>
-        @*onkeydown="Suggest.KeyDown(event)"*@
+        <input type="text" id="@inputId" suggestionKey ="@sgKey" oninput = "Suggest.ShowSuggestion(event,this)" />
+        
     </div>
     
 

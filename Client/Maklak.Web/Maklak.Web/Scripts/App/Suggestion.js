@@ -1,7 +1,7 @@
 ﻿function Suggest() { }
 
     Suggest.currentInput;
-    Suggest.currentInputValue;
+    
     Suggest.lockInput = false;
     Suggest.ctrlPressed = false;
 
@@ -25,17 +25,10 @@
                 return;
         }        
 
-        suggestElement.hide();
-        
-        var lastText = Suggest.currentInputValue.textvalue;
-
-        if (Suggest.currentInputValue.value == '')
-            Suggest.currentInput.value = ''; // ничего небыло выбрано из списка
-        else
-            Suggest.currentInput.value = lastText; // если ничего нового не выбрано - вернуть текст предыдущего выбора
+        suggestElement.hide();       
 
         Suggest.currentInput = null;
-        Suggest.currentInputValue = null;
+        
 
     }
 
@@ -46,13 +39,12 @@
         return false;
     }
 
-    Suggest.ShowSuggestion = function (e,inputElement,valueElement) {
+    Suggest.ShowSuggestion = function (e,inputElement) {
         
-        if (e.ctrlKey || e.keyCode == 17) // нажат ctrl
-            return;
+       
 
         Suggest.currentInput = inputElement;
-        Suggest.currentInputValue = valueElement;
+        
 
         var suggestElement = $("#suggestiontPopUp");
         var suggestContentElement = $("#suggestionContent");
@@ -83,42 +75,22 @@
         var url = GetURL() + '/Suggestion/MakeSuggestion';
 
         var suggestionKey = input.attr('suggestionKey');
-        var valueEntered = input.val();
-
-        if (valueEntered == '') {
-            Suggest.HideSuggestion(null); // не открывать подсказку при пустом вводе
-            return;
-        }
+        var valueEntered = input.val();        
+        
 
         var formValue = 'InputValue=' + valueEntered + '&suggestionKey=' + suggestionKey;
         
         $.post(url, formValue, fillSuggestion);
 
 
-    }
-
-    
-
-    Suggest.CheckInput = function (inputElement, valueElement) {
-        if (Suggest.lockInput)
-            return;        
-
-        if (inputElement.value != '')
-            return; // если не пустой ввод - не затирать id предыдущего выбора
-
-        // при пустом вводе символов очищаем valueElement. Он устанавливается только при выборе из списка.
-        valueElement.value = "";
-
     }    
 
     Suggest.SetSuggestion = function (suggestionKey,suggestionValue) {
         
-        Suggest.lockInput = true; // блокируем стирание выбранного значения
-        Suggest.currentInput.value = suggestionValue;
-        Suggest.currentInputValue.value = suggestionKey; // устанавливаем выбор
-        Suggest.currentInputValue.textvalue = suggestionValue; // последнее выбранное значение
         
-        Suggest.lockInput = false;
+        Suggest.currentInput.value = suggestionValue;        
+        
+        
         Suggest.HideSuggestion();
     }
 
