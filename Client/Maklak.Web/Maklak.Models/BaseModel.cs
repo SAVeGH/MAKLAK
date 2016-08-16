@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maklak.Models.Helpers;
 
 namespace Maklak.Models
 {
@@ -10,5 +11,11 @@ namespace Maklak.Models
     {
         public string Action { get; set; }
         public string Controller { get; set; }
+        public Guid SID { get; set; }
+
+        public void GenerateSID()
+        {
+            this.SID = SessionHelper.GenerateSID();
+        }
     }
 }

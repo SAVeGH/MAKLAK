@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Maklak.Models.BaseModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,6 +20,9 @@
 
 
 <body>
+
+    @Html.HiddenFor(m => m.SID)
+
     <div class="mainDIV">
 
         <div class="topDIV">top</div>
