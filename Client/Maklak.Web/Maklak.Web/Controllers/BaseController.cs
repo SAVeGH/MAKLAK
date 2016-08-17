@@ -7,6 +7,7 @@ using System.Web.Routing;
 
 using Maklak.Web.Extension;
 using Maklak.Models;
+using Maklak.Models.Helpers;
 namespace Maklak.Web.Controllers
 {
     public class BaseController : Controller
@@ -22,16 +23,20 @@ namespace Maklak.Web.Controllers
             
             ControllerDescriptor controllerDescriptor = actionDescriptor.ControllerDescriptor;
 
+            IDictionary<string, object> actionParams = filterContext.ActionParameters;
+            string modelKey = actionParams.Keys.FirstOrDefault(); // только один ключь тут
+            BaseModel model = (BaseModel)actionParams[modelKey];
+
             string actionName = actionDescriptor.ActionName;
             string controllerName = controllerDescriptor.ControllerName;
 
-            string requestedKey = (string)Session["X"];
+            string requestedKey = SessionHelper.GetValue<string>(model.SID, "X");//(string)Session["X"];
             
             string currentKey = SiteMapHelper.ActionControllerKey(actionName, controllerName);
             // для Search POST запросов ключ currentKey пустой
             if (!string.IsNullOrEmpty(currentKey) && !requestedKey.Equals(currentKey))
             {
-                filterContext.Result = RedirectToAction(SiteMapHelper.ActionByKey(requestedKey), SiteMapHelper.ControllerByKey(requestedKey));
+                filterContext.Result = RedirectToAction(SiteMapHelper.ActionByKey(requestedKey), SiteMapHelper.ControllerByKey(requestedKey),model);
                 return;
             }           
 

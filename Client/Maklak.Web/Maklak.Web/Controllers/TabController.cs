@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using Maklak.Models;
+using Maklak.Models.Helpers;
 using Maklak.Models.DataSets;
 using Maklak.Web.ModelBinder;
 
@@ -21,9 +22,9 @@ namespace Maklak.Web.Controllers
 
             string tabLineKey = "Y";
 
-            Dictionary<string, string> state = GetTabState();
+            Dictionary<string, string> state = GetTabState(model.SID);
             string selectedKey = model.SelectedKey;
-            string selectedY = (string)this.Session[tabLineKey];
+            string selectedY = SessionHelper.GetValue<string>(model.SID, tabLineKey); //(string)this.Session[tabLineKey];
 
             if (!state.ContainsKey(selectedY))
                 state.Add(selectedY, string.Empty);
@@ -40,32 +41,36 @@ namespace Maklak.Web.Controllers
                 state[selectedY] = selectedX;
             }
 
-            this.Session[tabLineKey] = model.SelectedKey;
-
+            //this.Session[tabLineKey] = model.SelectedKey;
+            SessionHelper.SetValue<string>(model.SID, tabLineKey, model.SelectedKey);
 
             return PartialView("TabStrip", model);
         }
 
-        private Dictionary<string, string> GetTabState()
+        private Dictionary<string, string> GetTabState(Guid sid)
         {
             string sessionKey = "TabState";
-            Dictionary<string, string> state = (Dictionary<string, string>)this.Session[sessionKey];
+            Dictionary<string, string> state = SessionHelper.GetValue<Dictionary<string, string>>(sid, sessionKey); //(Dictionary<string, string>)this.Session[sessionKey];
 
             if (state == null)
             {
-                state = new Dictionary<string, string>();                
-                this.Session[sessionKey] = state;
+                state = new Dictionary<string, string>();
+                //this.Session[sessionKey] = state;
+                
+                SessionHelper.SetValue<Dictionary<string, string>>(sid,sessionKey, state);
             }
             
 
             return state;
         }
 
-        public ActionResult hTabStrip()
+        public ActionResult hTabStrip(BaseModel contextModel)
         {
-            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.DefaultXModelKey);
             
-            this.Session["X"] = model.SelectedKey;
+            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.DefaultXModelKey);
+            model.SID = contextModel.SID;
+            SessionHelper.SetValue<string>(model.SID, "X", model.SelectedKey);
+            //this.Session["X"] = model.SelectedKey;
                      
             return PartialView("TabStrip", model);
         }
@@ -76,12 +81,12 @@ namespace Maklak.Web.Controllers
             return PartialView("HorisontalTabElement", tabRow);
         }
 
-        public ActionResult vTabStrip()
+        public ActionResult vTabStrip(BaseModel contextModel)
         {
             TabModel model = TabModelHelper.GenerateModel(TabModelHelper.DefaultYModelKey);
-
-            this.Session["Y"] = model.SelectedKey;
-            
+            model.SID = contextModel.SID;
+            //this.Session["Y"] = model.SelectedKey;
+            SessionHelper.SetValue<string>(model.SID, "Y", model.SelectedKey);
             return PartialView("TabStrip", model);
         }        
 

@@ -17,7 +17,7 @@ namespace Maklak.Web.Controllers
 
             model.Action = TabModelHelper.DefaultAction;
             model.Controller = TabModelHelper.DefaultController;
-            model.GenerateSID();
+            model.GenerateSID(); // генерируем уникальный SID для страницы
             return View(model);
         }
 

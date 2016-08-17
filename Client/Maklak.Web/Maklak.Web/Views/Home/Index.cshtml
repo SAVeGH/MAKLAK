@@ -10,15 +10,15 @@
 
 @section TabVStrip
 {
-    @Html.Action("vTabStrip", "Tab")
+    @Html.Action("vTabStrip", "Tab", Model)
 }
 
 @section TabHStrip
 {
-    @Html.Action("hTabStrip", "Tab")
+    @Html.Action("hTabStrip", "Tab", Model)
 }
 
 @*загрузка основного вида*@
-@Html.Action(Model.Action, Model.Controller)
+@Html.Action(Model.Action, Model.Controller,Model)
 
 
