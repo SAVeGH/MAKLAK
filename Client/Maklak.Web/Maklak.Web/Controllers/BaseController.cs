@@ -16,6 +16,7 @@ namespace Maklak.Web.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            // только для запросов верхнего уровня
             if (filterContext.IsChildAction)
                 return;
 
@@ -25,18 +26,20 @@ namespace Maklak.Web.Controllers
 
             IDictionary<string, object> actionParams = filterContext.ActionParameters;
             string modelKey = actionParams.Keys.FirstOrDefault(); // только один ключь тут
-            BaseModel model = (BaseModel)actionParams[modelKey];
+            BaseModel model = (BaseModel)actionParams[modelKey];  // модель содержит GUID страницы
 
             string actionName = actionDescriptor.ActionName;
             string controllerName = controllerDescriptor.ControllerName;
 
-            string requestedKey = SessionHelper.GetValue<string>(model.SID, "X");//(string)Session["X"];
+            string requestedKey = SessionHelper.GetValue<string>(model.SID, "X");
             
             string currentKey = SiteMapHelper.ActionControllerKey(actionName, controllerName);
             // для Search POST запросов ключ currentKey пустой
+            // определяем отлчается ли запрошенный ключ от текущего. Если да - то переходим на страницу с новым ключом.
             if (!string.IsNullOrEmpty(currentKey) && !requestedKey.Equals(currentKey))
             {
-                filterContext.Result = RedirectToAction(SiteMapHelper.ActionByKey(requestedKey), SiteMapHelper.ControllerByKey(requestedKey),model);
+                // рекурсивный заход в BaseController OnActionExecuting
+                filterContext.Result = RedirectToAction(SiteMapHelper.ActionByKey(requestedKey), SiteMapHelper.ControllerByKey(requestedKey), model);
                 return;
             }           
 

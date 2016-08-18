@@ -7,6 +7,7 @@
 
 
 @*vTabStrip must be loaded first as it defines hTabStrip context*@
+@*везде передаём модель т.к. она содержит сгенерированный GUID*@
 
 @section TabVStrip
 {
@@ -19,6 +20,6 @@
 }
 
 @*загрузка основного вида*@
-@Html.Action(Model.Action, Model.Controller,Model)
+@Html.Action(Model.Action, Model.Controller, Model)
 
 
