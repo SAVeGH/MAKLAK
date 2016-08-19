@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ModelDS" targetNamespace="http://tempuri.org/ModelDS.xsd" xmlns:mstns="http://tempuri.org/ModelDS.xsd" xmlns="http://tempuri.org/ModelDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ModelDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ModelDS" msprop:Generator_UserDSName="ModelDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Identity" msprop:Generator_TableClassName="IdentityDataTable" msprop:Generator_TableVarName="tableIdentity" msprop:Generator_TablePropName="Identity" msprop:Generator_RowDeletingName="IdentityRowDeleting" msprop:Generator_RowChangingName="IdentityRowChanging" msprop:Generator_RowEvHandlerName="IdentityRowChangeEventHandler" msprop:Generator_RowDeletedName="IdentityRowDeleted" msprop:Generator_UserTableName="Identity" msprop:Generator_RowChangedName="IdentityRowChanged" msprop:Generator_RowEvArgName="IdentityRowChangeEvent" msprop:Generator_RowClassName="IdentityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnSID" msprop:Generator_ColumnPropNameInRow="SID" msprop:Generator_ColumnPropNameInTable="SIDColumn" msprop:Generator_UserColumnName="SID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ACD" msprop:Generator_TableClassName="ACDDataTable" msprop:Generator_TableVarName="tableACD" msprop:Generator_TablePropName="ACD" msprop:Generator_RowDeletingName="ACDRowDeleting" msprop:Generator_RowChangingName="ACDRowChanging" msprop:Generator_RowEvHandlerName="ACDRowChangeEventHandler" msprop:Generator_RowDeletedName="ACDRowDeleted" msprop:Generator_UserTableName="ACD" msprop:Generator_RowChangedName="ACDRowChanged" msprop:Generator_RowEvArgName="ACDRowChangeEvent" msprop:Generator_RowClassName="ACDRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CODE" msprop:Generator_ColumnVarNameInTable="columnCODE" msprop:Generator_ColumnPropNameInRow="CODE" msprop:Generator_ColumnPropNameInTable="CODEColumn" msprop:Generator_UserColumnName="CODE" type="xs:string" minOccurs="0" />
+              <xs:element name="Action" msprop:Generator_ColumnVarNameInTable="columnAction" msprop:Generator_ColumnPropNameInRow="Action" msprop:Generator_ColumnPropNameInTable="ActionColumn" msprop:Generator_UserColumnName="Action" type="xs:string" minOccurs="0" />
+              <xs:element name="Controller" msprop:Generator_ColumnVarNameInTable="columnController" msprop:Generator_ColumnPropNameInRow="Controller" msprop:Generator_ColumnPropNameInTable="ControllerColumn" msprop:Generator_UserColumnName="Controller" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

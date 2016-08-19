@@ -8,7 +8,7 @@ namespace Maklak.Models
 {
     
 
-    public class SuggestionModel
+    public class SuggestionModel : BaseModel
     {
         Dictionary<int, string> suggestionValues;
 

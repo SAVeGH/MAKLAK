@@ -12,10 +12,6 @@ namespace Maklak.Models
         public string Action { get; set; }
         public string Controller { get; set; }
         public Guid SID { get; set; }
-
-        public void GenerateSID()
-        {
-            this.SID = SessionHelper.GenerateSID();
-        }
+        
     }
 }

@@ -30,28 +30,16 @@ namespace Maklak.Models.Helpers
             return HttpContext.Current.Session[sid_key] != null && (bool)HttpContext.Current.Session[sid_key] == true;
         }
 
-        public static Guid GenerateSID()
+        public static void SetModel(Models.DataSets.ModelDS modelDS)
         {
-            Guid sid = Guid.NewGuid();            
-            return sid;
+            string sid = modelDS.Identity[0].SID.ToString();
+            HttpContext.Current.Session[sid] = modelDS;
         }
 
-        //public static int GenerateSID()
-        //{
-        //    int sid = 1; // section id - создаётся новая секция в сессии для каждой вкладки
-
-        //    if (HttpContext.Current.Session["SID"] != null)
-        //    {
-        //        sid = Convert.ToInt32(HttpContext.Current.Session["SID"]);
-        //        sid++;
-        //        HttpContext.Current.Session["SID"] = sid; // в сессии сохраняется последний выданный sid (эмуляция static autoincrement поля)
-        //    }
-        //    else
-        //    {
-        //        HttpContext.Current.Session["SID"] = sid;
-        //    }
-
-        //    return sid;
-        //}
+        public static Models.DataSets.ModelDS GetModel(Guid sid)
+        {
+            string sidKey = sid.ToString();
+            return HttpContext.Current.Session[sidKey] as Models.DataSets.ModelDS;
+        }
     }
 }
