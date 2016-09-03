@@ -11,7 +11,7 @@ using Maklak.Web.ModelBinder;
 
 namespace Maklak.Web.Controllers
 {
-    public class TabController : Controller
+    public class TabController : BaseController
     {
         //
         // GET: /Tab/
@@ -67,8 +67,8 @@ namespace Maklak.Web.Controllers
         public ActionResult hTabStrip(BaseModel contextModel)
         {
             
-            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.DefaultXModelKey);
-            model.SID = contextModel.SID;
+            TabModel model = TabModelHelper.GenerateModel(contextModel.SID, TabModelHelper.DefaultXModelKey);
+            //model.SID = contextModel.SID;
             SessionHelper.SetValue<string>(model.SID, "X", model.SelectedKey);
             //this.Session["X"] = model.SelectedKey;
                      
@@ -83,8 +83,8 @@ namespace Maklak.Web.Controllers
 
         public ActionResult vTabStrip(BaseModel contextModel)
         {
-            TabModel model = TabModelHelper.GenerateModel(TabModelHelper.DefaultYModelKey);
-            model.SID = contextModel.SID;
+            TabModel model = TabModelHelper.GenerateModel(contextModel.SID, TabModelHelper.DefaultYModelKey);
+            //model.SID = contextModel.SID;
             //this.Session["Y"] = model.SelectedKey;
             SessionHelper.SetValue<string>(model.SID, "Y", model.SelectedKey);
             return PartialView("TabStrip", model);

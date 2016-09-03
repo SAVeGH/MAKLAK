@@ -8,8 +8,9 @@ namespace Maklak.Models
 {
     public class LoginModel : BaseModel
     {
-        public LoginModel()
+        public LoginModel(Guid sID)
         {
+            base.Initialize(sID);
             base.Action = "Login";
         }
         public string Login { get; set; }

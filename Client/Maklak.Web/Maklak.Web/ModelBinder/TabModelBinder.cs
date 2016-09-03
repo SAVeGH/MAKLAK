@@ -10,16 +10,18 @@ using Maklak.Models;
 namespace Maklak.Web.ModelBinder
 {
     public class TabModelBinder : DefaultModelBinder
-    {        
+    {
+                 
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
             // method is calling inside BindModel method
 
             HttpRequestBase request = controllerContext.HttpContext.Request;
 
-            string modelKey = request.Form.Get("Key");           
+            string modelKey = request.Form.Get("Key");
+            Guid sID = Guid.Parse(request.Form.Get("SID"));          
             
-            TabModel model = TabModelHelper.GenerateModel(modelKey); 
+            TabModel model = TabModelHelper.GenerateModel(sID, modelKey); 
 
             return model;
         }

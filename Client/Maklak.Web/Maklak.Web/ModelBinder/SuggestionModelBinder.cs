@@ -19,8 +19,9 @@ namespace Maklak.Web.ModelBinder
 
             string suggestionKey = request.Form.Get("suggestionKey");
             string inputValue = request.Form[0];// первый элемент с любым именем
+            Guid sID = Guid.Parse(request.Form.Get("SID"));
 
-            SuggestionModel model = SuggestionModelHelper.GenerateModel(inputValue,suggestionKey);
+            SuggestionModel model = SuggestionModelHelper.GenerateModel(sID,inputValue,suggestionKey);
             return model;
         }
     }

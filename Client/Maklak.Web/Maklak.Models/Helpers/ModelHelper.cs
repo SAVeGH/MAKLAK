@@ -14,24 +14,15 @@ namespace Maklak.Models.Helpers
             return sid;
         }
 
-        public static BaseModel CreateBaseModel()
+        public static BaseModel CreateBaseModel(Guid sID)
         {
-            Models.DataSets.ModelDS ds = new DataSets.ModelDS();
-
-            DataSets.ModelDS.IdentityRow row = ds.Identity.NewIdentityRow();
-            row.SID = generateSID();
-            ds.Identity.Rows.Add(row);
-            ds.AcceptChanges();
-
-            SessionHelper.SetModel(ds);
-
-
+            
 
             BaseModel model = new BaseModel();
-
+            model.Initialize(sID);
             model.Action = TabModelHelper.DefaultAction;
             model.Controller = TabModelHelper.DefaultController;
-            model.SID = row.SID;
+            //model.SID = row.SID;
             //model.GenerateSID(); // генерируем уникальный SID для страницы
 
             return model;

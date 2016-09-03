@@ -10,8 +10,9 @@ namespace Maklak.Models
     {
         List<string> namesList;
         public string PropertyInput { get; set; }
-        public SearchModel()
+        public SearchModel() 
         {
+            //base.Initialize(sID);
             namesList = new List<string>();
         }
 

@@ -11,9 +11,9 @@ namespace Maklak.Models
 {
     public abstract class TabModel : BaseModel
     {        
-        public TabModel() 
-        {           
-
+        public TabModel()
+        {
+            //base.Initialize(sID);
             TabData = new TabDS();
             ISiteMapNode rootTabNode = TabModelHelper.RootTabNode;
             this.Action = rootTabNode.Action;
@@ -108,6 +108,8 @@ namespace Maklak.Models
 
     public class LoginTabModel : TabModel 
     {
+        //public LoginTabModel(Guid sID) : base(sID) { }
+
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.LOGIN.ToString();           
@@ -116,6 +118,8 @@ namespace Maklak.Models
 
     public class SearchTabModel : TabModel
     {
+        //public SearchTabModel(Guid sID) : base(sID) { }
+
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.SEARCH.ToString();            
@@ -124,6 +128,8 @@ namespace Maklak.Models
 
     public class InOutTabModel : TabModel
     {
+        //public InOutTabModel(Guid sID) : base(sID) { }
+
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.INOUT.ToString();            
@@ -132,6 +138,8 @@ namespace Maklak.Models
 
     public class ManageTabModel : TabModel
     {
+        //public ManageTabModel(Guid sID) : base(sID) { }
+
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.MANAGE.ToString();            

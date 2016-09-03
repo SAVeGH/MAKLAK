@@ -212,6 +212,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ControllerFactory\BaseControllerFactory.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -223,6 +224,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HelperPage.cs" />
+    <Compile Include="ModelBinder\BaseModelBinder.cs" />
     <Compile Include="ModelBinder\SuggestionModelBinder.cs" />
     <Compile Include="ModelBinder\TabModelBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,7 +11,9 @@ using Maklak.Models.Helpers;
 namespace Maklak.Web.Controllers
 {
     public class BaseController : Controller
-    {
+    {        
+        public Guid SID { get; set; }
+
         
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -26,6 +28,11 @@ namespace Maklak.Web.Controllers
 
             IDictionary<string, object> actionParams = filterContext.ActionParameters;
             string modelKey = actionParams.Keys.FirstOrDefault(); // только один ключь тут
+
+
+            if (string.IsNullOrEmpty(modelKey))
+                return;
+
             BaseModel model = (BaseModel)actionParams[modelKey];  // модель содержит GUID страницы
 
             string actionName = actionDescriptor.ActionName;

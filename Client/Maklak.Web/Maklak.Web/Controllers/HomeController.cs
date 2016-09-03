@@ -8,8 +8,9 @@ using Maklak.Models;
 
 namespace Maklak.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+       
         // GET: Home
         public ActionResult Index()
         {
@@ -18,7 +19,7 @@ namespace Maklak.Web.Controllers
             //model.Action = TabModelHelper.DefaultAction;
             //model.Controller = TabModelHelper.DefaultController;
             //model.GenerateSID(); // генерируем уникальный SID для страницы
-            BaseModel model = Maklak.Models.Helpers.ModelHelper.CreateBaseModel();
+            BaseModel model = Maklak.Models.Helpers.ModelHelper.CreateBaseModel(this.SID);
             return View(model);
         }
 
