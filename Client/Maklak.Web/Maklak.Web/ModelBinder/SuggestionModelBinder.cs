@@ -9,9 +9,15 @@ using Maklak.Models;
 
 namespace Maklak.Web.ModelBinder
 {
-    public class SuggestionModelBinder : DefaultModelBinder
+    public class SuggestionModelBinder : BaseModelBinder
     {
-        protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
+        public SuggestionModelBinder()
+        {
+            base.GenerateModel += GenerateSuggestionModel;
+            base.InitializeModel += InitializeSuggestionModel;
+        }
+
+        protected void InitializeSuggestionModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType, BaseModel generatedModel)
         {
             // method is calling inside BindModel method
 
@@ -19,9 +25,20 @@ namespace Maklak.Web.ModelBinder
 
             string suggestionKey = request.Form.Get("suggestionKey");
             string inputValue = request.Form[0];// первый элемент с любым именем
-            Guid sID = Guid.Parse(request.Form.Get("SID"));
 
-            SuggestionModel model = SuggestionModelHelper.GenerateModel(sID,inputValue,suggestionKey);
+            SuggestionModel model = generatedModel as SuggestionModel;
+
+            
+            SuggestionModelHelper.InitModel(model, inputValue, suggestionKey);
+
+        }
+
+        protected BaseModel GenerateSuggestionModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
+        {
+            // method is calling inside BindModel method
+            
+
+            SuggestionModel model = SuggestionModelHelper.GenerateModel();
             return model;
         }
     }

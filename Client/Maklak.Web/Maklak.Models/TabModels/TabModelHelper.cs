@@ -28,15 +28,15 @@ namespace Maklak.Models
             //tabReference = new Dictionary<TabModelType, Dictionary<int, TabModelType>>() { { TabModelType.VERTICAL,hTab} };
         }
 
-        public static TabModel GenerateModel(Guid sID, string key)
+        public static TabModel GenerateModel(string key)
         {
             //SiteMapHelper.SiteMap.
             TabModelHelper.TabModelType tabModelType = ModelType(key);
 
-            return GenerateModel(sID,tabModelType);
+            return GenerateModel(tabModelType);
         }
 
-        public static TabModel GenerateModel(Guid sID, TabModelType modelType)
+        public static TabModel GenerateModel(TabModelType modelType)
         {
             TabModel model = null;
 
@@ -59,7 +59,7 @@ namespace Maklak.Models
                     break;
             }
 
-            model.Initialize(sID);
+            //model.Initialize(sID);
             return model;
         }
 

@@ -12,9 +12,9 @@ namespace Maklak.Models
     {
         Dictionary<int, string> suggestionValues;
 
-        public SuggestionModel(Guid sID) 
+        public SuggestionModel() 
         {
-            base.Initialize(sID);
+            
             suggestionValues = new Dictionary<int, string>();
 
             for (int i = 0; i < 8; i++)

@@ -9,21 +9,43 @@ using Maklak.Models;
 
 namespace Maklak.Web.ModelBinder
 {
-    public class TabModelBinder : DefaultModelBinder
+    public class TabModelBinder : BaseModelBinder
     {
-                 
-        protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
+        public TabModelBinder()
         {
-            // method is calling inside BindModel method
+            base.GenerateModel += GenerateTabModel;
+            //base.InitializeModel += InitializeSuggestionModel;
+        }
 
+        //private void InitializeSuggestionModel(ControllerContext controllerContext, ModelBindingContext modelBindingContext, Type modelType, BaseModel generatedModel)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        private BaseModel GenerateTabModel(ControllerContext controllerContext, ModelBindingContext modelBindingContext, Type modelType)
+        {
             HttpRequestBase request = controllerContext.HttpContext.Request;
 
             string modelKey = request.Form.Get("Key");
-            Guid sID = Guid.Parse(request.Form.Get("SID"));          
-            
-            TabModel model = TabModelHelper.GenerateModel(sID, modelKey); 
+            //Guid sID = Guid.Parse(request.Form.Get("SID"));          
+
+            TabModel model = TabModelHelper.GenerateModel(modelKey);
 
             return model;
         }
+
+        //protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
+        //{
+        //    // method is calling inside BindModel method
+
+        //    HttpRequestBase request = controllerContext.HttpContext.Request;
+
+        //    string modelKey = request.Form.Get("Key");
+        //    //Guid sID = Guid.Parse(request.Form.Get("SID"));          
+            
+        //    TabModel model = TabModelHelper.GenerateModel(modelKey); 
+
+        //    return model;
+        //}
     }
 }

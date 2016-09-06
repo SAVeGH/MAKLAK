@@ -10,12 +10,20 @@ namespace Maklak.Models
     {
         public enum SuggestionKeys { PROUDUCT, MODEL, PRODUCER, PROPERTY, PROPERTYVALUE, TAG }
 
-        public static SuggestionModel GenerateModel(Guid sID, string inputValue, string key )
+        public static SuggestionModel GenerateModel()
         {
-            SuggestionModel model = new SuggestionModel(sID);
+            SuggestionModel model = new SuggestionModel();
+            //model.InputValue = inputValue;
+            //model.SuggestionKey = (SuggestionKeys)Enum.Parse(typeof(SuggestionKeys), key);
+            return model;
+        }
+
+        public static void InitModel(SuggestionModel model,string inputValue, string key)
+        {
+            
             model.InputValue = inputValue;
             model.SuggestionKey = (SuggestionKeys)Enum.Parse(typeof(SuggestionKeys), key);
-            return model;
+            
         }
     }
 }
