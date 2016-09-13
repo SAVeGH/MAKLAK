@@ -64,10 +64,10 @@ namespace Maklak.Web.Controllers
             return state;
         }
 
-        public ActionResult hTabStrip(BaseModel contextModel)
+        public ActionResult hTabStrip()
         {
             
-            TabModel model = TabModelHelper.GenerateModel(contextModel.SID, TabModelHelper.DefaultXModelKey);
+            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.DefaultXModelKey);
             //model.SID = contextModel.SID;
             SessionHelper.SetValue<string>(model.SID, "X", model.SelectedKey);
             //this.Session["X"] = model.SelectedKey;
@@ -81,9 +81,9 @@ namespace Maklak.Web.Controllers
             return PartialView("HorisontalTabElement", tabRow);
         }
 
-        public ActionResult vTabStrip(BaseModel contextModel)
+        public ActionResult vTabStrip()
         {
-            TabModel model = TabModelHelper.GenerateModel(contextModel.SID, TabModelHelper.DefaultYModelKey);
+            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.DefaultYModelKey);
             //model.SID = contextModel.SID;
             //this.Session["Y"] = model.SelectedKey;
             SessionHelper.SetValue<string>(model.SID, "Y", model.SelectedKey);

@@ -28,6 +28,13 @@ namespace Maklak.Models
             //tabReference = new Dictionary<TabModelType, Dictionary<int, TabModelType>>() { { TabModelType.VERTICAL,hTab} };
         }
 
+        public static TabModel GenerateModel(Guid sID, string key)
+        {
+            TabModel model = TabModelHelper.GenerateModel(key);
+            model.Initialize(sID);
+            return model;
+        }
+
         public static TabModel GenerateModel(string key)
         {
             //SiteMapHelper.SiteMap.

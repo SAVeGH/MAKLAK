@@ -753,6 +753,10 @@ namespace Maklak.Models.DataSets {
                 base.Columns.Add(this.columnAction);
                 this.columnController = new global::System.Data.DataColumn("Controller", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnController);
+                this.columnAction.AllowDBNull = false;
+                this.columnAction.DefaultValue = ((string)(""));
+                this.columnController.AllowDBNull = false;
+                this.columnController.DefaultValue = ((string)(""));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1289,12 +1293,7 @@ namespace Maklak.Models.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Action {
                 get {
-                    try {
-                        return ((string)(this[this.tableACD.ActionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Action\' in table \'ACD\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableACD.ActionColumn]));
                 }
                 set {
                     this[this.tableACD.ActionColumn] = value;
@@ -1305,12 +1304,7 @@ namespace Maklak.Models.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Controller {
                 get {
-                    try {
-                        return ((string)(this[this.tableACD.ControllerColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Controller\' in table \'ACD\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableACD.ControllerColumn]));
                 }
                 set {
                     this[this.tableACD.ControllerColumn] = value;
@@ -1327,30 +1321,6 @@ namespace Maklak.Models.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCODENull() {
                 this[this.tableACD.CODEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsActionNull() {
-                return this.IsNull(this.tableACD.ActionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetActionNull() {
-                this[this.tableACD.ActionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsControllerNull() {
-                return this.IsNull(this.tableACD.ControllerColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetControllerNull() {
-                this[this.tableACD.ControllerColumn] = global::System.Convert.DBNull;
             }
         }
         

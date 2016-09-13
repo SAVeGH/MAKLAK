@@ -8,11 +8,11 @@ namespace Maklak.Models.Helpers
 {
     public static class ModelHelper
     {
-        private static Guid generateSID()
-        {
-            Guid sid = Guid.NewGuid();
-            return sid;
-        }
+        //private static Guid generateSID()
+        //{
+        //    Guid sid = Guid.NewGuid();
+        //    return sid;
+        //}
 
         public static BaseModel CreateBaseModel(Guid sID)
         {

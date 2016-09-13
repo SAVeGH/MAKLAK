@@ -58,11 +58,11 @@ namespace Maklak.Models
                 {
                     row = data.ACD.NewACDRow();
                     row.CODE = "CURRENT";
-                    data.ACD.AddACDRow(row);
-                    data.ACD.AcceptChanges();
+                    data.ACD.AddACDRow(row);                    
                 }                    
 
                 row.Action = value;
+                data.ACD.AcceptChanges();
             }
         }
         public string Controller
@@ -91,11 +91,11 @@ namespace Maklak.Models
                 {
                     row = data.ACD.NewACDRow();
                     row.CODE = "CURRENT";
-                    data.ACD.AddACDRow(row);
-                    data.ACD.AcceptChanges();
+                    data.ACD.AddACDRow(row);                    
                 }
 
                 row.Controller = value;
+                data.ACD.AcceptChanges();
             }
         }
         public Guid SID
