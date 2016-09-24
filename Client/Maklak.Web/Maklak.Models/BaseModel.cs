@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using MvcSiteMapProvider;
 using Maklak.Models.Helpers;
+using Maklak.Models.DataSets;
 
 namespace Maklak.Models
 {
@@ -20,16 +23,96 @@ namespace Maklak.Models
 
             data = new DataSets.ModelDS();
 
-            Models.DataSets.ModelDS.IdentityRow row = data.Identity.NewIdentityRow();
+            InitIdenty(sID);
+
+            InitSiteMap();
+
+            InitTabData();
+
+            SessionHelper.SetModel(data);
+
+        }
+
+        private void InitIdenty(Guid sID)
+        {
+            ModelDS.IdentityRow row = data.Identity.NewIdentityRow();
 
             row.SID = sID;
 
             data.Identity.AddIdentityRow(row);
 
             data.Identity.AcceptChanges();
+        }
 
-            SessionHelper.SetModel(data);
+        private void InitSiteMap()
+        {
+            InitSiteMap(null, null);
 
+            data.SiteMap.AcceptChanges();
+        }
+
+        private void InitTabData()
+        {
+            InitTabData(null, null);
+
+            data.TabData.AcceptChanges();
+        }
+
+        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.TabDataRow parentRow)
+        {
+            ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
+
+            if (mapRow == null)
+            {
+                mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
+                tabRow.SetParent_IdNull();
+            }
+            else
+            {
+                tabRow.Parent_Id = parentRow.Id;
+            }
+            
+            tabRow.Name = mapRow.Title;
+            tabRow.Key = mapRow.Key;
+
+            data.TabData.AddTabDataRow(tabRow);
+
+            foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
+            {
+                InitTabData(row, tabRow);
+            }
+        }
+
+        private void InitSiteMap(ISiteMapNode node, ModelDS.SiteMapRow parentRow)
+        {
+            ModelDS.SiteMapRow row = data.SiteMap.NewSiteMapRow();
+
+            if (node == null)
+            {
+                node = SiteMapHelper.SiteMap.RootNode;
+                row.SetParent_IdNull();
+            }
+            else
+            {
+                row.Parent_Id = parentRow.Id;
+            }
+
+            row.Title = node.Title;
+            row.Action = node.Action;
+            row.Controller = node.Controller;
+            row.Key = node.Key;
+
+            if (node.Attributes.Keys.Contains("defaultkey"))            
+                row.DefaultKey = Convert.ToString(node.Attributes["defaultkey"]);
+            else
+                row.SetDefaultKeyNull();               
+
+            data.SiteMap.AddSiteMapRow(row);
+
+            foreach (ISiteMapNode childNode in node.ChildNodes)
+            {
+                InitSiteMap(childNode, row);
+            }
         }
 
         public string Action
