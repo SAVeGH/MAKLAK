@@ -2,6 +2,6 @@
 
 
 @{ 
-    string elementClass = this.Model.Row.Enabled ? "hTabElement hTabActive" : "hTabElement";   
+    string elementClass = this.Model.Row.Active ? "hTabElement hTabActive" : "hTabElement";   
 } 
 <div class="@elementClass" onclick="hTabMgr.TabClick('@this.Model.Row.Key')" >@this.Model.Row.Name</div>

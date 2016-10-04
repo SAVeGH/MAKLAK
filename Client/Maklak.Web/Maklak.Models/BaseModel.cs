@@ -22,15 +22,15 @@ namespace Maklak.Models
             if (data != null)
                 return;
 
-            data = new DataSets.ModelDS();
+            data = new DataSets.ModelDS();            
 
             InitIdenty(sID);
 
-            InitSiteMap();            
-
-            OnModelInitializedSignal();
+            InitSiteMap();
 
             SessionHelper.SetModel(data);
+
+            OnModelInitializedSignal();
 
         }
 

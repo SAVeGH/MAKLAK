@@ -4,7 +4,7 @@
 
 
 @{
-    Maklak.Models.DataSets.TabDS.TabDataDataTable dataTable = this.Model.TabData.TabData;
+    Maklak.Models.DataSets.ModelDS.TabDataDataTable dataTable = this.Model.TabData;
     int tabWidth = 130;
     int gapWidth = 2;
     int tabHeight = 33;
@@ -56,7 +56,7 @@
         <div class="@tabStripClass" style="min-width:@stubLeft;">
             <div class="@tabGapClass"></div>
 
-            @{foreach (Maklak.Models.DataSets.TabDS.TabDataRow row in dataTable)
+            @{foreach (Maklak.Models.DataSets.ModelDS.TabDataRow row in dataTable)
                 {
                     Maklak.Models.TabRowModel rm = new Maklak.Models.TabRowModel();
                     rm.Row = row;

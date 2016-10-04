@@ -14,13 +14,13 @@ namespace Maklak.Models
         public TabModel()
         {
             //base.Initialize(sID);
-            TabData = new TabDS();
-            ISiteMapNode rootTabNode = TabModelHelper.RootTabNode;
-            this.Action = rootTabNode.Action;
-            this.Controller = rootTabNode.Controller;
+            //TabData = new TabDS();
+            //ISiteMapNode rootTabNode = TabModelHelper.RootTabNode;
+            //this.Action = rootTabNode.Action;
+            //this.Controller = rootTabNode.Controller;
 
             base.OnModelInitialized += TabModel_OnModelInitialized;            
-            Init();            
+            //Init();            
         }
 
         private void TabModel_OnModelInitialized()
@@ -61,24 +61,24 @@ namespace Maklak.Models
         }
 
         public bool IsVertical { get; set; }
-        public TabDS TabData { get; set; }       
+        public ModelDS.TabDataDataTable TabData { get { return data.TabData; } }       
 
 
-        public virtual void Init()
-        {
-            ISiteMapNode rootNode = SiteMapHelper.NodeByKey(this.Key);
+        //public virtual void Init()
+        //{
+        //    ISiteMapNode rootNode = SiteMapHelper.NodeByKey(this.Key);
 
-            DefaultKey = TabModelHelper.DefaultKey(rootNode);
+        //    DefaultKey = TabModelHelper.DefaultKey(rootNode);
 
-            foreach (ISiteMapNode node in rootNode.ChildNodes)
-            {
-                TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-                row.Key = node.Key;
-                row.Name = node.Title;
-                row.Enabled = DefaultKey == node.Key;
-                TabData.TabData.Rows.Add(row);
-            }
-        }
+        //    foreach (ISiteMapNode node in rootNode.ChildNodes)
+        //    {
+        //        TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
+        //        row.Key = node.Key;
+        //        row.Name = node.Title;
+        //        row.Enabled = DefaultKey == node.Key;
+        //        TabData.TabData.Rows.Add(row);
+        //    }
+        //}
 
         // Ключь самой модели
         public string Key
@@ -96,7 +96,7 @@ namespace Maklak.Models
         {
             get
             {
-                TabDS.TabDataRow row = TabData.TabData.AsEnumerable().Where(r => r.Enabled).FirstOrDefault();
+                ModelDS.TabDataRow row = data.TabData.Where(r => r.Active).FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
@@ -108,20 +108,20 @@ namespace Maklak.Models
             set
             {                
 
-                TabDS.TabDataRow row = TabData.TabData.AsEnumerable().Where(r => r.Enabled).FirstOrDefault();
+                ModelDS.TabDataRow row = data.TabData.Where(r => r.Active).FirstOrDefault();
 
                 if (row != null)
-                    row.Enabled = false;
+                    row.Active = false;
 
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                     return;
 
-                row = TabData.TabData.AsEnumerable().Where(r => r.Key == value).FirstOrDefault();
+                row = data.TabData.Where(r => r.Key == value).FirstOrDefault();
 
                 if (row == null)
                     return;
 
-                row.Enabled = true;
+                row.Active = true;
 
             }
         }
@@ -187,7 +187,7 @@ namespace Maklak.Models
 
     public class TabRowModel 
     {
-        public TabDS.TabDataRow Row { get; set; }
+        public ModelDS.TabDataRow Row { get; set; }
     }
 
     
