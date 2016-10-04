@@ -18,8 +18,46 @@ namespace Maklak.Models
             ISiteMapNode rootTabNode = TabModelHelper.RootTabNode;
             this.Action = rootTabNode.Action;
             this.Controller = rootTabNode.Controller;
-                        
+
+            base.OnModelInitialized += TabModel_OnModelInitialized;            
             Init();            
+        }
+
+        private void TabModel_OnModelInitialized()
+        {
+            InitTabData();
+        }
+
+        private void InitTabData()
+        {
+            InitTabData(null, null);
+
+            data.TabData.AcceptChanges();
+        }
+
+        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.TabDataRow parentRow)
+        {
+            ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
+
+            if (mapRow == null)
+            {
+                mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
+                tabRow.SetParent_IdNull();
+            }
+            else
+            {
+                tabRow.Parent_Id = parentRow.Id;
+            }
+
+            tabRow.Name = mapRow.Title;
+            tabRow.Key = mapRow.Key;
+
+            data.TabData.AddTabDataRow(tabRow);
+
+            foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
+            {
+                InitTabData(row, tabRow);
+            }
         }
 
         public bool IsVertical { get; set; }

@@ -13,6 +13,7 @@ namespace Maklak.Models
     public class BaseModel
     {
         protected Models.DataSets.ModelDS data;
+        protected event Action OnModelInitialized;
 
         public void Initialize(Guid sID)
         {
@@ -25,12 +26,20 @@ namespace Maklak.Models
 
             InitIdenty(sID);
 
-            InitSiteMap();
+            InitSiteMap();            
 
-            InitTabData();
+            OnModelInitializedSignal();
 
             SessionHelper.SetModel(data);
 
+        }
+
+        private void OnModelInitializedSignal()
+        {
+            if (OnModelInitialized == null)
+                return;
+
+            OnModelInitialized();
         }
 
         private void InitIdenty(Guid sID)
@@ -49,39 +58,7 @@ namespace Maklak.Models
             InitSiteMap(null, null);
 
             data.SiteMap.AcceptChanges();
-        }
-
-        private void InitTabData()
-        {
-            InitTabData(null, null);
-
-            data.TabData.AcceptChanges();
-        }
-
-        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.TabDataRow parentRow)
-        {
-            ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
-
-            if (mapRow == null)
-            {
-                mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
-                tabRow.SetParent_IdNull();
-            }
-            else
-            {
-                tabRow.Parent_Id = parentRow.Id;
-            }
-            
-            tabRow.Name = mapRow.Title;
-            tabRow.Key = mapRow.Key;
-
-            data.TabData.AddTabDataRow(tabRow);
-
-            foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
-            {
-                InitTabData(row, tabRow);
-            }
-        }
+        }        
 
         private void InitSiteMap(ISiteMapNode node, ModelDS.SiteMapRow parentRow)
         {

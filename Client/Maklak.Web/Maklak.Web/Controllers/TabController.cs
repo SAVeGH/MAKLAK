@@ -69,7 +69,7 @@ namespace Maklak.Web.Controllers
             
             TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.DefaultXModelKey);
             //model.SID = contextModel.SID;
-            SessionHelper.SetValue<string>(model.SID, "X", model.SelectedKey);
+            SessionHelper.SetValue<string>(this.SID, "X", model.SelectedKey);
             //this.Session["X"] = model.SelectedKey;
                      
             return PartialView("TabStrip", model);
