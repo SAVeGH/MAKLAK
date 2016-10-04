@@ -19,16 +19,16 @@ namespace Maklak.Models
         {
             data = SessionHelper.GetModel(sID);
 
-            if (data != null)
-                return;
+            if (data == null)
+            {
+                data = new DataSets.ModelDS();
 
-            data = new DataSets.ModelDS();            
+                InitIdenty(sID);
 
-            InitIdenty(sID);
+                InitSiteMap();
 
-            InitSiteMap();
-
-            SessionHelper.SetModel(data);
+                SessionHelper.SetModel(data);
+            }           
 
             OnModelInitializedSignal();
 
