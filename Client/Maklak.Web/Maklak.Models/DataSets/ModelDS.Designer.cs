@@ -946,6 +946,8 @@ namespace Maklak.Models.DataSets {
             
             private global::System.Data.DataColumn columnHidden;
             
+            private global::System.Data.DataColumn columnIsDefault;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TabDataDataTable() {
@@ -1037,6 +1039,14 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IsDefaultColumn {
+                get {
+                    return this.columnIsDefault;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1072,7 +1082,7 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TabDataRow AddTabDataRow(TabDataRow parentTabDataRowByFK_TabData_TabData, string Key, string Name, bool Active, bool Enabled, bool Hidden) {
+            public TabDataRow AddTabDataRow(TabDataRow parentTabDataRowByFK_TabData_TabData, string Key, string Name, bool Active, bool Enabled, bool Hidden, bool IsDefault) {
                 TabDataRow rowTabDataRow = ((TabDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1081,7 +1091,8 @@ namespace Maklak.Models.DataSets {
                         Name,
                         Active,
                         Enabled,
-                        Hidden};
+                        Hidden,
+                        IsDefault};
                 if ((parentTabDataRowByFK_TabData_TabData != null)) {
                     columnValuesArray[1] = parentTabDataRowByFK_TabData_TabData[0];
                 }
@@ -1121,6 +1132,7 @@ namespace Maklak.Models.DataSets {
                 this.columnActive = base.Columns["Active"];
                 this.columnEnabled = base.Columns["Enabled"];
                 this.columnHidden = base.Columns["Hidden"];
+                this.columnIsDefault = base.Columns["IsDefault"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1140,6 +1152,8 @@ namespace Maklak.Models.DataSets {
                 base.Columns.Add(this.columnEnabled);
                 this.columnHidden = new global::System.Data.DataColumn("Hidden", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHidden);
+                this.columnIsDefault = new global::System.Data.DataColumn("IsDefault", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsDefault);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -1152,6 +1166,8 @@ namespace Maklak.Models.DataSets {
                 this.columnEnabled.DefaultValue = ((bool)(true));
                 this.columnHidden.AllowDBNull = false;
                 this.columnHidden.DefaultValue = ((bool)(false));
+                this.columnIsDefault.AllowDBNull = false;
+                this.columnIsDefault.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1836,6 +1852,17 @@ namespace Maklak.Models.DataSets {
                 }
                 set {
                     this[this.tableTabData.HiddenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDefault {
+                get {
+                    return ((bool)(this[this.tableTabData.IsDefaultColumn]));
+                }
+                set {
+                    this[this.tableTabData.IsDefaultColumn] = value;
                 }
             }
             

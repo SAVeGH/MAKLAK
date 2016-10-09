@@ -30,12 +30,12 @@ namespace Maklak.Models
 
         private void InitTabData()
         {
-            InitTabData(null, null);
+            InitTabData(null, null, null);
 
             data.TabData.AcceptChanges();
         }
 
-        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.TabDataRow parentRow)
+        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.SiteMapRow parentMapRow, ModelDS.TabDataRow parentRow)
         {
             ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
 
@@ -51,12 +51,13 @@ namespace Maklak.Models
 
             tabRow.Name = mapRow.Title;
             tabRow.Key = mapRow.Key;
-
+            tabRow.IsDefault = parentMapRow == null ? false : parentMapRow.DefaultKey == mapRow.Key;
+            tabRow.Active = tabRow.IsDefault;
             data.TabData.AddTabDataRow(tabRow);
 
             foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
             {
-                InitTabData(row, tabRow);
+                InitTabData(row, mapRow, tabRow);
             }
         }
 
@@ -67,9 +68,11 @@ namespace Maklak.Models
             get
             {
                 int parentId = data.TabData.Where(pr => pr.Key == Key).Select(prs => prs.Id).FirstOrDefault();
-                ModelDS.TabDataDataTable dataTable = new ModelDS.TabDataDataTable()
-                //data.TabData.DefaultView.RowFilter = string.Format("Parent_Id = {0}", parentId);
-                return data.TabData.DefaultView.;
+
+                ModelDS.TabDataDataTable dataTable = new ModelDS.TabDataDataTable();
+                List<ModelDS.TabDataRow> rows = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == parentId).ToList();
+                rows.ForEach(r => dataTable.ImportRow(r));                
+                return dataTable;
             }
         }       
 
