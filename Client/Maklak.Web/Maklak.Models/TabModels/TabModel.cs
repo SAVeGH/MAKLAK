@@ -61,7 +61,17 @@ namespace Maklak.Models
         }
 
         public bool IsVertical { get; set; }
-        public ModelDS.TabDataDataTable TabData { get { return data.TabData; } }       
+
+        public ModelDS.TabDataDataTable TabData
+        {
+            get
+            {
+                int parentId = data.TabData.Where(pr => pr.Key == Key).Select(prs => prs.Id).FirstOrDefault();
+                ModelDS.TabDataDataTable dataTable = new ModelDS.TabDataDataTable()
+                //data.TabData.DefaultView.RowFilter = string.Format("Parent_Id = {0}", parentId);
+                return data.TabData.DefaultView.;
+            }
+        }       
 
 
         //public virtual void Init()
