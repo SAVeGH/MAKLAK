@@ -14,10 +14,16 @@ namespace Maklak.Models
     {
         protected Models.DataSets.ModelDS data;
         protected event Action OnModelInitialized;
+        protected event Action OnModelReady;
 
         public void Initialize(Guid sID)
         {
             data = SessionHelper.GetModel(sID);
+
+            if (data != null)
+            {
+                OnModelReadySignal();
+            }
 
             if (data == null)
             {
@@ -32,6 +38,16 @@ namespace Maklak.Models
 
             OnModelInitializedSignal();
 
+            OnModelReadySignal();
+
+        }
+
+        private void OnModelReadySignal()
+        {
+            if (OnModelReady == null)
+                return;
+
+            OnModelReady();
         }
 
         private void OnModelInitializedSignal()

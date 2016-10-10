@@ -12,24 +12,32 @@ namespace Maklak.Models
     public abstract class TabModel : BaseModel
     {        
         public TabModel()
-        {
-            //base.Initialize(sID);
-            //TabData = new TabDS();
-            //ISiteMapNode rootTabNode = TabModelHelper.RootTabNode;
-            //this.Action = rootTabNode.Action;
-            //this.Controller = rootTabNode.Controller;
+        {            
 
-            base.OnModelInitialized += TabModel_OnModelInitialized;            
-            //Init();            
+            base.OnModelInitialized += TabModel_OnModelInitialized;
+            base.OnModelReady += TabModel_OnModelReady;           
+                      
+        }
+
+        private void TabModel_OnModelReady()
+        {
+            ModelDS.SiteMapRow rootRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
+            this.Action = rootRow.Action;
+            this.Controller = rootRow.Controller;
         }
 
         private void TabModel_OnModelInitialized()
-        {
+        {           
+
             InitTabData();
+            
         }
 
         private void InitTabData()
         {
+            if (data.TabData.Count > 0)
+                return;
+
             InitTabData(null, null, null);
 
             data.TabData.AcceptChanges();
@@ -71,27 +79,11 @@ namespace Maklak.Models
 
                 ModelDS.TabDataDataTable dataTable = new ModelDS.TabDataDataTable();
                 List<ModelDS.TabDataRow> rows = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == parentId).ToList();
-                rows.ForEach(r => dataTable.ImportRow(r));                
+                rows.ForEach(r => dataTable.ImportRow(r));
+                dataTable.AcceptChanges();
                 return dataTable;
             }
         }       
-
-
-        //public virtual void Init()
-        //{
-        //    ISiteMapNode rootNode = SiteMapHelper.NodeByKey(this.Key);
-
-        //    DefaultKey = TabModelHelper.DefaultKey(rootNode);
-
-        //    foreach (ISiteMapNode node in rootNode.ChildNodes)
-        //    {
-        //        TabDS.TabDataRow row = TabData.TabData.NewTabDataRow();
-        //        row.Key = node.Key;
-        //        row.Name = node.Title;
-        //        row.Enabled = DefaultKey == node.Key;
-        //        TabData.TabData.Rows.Add(row);
-        //    }
-        //}
 
         // Ключь самой модели
         public string Key
@@ -159,8 +151,6 @@ namespace Maklak.Models
 
     public class LoginTabModel : TabModel 
     {
-        //public LoginTabModel(Guid sID) : base(sID) { }
-
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.LOGIN.ToString();           
@@ -169,8 +159,7 @@ namespace Maklak.Models
 
     public class SearchTabModel : TabModel
     {
-        //public SearchTabModel(Guid sID) : base(sID) { }
-
+       
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.SEARCH.ToString();            
@@ -179,8 +168,7 @@ namespace Maklak.Models
 
     public class InOutTabModel : TabModel
     {
-        //public InOutTabModel(Guid sID) : base(sID) { }
-
+        
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.INOUT.ToString();            
@@ -189,8 +177,7 @@ namespace Maklak.Models
 
     public class ManageTabModel : TabModel
     {
-        //public ManageTabModel(Guid sID) : base(sID) { }
-
+        
         protected override string ModelKey()
         {
             return TabModelHelper.TabModelType.MANAGE.ToString();            
