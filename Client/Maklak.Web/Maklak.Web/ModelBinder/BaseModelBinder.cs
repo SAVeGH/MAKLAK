@@ -10,13 +10,14 @@ namespace Maklak.Web.ModelBinder
 {
     public class BaseModelBinder : DefaultModelBinder
     {
-        protected Func<ControllerContext, ModelBindingContext, Type, BaseModel> GenerateModel;
-        protected Action<ControllerContext, ModelBindingContext, Type, BaseModel> InitializeModel;
+        protected event Func<ControllerContext, ModelBindingContext, Type, BaseModel> GenerateModel;
+        protected event Action<ControllerContext, ModelBindingContext, Type, BaseModel> InitializeModel;
 
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
             BaseModel model = GenerateModel == null ? (base.CreateModel(controllerContext, bindingContext, modelType) as BaseModel) : GenerateModel(controllerContext, bindingContext, modelType);
             BaseController controller = controllerContext.Controller as BaseController;
+            // для всех автоматически генерируемых средой моделей происходит привязка к SID
             model.Initialize(controller.SID);
 
             if (InitializeModel != null)
@@ -24,14 +25,6 @@ namespace Maklak.Web.ModelBinder
 
             return model;
         }
-        //public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        //{
-
-        //    BaseModel model = bindingContext.Model as BaseModel;
-        //    BaseController controller = controllerContext.Controller as BaseController;
-        //    model.Initialize(controller.SID);
-
-        //    return model;
-        //}
+        
     }
 }

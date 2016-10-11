@@ -68,6 +68,7 @@ namespace Maklak.Web.Controllers
         {
             
             TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.DefaultXModelKey);
+            //model.Initialize(this.SID);
             //model.SID = contextModel.SID;
             SessionHelper.SetValue<string>(this.SID, "X", model.SelectedKey);
             //this.Session["X"] = model.SelectedKey;
@@ -84,6 +85,7 @@ namespace Maklak.Web.Controllers
         public ActionResult vTabStrip()
         {
             TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.DefaultYModelKey);
+            //model.Initialize(this.SID);
             //model.SID = contextModel.SID;
             //this.Session["Y"] = model.SelectedKey;
             SessionHelper.SetValue<string>(model.SID, "Y", model.SelectedKey);

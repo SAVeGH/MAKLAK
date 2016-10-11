@@ -30,6 +30,7 @@ namespace Maklak.Models
 
         public static TabModel GenerateModel(Guid sID, string key)
         {
+            // вызывается при первой загрузке страницы
             TabModel model = TabModelHelper.GenerateModel(key);
             model.Initialize(sID);
             return model;

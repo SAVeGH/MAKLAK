@@ -15,6 +15,7 @@ namespace Maklak.Web.ControllerFactory
 
             if (requestContext.RouteData.DataTokens.Count > 0 && requestContext.RouteData.DataTokens.Keys.Contains("ParentActionViewContext"))
             {
+                // сюда заходит при выполнении дочернего запроса методом GET
                 ViewContext parentContext = requestContext.RouteData.DataTokens["ParentActionViewContext"] as ViewContext;
 
                 BaseController parentController = parentContext.Controller as BaseController;
@@ -23,8 +24,11 @@ namespace Maklak.Web.ControllerFactory
             }
             else
             {
-                string formValue = requestContext.HttpContext.Request.Form["SID"];
+                string formValue = string.Empty;
 
+                if (requestContext.HttpContext.Request.Params.AllKeys.Contains("SID"))
+                    formValue = requestContext.HttpContext.Request.Params["SID"];
+                
                 if (!string.IsNullOrEmpty(formValue))
                     formSID = Guid.Parse(formValue);
             }           
@@ -33,7 +37,7 @@ namespace Maklak.Web.ControllerFactory
 
             BaseController controller = base.GetControllerInstance(requestContext, controllerType) as BaseController;
 
-            controller.SID = sID;
+            controller.SID = sID; // все контроллеры наследники получают SID при создании
 
             return controller;
         }

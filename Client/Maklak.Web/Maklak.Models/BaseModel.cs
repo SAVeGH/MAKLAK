@@ -23,6 +23,7 @@ namespace Maklak.Models
             if (data != null)
             {
                 OnModelReadySignal();
+                //return;
             }
 
             if (data == null)
@@ -34,7 +35,7 @@ namespace Maklak.Models
                 InitSiteMap();
 
                 SessionHelper.SetModel(data);
-            }           
+            }
 
             OnModelInitializedSignal();
 
