@@ -66,12 +66,10 @@ namespace Maklak.Web.Controllers
 
         public ActionResult hTabStrip()
         {
+            // BaseModel уже создавалась и инициализирована
             
             TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultXModelType(this.SID));
-            
-            //SessionHelper.SetValue<string>(this.SID, "X", model.SelectedKey);
-            
-                     
+              
             return PartialView("TabStrip", model);
         }
         
@@ -83,9 +81,8 @@ namespace Maklak.Web.Controllers
 
         public ActionResult vTabStrip()
         {
-            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));
+            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));            
             
-            //SessionHelper.SetValue<string>(model.SID, "Y", model.SelectedKey);
             return PartialView("TabStrip", model);
         }        
 
