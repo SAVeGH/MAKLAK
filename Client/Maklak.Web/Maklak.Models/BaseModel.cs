@@ -15,35 +15,54 @@ namespace Maklak.Models
         protected Models.DataSets.ModelDS data;
         protected event Action OnModelInitialized;
         protected event Action OnModelReady;
+        
 
         public void Initialize(Guid sID)
         {
             data = SessionHelper.GetModel(sID);
 
-            if (data != null)
-            {
-                OnModelReadySignal();
-                //return;
+            if (IsModelInitialized())
+            {              
+                RiseOnModelReady();
+                return;                
             }
 
-            if (data == null)
-            {
-                data = new DataSets.ModelDS();
+            BaseInitialization(sID);
 
-                InitIdenty(sID);
+            RiseOnModelInitialized();
 
-                InitSiteMap();
-
-                SessionHelper.SetModel(data);
-            }
-
-            OnModelInitializedSignal();
-
-            OnModelReadySignal();
+            RiseOnModelReady();
 
         }
 
-        private void OnModelReadySignal()
+        protected virtual bool IsModelInitialized()
+        {
+            if (data == null)
+                return false;
+
+            if (data.Identity.Count == 0 || data.SiteMap.Count == 0)
+                return false;
+
+            return true;
+        }
+
+        private void BaseInitialization(Guid sID)
+        {
+            // ! вызов не перегруженного метода
+            if (this.IsModelInitialized())
+                return;
+            
+           data = new DataSets.ModelDS();
+
+           InitIdenty(sID);
+
+           InitSiteMap();
+
+           SessionHelper.SetModel(data);
+            
+        }        
+
+        private void RiseOnModelReady()
         {
             if (OnModelReady == null)
                 return;
@@ -51,7 +70,7 @@ namespace Maklak.Models
             OnModelReady();
         }
 
-        private void OnModelInitializedSignal()
+        private void RiseOnModelInitialized()
         {
             if (OnModelInitialized == null)
                 return;

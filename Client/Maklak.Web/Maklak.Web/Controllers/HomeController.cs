@@ -14,11 +14,7 @@ namespace Maklak.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //BaseModel model = new BaseModel();
-
-            //model.Action = TabModelHelper.DefaultAction;
-            //model.Controller = TabModelHelper.DefaultController;
-            //model.GenerateSID(); // генерируем уникальный SID для страницы
+            
             BaseModel model = Maklak.Models.Helpers.ModelHelper.CreateBaseModel(this.SID);
             return View(model);
         }

@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:Identity" ZOrder="6" X="70" Y="70" Height="48" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
     <Shape ID="DesignTable:ACD" ZOrder="5" X="290" Y="70" Height="86" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
     <Shape ID="DesignTable:TabData" ZOrder="3" X="90" Y="249" Height="182" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
-    <Shape ID="DesignTable:SiteMap" ZOrder="1" X="592" Y="73" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
+    <Shape ID="DesignTable:SiteMap" ZOrder="1" X="592" Y="73" Height="163" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_TabData_TabData" ZOrder="4" LineWidth="11">

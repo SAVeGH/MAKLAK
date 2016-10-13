@@ -6,39 +6,48 @@ using System.Threading.Tasks;
 
 using MvcSiteMapProvider;
 
+using Maklak.Models.Helpers;
+using Maklak.Models.DataSets;
 
 namespace Maklak.Models
 {
     public static class TabModelHelper
     {        
 
-        public enum TabModelType { CATEGORY, SEARCH, INOUT, MANAGE, LOGIN }
+        public enum TabModelType {NONE, CATEGORY, SEARCH, INOUT, MANAGE, LOGIN }
 
-        //private static Dictionary<TabModelType, Dictionary<int,TabModelType>> tabReference;
+       
 
-        static TabModelHelper()
+        public static TabModel GenerateModel(Guid sID, TabModelType modelType)
         {
-            //Dictionary<int, TabModelType> hTab = new Dictionary<int, TabModelType>() { { 4,TabModelType.LOGIN },
-            //                                                                           { 1,TabModelType.SEARCH },
-            //                                                                           { 3,TabModelType.MANAGE},
-            //                                                                           { 2,TabModelType.INOUT}
-            //                                                                         };
-
-
-            //tabReference = new Dictionary<TabModelType, Dictionary<int, TabModelType>>() { { TabModelType.VERTICAL,hTab} };
-        }
-
-        public static TabModel GenerateModel(Guid sID, string key)
-        {
-            // вызывается при первой загрузке страницы
-            TabModel model = TabModelHelper.GenerateModel(key);
+            // вызывается при первой загрузке страницы для генерции модели вруную
+            TabModel model = TabModelHelper.GenerateModel(modelType);
             model.Initialize(sID);
             return model;
         }
 
+        internal static string DefaultController(Guid sID)
+        {           
+
+            ModelDS.SiteMapRow rootRow = GetRootTabRow(sID);
+            ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
+            ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
+
+            return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Controller).FirstOrDefault();
+        }
+
+        internal static string DefaultAction(Guid sID)
+        {
+            ModelDS.SiteMapRow rootRow = GetRootTabRow(sID);
+            ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
+            ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
+
+            return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Action).FirstOrDefault();
+        }
+
         public static TabModel GenerateModel(string key)
         {
-            //SiteMapHelper.SiteMap.
+            //вызывается при привязке запроса к модели. key приходит из запроса
             TabModelHelper.TabModelType tabModelType = ModelType(key);
 
             return GenerateModel(tabModelType);
@@ -66,85 +75,40 @@ namespace Maklak.Models
                     model = new ManageTabModel();
                     break;
             }
-
-            //model.Initialize(sID);
+            
             return model;
         }
 
-        public static ISiteMapNode RootTabNode
+        public static TabModelType GetDefaultXModelType(Guid sID)
         {
-            get
-            {
-                return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(TabModelType.CATEGORY.ToString());
-            }
+            ModelDS.SiteMapRow row = GetRootTabRow(sID);
+
+            return ModelType(row.DefaultKey);
         }
 
-        public static string DefaultKey(ISiteMapNode node)
+        public static TabModelType GetDefaultYModelType(Guid sID)
         {
-            return node.Attributes["defaultkey"] == null ? string.Empty : Convert.ToString(node.Attributes["defaultkey"]);
+            ModelDS.SiteMapRow row = GetRootTabRow(sID);
+
+            return ModelType(row.Key);
         }
 
-        public static string DefaultAction
+        private static ModelDS.SiteMapRow GetRootTabRow(Guid sID)
         {
-            get
-            {
-                return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(RootTabNode)))).Action;
-            }
+            ModelDS data = SessionHelper.GetModel(sID);
+
+            ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == TabModelType.CATEGORY.ToString()).FirstOrDefault();
+
+            return row;
         }
 
-        public static string DefaultController
+        public static TabModelType ModelType(string Key)
         {
-            get
-            {
-                return SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(DefaultKey(RootTabNode)))).Controller;
-            }
+            if (Enum.GetNames(typeof(TabModelHelper.TabModelType)).Contains(Key))
+                return (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), Key);
+
+            return TabModelType.NONE;
         }
-
-        public static TabModelType ModelType(string key)
-        {
-
-            ISiteMapNode node = SiteMapHelper.SiteMap.FindSiteMapNodeFromKey(key);
-
-            return TabModelHelper.ModelType(node);
-
-
-        }
-
-        public static TabModelType ModelType(ISiteMapNode node)
-        {            
-
-            if (Enum.GetNames(typeof(TabModelHelper.TabModelType)).Contains(node.Key))
-                return (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), node.Key);
-
-            ISiteMapNode parentNode = node.ParentNode;
-
-            return TabModelHelper.ModelType(node);
-        }
-
-        public static string DefaultYModelKey
-        {
-            get
-            {
-                return ModelType(TabModelHelper.RootTabNode).ToString();
-            }
-        }
-
-        public static string DefaultXModelKey
-        {
-            get
-            {
-                ISiteMapNode xNode = RootTabNode.ChildNodes.Where(n => n.Key == DefaultKey(RootTabNode)).FirstOrDefault();
-                return TabModelHelper.ModelType(xNode).ToString();
-            }
-        }
-
-        //public static TabModel GenerateModel(TabModelType keyModelType, int selectedId)
-        //{
-        //    Dictionary<int, TabModelType> hTab = tabReference[keyModelType];
-
-        //    TabModelType modelType = hTab[selectedId];
-
-        //    return GenerateModel(modelType);
-        //}
+        
     }
 }

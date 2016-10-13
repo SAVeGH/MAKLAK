@@ -35,9 +35,6 @@ namespace Maklak.Models
 
         private void InitTabData()
         {
-            if (data.TabData.Count > 0)
-                return;
-
             InitTabData(null, null, null);
 
             data.TabData.AcceptChanges();
@@ -132,6 +129,11 @@ namespace Maklak.Models
         }
 
         protected abstract string ModelKey();
+
+        protected override bool IsModelInitialized()
+        {
+            return base.IsModelInitialized() && data.TabData.Count > 0;
+        }
 
 
     }

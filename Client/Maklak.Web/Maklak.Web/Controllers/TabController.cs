@@ -16,7 +16,7 @@ namespace Maklak.Web.Controllers
         //
         // GET: /Tab/
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult TabContent( [ModelBinder(typeof(TabModelBinder))]   TabModel model)
         {
 
@@ -67,11 +67,10 @@ namespace Maklak.Web.Controllers
         public ActionResult hTabStrip()
         {
             
-            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.DefaultXModelKey);
-            //model.Initialize(this.SID);
-            //model.SID = contextModel.SID;
-            SessionHelper.SetValue<string>(this.SID, "X", model.SelectedKey);
-            //this.Session["X"] = model.SelectedKey;
+            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultXModelType(this.SID));
+            
+            //SessionHelper.SetValue<string>(this.SID, "X", model.SelectedKey);
+            
                      
             return PartialView("TabStrip", model);
         }
@@ -84,11 +83,9 @@ namespace Maklak.Web.Controllers
 
         public ActionResult vTabStrip()
         {
-            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.DefaultYModelKey);
-            //model.Initialize(this.SID);
-            //model.SID = contextModel.SID;
-            //this.Session["Y"] = model.SelectedKey;
-            SessionHelper.SetValue<string>(model.SID, "Y", model.SelectedKey);
+            TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));
+            
+            //SessionHelper.SetValue<string>(model.SID, "Y", model.SelectedKey);
             return PartialView("TabStrip", model);
         }        
 
