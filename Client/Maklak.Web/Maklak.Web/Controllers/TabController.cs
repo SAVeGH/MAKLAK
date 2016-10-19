@@ -16,53 +16,53 @@ namespace Maklak.Web.Controllers
         //
         // GET: /Tab/
 
-        //[HttpPost]
+        [HttpPost]
         public ActionResult TabContent( [ModelBinder(typeof(TabModelBinder))]   TabModel model)
         {
 
-            string tabLineKey = "Y";
+            //string tabLineKey = "Y";
 
-            Dictionary<string, string> state = GetTabState(model.SID);
-            string selectedKey = model.SelectedKey;
-            string selectedY = SessionHelper.GetValue<string>(model.SID, tabLineKey); //(string)this.Session[tabLineKey];
+            //Dictionary<string, string> state = GetTabState(model.SID);
+            //string selectedKey = model.SelectedKey;
+            //string selectedY = SessionHelper.GetValue<string>(model.SID, tabLineKey); //(string)this.Session[tabLineKey];
 
-            if (!state.ContainsKey(selectedY))
-                state.Add(selectedY, string.Empty);
+            //if (!state.ContainsKey(selectedY))
+            //    state.Add(selectedY, string.Empty);
 
-            if (!model.IsVertical)
-            {
-                tabLineKey = "X";
+            //if (!model.IsVertical)
+            //{
+            //    tabLineKey = "X";
                 
-                string xState = string.IsNullOrEmpty(state[selectedY]) ? model.DefaultKey : state[selectedY];
-                string selectedX = string.IsNullOrEmpty(selectedKey) ? xState : selectedKey;
+            //    string xState = string.IsNullOrEmpty(state[selectedY]) ? model.DefaultKey : state[selectedY];
+            //    string selectedX = string.IsNullOrEmpty(selectedKey) ? xState : selectedKey;
                 
-                model.SelectedKey = selectedX;
+            //    model.SelectedKey = selectedX;
 
-                state[selectedY] = selectedX;
-            }
+            //    state[selectedY] = selectedX;
+            //}
 
-            //this.Session[tabLineKey] = model.SelectedKey;
-            SessionHelper.SetValue<string>(model.SID, tabLineKey, model.SelectedKey);
+            ////this.Session[tabLineKey] = model.SelectedKey;
+            //SessionHelper.SetValue<string>(model.SID, tabLineKey, model.SelectedKey);
 
             return PartialView("TabStrip", model);
         }
 
-        private Dictionary<string, string> GetTabState(Guid sid)
-        {
-            string sessionKey = "TabState";
-            Dictionary<string, string> state = SessionHelper.GetValue<Dictionary<string, string>>(sid, sessionKey); //(Dictionary<string, string>)this.Session[sessionKey];
+        //private Dictionary<string, string> GetTabState(Guid sid)
+        //{
+        //    string sessionKey = "TabState";
+        //    Dictionary<string, string> state = SessionHelper.GetValue<Dictionary<string, string>>(sid, sessionKey); //(Dictionary<string, string>)this.Session[sessionKey];
 
-            if (state == null)
-            {
-                state = new Dictionary<string, string>();
-                //this.Session[sessionKey] = state;
+        //    if (state == null)
+        //    {
+        //        state = new Dictionary<string, string>();
+        //        //this.Session[sessionKey] = state;
                 
-                SessionHelper.SetValue<Dictionary<string, string>>(sid,sessionKey, state);
-            }
+        //        SessionHelper.SetValue<Dictionary<string, string>>(sid,sessionKey, state);
+        //    }
             
 
-            return state;
-        }
+        //    return state;
+        //}
 
         public ActionResult hTabStrip()
         {

@@ -100,6 +100,9 @@ namespace Maklak.Models
             {
                 ModelDS.TabDataRow row = data.TabData.Where(r => r.Active).FirstOrDefault();
 
+                if(row == null)
+                    row = data.TabData.Where(r => r.IsDefault).FirstOrDefault();
+
                 if (row == null)
                     return string.Empty;
 
@@ -108,17 +111,19 @@ namespace Maklak.Models
             }
 
             set
-            {                
+            {
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                    return;
 
                 ModelDS.TabDataRow row = data.TabData.Where(r => r.Active).FirstOrDefault();
 
                 if (row != null)
-                    row.Active = false;
-
-                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
-                    return;
+                    row.Active = false;                
 
                 row = data.TabData.Where(r => r.Key == value).FirstOrDefault();
+
+                if (row == null)
+                    row = data.TabData.Where(r => r.IsDefault).FirstOrDefault();
 
                 if (row == null)
                     return;

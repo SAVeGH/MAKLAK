@@ -14,7 +14,18 @@ namespace Maklak.Web.ModelBinder
         public TabModelBinder()
         {
             base.GenerateModel += GenerateTabModel;
-            //base.InitializeModel += InitializeSuggestionModel;
+            base.InitializeModel += TabModelBinder_InitializeModel;
+        }
+
+        private void TabModelBinder_InitializeModel(ControllerContext controllerContext, ModelBindingContext modelBindingContext, Type modelType, BaseModel generatedModel)
+        {
+            TabModel model = generatedModel as TabModel;
+
+            HttpRequestBase request = controllerContext.HttpContext.Request;
+
+            string modelSelectedKey = request.Form.Get("SelectedKey");
+
+            model.SelectedKey = modelSelectedKey;
         }
 
         //private void InitializeSuggestionModel(ControllerContext controllerContext, ModelBindingContext modelBindingContext, Type modelType, BaseModel generatedModel)
