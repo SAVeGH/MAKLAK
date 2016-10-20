@@ -98,10 +98,10 @@ namespace Maklak.Models
         {
             get
             {
-                ModelDS.TabDataRow row = data.TabData.Where(r => r.Active).FirstOrDefault();
+                ModelDS.TabDataRow row = this.TabData.Where(r => r.Active).FirstOrDefault();
 
                 if(row == null)
-                    row = data.TabData.Where(r => r.IsDefault).FirstOrDefault();
+                    row = this.TabData.Where(r => r.IsDefault).FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
@@ -115,20 +115,26 @@ namespace Maklak.Models
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                     return;
 
-                ModelDS.TabDataRow row = data.TabData.Where(r => r.Active).FirstOrDefault();
+                ModelDS.TabDataRow row = this.TabData.Where(r => r.Active).FirstOrDefault();
 
                 if (row != null)
-                    row.Active = false;                
+                {
+                    ModelDS.TabDataRow baseRow = data.TabData.Where(r => r.Id == row.Id).FirstOrDefault();
+                    baseRow.Active = false;
+                    //row.Active = false;
+                }            
 
-                row = data.TabData.Where(r => r.Key == value).FirstOrDefault();
+                row = this.TabData.Where(r => r.Key == value).FirstOrDefault();
 
                 if (row == null)
-                    row = data.TabData.Where(r => r.IsDefault).FirstOrDefault();
+                    row = this.TabData.Where(r => r.IsDefault).FirstOrDefault();
 
                 if (row == null)
                     return;
 
-                row.Active = true;
+                ModelDS.TabDataRow dataRow = data.TabData.Where(r => r.Id == row.Id).FirstOrDefault();
+                dataRow.Active = true;
+                //row.Active = true;
 
             }
         }
