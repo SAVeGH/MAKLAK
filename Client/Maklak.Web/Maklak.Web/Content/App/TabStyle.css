@@ -64,6 +64,37 @@
     /*width:100%;*/
 }
 
+.leftTabPanel
+{
+    background-color:lightblue;    
+    left:0;
+    top:0px;
+    right:0; 
+    bottom:0px;
+    position: absolute; 
+}
+
+.tabStripArea 
+{
+    background-color:red;
+    width:200px;     
+    top:0px;
+    bottom:0px;
+    
+    position: absolute; 
+}
+
+.tabContentArea {
+    background-color:green; 
+    left:200px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    
+    position: absolute; 
+    
+}
+
 .vTabsStrip
 {
     background-color:lightyellow;    

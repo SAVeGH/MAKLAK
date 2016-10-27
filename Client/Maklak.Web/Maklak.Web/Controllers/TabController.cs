@@ -56,13 +56,21 @@ namespace Maklak.Web.Controllers
         //    {
         //        state = new Dictionary<string, string>();
         //        //this.Session[sessionKey] = state;
-                
+
         //        SessionHelper.SetValue<Dictionary<string, string>>(sid,sessionKey, state);
         //    }
-            
+
 
         //    return state;
         //}
+
+        public ActionResult TabPanel([ModelBinder(typeof(TabModelBinder))]   TabModel model)
+        {
+
+            //TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));
+
+            return PartialView("TabPanel", model);
+        }
 
         public ActionResult hTabStrip()
         {

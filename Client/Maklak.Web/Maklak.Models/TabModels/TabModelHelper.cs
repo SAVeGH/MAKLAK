@@ -74,6 +74,10 @@ namespace Maklak.Models
                 case TabModelType.MANAGE:
                     model = new ManageTabModel();
                     break;
+                default:
+                    model = new SimpleTabModel();
+                    break;
+
             }
             
             return model;

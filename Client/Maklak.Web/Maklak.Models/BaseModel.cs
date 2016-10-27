@@ -58,6 +58,8 @@ namespace Maklak.Models
 
            InitSiteMap();
 
+           InitTabData();
+
            SessionHelper.SetModel(data);
             
         }        
@@ -125,6 +127,39 @@ namespace Maklak.Models
             foreach (ISiteMapNode childNode in node.ChildNodes)
             {
                 InitSiteMap(childNode, row);
+            }
+        }
+
+        private void InitTabData()
+        {
+            InitTabData(null, null, null);
+
+            data.TabData.AcceptChanges();
+        }
+
+        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.SiteMapRow parentMapRow, ModelDS.TabDataRow parentRow)
+        {
+            ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
+
+            if (mapRow == null)
+            {
+                mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
+                tabRow.SetParent_IdNull();
+            }
+            else
+            {
+                tabRow.Parent_Id = parentRow.Id;
+            }
+
+            tabRow.Name = mapRow.Title;
+            tabRow.Key = mapRow.Key;
+            tabRow.IsDefault = parentMapRow == null ? false : parentMapRow.DefaultKey == mapRow.Key;
+            tabRow.Active = tabRow.IsDefault;
+            data.TabData.AddTabDataRow(tabRow);
+
+            foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
+            {
+                InitTabData(row, mapRow, tabRow);
             }
         }
 

@@ -249,6 +249,7 @@
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Suggestion\MakeSuggestion.cshtml" />
+    <Content Include="Views\Tab\TabPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

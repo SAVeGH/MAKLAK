@@ -14,7 +14,7 @@ namespace Maklak.Models
         public TabModel()
         {            
 
-            base.OnModelInitialized += TabModel_OnModelInitialized;
+            //base.OnModelInitialized += TabModel_OnModelInitialized;
             base.OnModelReady += TabModel_OnModelReady;           
                       
         }
@@ -26,45 +26,45 @@ namespace Maklak.Models
             this.Controller = rootRow.Controller;
         }
 
-        private void TabModel_OnModelInitialized()
-        {           
+        //private void TabModel_OnModelInitialized()
+        //{           
 
-            InitTabData();
+        //    InitTabData();
             
-        }
+        //}
 
-        private void InitTabData()
-        {
-            InitTabData(null, null, null);
+        //private void InitTabData()
+        //{
+        //    InitTabData(null, null, null);
 
-            data.TabData.AcceptChanges();
-        }
+        //    data.TabData.AcceptChanges();
+        //}
 
-        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.SiteMapRow parentMapRow, ModelDS.TabDataRow parentRow)
-        {
-            ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
+        //private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.SiteMapRow parentMapRow, ModelDS.TabDataRow parentRow)
+        //{
+        //    ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
 
-            if (mapRow == null)
-            {
-                mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
-                tabRow.SetParent_IdNull();
-            }
-            else
-            {
-                tabRow.Parent_Id = parentRow.Id;
-            }
+        //    if (mapRow == null)
+        //    {
+        //        mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
+        //        tabRow.SetParent_IdNull();
+        //    }
+        //    else
+        //    {
+        //        tabRow.Parent_Id = parentRow.Id;
+        //    }
 
-            tabRow.Name = mapRow.Title;
-            tabRow.Key = mapRow.Key;
-            tabRow.IsDefault = parentMapRow == null ? false : parentMapRow.DefaultKey == mapRow.Key;
-            tabRow.Active = tabRow.IsDefault;
-            data.TabData.AddTabDataRow(tabRow);
+        //    tabRow.Name = mapRow.Title;
+        //    tabRow.Key = mapRow.Key;
+        //    tabRow.IsDefault = parentMapRow == null ? false : parentMapRow.DefaultKey == mapRow.Key;
+        //    tabRow.Active = tabRow.IsDefault;
+        //    data.TabData.AddTabDataRow(tabRow);
 
-            foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
-            {
-                InitTabData(row, mapRow, tabRow);
-            }
-        }
+        //    foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
+        //    {
+        //        InitTabData(row, mapRow, tabRow);
+        //    }
+        //}
 
         public bool IsVertical { get; set; }
 
@@ -147,6 +147,19 @@ namespace Maklak.Models
         }
 
 
+    }
+
+    public class SimpleTabModel : TabModel
+    {
+        public SimpleTabModel()
+        {
+            IsVertical = true;
+        }
+
+        protected override string ModelKey()
+        {
+            return TabModelHelper.TabModelType.NONE.ToString();
+        }
     }
 
     public class CategoryTabModel : TabModel
