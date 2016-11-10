@@ -68,7 +68,7 @@ namespace Maklak.Web.Controllers
         {
 
             //TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));
-
+            model.DokPosition = TabModel.DOKPOSITION.TOP;
             return PartialView("TabPanel", model);
         }
 

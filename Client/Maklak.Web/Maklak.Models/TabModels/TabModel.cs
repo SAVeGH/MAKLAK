@@ -10,13 +10,19 @@ using MvcSiteMapProvider;
 namespace Maklak.Models
 {
     public abstract class TabModel : BaseModel
-    {        
+    {
+        public enum DOKPOSITION { LEFT, TOP, RIGHT, BOTTOM };
+
+        public DOKPOSITION DokPosition { get; set;}
+
         public TabModel()
         {            
 
             //base.OnModelInitialized += TabModel_OnModelInitialized;
-            base.OnModelReady += TabModel_OnModelReady;           
-                      
+            base.OnModelReady += TabModel_OnModelReady;
+            DokPosition = DOKPOSITION.TOP;
+
+
         }
 
         private void TabModel_OnModelReady()
@@ -66,7 +72,7 @@ namespace Maklak.Models
         //    }
         //}
 
-        public bool IsVertical { get; set; }
+        //public bool IsVertical { get; set; }
 
         public ModelDS.TabDataDataTable TabData
         {
@@ -153,7 +159,8 @@ namespace Maklak.Models
     {
         public SimpleTabModel()
         {
-            IsVertical = true;
+            //IsVertical = true;
+            DokPosition = DOKPOSITION.LEFT;
         }
 
         protected override string ModelKey()
@@ -165,8 +172,9 @@ namespace Maklak.Models
     public class CategoryTabModel : TabModel
     {
         public CategoryTabModel()
-        {            
-            IsVertical = true;                      
+        {
+            //IsVertical = true;   
+            DokPosition = DOKPOSITION.LEFT;
         }
 
         protected override string ModelKey()

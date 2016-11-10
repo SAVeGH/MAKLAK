@@ -14,7 +14,7 @@
 
 
 
-    string tabStripPrefix = this.Model.IsVertical ? "v": "h";
+    //string tabStripPrefix = this.Model.IsVertical ? "v": "h";
     string tabStripClass = string.Format("{0}TabsStrip", tabStripPrefix);
     string tabGapClass = string.Format("{0}TabGap", tabStripPrefix);
     string tabStubClass = string.Format("{0}TabStub", tabStripPrefix);
@@ -26,7 +26,7 @@
 
 
 
-    if (this.Model.IsVertical)
+    if (this.Model.DokPosition == Maklak.Models.TabModel.DOKPOSITION.LEFT)
     {
         tabsStubLeft = 0;
     }
@@ -51,7 +51,7 @@
                                OnComplete = callbackEvent
                            },
                            new { id = tabId }))
-    {        
+    {
 
         <div class="@tabStripClass" style="min-width:@stubLeft;">
             <div class="@tabGapClass"></div>
@@ -75,7 +75,7 @@
 
             @Html.HiddenFor(m => m.SID)
             @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })            
-            @Html.HiddenFor(m => m.IsVertical, new { id = tabIsVerticalId })
+            @*@Html.HiddenFor(m => m.IsVertical, new { id = tabIsVerticalId })*@
             @Html.HiddenFor(m => m.Key, new { id = keyName})            
             
 

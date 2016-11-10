@@ -1,11 +1,41 @@
 ﻿@model Maklak.Models.TabModel
 
 @*style="width:150px;height:150px;background-color:antiquewhite;float:left"*@
-<div class="leftTabPanel">
 
-    <div class="tabStripArea">
-        @Html.Action("vTabStrip", "Tab")
+@{ 
+    string panelClass = string.Empty;
+    string stripClass = string.Empty;
+    string contentClass = string.Empty;
+
+    string classPrefix = string.Empty;
+
+    switch (this.Model.DokPosition)
+    {
+        case Maklak.Models.TabModel.DOKPOSITION.LEFT:
+            classPrefix = "left";
+            break;
+        case Maklak.Models.TabModel.DOKPOSITION.TOP:
+            classPrefix = "top";
+            break;
+        case Maklak.Models.TabModel.DOKPOSITION.RIGHT:
+            classPrefix = "right";
+            break;
+        case Maklak.Models.TabModel.DOKPOSITION.BOTTOM:
+            classPrefix = "bottom";
+            break;
+    }
+
+    panelClass = string.Format("{0}TabPanel", classPrefix);
+    stripClass = string.Format("{0}StripArea", classPrefix);
+    contentClass = string.Format("{0}ContentArea", classPrefix);
+ }
+
+<div class="@panelClass">
+
+    <div class="@stripClass">
+        Strip
+        @*@Html.Action("vTabStrip", "Tab")*@
     </div>
-    <div class="tabContentArea"></div>
+    <div class="@contentClass">Content</div>
 </div>
 
