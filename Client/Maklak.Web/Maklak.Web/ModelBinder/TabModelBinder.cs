@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using Maklak.Models;
+using Maklak.Web.Controllers;
 
 namespace Maklak.Web.ModelBinder
 {
@@ -36,11 +37,16 @@ namespace Maklak.Web.ModelBinder
         private BaseModel GenerateTabModel(ControllerContext controllerContext, ModelBindingContext modelBindingContext, Type modelType)
         {
             HttpRequestBase request = controllerContext.HttpContext.Request;
-
+            BaseController controller = controllerContext.Controller as BaseController;
+            
             string modelKey = request.Form.Get("Key");
+
+            if (string.IsNullOrEmpty(modelKey))
+                if (controllerContext.RouteData.Values.ContainsKey("Key"))
+                    modelKey = Convert.ToString(controllerContext.RouteData.Values["Key"]);
             //Guid sID = Guid.Parse(request.Form.Get("SID"));          
 
-            TabModel model = TabModelHelper.GenerateModel(modelKey);
+            TabModel model = TabModelHelper.GenerateModel(controller.SID, modelKey);
 
             return model;
         }

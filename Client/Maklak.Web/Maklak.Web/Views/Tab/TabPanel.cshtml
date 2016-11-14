@@ -1,4 +1,4 @@
-﻿@model Maklak.Models.TabModel
+﻿@model Maklak.Models.TabPanelModel
 
 @*style="width:150px;height:150px;background-color:antiquewhite;float:left"*@
 
@@ -11,16 +11,16 @@
 
     switch (this.Model.DokPosition)
     {
-        case Maklak.Models.TabModel.DOKPOSITION.LEFT:
+        case Maklak.Models.TabPanelModel.DOKPOSITION.LEFT:
             classPrefix = "left";
             break;
-        case Maklak.Models.TabModel.DOKPOSITION.TOP:
+        case Maklak.Models.TabPanelModel.DOKPOSITION.TOP:
             classPrefix = "top";
             break;
-        case Maklak.Models.TabModel.DOKPOSITION.RIGHT:
+        case Maklak.Models.TabPanelModel.DOKPOSITION.RIGHT:
             classPrefix = "right";
             break;
-        case Maklak.Models.TabModel.DOKPOSITION.BOTTOM:
+        case Maklak.Models.TabPanelModel.DOKPOSITION.BOTTOM:
             classPrefix = "bottom";
             break;
     }
@@ -36,6 +36,17 @@
         Strip
         @*@Html.Action("vTabStrip", "Tab")*@
     </div>
-    <div class="@contentClass">Content</div>
+    <div class="@contentClass">Content
+        @{
+            if (this.Model.HasStepDown())
+            {
+                RouteValueDictionary routValues = new RouteValueDictionary();
+                routValues.Add("Key", this.Model.NextKey());
+
+                Html.RenderAction("TabPanel", "Tab", routValues);
+            }
+            
+         }        
+    </div>
 </div>
 

@@ -118,9 +118,11 @@ namespace Maklak.Models
             row.Key = node.Key;
 
             if (node.Attributes.Keys.Contains("defaultkey"))            
-                row.DefaultKey = Convert.ToString(node.Attributes["defaultkey"]);
-            else
-                row.SetDefaultKeyNull();               
+                row.DefaultKey = Convert.ToString(node.Attributes["defaultkey"]);            
+
+            if (node.Attributes.Keys.Contains("dokposition"))
+                row.DokPosition = Convert.ToString(node.Attributes["dokposition"]);
+            
 
             data.SiteMap.AddSiteMapRow(row);
 
@@ -155,6 +157,10 @@ namespace Maklak.Models
             tabRow.Key = mapRow.Key;
             tabRow.IsDefault = parentMapRow == null ? false : parentMapRow.DefaultKey == mapRow.Key;
             tabRow.Active = tabRow.IsDefault;
+
+            if(!mapRow.IsDokPositionNull())
+                tabRow.DokPosition = mapRow.DokPosition;
+
             data.TabData.AddTabDataRow(tabRow);
 
             foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))

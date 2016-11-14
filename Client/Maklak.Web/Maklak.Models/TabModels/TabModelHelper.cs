@@ -16,7 +16,7 @@ namespace Maklak.Models
 
         public enum TabModelType {NONE, CATEGORY, SEARCH, INOUT, MANAGE, LOGIN }
 
-       
+
 
         public static TabModel GenerateModel(Guid sID, TabModelType modelType)
         {
@@ -45,8 +45,10 @@ namespace Maklak.Models
             return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Action).FirstOrDefault();
         }
 
-        public static TabModel GenerateModel(string key)
+        public static TabModel GenerateModel(Guid sID, string key)
         {
+            if (string.IsNullOrEmpty(key))
+                key = GetRootTabRow(sID).Key;
             //вызывается при привязке запроса к модели. key приходит из запроса
             TabModelHelper.TabModelType tabModelType = ModelType(key);
 
@@ -74,9 +76,9 @@ namespace Maklak.Models
                 case TabModelType.MANAGE:
                     model = new ManageTabModel();
                     break;
-                default:
-                    model = new SimpleTabModel();
-                    break;
+                //default:
+                //    model = new SimpleTabModel();
+                //    break;
 
             }
             

@@ -11,16 +11,16 @@ namespace Maklak.Models
 {
     public abstract class TabModel : BaseModel
     {
-        public enum DOKPOSITION { LEFT, TOP, RIGHT, BOTTOM };
+        //public enum DOKPOSITION { LEFT, TOP, RIGHT, BOTTOM };
 
-        public DOKPOSITION DokPosition { get; set;}
+        //public DOKPOSITION DokPosition { get; set;}
 
         public TabModel()
         {            
 
             //base.OnModelInitialized += TabModel_OnModelInitialized;
             base.OnModelReady += TabModel_OnModelReady;
-            DokPosition = DOKPOSITION.TOP;
+            //DokPosition = DOKPOSITION.TOP;
 
 
         }
@@ -32,49 +32,9 @@ namespace Maklak.Models
             this.Controller = rootRow.Controller;
         }
 
-        //private void TabModel_OnModelInitialized()
-        //{           
+        
 
-        //    InitTabData();
-            
-        //}
-
-        //private void InitTabData()
-        //{
-        //    InitTabData(null, null, null);
-
-        //    data.TabData.AcceptChanges();
-        //}
-
-        //private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.SiteMapRow parentMapRow, ModelDS.TabDataRow parentRow)
-        //{
-        //    ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
-
-        //    if (mapRow == null)
-        //    {
-        //        mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
-        //        tabRow.SetParent_IdNull();
-        //    }
-        //    else
-        //    {
-        //        tabRow.Parent_Id = parentRow.Id;
-        //    }
-
-        //    tabRow.Name = mapRow.Title;
-        //    tabRow.Key = mapRow.Key;
-        //    tabRow.IsDefault = parentMapRow == null ? false : parentMapRow.DefaultKey == mapRow.Key;
-        //    tabRow.Active = tabRow.IsDefault;
-        //    data.TabData.AddTabDataRow(tabRow);
-
-        //    foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
-        //    {
-        //        InitTabData(row, mapRow, tabRow);
-        //    }
-        //}
-
-        //public bool IsVertical { get; set; }
-
-        public ModelDS.TabDataDataTable TabData
+        public ModelDS.TabDataDataTable StripData
         {
             get
             {
@@ -86,15 +46,28 @@ namespace Maklak.Models
                 dataTable.AcceptChanges();
                 return dataTable;
             }
-        }       
+        }
+
+        //public bool HasChilds()
+        //{
+
+        //    return StripData.Count() > 0;
+        //}
+
+        //public string GetNextKey()
+        //{
+        //    ModelDS.TabDataRow row = StripData.Where(r => r.IsDefault).FirstOrDefault();
+        //    return row.Key;
+        //}  
 
         // Ключь самой модели
         public string Key
         {
-            get
-            {
-                return ModelKey();
-            }
+            get; set;
+            //get
+            //{
+            //    return ModelKey();
+            //}
          }
 
         // Ключь дочерней модели
@@ -104,10 +77,10 @@ namespace Maklak.Models
         {
             get
             {
-                ModelDS.TabDataRow row = this.TabData.Where(r => r.Active).FirstOrDefault();
+                ModelDS.TabDataRow row = this.StripData.Where(r => r.Active).FirstOrDefault();
 
                 if(row == null)
-                    row = this.TabData.Where(r => r.IsDefault).FirstOrDefault();
+                    row = this.StripData.Where(r => r.IsDefault).FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
@@ -121,7 +94,7 @@ namespace Maklak.Models
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                     return;
 
-                ModelDS.TabDataRow row = this.TabData.Where(r => r.Active).FirstOrDefault();
+                ModelDS.TabDataRow row = this.StripData.Where(r => r.Active).FirstOrDefault();
 
                 if (row != null)
                 {
@@ -130,10 +103,10 @@ namespace Maklak.Models
                     //row.Active = false;
                 }            
 
-                row = this.TabData.Where(r => r.Key == value).FirstOrDefault();
+                row = this.StripData.Where(r => r.Key == value).FirstOrDefault();
 
                 if (row == null)
-                    row = this.TabData.Where(r => r.IsDefault).FirstOrDefault();
+                    row = this.StripData.Where(r => r.IsDefault).FirstOrDefault();
 
                 if (row == null)
                     return;
@@ -145,7 +118,7 @@ namespace Maklak.Models
             }
         }
 
-        protected abstract string ModelKey();
+        //protected abstract string ModelKey();
 
         protected override bool IsModelInitialized()
         {
@@ -160,13 +133,14 @@ namespace Maklak.Models
         public SimpleTabModel()
         {
             //IsVertical = true;
-            DokPosition = DOKPOSITION.LEFT;
+            //DokPosition = DOKPOSITION.LEFT;
+            Key = TabModelHelper.TabModelType.NONE.ToString();
         }
 
-        protected override string ModelKey()
-        {
-            return TabModelHelper.TabModelType.NONE.ToString();
-        }
+        //protected override string ModelKey()
+        //{
+        //    return TabModelHelper.TabModelType.NONE.ToString();
+        //}
     }
 
     public class CategoryTabModel : TabModel
@@ -174,48 +148,64 @@ namespace Maklak.Models
         public CategoryTabModel()
         {
             //IsVertical = true;   
-            DokPosition = DOKPOSITION.LEFT;
+            //DokPosition = DOKPOSITION.LEFT;
+            Key = TabModelHelper.TabModelType.CATEGORY.ToString(); ;
         }
 
-        protected override string ModelKey()
-        {
-            return TabModelHelper.TabModelType.CATEGORY.ToString();
-        }
+        //protected override string ModelKey()
+        //{
+        //    return TabModelHelper.TabModelType.CATEGORY.ToString();
+        //}
     }
 
     public class LoginTabModel : TabModel 
     {
-        protected override string ModelKey()
+        public LoginTabModel()
         {
-            return TabModelHelper.TabModelType.LOGIN.ToString();           
-        }        
+            Key = TabModelHelper.TabModelType.LOGIN.ToString(); ;
+        }
+        //protected override string ModelKey()
+        //{
+        //    return TabModelHelper.TabModelType.LOGIN.ToString();           
+        //}        
     }
 
     public class SearchTabModel : TabModel
     {
-       
-        protected override string ModelKey()
+        public SearchTabModel()
         {
-            return TabModelHelper.TabModelType.SEARCH.ToString();            
-        }        
+            //DokPosition = DOKPOSITION.TOP;
+            Key = TabModelHelper.TabModelType.SEARCH.ToString();
+        }
+
+        //protected override string ModelKey()
+        //{
+        //    return TabModelHelper.TabModelType.SEARCH.ToString();            
+        //}        
     }
 
     public class InOutTabModel : TabModel
     {
-        
-        protected override string ModelKey()
+        public InOutTabModel()
         {
-            return TabModelHelper.TabModelType.INOUT.ToString();            
-        }        
+            Key = TabModelHelper.TabModelType.INOUT.ToString();
+        }
+        //protected override string ModelKey()
+        //{
+        //    return TabModelHelper.TabModelType.INOUT.ToString();            
+        //}        
     }
 
     public class ManageTabModel : TabModel
     {
-        
-        protected override string ModelKey()
+        public ManageTabModel()
         {
-            return TabModelHelper.TabModelType.MANAGE.ToString();            
+            Key = TabModelHelper.TabModelType.MANAGE.ToString();
         }
+        //protected override string ModelKey()
+        //{
+        //    return TabModelHelper.TabModelType.MANAGE.ToString();            
+        //}
     }
 
 

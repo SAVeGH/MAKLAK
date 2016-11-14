@@ -64,11 +64,19 @@ namespace Maklak.Web.Controllers
         //    return state;
         //}
 
-        public ActionResult TabPanel([ModelBinder(typeof(TabModelBinder))]   TabModel model)
-        {
+        //public ActionResult TabPanel([ModelBinder(typeof(TabModelBinder))]   TabModel model)
+        //{
 
-            //TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));
-            model.DokPosition = TabModel.DOKPOSITION.TOP;
+        //    //TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));
+        //    //model.DokPosition = TabModel.DOKPOSITION.TOP;
+        //    return PartialView("TabPanel", model);
+        //}
+
+        public ActionResult TabPanel(TabPanelModel model)
+        {
+            if (string.IsNullOrEmpty(model.Key))
+                model.Key = "CATEGORY";
+            
             return PartialView("TabPanel", model);
         }
 

@@ -948,6 +948,8 @@ namespace Maklak.Models.DataSets {
             
             private global::System.Data.DataColumn columnIsDefault;
             
+            private global::System.Data.DataColumn columnDokPosition;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TabDataDataTable() {
@@ -1047,6 +1049,14 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DokPositionColumn {
+                get {
+                    return this.columnDokPosition;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1082,7 +1092,7 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TabDataRow AddTabDataRow(TabDataRow parentTabDataRowByFK_TabData_TabData, string Key, string Name, bool Active, bool Enabled, bool Hidden, bool IsDefault) {
+            public TabDataRow AddTabDataRow(TabDataRow parentTabDataRowByFK_TabData_TabData, string Key, string Name, bool Active, bool Enabled, bool Hidden, bool IsDefault, string DokPosition) {
                 TabDataRow rowTabDataRow = ((TabDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1092,7 +1102,8 @@ namespace Maklak.Models.DataSets {
                         Active,
                         Enabled,
                         Hidden,
-                        IsDefault};
+                        IsDefault,
+                        DokPosition};
                 if ((parentTabDataRowByFK_TabData_TabData != null)) {
                     columnValuesArray[1] = parentTabDataRowByFK_TabData_TabData[0];
                 }
@@ -1133,6 +1144,7 @@ namespace Maklak.Models.DataSets {
                 this.columnEnabled = base.Columns["Enabled"];
                 this.columnHidden = base.Columns["Hidden"];
                 this.columnIsDefault = base.Columns["IsDefault"];
+                this.columnDokPosition = base.Columns["DokPosition"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1154,6 +1166,8 @@ namespace Maklak.Models.DataSets {
                 base.Columns.Add(this.columnHidden);
                 this.columnIsDefault = new global::System.Data.DataColumn("IsDefault", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsDefault);
+                this.columnDokPosition = new global::System.Data.DataColumn("DokPosition", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDokPosition);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -1315,6 +1329,8 @@ namespace Maklak.Models.DataSets {
             
             private global::System.Data.DataColumn columnDefaultKey;
             
+            private global::System.Data.DataColumn columnDokPosition;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SiteMapDataTable() {
@@ -1406,6 +1422,14 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DokPositionColumn {
+                get {
+                    return this.columnDokPosition;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1441,7 +1465,7 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SiteMapRow AddSiteMapRow(SiteMapRow parentSiteMapRowBySiteMap_SiteMap, string Title, string Controller, string Action, string Key, string DefaultKey) {
+            public SiteMapRow AddSiteMapRow(SiteMapRow parentSiteMapRowBySiteMap_SiteMap, string Title, string Controller, string Action, string Key, string DefaultKey, string DokPosition) {
                 SiteMapRow rowSiteMapRow = ((SiteMapRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1450,7 +1474,8 @@ namespace Maklak.Models.DataSets {
                         Controller,
                         Action,
                         Key,
-                        DefaultKey};
+                        DefaultKey,
+                        DokPosition};
                 if ((parentSiteMapRowBySiteMap_SiteMap != null)) {
                     columnValuesArray[1] = parentSiteMapRowBySiteMap_SiteMap[0];
                 }
@@ -1490,6 +1515,7 @@ namespace Maklak.Models.DataSets {
                 this.columnAction = base.Columns["Action"];
                 this.columnKey = base.Columns["Key"];
                 this.columnDefaultKey = base.Columns["DefaultKey"];
+                this.columnDokPosition = base.Columns["DokPosition"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1509,6 +1535,8 @@ namespace Maklak.Models.DataSets {
                 base.Columns.Add(this.columnKey);
                 this.columnDefaultKey = new global::System.Data.DataColumn("DefaultKey", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDefaultKey);
+                this.columnDokPosition = new global::System.Data.DataColumn("DokPosition", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDokPosition);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -1868,6 +1896,22 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DokPosition {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabData.DokPositionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DokPosition\' in table \'TabData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabData.DokPositionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TabDataRow TabDataRowParent {
                 get {
                     return ((TabDataRow)(this.GetParentRow(this.Table.ParentRelations["FK_TabData_TabData"])));
@@ -1911,6 +1955,18 @@ namespace Maklak.Models.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNameNull() {
                 this[this.tableTabData.NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDokPositionNull() {
+                return this.IsNull(this.tableTabData.DokPositionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDokPositionNull() {
+                this[this.tableTabData.DokPositionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2048,6 +2104,22 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DokPosition {
+                get {
+                    try {
+                        return ((string)(this[this.tableSiteMap.DokPositionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DokPosition\' in table \'SiteMap\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSiteMap.DokPositionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SiteMapRow SiteMapRowParent {
                 get {
                     return ((SiteMapRow)(this.GetParentRow(this.Table.ParentRelations["SiteMap_SiteMap"])));
@@ -2127,6 +2199,18 @@ namespace Maklak.Models.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDefaultKeyNull() {
                 this[this.tableSiteMap.DefaultKeyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDokPositionNull() {
+                return this.IsNull(this.tableSiteMap.DokPositionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDokPositionNull() {
+                this[this.tableSiteMap.DokPositionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

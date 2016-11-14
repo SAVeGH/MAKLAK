@@ -67,6 +67,7 @@
     <Compile Include="SuggestionModels\SuggestionModelHelper.cs" />
     <Compile Include="TabModels\TabModel.cs" />
     <Compile Include="TabModels\TabModelHelper.cs" />
+    <Compile Include="TabModels\TabPanelModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSets\ModelDS.xsc">
