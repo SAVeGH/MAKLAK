@@ -20,10 +20,7 @@ namespace Maklak.Web.ModelBinder
         {
             // создать модель 
             BaseModel model = GenerateModel == null ? (base.CreateModel(controllerContext, bindingContext, modelType) as BaseModel) : GenerateModel(controllerContext, bindingContext, modelType);
-            BaseController controller = controllerContext.Controller as BaseController;
-
-            if (model == null)
-                return model;
+            BaseController controller = controllerContext.Controller as BaseController;            
 
             // для всех автоматически генерируемых средой моделей происходит привязка к SID
             model.Initialize(controller.SID);

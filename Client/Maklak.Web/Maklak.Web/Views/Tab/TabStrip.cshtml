@@ -26,15 +26,15 @@
     string keyName = string.Format("{0}Key", tabStripPrefix);
 
 
-
-    if (this.Model.DokPosition == Maklak.Models.TabModel.DOKPOSITION.LEFT)
-    {
-        tabsStubLeft = 0;
-    }
-    else
-    {
-        tabsStubTop = 0;
-    }
+    tabsStubLeft = 0;
+    //if (this.Model.DokPosition == Maklak.Models.TabModel.DOKPOSITION.LEFT)
+    //{
+    //    tabsStubLeft = 0;
+    //}
+    //else
+    //{
+    //    tabsStubTop = 0;
+    //}
 
     string callbackEvent = string.Format("{0}TabMgr.OnComplete()", tabStripPrefix);
     string stubLeft = string.Format("{0}px", tabsStubLeft.ToString());

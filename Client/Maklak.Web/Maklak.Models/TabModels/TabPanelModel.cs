@@ -10,11 +10,25 @@ namespace Maklak.Models
     {
         public enum DOKPOSITION { LEFT, TOP, RIGHT, BOTTOM };
 
-        public DOKPOSITION DokPosition { get; set; }
+        public DOKPOSITION DokPosition
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Key))
+                    return DOKPOSITION.LEFT;
 
-        public string Key { get; set; }
+                DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == Key).FirstOrDefault();
 
-        public bool HasStepDown()
+                if (row == null)
+                    return DOKPOSITION.LEFT;
+
+                return (DOKPOSITION)Enum.Parse(typeof(DOKPOSITION), row.DokPosition);
+            }
+        }
+
+        public string Key { get; set; }        
+
+        public bool HasChildPanel()
         {
             DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == Key).FirstOrDefault();
 
@@ -23,7 +37,7 @@ namespace Maklak.Models
             return data.TabData.Count(r => !r.IsParent_IdNull() && r.Parent_Id == keyRowId) > 0;
         }
 
-        public string NextKey()
+        public string ChildKey()
         {
             DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == Key).FirstOrDefault();
 
