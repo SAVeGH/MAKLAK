@@ -28,22 +28,25 @@
     panelClass = string.Format("{0}TabPanel", classPrefix);
     stripClass = string.Format("{0}StripArea", classPrefix);
     contentClass = string.Format("{0}ContentArea", classPrefix);
+
+    bool hasChild = this.Model.HasChildPanel();
+    RouteValueDictionary routPanelValues = new RouteValueDictionary();
+    routPanelValues.Add("Key", this.Model.ChildKey());
+    RouteValueDictionary routStripValues = new RouteValueDictionary();
+    routStripValues.Add("Key", this.Model.Key);
  }
 
 <div class="@panelClass">
 
     <div class="@stripClass">
         Strip
-        @Html.Action("vTabStrip", "Tab")
+        @Html.Action("TabStrip", "Tab", routStripValues)
     </div>
     <div class="@contentClass">Content
         @{
-            if (this.Model.HasChildPanel())
+            if (hasChild)
             {
-                RouteValueDictionary routValues = new RouteValueDictionary();
-                routValues.Add("Key", this.Model.ChildKey());
-
-                Html.RenderAction("TabPanel", "Tab", routValues);
+                Html.RenderAction("TabPanel", "Tab", routPanelValues);
             }
 
          }        

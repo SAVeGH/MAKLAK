@@ -73,11 +73,13 @@ namespace Maklak.Web.Controllers
         //}
 
         public ActionResult TabPanel(TabPanelModel model)
-        {
-            if (string.IsNullOrEmpty(model.Key))
-                model.Key = "CATEGORY";
-            
+        {            
             return PartialView("TabPanel", model);
+        }
+
+        public ActionResult TabStrip([ModelBinder(typeof(TabModelBinder))]   TabModel model)
+        {
+            return PartialView("TabStrip", model);
         }
 
         public ActionResult hTabStrip()

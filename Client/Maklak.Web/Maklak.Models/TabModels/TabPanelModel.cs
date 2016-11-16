@@ -10,6 +10,18 @@ namespace Maklak.Models
     {
         public enum DOKPOSITION { LEFT, TOP, RIGHT, BOTTOM };
 
+        private string key;
+
+        public TabPanelModel()
+        {
+            this.OnModelReady += TabPanelModel_OnModelReady;
+        }
+
+        private void TabPanelModel_OnModelReady()
+        {
+            key = data.TabData.Where(r => r.IsParent_IdNull()).Select(r => r.Key).FirstOrDefault(); // ключь по умолчанию
+        }        
+
         public DOKPOSITION DokPosition
         {
             get
@@ -26,7 +38,11 @@ namespace Maklak.Models
             }
         }
 
-        public string Key { get; set; }        
+        public string Key
+        {
+            get { return key; }
+            set { key = value; } // сеттер нужен т.к. устанавливается системой при привязке запроса
+        }        
 
         public bool HasChildPanel()
         {
