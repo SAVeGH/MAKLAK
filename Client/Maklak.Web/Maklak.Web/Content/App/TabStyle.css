@@ -1,10 +1,10 @@
-﻿.hTabsStrip
+﻿.topTabsStrip
 {
     background-color:lightyellow;    
-    left:300px;
+    left:0px;
     right:0px; 
     height:40px;
-    top:60px;
+    /*top:0px;*/
     /*display:table;*/ 
     position: absolute;
     /*padding-left:2px;
@@ -14,7 +14,7 @@
     /*width:100%;*/   
 }
 
-.hTabElement
+.topTabElement
 {
     background-color:lightblue; 
     width:130px;
@@ -33,7 +33,7 @@
     
 }
 
-.hTabGap
+.topTabGap
 {
     /*display:table-cell;*/
     float:left;    
@@ -45,7 +45,7 @@
     margin-top:5px;
 }
 
-.hTabStub
+.topTabStub
 {
     /*display:table-cell;*/
     float:left;
@@ -76,8 +76,8 @@
 
 .leftStripArea 
 {
-    background-color:red;
-    width:200px;     
+    background-color:lightyellow;
+    width:180px;     
     top:0px;
     bottom:0px;
     
@@ -85,8 +85,8 @@
 }
 
 .leftContentArea {
-    background-color:green; 
-    left:200px;
+    background-color:lightblue; 
+    left:180px;
     top:0px;
     right:0px;
     bottom:0px;
@@ -108,8 +108,8 @@
 
 .topStripArea 
 {
-    background-color:red;
-    height:100px;     
+    background-color:lightyellow;
+    height:40px;     
     top:0px;
     left:0px;
     right:0px;    
@@ -118,9 +118,9 @@
 }
 
 .topContentArea {
-    background-color:green; 
+    background-color:lightblue; 
     left:0px;
-    top:100px;
+    top:40px;
     right:0px;
     bottom:0px;
     
@@ -128,19 +128,19 @@
     
 }
 
-.vTabsStrip
+.leftTabsStrip
 {
     background-color:lightyellow;    
     left:0; 
-    top:100px;
-    bottom:25px;    
-    width: 300px;
+    top:40px;
+    bottom:0px;    
+    width: 180px;
     
     position: absolute;   
     
 }
 
-.vTabElement
+.leftTabElement
 {
     background-color:lightblue; 
     
@@ -148,40 +148,43 @@
     /*display:table-cell;*/
     margin-left:5px;    
     border: 1px solid black;
-    margin-right:-1px;
+    /*margin-right:-1px;*/
     
 }
 
-.vTabGap
+.leftTabGap
 {
     /*display:table-cell;*/    
     height:2px;     
-     width:100%;
+     /*width:100%;*/
+     left:0px;
+     right:0px;
     border-right-color:black;
     border-right-style:solid;
     border-right-width:1px;
 }
 
-.vTabStub
+.leftTabStub
 {
-    /*display:table-cell;*/    
+    /*display:table-cell;*/  
+    /*background-color:blue;*/   
     position:absolute;    
     right:0;
     bottom:0;
-    top:120px;  
-    margin-right:-1px;   
+    /*top:120px;*/  
+    /*margin-right:-4px;*/   
     border-right-color:black;
     border-right-style:solid;
     border-right-width:1px;    
 }
 
-.hTabActive
+.topTabActive
 {
     border-top-color:darkorange;
     border-top-width:4px;
     border-bottom-color:lightblue;
 }
-.vTabActive
+.leftTabActive
 {
     border-left-color:darkorange;
     border-left-width:4px;

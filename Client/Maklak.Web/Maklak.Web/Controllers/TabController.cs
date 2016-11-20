@@ -82,7 +82,7 @@ namespace Maklak.Web.Controllers
             return PartialView("TabStrip", model);
         }
 
-        public ActionResult hTabStrip()
+        public ActionResult topTabStrip()
         {
             // BaseModel уже создавалась и инициализирована
             
@@ -91,20 +91,20 @@ namespace Maklak.Web.Controllers
             return PartialView("TabStrip", model);
         }
         
-        public ActionResult hTabElement(TabRowModel tabRow)
+        public ActionResult topTabElement(TabRowModel tabRow)
         {
 
             return PartialView("HorisontalTabElement", tabRow);
         }
 
-        public ActionResult vTabStrip()
+        public ActionResult leftTabStrip()
         {
             TabModel model = TabModelHelper.GenerateModel(this.SID, TabModelHelper.GetDefaultYModelType(this.SID));            
             
             return PartialView("TabStrip", model);
         }        
 
-        public ActionResult vTabElement(TabRowModel tabRow)
+        public ActionResult leftTabElement(TabRowModel tabRow)
         {
             return PartialView("VerticalTabElement", tabRow);
         }
