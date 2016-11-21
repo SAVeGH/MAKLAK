@@ -17,23 +17,14 @@
     string tabStripPrefix = isRoot ? "left" : "top" ;
     string tabStripClass = string.Format("{0}TabsStrip", tabStripPrefix);
     string tabGapClass = string.Format("{0}TabGap", tabStripPrefix);
+    string tabGapFirstClass = string.Format("{0}TabFirstGap", tabStripPrefix);
     string tabStubClass = string.Format("{0}TabStub", tabStripPrefix);
     string selectedValue = string.Format("{0}SelectedValue", tabStripPrefix);
     string actionName = string.Format("{0}TabElement", tabStripPrefix);
     string tabId = string.Format("{0}TabStrip", tabStripPrefix);
     string tabIsVerticalId = string.Format("{0}TabIsVertical", tabStripPrefix);
     string keyName = string.Format("{0}Key", tabStripPrefix);
-
-
-    //tabsStubLeft = 0;
-    //if (tabStripPrefix == "v")
-    //{
-    //    tabsStubLeft = 0;
-    //}
-    //else
-    //{
-    //    tabsStubTop = 0;
-    //}
+   
 
     string callbackEvent = string.Format("{0}TabMgr.OnComplete()", tabStripPrefix);
     string stubLeft = string.Format("{0}px", tabsStubLeft.ToString());
@@ -54,7 +45,7 @@
     {
 
         <div class="@tabStripClass" style="min-width:@stubLeft;">
-            <div class="@tabGapClass"></div>
+            <div class="@tabGapFirstClass"></div>
 
             @{foreach (Maklak.Models.DataSets.ModelDS.TabDataRow row in dataTable)
                 {
