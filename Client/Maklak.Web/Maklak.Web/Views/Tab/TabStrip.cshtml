@@ -24,7 +24,7 @@
     string tabId = string.Format("{0}TabStrip", tabStripPrefix);
     string tabIsVerticalId = string.Format("{0}TabIsVertical", tabStripPrefix);
     string keyName = string.Format("{0}Key", tabStripPrefix);
-   
+    string tabTestClass = string.Format("{0}TestClass", tabStripPrefix);
 
     string callbackEvent = string.Format("{0}TabMgr.OnComplete()", tabStripPrefix);
     string stubLeft = string.Format("{0}px", tabsStubLeft.ToString());
@@ -45,7 +45,8 @@
     {
 
         <div class="@tabStripClass" style="min-width:@stubLeft;">
-            <div class="@tabGapFirstClass"></div>
+            <div class="@tabTestClass"></div>
+            @*<div class="@tabGapFirstClass"></div>
 
             @{foreach (Maklak.Models.DataSets.ModelDS.TabDataRow row in dataTable)
                 {
@@ -65,9 +66,9 @@
             <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>
 
             @Html.HiddenFor(m => m.SID)
-            @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })            
+            @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })*@            
             @*@Html.HiddenFor(m => m.IsVertical, new { id = tabIsVerticalId })*@
-            @Html.HiddenFor(m => m.Key, new { id = keyName})            
+            @Html.HiddenFor(m => m.Key, new { id = keyName})           
             
 
         </div>

@@ -1,16 +1,18 @@
 ﻿.topTabsStrip
 {
-    background-color:lightyellow;    
+    /*background-color:lightyellow;*/
+    background-color:aqua;       
     left:0px;
     right:0px; 
     height:40px;
     /*top:0px;*/
     /*display:table;*/ 
-    position: absolute;
+    /*position: absolute;*/
     /*padding-left:2px;
     padding-right:2px;*/    
     overflow: hidden;    
     white-space:nowrap;
+    bottom: 0px;
     /*width:100%;*/   
 }
 
@@ -26,8 +28,8 @@
     /*display:inline-block;*/
     border: 1px solid black;
     text-align:center;
-    bottom:0;
-    margin-top:5px;
+    bottom:0px;
+    /*margin-top:5px;*/
    
     
     
@@ -38,7 +40,7 @@
     /*display:table-cell;*/
     background-color:red;
     float:left;    
-    height:34px; 
+    /*height:34px;*/ 
     width:2px;
     border-bottom-color:black;
     border-bottom-style:solid;
@@ -116,9 +118,9 @@
 .topTabPanel
 {
     background-color:lightblue;    
-    left:0;
+    left:0px;
     top:0px;
-    right:0; 
+    right:0px; 
     bottom:0px;
     position: absolute; 
 }
@@ -147,9 +149,10 @@
 
 .leftTabsStrip
 {
-    background-color:lightyellow;    
-    left:0; 
-    top:40px;
+    background-color:blue;    
+     
+    top:45px;
+    
     bottom:0px;    
     width: 180px;
     
@@ -222,3 +225,25 @@
     margin-right:-2px;
 }
 
+.topTestClass 
+{
+    background-color:red;
+    float:left;    
+    height:34px; 
+    width:120px;
+    border: 1px solid black;
+    /*margin-top:5px;*/
+    margin-left:-5px;
+    bottom:0px;
+}
+
+.leftTestClass 
+{
+    background-color:green; 
+    
+    height:33px;    
+    /*display:table-cell;*/
+    /*margin-left:5px;*/    
+    
+    border: 1px solid black;
+}

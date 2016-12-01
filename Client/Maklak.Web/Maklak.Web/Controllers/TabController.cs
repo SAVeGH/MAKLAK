@@ -78,7 +78,8 @@ namespace Maklak.Web.Controllers
         }
 
         public ActionResult TabStrip([ModelBinder(typeof(TabModelBinder))]   TabModel model)
-        {
+        {            
+
             return PartialView("TabStrip", model);
         }
 
