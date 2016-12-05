@@ -45,8 +45,8 @@
     {
 
         <div class="@tabStripClass" style="min-width:@stubLeft;">
-            <div class="@tabTestClass"></div>
-            @*<div class="@tabGapFirstClass"></div>
+            @*<div class="@tabTestClass"></div>*@
+            <div class="@tabGapFirstClass"></div>
 
             @{foreach (Maklak.Models.DataSets.ModelDS.TabDataRow row in dataTable)
                 {
@@ -66,7 +66,7 @@
             <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>
 
             @Html.HiddenFor(m => m.SID)
-            @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })*@            
+            @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })           
             @*@Html.HiddenFor(m => m.IsVertical, new { id = tabIsVerticalId })*@
             @Html.HiddenFor(m => m.Key, new { id = keyName})           
             
