@@ -14,6 +14,7 @@
     white-space:nowrap;
     bottom: 0px;
     /*width:100%;*/   
+    /*display:inline-block;*/
 }
 
 .topTabElement
@@ -28,9 +29,12 @@
     /*display:inline-block;*/
     border: 1px solid black;
     text-align:center;
+    margin-top:5px;
+    /*top: 0px;*/
     bottom:0px;
     /*margin-top:5px;*/
-   
+    display:inline-block;
+   /*position:absolute;*/
     
     
 }
@@ -38,15 +42,15 @@
 .topTabGap
 {
     /*display:table-cell;*/
-    background-color:red;
+    background-color:lightyellow;
     float:left;    
-    /*height:34px;*/ 
+    height:34px; 
     width:2px;
     border-bottom-color:black;
     border-bottom-style:solid;
     border-bottom-width:1px;
-    /*margin-top:5px;*/
-    top:0px;
+    margin-top:5px;
+    /*top:0px;*/
     bottom:0px;
 }
 .topTabFirstGap {
@@ -85,7 +89,8 @@
     position:absolute;
     height:34px;
     /*left:0px;*/
-    right:0;
+    /*top:0px;*/
+    right:0px;
     margin-top:5px;
     
     
@@ -240,15 +245,15 @@
 .topTabActive
 {
     border-top-color:darkorange;
-    border-top-width:4px;
+    border-top-width:1px;
     border-bottom-color:lightblue;
 }
 .leftTabActive
 {
     border-left-color:darkorange;
-    border-left-width:4px;
+    border-left-width:1px;
     border-right-color:lightblue;
-    margin-right:-2px;
+    margin-right:-1px;
 }
 
 .topTestClass 
