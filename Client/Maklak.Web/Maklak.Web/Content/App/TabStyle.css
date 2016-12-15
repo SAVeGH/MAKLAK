@@ -1,20 +1,12 @@
 ﻿.topTabsStrip
 {
-    /*background-color:lightyellow;*/
-    background-color:aqua;       
-    left:0px;
-    right:0px; 
-    height:40px;
-    /*top:0px;*/
-    /*display:table;*/ 
-    /*position: absolute;*/
-    /*padding-left:2px;
-    padding-right:2px;*/    
+    background-color:lightyellow;
+    /*background-color:aqua;*/    
+    height:40px;     
     overflow: hidden;    
     white-space:nowrap;
-    bottom: 0px;
-    /*width:100%;*/   
-    /*display:inline-block;*/
+    /*position:absolute;*/
+    
 }
 
 .topTabElement
@@ -30,11 +22,11 @@
     border: 1px solid black;
     text-align:center;
     margin-top:5px;
-    /*top: 0px;*/
-    bottom:0px;
+    /*top: 0px;
+    bottom:0px;*/
     /*margin-top:5px;*/
-    display:inline-block;
-   /*position:absolute;*/
+    /*display:inline-block;*/
+   position:relative;
     
     
 }
@@ -54,10 +46,25 @@
     bottom:0px;
 }
 .topTabFirstGap {
-    background-color:red;
+    /*background-color:red;*/
+    background-color:lightyellow;
+    float:left;    
+    height:34px; 
+    width:3px;
+    border-bottom-color:black;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    
+    margin-top:5px;
+    /*top:0px;*/
+    bottom:0px;
+    /**/
+}
+.topTabCorner
+{
     float:left;   
     
-    width:4px;
+    width:3px;
     border-bottom: 1px solid black;
     
     margin-top:5px;
@@ -65,19 +72,6 @@
     top:0px;
     bottom:0px;
     position:absolute;
-}
-.topTabFirstGap1
-{
-    /*display:table-cell;*/
-    /*background-color:red;*/ 
-    float:left;    
-    height:34px; 
-    width:2px;
-    border-bottom-color:black;
-    border-bottom-style:solid;
-    border-bottom-width:1px;
-    /*margin-left:-2px;*/    
-    margin-top:5px;
     
 }
 
@@ -127,7 +121,7 @@
     top:0px;
     right:0px;
     bottom:0px;
-    margin-left:1px;
+    /*margin-left:1px;*/
     position: absolute; 
     
 }
@@ -160,7 +154,7 @@
     top:40px;
     right:0px;
     bottom:0px;
-    margin-top:1px;
+    /*margin-top:1px;*/
     
     position: absolute; 
     
@@ -168,7 +162,7 @@
 
 .leftTabsStrip
 {
-    background-color:blue;    
+    background-color:lightyellow;    
      
     top:40px;
     
@@ -182,7 +176,7 @@
 .leftTabElement
 {
     background-color:lightblue; 
-    
+    position:relative;
     height:33px;    
     /*display:table-cell;*/
     margin-left:5px;    
@@ -203,29 +197,27 @@
     border-right-width:1px;
 }
 .leftTabFirstGap {
-     background-color:green; 
-    /*width:120px;*/
-    height:4px;    
-    /*display:table-cell;*/
-    right: 0px;
-    left:0px;
-    margin-left:5px;
-    margin-right:-1px;    
-    position:absolute;
-    border-right: 1px solid black;
-}
-.leftTabFirstGap1
-{
-    /*display:table-cell;*/ 
-    /*background-color:blue;*/   
-    height:2px;     
+     background-color:lightyellow; 
+     height:3px;     
      /*width:100%;*/
      left:0px;
      right:0px;
-     /*margin-top:-1px;*/
     border-right-color:black;
     border-right-style:solid;
     border-right-width:1px;
+    /*width:120px;*/
+    /**/
+}
+.leftTabCorner
+{
+    height:3px;    
+    
+    right: 0px;
+    left:0px;
+    margin-left:5px;
+    margin-top:-1px;    
+    position:absolute;
+    border-right: 1px solid black;
 }
 
 .leftTabStub
@@ -246,7 +238,9 @@
 {
     border-top-color:darkorange;
     border-top-width:1px;
-    border-bottom-color:lightblue;
+    /*border-bottom-color:lightblue;*/
+    /*margin-bottom:-1px;*/
+    height:34px;
 }
 .leftTabActive
 {

@@ -19,6 +19,7 @@
     string tabGapClass = string.Format("{0}TabGap", tabStripPrefix);
     string tabGapFirstClass = string.Format("{0}TabFirstGap", tabStripPrefix);
     string tabStubClass = string.Format("{0}TabStub", tabStripPrefix);
+    string tabCornerClass = string.Format("{0}TabCorner", tabStripPrefix);
     string selectedValue = string.Format("{0}SelectedValue", tabStripPrefix);
     string actionName = string.Format("{0}TabElement", tabStripPrefix);
     string tabId = string.Format("{0}TabStrip", tabStripPrefix);
@@ -46,6 +47,8 @@
 
         <div class="@tabStripClass" style="min-width:@stubLeft;">
             @*<div class="@tabTestClass"></div>*@
+            <div class="@tabCornerClass"></div>
+
             <div class="@tabGapFirstClass"></div>
 
             @{foreach (Maklak.Models.DataSets.ModelDS.TabDataRow row in dataTable)
