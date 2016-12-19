@@ -45,12 +45,12 @@ div
 
 .contentDIV
 {
-    background-color:lightblue;    
+    background-color:lightyellow;    
     left:0px;
     top:100px;
     right:0; 
     bottom:25px;
-    position: absolute; 
+    position: absolute;    
     /*border-bottom: 1px solid black; 
     border-right: 1px solid black;*/ 
 }

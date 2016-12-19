@@ -2,7 +2,7 @@
 {
     background-color:lightyellow;
     /*background-color:aqua;*/    
-    height:40px;     
+    height:35px;     
     overflow: hidden;    
     white-space:nowrap;
     /*position:absolute;*/
@@ -21,7 +21,7 @@
     /*display:inline-block;*/
     border: 1px solid black;
     text-align:center;
-    margin-top:5px;
+    /*margin-top:5px;*/
     /*top: 0px;
     bottom:0px;*/
     /*margin-top:5px;*/
@@ -41,7 +41,7 @@
     border-bottom-color:black;
     border-bottom-style:solid;
     border-bottom-width:1px;
-    margin-top:5px;
+    /*margin-top:5px;*/
     /*top:0px;*/
     bottom:0px;
 }
@@ -55,7 +55,7 @@
     border-bottom-style:solid;
     border-bottom-width:1px;
     
-    margin-top:5px;
+    /*margin-top:5px;*/
     /*top:0px;*/
     bottom:0px;
     /**/
@@ -66,8 +66,8 @@
     
     width:3px;
     border-bottom: 1px solid black;
-    
-    margin-top:5px;
+    height:34px; 
+    /*margin-top:5px;*/
     margin-left:-1px;
     top:0px;
     bottom:0px;
@@ -85,19 +85,54 @@
     /*left:0px;*/
     /*top:0px;*/
     right:0px;
-    margin-top:5px;
+    /*margin-top:5px;*/
     
     
     border-bottom-color:black;
     border-bottom-style:solid;
     border-bottom-width:1px;
-
+    position:absolute;
     /*width:100%;*/
 }
 
+.topTabPanel
+{
+    background-color:lightyellow;    
+    left:0px;
+    top:0px;
+    right:0px; 
+    bottom:0px;
+    position: absolute; 
+}
+
+.topStripArea 
+{
+    background-color:lightyellow;
+    height:35px;     
+    top:0px;
+    left:0px;
+    right:0px;    
+    
+    position: absolute; 
+}
+
+.topContentArea {
+    background-color:lightblue; 
+    left:0px;
+    top:35px;
+    right:0px;
+    bottom:0px;
+    /*margin-top:1px;*/
+    border-bottom:1px solid black;
+    border-right:1px solid black;
+    position: absolute; 
+    
+}
+
+
 .leftTabPanel
 {
-    background-color:lightblue;    
+    background-color:lightyellow;    
     left:0px;
     top:0px;
     right:0px; 
@@ -116,7 +151,7 @@
 }
 
 .leftContentArea {
-    background-color:lightblue; 
+    background-color:lightyellow; 
     left:180px;
     top:0px;
     right:0px;
@@ -127,44 +162,12 @@
 }
 
 
-.topTabPanel
-{
-    background-color:lightblue;    
-    left:0px;
-    top:0px;
-    right:0px; 
-    bottom:0px;
-    position: absolute; 
-}
-
-.topStripArea 
-{
-    background-color:lightyellow;
-    height:40px;     
-    top:0px;
-    left:0px;
-    right:0px;    
-    
-    position: absolute; 
-}
-
-.topContentArea {
-    background-color:lightblue; 
-    left:0px;
-    top:40px;
-    right:0px;
-    bottom:0px;
-    /*margin-top:1px;*/
-    
-    position: absolute; 
-    
-}
 
 .leftTabsStrip
 {
     background-color:lightyellow;    
      
-    top:40px;
+    top:35px;
     
     bottom:0px;    
     width: 180px;
@@ -179,7 +182,7 @@
     position:relative;
     height:33px;    
     /*display:table-cell;*/
-    margin-left:5px;    
+    /*margin-left:5px;*/    
     border: 1px solid black;
     /*margin-right:-1px;*/
     
@@ -277,4 +280,15 @@
     margin-right:-1px;    
     position:absolute;
     border-right: 1px solid black;
+}
+
+.TabShield 
+{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    margin:5px;
+    background-color:lightyellow; 
 }
