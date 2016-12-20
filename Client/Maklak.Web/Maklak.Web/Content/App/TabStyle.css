@@ -292,3 +292,40 @@
     margin:5px;
     background-color:lightyellow; 
 }
+
+.topTabElementStateActive {
+    position:absolute;
+    right:0px;
+    left:0px;
+    top:0px;
+    height:3px;
+    background-color:darkorange;
+}
+.topTabElementStatePassive {
+    position:absolute;
+    right:0px;
+    left:0px;
+    top:0px;
+    height:3px;
+    background-color:lightblue;
+}
+
+.leftTabElementStateActive {
+     position:absolute;
+     float:left; 
+    left:0px;
+    top:0px;
+    bottom:0px;
+    width:3px;
+    
+    background-color:darkorange;
+}
+.leftTabElementStatePassive {
+     position:absolute;   
+     float:left;  
+    left:0px;
+    top:0px;
+    bottom:0px;
+    width:3px;
+    background-color:lightblue;
+}

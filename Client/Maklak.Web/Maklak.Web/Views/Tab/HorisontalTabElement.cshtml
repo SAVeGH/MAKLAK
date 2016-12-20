@@ -2,6 +2,10 @@
 
 
 @{ 
-    string elementClass = this.Model.Row.Active ? "topTabElement topTabActive" : "topTabElement";   
+    string elementClass = this.Model.Row.Active ? "topTabElement topTabActive" : "topTabElement";
+    string elementStateClass = this.Model.Row.Active ? "topTabElementStateActive" : "topTabElementStatePassive";
 } 
-<div class="@elementClass" onclick="hTabMgr.TabClick('@this.Model.Row.Key')" >@this.Model.Row.Name</div>
+<div class="@elementClass" onclick="hTabMgr.TabClick('@this.Model.Row.Key')" >
+    <div class="@elementStateClass"></div>
+    <div style="margin-top:5px;">@this.Model.Row.Name</div>
+</div>
