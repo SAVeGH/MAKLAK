@@ -125,6 +125,12 @@ namespace Maklak.Models
             return base.IsModelInitialized() && data.TabData.Count > 0;
         }
 
+        public string TabPanelID
+        {
+            get;
+            set;
+        }
+
 
     }
 

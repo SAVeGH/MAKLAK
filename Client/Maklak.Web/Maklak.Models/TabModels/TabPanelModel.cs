@@ -19,8 +19,18 @@ namespace Maklak.Models
 
         private void TabPanelModel_OnModelReady()
         {
-            key = data.TabData.Where(r => r.IsParent_IdNull()).Select(r => r.Key).FirstOrDefault(); // ключь по умолчанию
-        }        
+            key = DefaultKey(); // ставится при создании модели
+        }
+
+        private string DefaultKey()
+        {
+            return data.TabData.Where(r => r.IsParent_IdNull()).Select(r => r.Key).FirstOrDefault(); // ключь по умолчанию
+        }  
+        
+        public bool IsRoot
+        {
+            get { return key == DefaultKey(); }
+        }     
 
         public DOKPOSITION DokPosition
         {

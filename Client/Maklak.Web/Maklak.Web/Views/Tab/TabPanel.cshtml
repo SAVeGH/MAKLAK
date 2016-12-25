@@ -6,8 +6,13 @@
     string panelClass = string.Empty;
     string stripClass = string.Empty;
     string contentClass = string.Empty;
-
     string classPrefix = string.Empty;
+
+
+    string panelKey = this.Model.Key;
+    string childPanelKey = this.Model.ChildKey();
+    string tabPanelID = string.Format("TabPanel_{0}", panelKey);
+    string childTabPanelID = string.Format("TabPanel_{0}", childPanelKey);
 
     switch (this.Model.DokPosition)
     {
@@ -31,12 +36,13 @@
 
     bool hasChild = this.Model.HasChildPanel();
     RouteValueDictionary routPanelValues = new RouteValueDictionary();
-    routPanelValues.Add("Key", this.Model.ChildKey());
+    routPanelValues.Add("Key", childPanelKey); /*меняется ключ и следующая модель привязывается к дочернему ключу*/
     RouteValueDictionary routStripValues = new RouteValueDictionary();
-    routStripValues.Add("Key", this.Model.Key);
+    routStripValues.Add("Key", panelKey);
+    routStripValues.Add("TabPanelID", tabPanelID);
  }
 
-<div class="@panelClass">
+<div id="@tabPanelID" class="@panelClass">
 
     <div class="@stripClass">
         @*Strip*@

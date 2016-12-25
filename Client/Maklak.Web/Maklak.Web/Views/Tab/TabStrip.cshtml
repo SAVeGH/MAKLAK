@@ -33,14 +33,14 @@
 
 
 
-    using (Ajax.BeginForm(Model.Action,
+    using (Ajax.BeginForm("TabPanel",
                            null,
                            new AjaxOptions()
                            {
                                HttpMethod = "POST",
                                InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = tabId,
-                               OnComplete = callbackEvent
+                               UpdateTargetId = this.Model.TabPanelID //,
+                               //OnComplete = callbackEvent
                            },
                            new { id = tabId }))
     {
