@@ -55,6 +55,7 @@
                 {
                     Maklak.Models.TabRowModel rm = new Maklak.Models.TabRowModel();
             rm.Row = row;
+                    rm.Row.Form_Id = tabId;
                     RouteValueDictionary dict = new RouteValueDictionary();
             dict.Add("tabRow", rm);
 
