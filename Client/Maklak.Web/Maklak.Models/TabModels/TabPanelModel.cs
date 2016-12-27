@@ -52,7 +52,9 @@ namespace Maklak.Models
         {
             get { return key; }
             set { key = value; } // сеттер нужен т.к. устанавливается системой при привязке запроса
-        }        
+        } 
+        
+        public string SelectedKey { get; set; }       
 
         public bool HasChildPanel()
         {

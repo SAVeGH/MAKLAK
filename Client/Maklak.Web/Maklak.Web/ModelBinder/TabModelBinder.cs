@@ -24,7 +24,9 @@ namespace Maklak.Web.ModelBinder
 
             HttpRequestBase request = controllerContext.HttpContext.Request;
 
-            string modelSelectedKey = request.Form.Get("SelectedKey");
+            //string modelSelectedKey = request.Form.Get("SelectedKey");
+
+            string modelSelectedKey = Convert.ToString(controllerContext.RouteData.Values["SelectedKey"]);
 
             model.SelectedKey = modelSelectedKey;
         }

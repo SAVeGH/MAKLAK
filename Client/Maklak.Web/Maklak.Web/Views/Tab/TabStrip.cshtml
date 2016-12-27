@@ -20,12 +20,14 @@
     string tabGapFirstClass = string.Format("{0}TabFirstGap", tabStripPrefix);
     string tabStubClass = string.Format("{0}TabStub", tabStripPrefix);
     string tabCornerClass = string.Format("{0}TabCorner", tabStripPrefix);
-    string selectedValue = string.Format("{0}SelectedValue", tabStripPrefix);
+
     string actionName = string.Format("{0}TabElement", tabStripPrefix);
-    string tabId = string.Format("{0}TabStrip", tabStripPrefix);
-    string tabIsVerticalId = string.Format("{0}TabIsVertical", tabStripPrefix);
-    string keyName = string.Format("{0}Key", tabStripPrefix);
-    string tabTestClass = string.Format("{0}TestClass", tabStripPrefix);
+
+    string selectedValue = string.Format("{0}_SelectedValue", this.Model.Key);
+    string tabId = string.Format("{0}_TabStrip", this.Model.Key);
+    //string tabIsVerticalId = string.Format("{0}TabIsVertical", tabStripPrefix);
+    string keyName = string.Format("{0}_Key", this.Model.Key);
+    //string tabTestClass = string.Format("{0}TestClass", tabStripPrefix);
 
     string callbackEvent = string.Format("{0}TabMgr.OnComplete()", tabStripPrefix);
     string stubLeft = string.Format("{0}px", tabsStubLeft.ToString());

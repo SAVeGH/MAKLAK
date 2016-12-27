@@ -43,4 +43,17 @@ var hTabMgr = new TabManager(false);
 var vTabMgr = new TabManager(true);
 
 
+function TabMgr()
+{
+    this.TabClick = function (tabKey) {
+
+        var element = $(event.target);        
+        var form = element.closest('form');
+        form.find("[name='SelectedKey']").val(tabKey);
+        form.submit();
+    }
+}
+
+var tabMgr = new TabMgr();
+
 
