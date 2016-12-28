@@ -60,7 +60,7 @@ namespace Maklak.Models
         //    return row.Key;
         //}  
 
-        // Ключь самой модели
+        // Ключь самой модели содержащей табы
         public string Key
         {
             get; set;
@@ -71,7 +71,7 @@ namespace Maklak.Models
          }
 
         // Ключь дочерней модели
-        public string DefaultKey { get; protected set; }
+        //public string DefaultKey { get; protected set; }
         // Ключь выбранного таба в дочерней модели
         public string SelectedKey
         {

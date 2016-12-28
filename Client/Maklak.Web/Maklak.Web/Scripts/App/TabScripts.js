@@ -49,7 +49,7 @@ function TabMgr()
 
         var element = $(event.target);        
         var form = element.closest('form');
-        form.find("[name='SelectedKey']").val(tabKey);
+        form.find("[name='Key']").val(tabKey);
         form.submit();
     }
 }

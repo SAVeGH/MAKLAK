@@ -35,13 +35,14 @@
 
 
 
-    using (Ajax.BeginForm("TabPanel",
+    using (Ajax.BeginForm("TabPanel", // запрос уходит на родительский TabPanel
                            null,
                            new AjaxOptions()
                            {
                                HttpMethod = "POST",
                                InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = this.Model.TabPanelID //,
+                               UpdateTargetId = this.Model.TabPanelID // id обновляемого элемента (приходит из TabPanel)
+                               //,
                                //OnComplete = callbackEvent
                            },
                            new { id = tabId }))
@@ -72,7 +73,7 @@
             <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>
 
             @Html.HiddenFor(m => m.SID)
-            @Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })           
+            @*@Html.HiddenFor(m => m.SelectedKey, new { id = selectedValue })*@           
             @*@Html.HiddenFor(m => m.IsVertical, new { id = tabIsVerticalId })*@
             @Html.HiddenFor(m => m.Key, new { id = keyName})           
             
