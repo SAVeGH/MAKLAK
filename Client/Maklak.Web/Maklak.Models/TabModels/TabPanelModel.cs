@@ -24,26 +24,33 @@ namespace Maklak.Models
 
         private string DefaultKey()
         {
-            return data.TabData.Where(r => r.IsParent_IdNull()).Select(r => r.Key).FirstOrDefault(); // ключь по умолчанию
+            DataSets.ModelDS.TabDataRow rootRow = data.TabData.Where(r => r.IsParent_IdNull()).FirstOrDefault();
+            DataSets.ModelDS.TabDataRow keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.Active).FirstOrDefault();
+
+            if (keyRow == null)
+                keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.IsDefault).FirstOrDefault();
+
+            if (keyRow == null)
+                return string.Empty;
+
+            return keyRow.Key; // ставим ключь по умолчания как если бы на нём был клик на клиенте
+
         }  
         
-        //public bool IsRoot
-        //{
-        //    get { return key == DefaultKey(); }
-        //}     
-
-        // Единственное свойство необходимое для отображения TabPanel
+        
+        // определяет положение TabPanel
         public DOKPOSITION DokPosition
         {
             get
             {
-                if (string.IsNullOrEmpty(Key))
+                if (string.IsNullOrEmpty(TabPanelKey))
                     return DOKPOSITION.LEFT;
 
-                DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == Key).FirstOrDefault();
+                DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();                
 
                 if (row == null)
-                    return DOKPOSITION.LEFT;
+                    return DOKPOSITION.LEFT; // для CATEGORY
+                
 
                 return (DOKPOSITION)Enum.Parse(typeof(DOKPOSITION), row.DokPosition);
             }
@@ -56,68 +63,70 @@ namespace Maklak.Models
             get { return key; }
             set
             {
-                
-                key = AlignKey(value);
+                // т.к. устанавливается при привязке - приходят только ключи на которых был клик
+                key = value;
+
+                SetActiveKey(); // сразу делаем активным ключь на котором был клик
             } 
         }
 
-        // привязывает значение к ближайшему родителю имеющему dokposition
-        private string AlignKey(string inputKey)
+        private void SetActiveKey()
         {
-            DataSets.ModelDS.TabDataRow keyRow = data.TabData.Where(r => r.Key == inputKey).FirstOrDefault();
+            DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == this.Key).FirstOrDefault();
 
-            if (keyRow == null)
-                return string.Empty;
+            if (row == null)
+                return;
 
-            if (keyRow.IsParent_IdNull())
+
+            DataSets.ModelDS.TabDataRow activeRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == row.Parent_Id  && r.Active).FirstOrDefault();
+
+            if (activeRow != null)
+                activeRow.Active = false;
+                       
+            row.Active = true;
+
+        }
+
+        // ключ определяющий положение TabPanel совпадает с ключом модели для TabStrip
+        public string TabPanelKey
+        {
+            get
             {
-                if (!string.IsNullOrEmpty(keyRow.DokPosition) && !string.IsNullOrWhiteSpace(keyRow.DokPosition))
-                    return keyRow.Key;
-                else
+                DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
+
+                if (row == null)
                     return string.Empty;
+
+                DataSets.ModelDS.TabDataRow parentRow = data.TabData.Where(r => r.Id == row.Parent_Id).FirstOrDefault();
+
+                if (parentRow == null)
+                    return string.Empty;
+
+                return parentRow.Key;
             }
-            
-
-            DataSets.ModelDS.TabDataRow parentRow = data.TabData.Where(r => r.Id == keyRow.Parent_Id).FirstOrDefault();
-
-            if (parentRow == null)
-                return string.Empty;
-
-            string parentKey = parentRow.Key;
-
-            if (!string.IsNullOrEmpty(parentRow.DokPosition) && !string.IsNullOrWhiteSpace(parentRow.DokPosition))
-                return parentKey;            
-
-            return AlignKey(parentKey);
-        }
+        }        
         
-        //public string SelectedKey
-        //{
-        //    get;
-        //    set; // сеттер нужен т.к. устанавливается системой при привязке запроса когда форма TabStrip отправляет запрос на TabPanel
-        //         // значение будет передано как Key в StripModel
-        //}       
+        public bool HasChildPanel
+        {
+            get
+            {
+                DataSets.ModelDS.TabDataRow keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
 
-        public bool HasChildPanel()
-        {            
-            DataSets.ModelDS.TabDataRow keyRow = ChildDataRow();
-
-            int keyRowId = keyRow.Id;
-
-            return data.TabData.Count(r => !r.IsParent_IdNull() && r.Parent_Id == keyRowId) > 0;
+                return data.TabData.Count(r => !r.IsParent_IdNull() && r.Parent_Id == keyRow.Id) > 0;
+            }
         }
 
-        public string ChildKey()
+        public string NextTabPanelKey
         {
+            get
+            {
+                DataSets.ModelDS.TabDataRow keyRow = ChildDataRow();
 
-            DataSets.ModelDS.TabDataRow keyRow = ChildDataRow();
+                if (keyRow == null)
+                    return string.Empty;
 
-            if (keyRow == null)
-                return string.Empty;
-
-            string rowKey = keyRow.Key;
-
-            return rowKey;
+                return keyRow.Key;
+            }
         }
 
         private DataSets.ModelDS.TabDataRow ChildDataRow()
@@ -133,6 +142,6 @@ namespace Maklak.Models
             return keyRow;
         }
 
-        //TODO: Надо взять ChildRow по входящему ключу
+       
     }
 }
