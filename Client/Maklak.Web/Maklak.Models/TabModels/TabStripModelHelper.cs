@@ -30,19 +30,23 @@ namespace Maklak.Models
         {           
 
             ModelDS.SiteMapRow rootRow = GetRootTabRow(sID);
-            ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
-            ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
+            //ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
+            //ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
 
-            return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Controller).FirstOrDefault();
+            //return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Controller).FirstOrDefault();
+
+            return rootRow.Controller;
         }
 
         internal static string DefaultAction(Guid sID)
         {
             ModelDS.SiteMapRow rootRow = GetRootTabRow(sID);
-            ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
-            ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
+            //ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
+            //ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
 
-            return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Action).FirstOrDefault();
+            //return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Action).FirstOrDefault();
+
+            return rootRow.Action;
         }
 
         public static TabStripModel GenerateModel(Guid sID, string key)

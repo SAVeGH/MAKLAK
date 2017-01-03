@@ -24,7 +24,8 @@
 @*@Html.Action("Search", "Search", Model)*@
 
 <div class="TabShield">
-    @Html.Action("TabPanel", "Tab")
+    @*@Html.Action("TabPanel", "Tab")*@
+    @Html.Action(Model.Action, Model.Controller)
 </div>
 
 

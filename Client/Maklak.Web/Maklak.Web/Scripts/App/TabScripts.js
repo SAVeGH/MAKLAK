@@ -39,8 +39,8 @@
 }
 
 
-var hTabMgr = new TabManager(false);
-var vTabMgr = new TabManager(true);
+//var hTabMgr = new TabManager(false);
+//var vTabMgr = new TabManager(true);
 
 
 function TabMgr()
