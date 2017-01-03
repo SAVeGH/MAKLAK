@@ -11,17 +11,17 @@ using Maklak.Models.DataSets;
 
 namespace Maklak.Models
 {
-    public static class TabModelHelper
+    public static class TabStripModelHelper
     {        
 
         public enum TabModelType {NONE, CATEGORY, SEARCH, INOUT, MANAGE, LOGIN }
 
 
 
-        public static TabModel GenerateModel(Guid sID, TabModelType modelType)
+        public static TabStripModel GenerateModel(Guid sID, TabModelType modelType)
         {
             // вызывается при первой загрузке страницы для генерции модели вруную
-            TabModel model = TabModelHelper.GenerateModel(modelType);
+            TabStripModel model = TabStripModelHelper.GenerateModel(modelType);
             model.Initialize(sID);
             return model;
         }
@@ -45,19 +45,19 @@ namespace Maklak.Models
             return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Action).FirstOrDefault();
         }
 
-        public static TabModel GenerateModel(Guid sID, string key)
+        public static TabStripModel GenerateModel(Guid sID, string key)
         {
             if (string.IsNullOrEmpty(key))
                 key = GetRootTabRow(sID).Key;
             //вызывается при привязке запроса к модели. key приходит из запроса
-            TabModelHelper.TabModelType tabModelType = ModelType(key);
+            TabStripModelHelper.TabModelType tabModelType = ModelType(key);
 
             return GenerateModel(tabModelType);
         }
 
-        public static TabModel GenerateModel(TabModelType modelType)
+        public static TabStripModel GenerateModel(TabModelType modelType)
         {
-            TabModel model = null;
+            TabStripModel model = null;
 
             switch (modelType)
             {
@@ -108,8 +108,8 @@ namespace Maklak.Models
 
         public static TabModelType ModelType(string Key)
         {
-            if (Enum.GetNames(typeof(TabModelHelper.TabModelType)).Contains(Key))
-                return (TabModelHelper.TabModelType)Enum.Parse(typeof(TabModelHelper.TabModelType), Key);
+            if (Enum.GetNames(typeof(TabStripModelHelper.TabModelType)).Contains(Key))
+                return (TabStripModelHelper.TabModelType)Enum.Parse(typeof(TabStripModelHelper.TabModelType), Key);
 
             return TabModelType.NONE;
         }

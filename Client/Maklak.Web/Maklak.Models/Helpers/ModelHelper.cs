@@ -15,8 +15,8 @@ namespace Maklak.Models.Helpers
 
             BaseModel model = new BaseModel();
             model.Initialize(sID);
-            model.Action = TabModelHelper.DefaultAction(sID);
-            model.Controller = TabModelHelper.DefaultController(sID);            
+            model.Action = TabStripModelHelper.DefaultAction(sID);
+            model.Controller = TabStripModelHelper.DefaultController(sID);            
 
             return model;
         }

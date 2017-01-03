@@ -145,7 +145,7 @@ namespace Maklak.Models
 
             if (mapRow == null)
             {
-                mapRow = data.SiteMap.Where(r => r.Key == TabModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
+                mapRow = data.SiteMap.Where(r => r.Key == TabStripModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
                 tabRow.SetParent_IdNull();
             }
             else

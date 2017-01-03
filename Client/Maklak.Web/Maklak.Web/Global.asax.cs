@@ -20,7 +20,7 @@ namespace Maklak.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);            
-            ModelBinders.Binders.Add(typeof(TabModel), new TabModelBinder());
+            ModelBinders.Binders.Add(typeof(TabStripModel), new TabModelBinder());
             ModelBinders.Binders.Add(typeof(SuggestionModel), new SuggestionModelBinder());
             ModelBinders.Binders.DefaultBinder = new BaseModelBinder();
             RegisterCustomControllerFactory();

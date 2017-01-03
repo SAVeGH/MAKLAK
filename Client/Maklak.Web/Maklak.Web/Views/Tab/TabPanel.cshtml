@@ -1,7 +1,5 @@
 ﻿@model Maklak.Models.TabPanelModel
 
-@*style="width:150px;height:150px;background-color:antiquewhite;float:left"*@
-
 @{ 
     string panelClass = string.Empty;
     string stripClass = string.Empty;
@@ -12,7 +10,7 @@
     string tabPanelKey = this.Model.TabPanelKey;
     string nextTabPanelKey = this.Model.NextTabPanelKey;
     string tabPanelID = string.Format("TabPanel_{0}", tabPanelKey);
-    //string childTabPanelID = string.Format("TabPanel_{0}", childPanelKey);
+    
 
     switch (this.Model.DokPosition)
     {

@@ -26,7 +26,7 @@ namespace Maklak.Web.ModelBinder
             if (controllerContext.RouteData.Values.ContainsKey("Key"))
                 modelKey = Convert.ToString(controllerContext.RouteData.Values["Key"]);
 
-            TabModel model = TabModelHelper.GenerateModel(controller.SID, modelKey);
+            TabStripModel model = TabStripModelHelper.GenerateModel(controller.SID, modelKey);
 
             return model;
         }

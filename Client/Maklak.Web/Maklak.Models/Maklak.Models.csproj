@@ -65,8 +65,8 @@
     <Compile Include="SiteMapHelper.cs" />
     <Compile Include="SuggestionModels\SuggestionModel.cs" />
     <Compile Include="SuggestionModels\SuggestionModelHelper.cs" />
-    <Compile Include="TabModels\TabModel.cs" />
-    <Compile Include="TabModels\TabModelHelper.cs" />
+    <Compile Include="TabModels\TabStripModel.cs" />
+    <Compile Include="TabModels\TabStripModelHelper.cs" />
     <Compile Include="TabModels\TabPanelModel.cs" />
   </ItemGroup>
   <ItemGroup>
