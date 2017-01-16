@@ -104,8 +104,34 @@ namespace Maklak.Models
 
                 return parentRow.Key;
             }
-        }        
-        
+        }
+
+        public string ControlAction
+        {
+            get
+            {
+                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();
+
+                if (row == null)
+                    return string.Empty;                
+
+                return row.Action;
+            }
+        }
+
+        public string ControlController
+        {
+            get
+            {
+                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();
+
+                if (row == null)
+                    return string.Empty;
+
+                return row.Controller;
+            }
+        }
+
         public bool HasChildPanel
         {
             get

@@ -35,7 +35,7 @@ namespace Maklak.Models
 
             //return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Controller).FirstOrDefault();
 
-            return rootRow.Controller;
+            return rootRow.RecursiveController;
         }
 
         internal static string DefaultAction(Guid sID)
@@ -46,7 +46,7 @@ namespace Maklak.Models
 
             //return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Action).FirstOrDefault();
 
-            return rootRow.Action;
+            return rootRow.RecursiveAction;
         }
 
         public static TabStripModel GenerateModel(Guid sID, string key)

@@ -6,8 +6,8 @@
 AppManager.Init = function ()
 {
     
-    vTabMgr.OnUpdate = AppManager.VTabClick;
-    hTabMgr.OnUpdate = AppManager.RefreshMainView;
+    //vTabMgr.OnUpdate = AppManager.VTabClick;
+    //hTabMgr.OnUpdate = AppManager.RefreshMainView;
 }
 
 AppManager.VTabClick = function (arg)

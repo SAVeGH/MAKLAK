@@ -1345,6 +1345,10 @@ namespace Maklak.Models.DataSets {
             
             private global::System.Data.DataColumn columnDokPosition;
             
+            private global::System.Data.DataColumn columnRecursiveAction;
+            
+            private global::System.Data.DataColumn columnRecursiveController;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SiteMapDataTable() {
@@ -1444,6 +1448,22 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RecursiveActionColumn {
+                get {
+                    return this.columnRecursiveAction;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RecursiveControllerColumn {
+                get {
+                    return this.columnRecursiveController;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1479,7 +1499,7 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SiteMapRow AddSiteMapRow(SiteMapRow parentSiteMapRowBySiteMap_SiteMap, string Title, string Controller, string Action, string Key, string DefaultKey, string DokPosition) {
+            public SiteMapRow AddSiteMapRow(SiteMapRow parentSiteMapRowBySiteMap_SiteMap, string Title, string Controller, string Action, string Key, string DefaultKey, string DokPosition, string RecursiveAction, string RecursiveController) {
                 SiteMapRow rowSiteMapRow = ((SiteMapRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1489,7 +1509,9 @@ namespace Maklak.Models.DataSets {
                         Action,
                         Key,
                         DefaultKey,
-                        DokPosition};
+                        DokPosition,
+                        RecursiveAction,
+                        RecursiveController};
                 if ((parentSiteMapRowBySiteMap_SiteMap != null)) {
                     columnValuesArray[1] = parentSiteMapRowBySiteMap_SiteMap[0];
                 }
@@ -1530,6 +1552,8 @@ namespace Maklak.Models.DataSets {
                 this.columnKey = base.Columns["Key"];
                 this.columnDefaultKey = base.Columns["DefaultKey"];
                 this.columnDokPosition = base.Columns["DokPosition"];
+                this.columnRecursiveAction = base.Columns["RecursiveAction"];
+                this.columnRecursiveController = base.Columns["RecursiveController"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1551,6 +1575,10 @@ namespace Maklak.Models.DataSets {
                 base.Columns.Add(this.columnDefaultKey);
                 this.columnDokPosition = new global::System.Data.DataColumn("DokPosition", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDokPosition);
+                this.columnRecursiveAction = new global::System.Data.DataColumn("RecursiveAction", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRecursiveAction);
+                this.columnRecursiveController = new global::System.Data.DataColumn("RecursiveController", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRecursiveController);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -2162,6 +2190,38 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RecursiveAction {
+                get {
+                    try {
+                        return ((string)(this[this.tableSiteMap.RecursiveActionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RecursiveAction\' in table \'SiteMap\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSiteMap.RecursiveActionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RecursiveController {
+                get {
+                    try {
+                        return ((string)(this[this.tableSiteMap.RecursiveControllerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RecursiveController\' in table \'SiteMap\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSiteMap.RecursiveControllerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SiteMapRow SiteMapRowParent {
                 get {
                     return ((SiteMapRow)(this.GetParentRow(this.Table.ParentRelations["SiteMap_SiteMap"])));
@@ -2253,6 +2313,30 @@ namespace Maklak.Models.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDokPositionNull() {
                 this[this.tableSiteMap.DokPositionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRecursiveActionNull() {
+                return this.IsNull(this.tableSiteMap.RecursiveActionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRecursiveActionNull() {
+                this[this.tableSiteMap.RecursiveActionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRecursiveControllerNull() {
+                return this.IsNull(this.tableSiteMap.RecursiveControllerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRecursiveControllerNull() {
+                this[this.tableSiteMap.RecursiveControllerColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -122,7 +122,13 @@ namespace Maklak.Models
 
             if (node.Attributes.Keys.Contains("dokposition"))
                 row.DokPosition = Convert.ToString(node.Attributes["dokposition"]);
-            
+
+            if (node.Attributes.Keys.Contains("recursiveaction"))
+                row.RecursiveAction = Convert.ToString(node.Attributes["recursiveaction"]);
+
+            if (node.Attributes.Keys.Contains("recursivecontroller"))
+                row.RecursiveController = Convert.ToString(node.Attributes["recursivecontroller"]);
+
 
             data.SiteMap.AddSiteMapRow(row);
 
