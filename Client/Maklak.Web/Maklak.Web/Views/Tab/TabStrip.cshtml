@@ -24,28 +24,14 @@
     string actionName = string.Format("{0}TabElement", tabStripPrefix);
 
     string selectedValue = string.Format("{0}_SelectedValue", this.Model.Key);
-    string tabId = string.Format("{0}_TabStrip", this.Model.Key);    
+    string tabId = string.Format("{0}_TabStrip", this.Model.Key);
     string keyName = string.Format("{0}_Key", this.Model.Key);
     //string tabTestClass = string.Format("{0}TestClass", tabStripPrefix);
 
     string callbackEvent = string.Format("{0}TabMgr.OnComplete()", tabStripPrefix);
     string stubLeft = string.Format("{0}px", tabsStubLeft.ToString());
     string stubTop = string.Format("{0}px", tabsStubTop.ToString());
-
-
-
-    using (Ajax.BeginForm("TabPanel", // запрос уходит на родительский TabPanel
-                           null,
-                           new AjaxOptions()
-                           {
-                               HttpMethod = "POST",
-                               InsertionMode = InsertionMode.Replace,
-                               UpdateTargetId = this.Model.TabPanelID // id обновляемого элемента (приходит из TabPanel)
-                                                                      //,
-                                                                      //OnComplete = callbackEvent
-                                   },
-                           new { id = tabId }))
-    {
+    
 
         <div class="@tabStripClass" style="min-width:@stubLeft;">
             @*<div class="@tabTestClass"></div>*@
@@ -70,14 +56,13 @@
             }
 
             <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>
-
-            @Html.HiddenFor(m => m.SID)
+            
             @Html.HiddenFor(m => m.Key, new { id = keyName })
 
 
         </div>
 
-                }
+                
 
 
 }
