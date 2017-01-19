@@ -9,6 +9,7 @@
 
     string tabPanelKey = this.Model.TabPanelKey;
     string tabStripId = string.Format("TabStrip_{0}", tabPanelKey);
+    string contentFormId = string.Format("ContentForm_{0}", tabPanelKey);
     string nextTabPanelKey = this.Model.NextTabPanelKey;
     string tabPanelID = string.Format("TabPanel_{0}", tabPanelKey);
     string tabPanelRecursiveAction = this.Model.Action;
@@ -73,10 +74,32 @@
         @{
             if (hasChildPanel)
             {
+                //Рекурсивное отображение вложенных TabPanel-ов
                 Html.RenderAction(tabPanelRecursiveAction, tabPanelRecursiveController, routPanelValues);
             }
+            else
+            {
+                // Отображение формы для содержимого последнего TabPanel-a
+                using (Ajax.BeginForm("Search", "Search",
+                          null,
+                          new AjaxOptions()
+                          {
+                              HttpMethod = "POST",
+                              InsertionMode = InsertionMode.Replace,
+                              UpdateTargetId = contentFormId // id обновляемого элемента
+                                                             //,
+                                                             //OnComplete = callbackEvent
+                          },
+                          new { id = contentFormId }))
+                {
+                @*Отображение содержимого*@
+                @Html.Action("Search", "Search")
 
-         }        
+                @Html.HiddenFor(m => m.SID)
+                    }
+                }
+
+            }
     </div>
 </div>
 
