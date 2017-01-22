@@ -132,6 +132,32 @@ namespace Maklak.Models
             }
         }
 
+        public string ContentAction
+        {
+            get
+            {
+                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.Key).FirstOrDefault();
+
+                if (row == null)
+                    return string.Empty;
+
+                return row.Action;
+            }
+        }
+
+        public string ContentController
+        {
+            get
+            {
+                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.Key).FirstOrDefault();
+
+                if (row == null)
+                    return string.Empty;
+
+                return row.Controller;
+            }
+        }
+
         public bool HasChildPanel
         {
             get
