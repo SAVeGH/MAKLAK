@@ -12,28 +12,28 @@
     <mvcSiteMapNode title="Search &amp; Order" controller="Tab" action="TabStrip" key="SEARCH" defaultkey="SEARCH_SEARCH" dokposition="TOP">
       <!-- horizontal tabs in context of current category tab. Represent Action and Controller for content area--> 
       <mvcSiteMapNode title="Search" controller="Search" action="Search"  key="SEARCH_SEARCH"/>
-      <mvcSiteMapNode title="Determine" controller="Search" action="Determine"  key="SEARCH_DETERMINE" />
-      <mvcSiteMapNode title="Order" controller="Search" action="Order"  key="SEARCH_ORDER" />
-      <mvcSiteMapNode title="Summary" controller="Search" action="Summary"  key="SEARCH_SUMMARY" />
+      <mvcSiteMapNode title="Determine" controller="Search" action="Search"  key="SEARCH_DETERMINE" />
+      <mvcSiteMapNode title="Order" controller="Search" action="Search"  key="SEARCH_ORDER" />
+      <mvcSiteMapNode title="Summary" controller="Search" action="Search"  key="SEARCH_SUMMARY" />
     </mvcSiteMapNode>
     
     <mvcSiteMapNode title="In &amp; Out" controller="Tab" action="TabStrip"  key="INOUT" defaultkey="INOUT_IN" dokposition="TOP">
-      <mvcSiteMapNode title="In" controller="InOut" action="In" key="INOUT_IN" />
-      <mvcSiteMapNode title="Out" controller="InOut" action="Out" key="INOUT_OUT"/>      
-      <mvcSiteMapNode title="Summary" controller="InOut" action="Summary" key="INOUT_SUMMARY" />
+      <mvcSiteMapNode title="In"  controller="Search" action="Search"   key="INOUT_IN" />
+      <mvcSiteMapNode title="Out"  controller="Search" action="Search"   key="INOUT_OUT"/>      
+      <mvcSiteMapNode title="Summary"  controller="Search" action="Search"   key="INOUT_SUMMARY" />
     </mvcSiteMapNode>
     
     <mvcSiteMapNode title="Add &amp; Manage" controller="Tab" action="TabStrip" key="MANAGE"  defaultkey="MANAGE_SEARCH" dokposition="TOP">
       <mvcSiteMapNode title="Search" controller="Search" action="Search" key="MANAGE_SEARCH" />
-      <mvcSiteMapNode title="Determine" controller="Search" action="Determine" key="MANAGE_DETERMINE" />
-      <mvcSiteMapNode title="Consistence" controller="Manage" action="Consistence" key="MANAGE_CONSISTENCE" />
-      <mvcSiteMapNode title="Manage" controller="Manage" action="Manage" key="MANAGE_MANAGE" />
+      <mvcSiteMapNode title="Determine"  controller="Search" action="Search"   key="MANAGE_DETERMINE" />
+      <mvcSiteMapNode title="Consistence"  controller="Search" action="Search"   key="MANAGE_CONSISTENCE" />
+      <mvcSiteMapNode title="Manage"  controller="Search" action="Search"   key="MANAGE_MANAGE" />
     </mvcSiteMapNode>
     
     <mvcSiteMapNode title="Login &amp; Profile" controller="Tab" action="TabStrip" key="LOGIN"   defaultkey="LOGIN_LOGIN" dokposition="TOP">
-      <mvcSiteMapNode title="Login" controller="User" action="Login" key="LOGIN_LOGIN" />
-      <mvcSiteMapNode title="Register" controller="User" action="Register" key="LOGIN_REGISTER" />      
-      <mvcSiteMapNode title="Profile" controller="User" action="UserProfile" key="LOGIN_PROFILE" />
+      <mvcSiteMapNode title="Login"  controller="Search" action="Search"   key="LOGIN_LOGIN" />
+      <mvcSiteMapNode title="Register"  controller="Search" action="Search"   key="LOGIN_REGISTER" />      
+      <mvcSiteMapNode title="Profile"  controller="Search" action="Search"   key="LOGIN_PROFILE" />
     </mvcSiteMapNode>
   
   </mvcSiteMapNode>

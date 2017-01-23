@@ -48,7 +48,7 @@
                     dict.Add("tabRow", rm);
 
 
-                    Html.RenderAction(actionName, "Tab", dict);
+                    Html.RenderAction(actionName, this.Model.Controller, dict);
 
 
                     <div class="@tabGapClass"></div>
