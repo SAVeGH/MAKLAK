@@ -9,9 +9,11 @@
     <mvcSiteMapNode title="Partitions" recursivecontroller="Tab" recursiveaction="TabPanel" controller="Tab" action="TabStrip"  key="CATEGORY" defaultkey="SEARCH" dokposition="LEFT">
      
       <!-- one vertical tab --> 
-    <mvcSiteMapNode title="Search &amp; Order" controller="Tab" action="TabStrip" key="SEARCH" defaultkey="SEARCH_SEARCH" dokposition="TOP">
+    <mvcSiteMapNode title="Search &amp; Order" controller="Tab" action="TabStrip" key="SEARCH" defaultkey="SEARCH_CONTROL" dokposition="TOP">
       <!-- horizontal tabs in context of current category tab. Represent Action and Controller for content area--> 
-      <mvcSiteMapNode title="Search" controller="Search" action="Search"  key="SEARCH_SEARCH"/>
+      <mvcSiteMapNode title="Search" controller="Search" action="Control"  key="SEARCH_CONTROL" defaultkey="SEARCH_CONTENT" dokposition="LEFT">
+        <mvcSiteMapNode title="Determine" controller="Search" action="Content"  key="SEARCH_CONTENT" />
+      </mvcSiteMapNode>
       <mvcSiteMapNode title="Determine" controller="Search" action="Search"  key="SEARCH_DETERMINE" />
       <mvcSiteMapNode title="Order" controller="Search" action="Search"  key="SEARCH_ORDER" />
       <mvcSiteMapNode title="Summary" controller="Search" action="Search"  key="SEARCH_SUMMARY" />

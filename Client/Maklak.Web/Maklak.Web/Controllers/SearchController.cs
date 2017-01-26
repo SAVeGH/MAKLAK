@@ -13,11 +13,25 @@ namespace Maklak.Web.Controllers
         // GET: Some
         public ActionResult Search(SearchModel model)
         {
-            //model.Initialize(this.SID);
+            
 
             return PartialView(model);
         }
 
-        
+        public ActionResult Control()
+        {
+            
+
+            return PartialView();
+        }
+
+        public ActionResult Content()
+        {
+            
+
+            return PartialView();
+        }
+
+
     }
 }
