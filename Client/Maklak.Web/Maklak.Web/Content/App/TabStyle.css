@@ -161,6 +161,27 @@
     
 }
 
+.leftMainControl 
+{
+    background-color:lightyellow;
+    width:360px;     
+    top:0px;
+    bottom:0px;
+    
+    position: absolute; 
+}
+
+.leftMainContent {
+    background-color:lightyellow; 
+    left:360px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    /*margin-left:1px;*/
+    position: absolute; 
+    
+}
+
 
 
 .leftTabsStrip

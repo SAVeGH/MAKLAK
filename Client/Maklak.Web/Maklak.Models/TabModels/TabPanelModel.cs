@@ -194,6 +194,85 @@ namespace Maklak.Models
             return keyRow;
         }
 
-       
+        public string ClassPrefix
+        {
+            get
+            {
+                string classPrefix = string.Empty;
+
+                switch (this.DokPosition)
+                {
+                    case Maklak.Models.TabPanelModel.DOKPOSITION.LEFT:
+                        classPrefix = "left";
+                        break;
+                    case Maklak.Models.TabPanelModel.DOKPOSITION.TOP:
+                        classPrefix = "top";
+                        break;
+                    case Maklak.Models.TabPanelModel.DOKPOSITION.RIGHT:
+                        classPrefix = "right";
+                        break;
+                    case Maklak.Models.TabPanelModel.DOKPOSITION.BOTTOM:
+                        classPrefix = "bottom";
+                        break;
+                }
+
+                return classPrefix;
+            }
+        }
+
+        private string ControlClassBody
+        {
+            get
+            {
+                string classBody = "StripArea";
+
+                switch (this.Key)
+                {
+                    case "SEARCH_CONTENT":
+                        classBody = "MainControl";
+                        break;
+                }
+
+                return classBody;
+            }
+        }
+
+        private string ContentClassBody
+        {
+            get
+            {
+                string classBody = "ContentArea";
+
+                switch (this.Key)
+                {
+                    case "SEARCH_CONTENT":
+                        classBody = "MainContent";
+                        break;
+                }
+
+                return classBody;
+            }
+        }
+
+        public string ControlClass
+        {
+            get
+            {
+                string stripClass = string.Format("{0}{1}", this.ClassPrefix,this.ControlClassBody);
+                return stripClass;
+
+            }
+        }
+
+        public string ContentClass
+        {
+            get
+            {
+                string contentClass = string.Format("{0}{1}", this.ClassPrefix,this.ContentClassBody);
+                return contentClass;
+
+            }
+        }
+
     }
 }
