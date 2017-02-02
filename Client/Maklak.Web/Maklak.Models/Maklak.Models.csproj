@@ -57,6 +57,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ExpanderModel.cs" />
     <Compile Include="Helpers\ModelHelper.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="LoginModel.cs" />

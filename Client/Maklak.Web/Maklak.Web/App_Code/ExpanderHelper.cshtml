@@ -1,0 +1,34 @@
+﻿@inherits Maklak.Web.Helpers.HelperPage
+@using System.Web.Mvc;
+@using System.Web.Mvc.Html;
+@using Maklak.Models
+
+
+@helper Expander(Maklak.Models.ExpanderModel model)
+{
+
+//Maklak.Models.DataSets.ModelDS.ExpanderDataDataTable
+
+<div class="expanderPanel">
+
+    @{ 
+        foreach (Maklak.Models.DataSets.ModelDS.ExpanderDataRow row in model.ExpanderData)
+        {
+            @Html.Raw("<div class=\"expanderCategoryPanel\">");
+
+            @Html.Raw(string.Format("<div class=\"expanderCategoryHeader\">{0}</div>",row.Name));
+
+            @Html.Raw("<div class=\"expanderCategoryContent\">");
+
+            @Html.Action(row.Action,row.Controller);
+
+            @Html.Raw("</div>");
+            @Html.Raw("</div>");
+        }
+
+    }
+
+</div>
+
+
+}
