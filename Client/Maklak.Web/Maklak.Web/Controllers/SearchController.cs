@@ -19,10 +19,12 @@ namespace Maklak.Web.Controllers
         }
 
         public ActionResult Control()
-        {
-            
+        {           
 
-            return PartialView();
+            ExpanderModel expanderModel = new ExpanderModel();
+            expanderModel.Initialize(this.SID);
+
+            return PartialView(expanderModel);
         }
 
         public ActionResult Content()
