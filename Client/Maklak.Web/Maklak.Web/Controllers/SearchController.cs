@@ -34,6 +34,21 @@ namespace Maklak.Web.Controllers
             return PartialView();
         }
 
+        public ActionResult Product()
+        {
+            return new EmptyResult();
+        }
+
+        public ActionResult Properties()
+        {
+            return new EmptyResult();
+        }
+
+        public ActionResult Tags()
+        {
+            return new EmptyResult();
+        }
+
 
     }
 }

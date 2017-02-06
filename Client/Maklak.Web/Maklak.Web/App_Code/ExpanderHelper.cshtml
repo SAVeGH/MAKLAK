@@ -14,16 +14,14 @@
     @{ 
         foreach (Maklak.Models.DataSets.ModelDS.ExpanderDataRow row in model.ExpanderData)
         {
-            @Html.Raw("<div class=\"expanderSectionPanel\">");
-
-            @Html.Raw(string.Format("<div class=\"expanderSectionHeader\">{0}</div>", row.Name));
-
-            @Html.Raw("<div class=\"expanderSectionContent\">");
-
-            @Html.Action(row.Action,row.Controller);
-
-            @Html.Raw("</div>");
-            @Html.Raw("</div>");
+            <div class="expanderSectionPanel">
+                <div class="expanderSectionHeader">
+                    @row.Name
+                </div>
+                <div class="expanderSectionContent">
+                    @Html.Action(row.Action, row.Controller)
+                </div>
+            </div>            
         }
 
     }

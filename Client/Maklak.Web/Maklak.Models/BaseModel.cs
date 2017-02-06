@@ -40,7 +40,7 @@ namespace Maklak.Models
             if (data == null)
                 return false;
 
-            if (data.Identity.Count == 0 || data.SiteMap.Count == 0)
+            if (data.Identity.Count == 0 || data.SiteMap.Count == 0 || data.TabData.Count == 0)
                 return false;
 
             return true;
