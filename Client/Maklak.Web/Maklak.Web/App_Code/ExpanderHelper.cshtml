@@ -14,11 +14,12 @@
     @{ 
         foreach (Maklak.Models.DataSets.ModelDS.ExpanderDataRow row in model.ExpanderData)
         {
+            string contentClass = row.Opened ? "expanderSectionContentOpened" : "expanderSectionContent";
             <div class="expanderSectionPanel">
                 <div class="expanderSectionHeader">
                     @row.Name
                 </div>
-                <div class="expanderSectionContent">
+                <div class="@contentClass">
                     @Html.Action(row.Action, row.Controller)
                 </div>
             </div>            

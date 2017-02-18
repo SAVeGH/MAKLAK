@@ -1759,6 +1759,8 @@ namespace Maklak.Models.DataSets {
             
             private global::System.Data.DataColumn columnController;
             
+            private global::System.Data.DataColumn columnOpened;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ExpanderDataDataTable() {
@@ -1818,6 +1820,14 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OpenedColumn {
+                get {
+                    return this.columnOpened;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1853,12 +1863,13 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ExpanderDataRow AddExpanderDataRow(string Name, string Action, string Controller) {
+            public ExpanderDataRow AddExpanderDataRow(string Name, string Action, string Controller, bool Opened) {
                 ExpanderDataRow rowExpanderDataRow = ((ExpanderDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Name,
                         Action,
-                        Controller};
+                        Controller,
+                        Opened};
                 rowExpanderDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowExpanderDataRow);
                 return rowExpanderDataRow;
@@ -1884,6 +1895,7 @@ namespace Maklak.Models.DataSets {
                 this.columnName = base.Columns["Name"];
                 this.columnAction = base.Columns["Action"];
                 this.columnController = base.Columns["Controller"];
+                this.columnOpened = base.Columns["Opened"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1895,6 +1907,10 @@ namespace Maklak.Models.DataSets {
                 base.Columns.Add(this.columnAction);
                 this.columnController = new global::System.Data.DataColumn("Controller", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnController);
+                this.columnOpened = new global::System.Data.DataColumn("Opened", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOpened);
+                this.columnOpened.AllowDBNull = false;
+                this.columnOpened.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2720,6 +2736,17 @@ namespace Maklak.Models.DataSets {
                 }
                 set {
                     this[this.tableExpanderData.ControllerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Opened {
+                get {
+                    return ((bool)(this[this.tableExpanderData.OpenedColumn]));
+                }
+                set {
+                    this[this.tableExpanderData.OpenedColumn] = value;
                 }
             }
             

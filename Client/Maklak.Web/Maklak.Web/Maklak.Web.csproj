@@ -255,6 +255,7 @@
     <Content Include="Views\Tab\TabPanel.cshtml" />
     <Content Include="Views\Search\Control.cshtml" />
     <Content Include="Views\Search\Content.cshtml" />
+    <Content Include="Views\Search\ProductSection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

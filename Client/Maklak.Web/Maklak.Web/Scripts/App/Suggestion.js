@@ -76,9 +76,9 @@
 
         var suggestionKey = input.attr('suggestionKey');
         var valueEntered = input.val();        
-        
+        var sidValue = $("#SID").val();
 
-        var formValue = 'InputValue=' + valueEntered + '&suggestionKey=' + suggestionKey;
+        var formValue = 'InputValue=' + valueEntered + '&suggestionKey=' + suggestionKey + '&SID=' + sidValue;
         
         $.post(url, formValue, fillSuggestion);
 

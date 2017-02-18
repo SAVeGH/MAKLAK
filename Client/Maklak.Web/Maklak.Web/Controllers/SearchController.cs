@@ -29,22 +29,20 @@ namespace Maklak.Web.Controllers
 
         public ActionResult Content()
         {
-            
-
             return PartialView();
         }
 
-        public ActionResult Product()
+        public ActionResult ProductSection()
+        {
+            return PartialView();
+        }
+
+        public ActionResult PropertiesSection()
         {
             return new EmptyResult();
         }
 
-        public ActionResult Properties()
-        {
-            return new EmptyResult();
-        }
-
-        public ActionResult Tags()
+        public ActionResult TagsSection()
         {
             return new EmptyResult();
         }

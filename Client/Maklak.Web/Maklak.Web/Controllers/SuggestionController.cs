@@ -8,7 +8,7 @@ using Maklak.Models;
 
 namespace Maklak.Web.Controllers
 {
-    public class SuggestionController : Controller
+    public class SuggestionController : BaseController
     {        
 
         [HttpPost]
