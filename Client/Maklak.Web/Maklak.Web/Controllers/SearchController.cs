@@ -32,19 +32,19 @@ namespace Maklak.Web.Controllers
             return PartialView();
         }
 
-        public ActionResult ProductSection()
+        public ActionResult ProductEditSection()
         {
             return PartialView();
         }
 
-        public ActionResult PropertiesSection()
+        public ActionResult PropertiesEditSection()
         {
             return new EmptyResult();
         }
 
-        public ActionResult TagsSection()
+        public ActionResult TagsEditSection()
         {
-            return new EmptyResult();
+            return PartialView();
         }
 
 

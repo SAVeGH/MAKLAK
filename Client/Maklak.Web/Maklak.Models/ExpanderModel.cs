@@ -19,21 +19,22 @@ namespace Maklak.Models
         {
             ModelDS.ExpanderDataRow row = this.data.ExpanderData.NewExpanderDataRow();
             row.Name = "Product";
-            row.Action = "ProductSection";
+            row.Action = "ProductEditSection";
             row.Controller = "Search";
             row.Opened = true;
             this.data.ExpanderData.AddExpanderDataRow(row);
 
             row = this.data.ExpanderData.NewExpanderDataRow();
             row.Name = "Properties";
-            row.Action = "PropertiesSection";
+            row.Action = "PropertiesEditSection";
             row.Controller = "Search";
             this.data.ExpanderData.AddExpanderDataRow(row);
 
             row = this.data.ExpanderData.NewExpanderDataRow();
             row.Name = "Tags";
-            row.Action = "TagsSection";
+            row.Action = "TagsEditSection";
             row.Controller = "Search";
+            row.Opened = true;
             this.data.ExpanderData.AddExpanderDataRow(row);
 
             this.data.ExpanderData.AcceptChanges();
