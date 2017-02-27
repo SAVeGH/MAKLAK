@@ -74,24 +74,46 @@
 
         var url = GetURL() + '/Suggestion/MakeSuggestion';
 
-        var suggestionKey = input.attr('suggestionKey');
+        var suggestionKey = input.attr('data-suggestionKey');
+        
         var valueEntered = input.val();        
         var sidValue = $("#SID").val();
 
-        var formValue = 'InputValue=' + valueEntered + '&suggestionKey=' + suggestionKey + '&SID=' + sidValue;
+        var formValue = 'InputValue=' + valueEntered + '&SuggestionKey=' + suggestionKey + '&SID=' + sidValue;
         
         $.post(url, formValue, fillSuggestion);
 
 
     }    
 
-    Suggest.SetSuggestion = function (suggestionKey,suggestionValue) {
+    Suggest.SetSuggestion = function (itemId,suggestionValue) {
         
         
-        Suggest.currentInput.value = suggestionValue;        
-        
+        Suggest.currentInput.value = suggestionValue;
+
+        $(Suggest.currentInput).data("itemId", itemId);
         
         Suggest.HideSuggestion();
+
+        
+    }
+
+    Suggest.AddItem = function (inputId, suggestionKey) {
+
+        var inputElement = $('#' + inputId);
+        var itemId = inputElement.data('itemId');
+
+        inputElement.val('');
+        inputElement.data("itemId", 0);
+
+        var url = GetURL() + '/Suggestion/AddItem';
+
+        var sidValue = $("#SID").val();
+
+        var formValue = 'ItemId=' + itemId + '&SuggestionKey=' + suggestionKey + '&SID=' + sidValue;
+
+        $.post(url, formValue);
+
     }
 
     Suggest.defScroll = function () {

@@ -24,5 +24,6 @@ namespace Maklak.Models
         public Dictionary<int, string> SuggestionValues { get { return suggestionValues; } }
         public SuggestionModelHelper.SuggestionKeys SuggestionKey { get; set; }
         public string InputValue { get; set; }
+        public int ItemId { get; set; }
     }
 }

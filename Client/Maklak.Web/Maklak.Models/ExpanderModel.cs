@@ -32,7 +32,7 @@ namespace Maklak.Models
 
             row = this.data.ExpanderData.NewExpanderDataRow();
             row.Name = "Tags";
-            row.Action = "TagsEditSection";
+            row.Action = "TagsSelectSection";
             row.Controller = "Search";
             row.Opened = true;
             this.data.ExpanderData.AddExpanderDataRow(row);

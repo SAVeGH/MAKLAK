@@ -23,6 +23,13 @@ namespace Maklak.Web.Controllers
             return PartialView("MakeSuggestion", model);
         }
 
-        
+        [HttpPost]
+        public ActionResult AddItem(SuggestionModel model)
+        {
+
+            return new EmptyResult();
+        }
+
+
     }
 }

@@ -1,5 +1,10 @@
 ﻿@using Maklak.Models
 
+@{ 
+
+    string inputId = "TagInput";
+    string suggestionKey = SuggestionModelHelper.SuggestionKeys.TAG.ToString();
+}
 <style>
     .simpleTable{
         border-collapse: collapse;
@@ -10,15 +15,15 @@
     }
 </style>
 <div style="margin-bottom:3px;">
-    <div style="margin:2px"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.TAG, "TagInput", "Tag Name")</div>
+    <div style="margin:2px"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.TAG, inputId, "Tag Name")</div>
     
-    <input type="button" value="Add" style="margin:2px" />
+    <input type="button" value="Add" style="margin:2px" onclick="Suggest.AddItem('@inputId','@suggestionKey')" />
 
     <div  style="margin:4px;position:relative;right:0px;left:0px;">
         <table class="simpleTable">
             <tr >
                 <td class="simpleTableCell">TAG</td>
-                <td class="simpleTableCell">1</td>
+                <td class="simpleTableCell">&nbsp;</td>
             </tr>
         </table>
     </div>

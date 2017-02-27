@@ -42,7 +42,7 @@ namespace Maklak.Web.Controllers
             return new EmptyResult();
         }
 
-        public ActionResult TagsEditSection()
+        public ActionResult TagsSelectSection()
         {
             return PartialView();
         }

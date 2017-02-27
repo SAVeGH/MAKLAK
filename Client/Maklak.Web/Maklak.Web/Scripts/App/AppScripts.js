@@ -42,3 +42,4 @@ function GetURL() {
 
     return urlLocation;
 }
+

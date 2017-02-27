@@ -52,11 +52,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSets\SearchDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SearchDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ExpanderModel.cs" />
     <Compile Include="Helpers\ModelHelper.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />
@@ -81,17 +76,6 @@
     </None>
     <None Include="DataSets\ModelDS.xss">
       <DependentUpon>ModelDS.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\SearchDS.xsc">
-      <DependentUpon>SearchDS.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\SearchDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SearchDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSets\SearchDS.xss">
-      <DependentUpon>SearchDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -256,7 +256,7 @@
     <Content Include="Views\Search\Control.cshtml" />
     <Content Include="Views\Search\Content.cshtml" />
     <Content Include="Views\Search\ProductEditSection.cshtml" />
-    <Content Include="Views\Search\TagsEditSection.cshtml" />
+    <Content Include="Views\Search\TagsSelectSection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
