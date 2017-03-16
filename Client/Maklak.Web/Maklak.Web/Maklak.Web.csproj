@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App\ExpanderStyles.css" />
+    <Content Include="Content\App\FractalStyles.css" />
     <Content Include="Content\App\SearchStyles.css" />
     <Content Include="Content\App\SuggestionStyle.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -217,6 +218,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ControllerFactory\BaseControllerFactory.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FractalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SuggestionController.cs" />
@@ -257,6 +259,7 @@
     <Content Include="Views\Search\Content.cshtml" />
     <Content Include="Views\Search\ProductEditSection.cshtml" />
     <Content Include="Views\Search\TagsSelectSection.cshtml" />
+    <Content Include="Views\Fractal\FractalPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

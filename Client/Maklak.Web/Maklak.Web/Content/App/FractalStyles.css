@@ -1,0 +1,51 @@
+﻿.TabShield 
+{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    margin:5px;
+    background-color:lightyellow; 
+}
+
+.leftTabPanel
+{
+    background-color:lightyellow;    
+    left:0px;
+    top:0px;
+    right:0px; 
+    bottom:0px;
+    position: absolute; 
+}
+
+.topTabPanel
+{
+    background-color:lightyellow;    
+    left:0px;
+    top:0px;
+    right:0px; 
+    bottom:0px;
+    position: absolute; 
+}
+
+.leftMainControl 
+{
+    background-color:lightyellow;
+    width:360px;     
+    top:0px;
+    bottom:0px;
+    
+    position: absolute; 
+}
+
+.leftMainContent {
+    background-color:lightyellow; 
+    left:360px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    /*margin-left:1px;*/
+    position: absolute; 
+    
+}

@@ -17,10 +17,10 @@ namespace Maklak.Web.Controllers
         // GET: /Tab/       
         
 
-        public ActionResult TabPanel(TabPanelModel model)
-        {            
-            return PartialView("TabPanel", model);
-        }
+        //public ActionResult TabPanel(TabPanelModel model)
+        //{            
+        //    return PartialView("TabPanel", model);
+        //}
 
         public ActionResult TabStrip([ModelBinder(typeof(TabModelBinder))]   TabStripModel model)
         {            
