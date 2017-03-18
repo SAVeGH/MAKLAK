@@ -9,7 +9,7 @@
     background-color:lightyellow; 
 }
 
-.leftTabPanel
+.leftFractalPanel
 {
     background-color:lightyellow;    
     left:0px;
@@ -19,7 +19,7 @@
     position: absolute; 
 }
 
-.topTabPanel
+.topFractalPanel
 {
     background-color:lightyellow;    
     left:0px;
@@ -27,6 +27,53 @@
     right:0px; 
     bottom:0px;
     position: absolute; 
+}
+
+.topControlArea 
+{
+    background-color:lightyellow;
+    height:35px;     
+    top:0px;
+    left:0px;
+    right:0px;    
+    
+    position: absolute; 
+}
+
+.leftControlArea 
+{
+    background-color:lightyellow;
+    width:180px;     
+    top:0px;
+    bottom:0px;
+    
+    position: absolute; 
+}
+
+.topContentArea {
+    background-color:lightblue; 
+    left:0px;
+    top:35px;
+    right:0px;
+    bottom:0px;
+    /*margin-top:1px;*/
+    border-bottom:1px solid black;
+    border-right:1px solid black;
+    position: absolute; 
+    
+}
+
+
+
+.leftContentArea {
+    background-color:lightyellow; 
+    left:180px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    /*margin-left:1px;*/
+    position: absolute; 
+    
 }
 
 .leftMainControl 

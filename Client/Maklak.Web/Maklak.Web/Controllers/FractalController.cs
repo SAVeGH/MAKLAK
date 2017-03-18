@@ -16,6 +16,7 @@ namespace Maklak.Web.Controllers
     {
         public ActionResult FractalPanel(FractalModel model)
         {
+            //bool isR = model.IsRoot;
             return PartialView("FractalPanel", model);
         }
 

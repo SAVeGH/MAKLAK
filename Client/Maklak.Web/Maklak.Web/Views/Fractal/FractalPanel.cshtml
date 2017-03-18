@@ -14,29 +14,14 @@
     string tabPanelID = string.Format("TabPanel_{0}", tabPanelKey);
     string tabPanelRecursiveAction = this.Model.Action;
     string tabPanelRecursiveController = this.Model.Controller;
+    
 
-
-    //switch (this.Model.DokPosition)
-    //{
-    //    case Maklak.Models.TabPanelModel.DOKPOSITION.LEFT:
-    //        classPrefix = "left";
-    //        break;
-    //    case Maklak.Models.TabPanelModel.DOKPOSITION.TOP:
-    //        classPrefix = "top";
-    //        break;
-    //    case Maklak.Models.TabPanelModel.DOKPOSITION.RIGHT:
-    //        classPrefix = "right";
-    //        break;
-    //    case Maklak.Models.TabPanelModel.DOKPOSITION.BOTTOM:
-    //        classPrefix = "bottom";
-    //        break;
-    //}
-
-    panelClass = string.Format("{0}TabPanel", this.Model.ClassPrefix);
-    stripClass = this.Model.ControlClass;//string.Format("{0}StripArea", classPrefix);
-    contentClass = this.Model.ContentClass;//string.Format("{0}ContentArea", classPrefix);
+    panelClass = string.Format("{0}FractalPanel", this.Model.ClassPrefix);
+    stripClass = this.Model.ControlClass;
+    contentClass = this.Model.ContentClass;
 
     bool hasChildPanel = this.Model.HasChildPanel;
+    bool isFractalRoot = this.Model.IsRoot;
     RouteValueDictionary routPanelValues = new RouteValueDictionary();
     routPanelValues.Add("Key", nextTabPanelKey); /*меняется ключ и следующая TabPanel модель привязывается к дочернему ключу*/
 
@@ -45,6 +30,8 @@
 
 
 }
+
+@if (isFractalRoot){ @Html.Raw("<div class=\"TabShield\">"); }
 
 <div id="@tabPanelID" class="@panelClass">
 
@@ -104,4 +91,4 @@
 </div>
 
 
-
+@if (isFractalRoot){ @Html.Raw("</div>"); }

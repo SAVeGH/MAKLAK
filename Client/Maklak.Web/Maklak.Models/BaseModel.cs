@@ -131,7 +131,7 @@ namespace Maklak.Models
 
 
             data.SiteMap.AddSiteMapRow(row);
-
+            // рекурсивное заполнение по дочерним узлам
             foreach (ISiteMapNode childNode in node.ChildNodes)
             {
                 InitSiteMap(childNode, row);

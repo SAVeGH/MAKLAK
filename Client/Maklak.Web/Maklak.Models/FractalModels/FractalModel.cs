@@ -164,7 +164,7 @@ namespace Maklak.Models
             {
                 DataSets.ModelDS.TabDataRow keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
 
-                return data.TabData.Count(r => !r.IsParent_IdNull() && r.Parent_Id == keyRow.Id) > 0;
+                return data.TabData.Any(r => !r.IsParent_IdNull() && r.Parent_Id == keyRow.Id);
             }
         }
 
@@ -224,14 +224,7 @@ namespace Maklak.Models
         {
             get
             {
-                string classBody = "StripArea";
-
-                switch (this.Key)
-                {
-                    case "SEARCH_CONTENT":
-                        classBody = "MainControl";
-                        break;
-                }
+                string classBody = this.IsLeaf ? "MainControl" : "ControlArea";                
 
                 return classBody;
             }
@@ -241,14 +234,7 @@ namespace Maklak.Models
         {
             get
             {
-                string classBody = "ContentArea";
-
-                switch (this.Key)
-                {
-                    case "SEARCH_CONTENT":
-                        classBody = "MainContent";
-                        break;
-                }
+                string classBody = this.IsLeaf ? "MainContent" : "ContentArea";                
 
                 return classBody;
             }
@@ -271,6 +257,30 @@ namespace Maklak.Models
                 string contentClass = string.Format("{0}{1}", this.ClassPrefix, this.ContentClassBody);
                 return contentClass;
 
+            }
+        }
+
+        public bool IsRoot
+        {
+            get
+            {
+                // узел у которого заполнено поле RecursiveController
+                //DataSets.ModelDS.SiteMapRow keyRow = this.data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
+                //DataSets.ModelDS.SiteMapRow parentRow = this.data.SiteMap.Where(r => !r.IsRecursiveControllerNull() && r.Key == this.TabPanelKey).FirstOrDefault();
+                return this.data.SiteMap.Where(r => !r.IsRecursiveControllerNull() && r.Key == this.TabPanelKey).Any();
+                //return parentRow != null;
+            }
+        }
+
+        public bool IsLeaf
+        {
+            get
+            {
+                // узлы не имеющие дочерних узлов
+                int rowId = this.data.SiteMap.Where(r => r.Key == this.Key).Select(rs => rs.Id).FirstOrDefault();
+                return !this.data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rowId).Any();
+
+                //return HasChildPanel;
             }
         }
     }

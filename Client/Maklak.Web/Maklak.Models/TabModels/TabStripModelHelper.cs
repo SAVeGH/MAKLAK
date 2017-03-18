@@ -105,7 +105,8 @@ namespace Maklak.Models
         {
             ModelDS data = SessionHelper.GetModel(sID);
 
-            ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == TabModelType.CATEGORY.ToString()).FirstOrDefault();
+            //ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == TabModelType.CATEGORY.ToString()).FirstOrDefault();
+            ModelDS.SiteMapRow row = data.SiteMap.Where(r => !r.IsRecursiveControllerNull()).FirstOrDefault();
 
             return row;
         }
