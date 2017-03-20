@@ -264,11 +264,8 @@ namespace Maklak.Models
         {
             get
             {
-                // узел у которого заполнено поле RecursiveController
-                //DataSets.ModelDS.SiteMapRow keyRow = this.data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
-                //DataSets.ModelDS.SiteMapRow parentRow = this.data.SiteMap.Where(r => !r.IsRecursiveControllerNull() && r.Key == this.TabPanelKey).FirstOrDefault();
-                return this.data.SiteMap.Where(r => !r.IsRecursiveControllerNull() && r.Key == this.TabPanelKey).Any();
-                //return parentRow != null;
+                // узел у которого заполнено поле RecursiveController                
+                return this.data.SiteMap.Where(r => !r.IsRecursiveControllerNull() && r.Key == this.TabPanelKey).Any();                
             }
         }
 
@@ -278,9 +275,7 @@ namespace Maklak.Models
             {
                 // узлы не имеющие дочерних узлов
                 int rowId = this.data.SiteMap.Where(r => r.Key == this.Key).Select(rs => rs.Id).FirstOrDefault();
-                return !this.data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rowId).Any();
-
-                //return HasChildPanel;
+                return !this.data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rowId).Any();                
             }
         }
     }

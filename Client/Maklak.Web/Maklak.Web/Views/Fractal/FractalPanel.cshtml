@@ -5,7 +5,7 @@
     string stripClass = string.Empty;
     string contentClass = string.Empty;
     string classPrefix = string.Empty;
-
+    string placeHolderClass = string.Empty;
 
     string tabPanelKey = this.Model.TabPanelKey;
     string tabStripId = string.Format("TabStrip_{0}", tabPanelKey);
@@ -14,9 +14,10 @@
     string tabPanelID = string.Format("TabPanel_{0}", tabPanelKey);
     string tabPanelRecursiveAction = this.Model.Action;
     string tabPanelRecursiveController = this.Model.Controller;
-    
+
 
     panelClass = string.Format("{0}FractalPanel", this.Model.ClassPrefix);
+    placeHolderClass = this.Model.IsRoot ? "FractalRootPlaceHolder" : "FractalPlaceHolder";
     stripClass = this.Model.ControlClass;
     contentClass = this.Model.ContentClass;
 
@@ -31,64 +32,66 @@
 
 }
 
-@if (isFractalRoot){ @Html.Raw("<div class=\"TabShield\">"); }
+@*@if (isFractalRoot){ @Html.Raw("<div class=\"TabShield\">"); }*@
 
-<div id="@tabPanelID" class="@panelClass">
+<div class="@placeHolderClass" id="@tabPanelID">
 
-    <div class="@stripClass">
-        @{
-            using (Ajax.BeginForm(tabPanelRecursiveAction, // запрос уходит на TabPanel
-                  null,
-                  new AjaxOptions()
-                  {
-                      HttpMethod = "POST",
-                      InsertionMode = InsertionMode.Replace,
-                      UpdateTargetId = tabPanelID // id обновляемого элемента
-                                                  //,
-                                                  //OnComplete = callbackEvent
+    <div  class="@panelClass">
+
+        <div class="@stripClass">
+            @{
+                using (Ajax.BeginForm(tabPanelRecursiveAction, // запрос уходит на TabPanel
+                      null,
+                      new AjaxOptions()
+                      {
+                          HttpMethod = "POST",
+                          InsertionMode = InsertionMode.Replace,
+                          UpdateTargetId = tabPanelID // id обновляемого элемента
+                                                      //,
+                                                      //OnComplete = callbackEvent
                   },
-                  new { id = tabStripId }))
-            {
-                @*Strip*@
-                @Html.Action(this.Model.ControlAction, this.Model.ControlController, routStripValues)
-
-                @Html.HiddenFor(m => m.SID)
-            }
-        }
-    </div>
-    <div class="@contentClass">
-        @*Content*@
-        @{
-            if (hasChildPanel)
-            {
-                //Рекурсивное отображение вложенных TabPanel-ов
-                Html.RenderAction(tabPanelRecursiveAction, tabPanelRecursiveController, routPanelValues);
-            }
-            else
-            {
-                // Отображение формы для содержимого последнего TabPanel-a
-                using (Ajax.BeginForm(this.Model.ContentAction, this.Model.ContentController,
-                          null,
-                          new AjaxOptions()
-                          {
-                              HttpMethod = "POST",
-                              InsertionMode = InsertionMode.Replace,
-                              UpdateTargetId = contentFormId // id обновляемого элемента
-                                                             //,
-                                                             //OnComplete = callbackEvent
-                          },
-                          new { id = contentFormId }))
+                      new { id = tabStripId }))
                 {
-                    @*Отображение содержимого*@
-                    @Html.Action(this.Model.ContentAction, this.Model.ContentController)
+                    @*Strip*@
+                    @Html.Action(this.Model.ControlAction, this.Model.ControlController, routStripValues)
 
                     @Html.HiddenFor(m => m.SID)
                 }
             }
+        </div>
+        <div class="@contentClass">
+            @*Content*@
+            @{
+                if (hasChildPanel)
+                {
+                    //Рекурсивное отображение вложенных TabPanel-ов
+                    Html.RenderAction(tabPanelRecursiveAction, tabPanelRecursiveController, routPanelValues);
+                }
+                else
+                {
+                    // Отображение формы для содержимого последнего TabPanel-a
+                    using (Ajax.BeginForm(this.Model.ContentAction, this.Model.ContentController,
+                              null,
+                              new AjaxOptions()
+                              {
+                                  HttpMethod = "POST",
+                                  InsertionMode = InsertionMode.Replace,
+                                  UpdateTargetId = contentFormId // id обновляемого элемента
+                                                                 //,
+                                                                 //OnComplete = callbackEvent
+                          },
+                              new { id = contentFormId }))
+                    {
+                        @*Отображение содержимого*@
+                        @Html.Action(this.Model.ContentAction, this.Model.ContentController)
 
-        }
+                        @Html.HiddenFor(m => m.SID)
+                    }
+                }
+
+            }
+        </div>
     </div>
+
 </div>
-
-
-@if (isFractalRoot){ @Html.Raw("</div>"); }
+    @*@if (isFractalRoot){ @Html.Raw("</div>"); }*@
