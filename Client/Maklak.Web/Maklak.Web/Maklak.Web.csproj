@@ -254,7 +254,6 @@
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Suggestion\MakeSuggestion.cshtml" />
-    <Content Include="Views\Tab\TabPanel.cshtml" />
     <Content Include="Views\Search\Control.cshtml" />
     <Content Include="Views\Search\Content.cshtml" />
     <Content Include="Views\Search\ProductEditSection.cshtml" />

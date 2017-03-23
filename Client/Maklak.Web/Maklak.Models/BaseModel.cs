@@ -40,7 +40,7 @@ namespace Maklak.Models
             if (data == null)
                 return false;
 
-            if (data.Identity.Count == 0 || data.SiteMap.Count == 0 || data.TabData.Count == 0)
+            if (data.Identity.Count == 0 || data.SiteMap.Count == 0 || data.FractalData.Count == 0)
                 return false;
 
             return true;
@@ -58,7 +58,7 @@ namespace Maklak.Models
 
            InitSiteMap();
 
-           InitTabData();
+           InitFractalData();
 
            SessionHelper.SetModel(data);
             
@@ -138,16 +138,16 @@ namespace Maklak.Models
             }
         }
 
-        private void InitTabData()
+        private void InitFractalData()
         {
-            InitTabData(null, null, null);
+            InitFractalData(null, null, null);
 
-            data.TabData.AcceptChanges();
+            data.FractalData.AcceptChanges();
         }
 
-        private void InitTabData(ModelDS.SiteMapRow mapRow, ModelDS.SiteMapRow parentMapRow, ModelDS.TabDataRow parentRow)
+        private void InitFractalData(ModelDS.SiteMapRow mapRow, ModelDS.SiteMapRow parentMapRow, ModelDS.FractalDataRow parentRow)
         {
-            ModelDS.TabDataRow tabRow = data.TabData.NewTabDataRow();
+            ModelDS.FractalDataRow tabRow = data.FractalData.NewFractalDataRow();
 
             if (mapRow == null)
             {
@@ -167,11 +167,11 @@ namespace Maklak.Models
             if(!mapRow.IsDokPositionNull())
                 tabRow.DokPosition = mapRow.DokPosition;
 
-            data.TabData.AddTabDataRow(tabRow);
+            data.FractalData.AddFractalDataRow(tabRow);
 
             foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
             {
-                InitTabData(row, mapRow, tabRow);
+                InitFractalData(row, mapRow, tabRow);
             }
         }
 

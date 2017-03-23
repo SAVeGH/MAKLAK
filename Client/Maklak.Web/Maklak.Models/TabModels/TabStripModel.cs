@@ -26,14 +26,14 @@ namespace Maklak.Models
 
         
 
-        public ModelDS.TabDataDataTable StripData
+        public ModelDS.FractalDataDataTable StripData
         {
             get
             {
-                int parentId = data.TabData.Where(pr => pr.Key == Key).Select(prs => prs.Id).FirstOrDefault();
+                int parentId = data.FractalData.Where(pr => pr.Key == Key).Select(prs => prs.Id).FirstOrDefault();
 
-                ModelDS.TabDataDataTable dataTable = new ModelDS.TabDataDataTable();
-                List<ModelDS.TabDataRow> rows = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == parentId).ToList();
+                ModelDS.FractalDataDataTable dataTable = new ModelDS.FractalDataDataTable();
+                List<ModelDS.FractalDataRow> rows = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == parentId).ToList();
                 rows.ForEach(r => dataTable.ImportRow(r));
                 dataTable.AcceptChanges();
                 return dataTable;
@@ -50,7 +50,7 @@ namespace Maklak.Models
 
         protected override bool IsModelInitialized()
         {
-            return base.IsModelInitialized() && data.TabData.Count > 0;
+            return base.IsModelInitialized() && data.FractalData.Count > 0;
         }
 
         public string TabPanelID
@@ -114,7 +114,7 @@ namespace Maklak.Models
 
     public class TabRowModel 
     {
-        public ModelDS.TabDataRow Row { get; set; }
+        public ModelDS.FractalDataRow Row { get; set; }
     }
 
     

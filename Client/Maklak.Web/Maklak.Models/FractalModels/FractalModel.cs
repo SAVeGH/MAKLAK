@@ -24,11 +24,11 @@ namespace Maklak.Models
 
         private string DefaultKey()
         {
-            DataSets.ModelDS.TabDataRow rootRow = data.TabData.Where(r => r.IsParent_IdNull()).FirstOrDefault();
-            DataSets.ModelDS.TabDataRow keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.Active).FirstOrDefault();
+            DataSets.ModelDS.FractalDataRow rootRow = data.FractalData.Where(r => r.IsParent_IdNull()).FirstOrDefault();
+            DataSets.ModelDS.FractalDataRow keyRow = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.Active).FirstOrDefault();
 
             if (keyRow == null)
-                keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.IsDefault).FirstOrDefault();
+                keyRow = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.IsDefault).FirstOrDefault();
 
             if (keyRow == null)
                 return string.Empty;
@@ -46,7 +46,7 @@ namespace Maklak.Models
                 if (string.IsNullOrEmpty(TabPanelKey))
                     return DOKPOSITION.LEFT;
 
-                DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();
+                DataSets.ModelDS.FractalDataRow row = data.FractalData.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();
 
                 if (row == null)
                     return DOKPOSITION.LEFT; // для CATEGORY
@@ -72,13 +72,13 @@ namespace Maklak.Models
 
         private void SetActiveKey()
         {
-            DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == this.Key).FirstOrDefault();
+            DataSets.ModelDS.FractalDataRow row = data.FractalData.Where(r => r.Key == this.Key).FirstOrDefault();
 
             if (row == null)
                 return;
 
 
-            DataSets.ModelDS.TabDataRow activeRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == row.Parent_Id && r.Active).FirstOrDefault();
+            DataSets.ModelDS.FractalDataRow activeRow = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == row.Parent_Id && r.Active).FirstOrDefault();
 
             if (activeRow != null)
                 activeRow.Active = false;
@@ -92,12 +92,12 @@ namespace Maklak.Models
         {
             get
             {
-                DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
+                DataSets.ModelDS.FractalDataRow row = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
 
-                DataSets.ModelDS.TabDataRow parentRow = data.TabData.Where(r => r.Id == row.Parent_Id).FirstOrDefault();
+                DataSets.ModelDS.FractalDataRow parentRow = data.FractalData.Where(r => r.Id == row.Parent_Id).FirstOrDefault();
 
                 if (parentRow == null)
                     return string.Empty;
@@ -162,9 +162,9 @@ namespace Maklak.Models
         {
             get
             {
-                DataSets.ModelDS.TabDataRow keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
+                DataSets.ModelDS.FractalDataRow keyRow = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Key == this.Key).FirstOrDefault();
 
-                return data.TabData.Any(r => !r.IsParent_IdNull() && r.Parent_Id == keyRow.Id);
+                return data.FractalData.Any(r => !r.IsParent_IdNull() && r.Parent_Id == keyRow.Id);
             }
         }
 
@@ -172,7 +172,7 @@ namespace Maklak.Models
         {
             get
             {
-                DataSets.ModelDS.TabDataRow keyRow = ChildDataRow();
+                DataSets.ModelDS.FractalDataRow keyRow = ChildDataRow();
 
                 if (keyRow == null)
                     return string.Empty;
@@ -181,15 +181,15 @@ namespace Maklak.Models
             }
         }
 
-        private DataSets.ModelDS.TabDataRow ChildDataRow()
+        private DataSets.ModelDS.FractalDataRow ChildDataRow()
         {
-            DataSets.ModelDS.TabDataRow row = data.TabData.Where(r => r.Key == Key).FirstOrDefault();
+            DataSets.ModelDS.FractalDataRow row = data.FractalData.Where(r => r.Key == Key).FirstOrDefault();
             // сначала ищем активную модель
-            DataSets.ModelDS.TabDataRow keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == row.Id && r.Active).FirstOrDefault();
+            DataSets.ModelDS.FractalDataRow keyRow = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == row.Id && r.Active).FirstOrDefault();
 
             // если не нашли - берём модель по умолчанию
             if (keyRow == null)
-                keyRow = data.TabData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == row.Id && r.IsDefault).FirstOrDefault();
+                keyRow = data.FractalData.Where(r => !r.IsParent_IdNull() && r.Parent_Id == row.Id && r.IsDefault).FirstOrDefault();
 
             return keyRow;
         }
