@@ -10,6 +10,11 @@ namespace Maklak.Models
     {
         public enum DOKPOSITION { LEFT, TOP, RIGHT, BOTTOM };
 
+        // данные параметры не меняются при рекурсивных запросах
+        private const string FRACTAL_CONTROLLER = "Fractal";
+        private const string FRACTAL_CONTROL_ACTION = "FractalControl";
+        private const string FRACTAL_CONTENT_ACTION = "FractalContent";
+
         private string key;
 
         public FractalModel()
@@ -43,10 +48,10 @@ namespace Maklak.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(TabPanelKey))
+                if (string.IsNullOrEmpty(FractalPanelKey))
                     return DOKPOSITION.LEFT;
 
-                DataSets.ModelDS.FractalDataRow row = data.FractalData.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();
+                DataSets.ModelDS.FractalDataRow row = data.FractalData.Where(r => r.Key == this.FractalPanelKey).FirstOrDefault();
 
                 if (row == null)
                     return DOKPOSITION.LEFT; // для CATEGORY
@@ -87,8 +92,8 @@ namespace Maklak.Models
 
         }
 
-        // ключ определяющий положение TabPanel совпадает с ключом модели для TabStrip
-        public string TabPanelKey
+        // ключ определяющий положение FractalPanel совпадает с ключом модели для Control
+        public string FractalPanelKey
         {
             get
             {
@@ -110,7 +115,7 @@ namespace Maklak.Models
         {
             get
             {
-                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();
+                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.FractalPanelKey).FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
@@ -123,7 +128,7 @@ namespace Maklak.Models
         {
             get
             {
-                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.TabPanelKey).FirstOrDefault();
+                DataSets.ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == this.FractalPanelKey).FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
@@ -168,7 +173,7 @@ namespace Maklak.Models
             }
         }
 
-        public string NextTabPanelKey
+        public string NextFractalPanelKey
         {
             get
             {
@@ -265,7 +270,7 @@ namespace Maklak.Models
             get
             {
                 // узел у которого заполнено поле RecursiveController                
-                return this.data.SiteMap.Where(r => !r.IsRecursiveControllerNull() && r.Key == this.TabPanelKey).Any();                
+                return this.data.SiteMap.Where(r => !r.IsRecursiveControllerNull() && r.Key == this.FractalPanelKey).Any();                
             }
         }
 
@@ -277,6 +282,21 @@ namespace Maklak.Models
                 int rowId = this.data.SiteMap.Where(r => r.Key == this.Key).Select(rs => rs.Id).FirstOrDefault();
                 return !this.data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rowId).Any();                
             }
+        }
+
+        public string FractalController
+        {
+            get { return FRACTAL_CONTROLLER; }
+        }
+
+        public string FractalControlAction
+        {
+            get { return FRACTAL_CONTROL_ACTION; }
+        }
+
+        public string FractalContentAction
+        {
+            get { return FRACTAL_CONTENT_ACTION; }
         }
     }
 }

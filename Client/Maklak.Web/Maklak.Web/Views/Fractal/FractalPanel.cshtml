@@ -2,91 +2,61 @@
 
 @{
     string panelClass = string.Empty;
-    string stripClass = string.Empty;
-    string contentClass = string.Empty;
-    string classPrefix = string.Empty;
+    string controlClass = string.Empty;
+    string contentClass = string.Empty;    
     string placeHolderClass = string.Empty;
 
-    string tabPanelKey = this.Model.TabPanelKey;
-    string tabStripId = string.Format("TabStrip_{0}", tabPanelKey);
-    string contentFormId = "mainForm";
-    string nextTabPanelKey = this.Model.NextTabPanelKey;
-    string tabPanelID = string.Format("TabPanel_{0}", tabPanelKey);
-    string tabPanelRecursiveAction = this.Model.Action;
-    string tabPanelRecursiveController = this.Model.Controller;
+    string fractalPanelKey = this.Model.FractalPanelKey;    
+    string nextFractalPanelKey = this.Model.NextFractalPanelKey;
+
+    string controlFormTargetID = string.Format("FractalPanel_{0}", fractalPanelKey);
+
+    string fractalPanelRecursiveAction = this.Model.Action;
+    string fractalPanelRecursiveController = this.Model.Controller;
 
 
     panelClass = string.Format("{0}FractalPanel", this.Model.ClassPrefix);
     placeHolderClass = this.Model.IsRoot ? "FractalRootPlaceHolder" : "FractalPlaceHolder";
-    stripClass = this.Model.ControlClass;
+    controlClass = this.Model.ControlClass;
     contentClass = this.Model.ContentClass;
 
     bool hasChildPanel = this.Model.HasChildPanel;
-    bool isFractalRoot = this.Model.IsRoot;
+    
     RouteValueDictionary routPanelValues = new RouteValueDictionary();
-    routPanelValues.Add("Key", nextTabPanelKey); /*меняется ключ и следующая TabPanel модель привязывается к дочернему ключу*/
-
-    RouteValueDictionary routStripValues = new RouteValueDictionary();
-    routStripValues.Add("Key", tabPanelKey); /* название модели для TabStrip совпадает с ключом текущей модели*/
-
+    routPanelValues.Add("Key", nextFractalPanelKey); /*меняется ключ и следующая FractalPanel модель привязывается к дочернему ключу*/
 
 }
 
-@*@if (isFractalRoot){ @Html.Raw("<div class=\"TabShield\">"); }*@
 
-<div class="@placeHolderClass" id="@tabPanelID">
+
+<div class="@placeHolderClass" id="@controlFormTargetID">
 
     <div  class="@panelClass">
 
-        <div class="@stripClass">
-            @{
-                using (Ajax.BeginForm(tabPanelRecursiveAction, // запрос уходит на TabPanel
-                      null,
-                      new AjaxOptions()
-                      {
-                          HttpMethod = "POST",
-                          InsertionMode = InsertionMode.Replace,
-                          UpdateTargetId = tabPanelID // id обновляемого элемента
-                                                      //,
-                                                      //OnComplete = callbackEvent
-                  },
-                      new { id = tabStripId }))
-                {
-                    @*Strip*@
-                    @Html.Action(this.Model.ControlAction, this.Model.ControlController, routStripValues)
+        <div class="@controlClass">
 
-                    @Html.HiddenFor(m => m.SID)
-                }
-            }
+            @*Control*@                     
+
+            @* Отображение контрола для FractalPanel-a*@
+            @Html.Action(this.Model.FractalControlAction, this.Model.FractalController,  this.Model)
+            
+            
         </div>
         <div class="@contentClass">
+
             @*Content*@
+
             @{
                 if (hasChildPanel)
                 {
-                    //Рекурсивное отображение вложенных TabPanel-ов
-                    Html.RenderAction(tabPanelRecursiveAction, tabPanelRecursiveController, routPanelValues);
+                    // Рекурсивное отображение вложенных FractalPanel-ов
+                    Html.RenderAction(fractalPanelRecursiveAction, fractalPanelRecursiveController, routPanelValues);
                 }
                 else
                 {
-                    // Отображение формы для содержимого последнего TabPanel-a
-                    using (Ajax.BeginForm(this.Model.ContentAction, this.Model.ContentController,
-                              null,
-                              new AjaxOptions()
-                              {
-                                  HttpMethod = "POST",
-                                  InsertionMode = InsertionMode.Replace,
-                                  UpdateTargetId = contentFormId // id обновляемого элемента
-                                                                 //,
-                                                                 //OnComplete = callbackEvent
-                          },
-                              new { id = contentFormId }))
-                    {
-                        @*Отображение содержимого*@
-                        @Html.Action(this.Model.ContentAction, this.Model.ContentController)
-
-                        @Html.HiddenFor(m => m.SID)
-                    }
+                    // Отображение формы для содержимого последнего FractalPanel-a
+                    Html.RenderAction(this.Model.FractalContentAction, this.Model.FractalController, this.Model);                    
+                    
                 }
 
             }
@@ -94,4 +64,4 @@
     </div>
 
 </div>
-    @*@if (isFractalRoot){ @Html.Raw("</div>"); }*@
+    

@@ -15,10 +15,18 @@ namespace Maklak.Web.Controllers
     public class FractalController : BaseController
     {
         public ActionResult FractalPanel(FractalModel model)
-        {
-            //bool isR = model.IsRoot;
+        {            
             return PartialView("FractalPanel", model);
         }
 
+        public ActionResult FractalControl(FractalModel model)
+        {
+            return PartialView("FractalControl", model);
+        }
+
+        public ActionResult FractalContent(FractalModel model)
+        {
+            return PartialView("FractalContent", model);
+        }
     }
 }

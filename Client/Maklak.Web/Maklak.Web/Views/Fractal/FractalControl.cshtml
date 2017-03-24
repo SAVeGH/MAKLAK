@@ -1,0 +1,31 @@
+﻿@model Maklak.Models.FractalModel
+
+@{
+
+    string fractalPanelKey = this.Model.FractalPanelKey;
+    string controlFormId = string.Format("Control_{0}", fractalPanelKey);
+
+    string controlFormTargetID = string.Format("FractalPanel_{0}", fractalPanelKey);
+    string fractalPanelRecursiveAction = this.Model.Action;
+
+    RouteValueDictionary routControlValues = new RouteValueDictionary();
+    routControlValues.Add("Key", fractalPanelKey); /* название модели для Control совпадает с ключом текущей модели*/
+
+    using (Ajax.BeginForm(fractalPanelRecursiveAction, // запрос уходит на FractalPanel
+                          null,
+                          new AjaxOptions()
+                          {
+                              HttpMethod = "POST",
+                              InsertionMode = InsertionMode.Replace,
+                              UpdateTargetId = controlFormTargetID // id обновляемого элемента
+                                                                   //,
+                                                                   //OnComplete = callbackEvent
+                                  },
+                          new { id = controlFormId }))
+    {
+        @*Control*@
+        @Html.Action(this.Model.ControlAction, this.Model.ControlController, routControlValues)
+
+        @Html.HiddenFor(m => m.SID)
+    }
+}

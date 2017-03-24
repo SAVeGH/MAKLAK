@@ -1,0 +1,25 @@
+﻿@model Maklak.Models.FractalModel
+
+@{
+    string contentFormId = "mainForm";
+
+    // Отображение формы для содержимого последнего FractalPanel-a
+    using (Ajax.BeginForm(this.Model.ContentAction, this.Model.ContentController,
+              null,
+              new AjaxOptions()
+              {
+                  HttpMethod = "POST",
+                  InsertionMode = InsertionMode.Replace,
+                  UpdateTargetId = contentFormId // id обновляемого элемента
+                                                 //,
+                                                 //OnComplete = callbackEvent
+                      },
+              new { id = contentFormId }))
+    {
+            @*Отображение содержимого*@
+            @Html.Action(this.Model.ContentAction, this.Model.ContentController)
+
+            @Html.HiddenFor(m => m.SID)
+        }   
+
+}
