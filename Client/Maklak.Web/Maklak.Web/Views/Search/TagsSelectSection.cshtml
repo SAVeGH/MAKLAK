@@ -14,10 +14,22 @@
         border:1px solid black;
     }
 </style>
+<script>
+
+    function RefreshControl(inputId, suggestionKey)
+    {
+        Suggest.AddItem(inputId, suggestionKey);
+
+        var url = GetURL() + '/Fractal/FractalControl';
+        var sidValue = $("#SID").val();
+        var formValue = 'Key=SEARCH_CONTENT&SID=' + sidValue;
+        $.post(url, formValue);
+    }
+</script>
 <div style="margin-bottom:3px;">
     <div style="margin:2px"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.TAG, inputId, "Tag Name")</div>
     
-    <input type="button" value="Add" style="margin:2px" onclick="Suggest.AddItem('@inputId','@suggestionKey')" />
+    <input type="button" value="Add" style="margin:2px" onclick="RefreshControl('@inputId','@suggestionKey')" />
 
     <div  style="margin:4px;position:relative;right:0px;left:0px;">
         <table class="simpleTable">
