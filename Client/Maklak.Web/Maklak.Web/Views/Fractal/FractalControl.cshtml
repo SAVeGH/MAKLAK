@@ -2,11 +2,11 @@
 
 @{
 
-    string fractalPanelKey = this.Model.FractalPanelKey;
+    string fractalPanelKey = this.Model.ParentKey;
     string controlFormId = string.Format("Control_{0}", fractalPanelKey);
 
     string controlFormTargetID = string.Format("FractalPanel_{0}", fractalPanelKey);
-    string fractalPanelRecursiveAction = this.Model.Action;
+    string fractalPanelRecursiveAction = this.Model.FractalPanelAction;
 
     RouteValueDictionary routControlValues = new RouteValueDictionary();
     routControlValues.Add("Key", fractalPanelKey); /* название модели для Control совпадает с ключом текущей модели*/
@@ -20,7 +20,7 @@
                               UpdateTargetId = controlFormTargetID // id обновляемого элемента
                                                                    //,
                                                                    //OnComplete = callbackEvent
-                                  },
+                          },
                           new { id = controlFormId }))
     {
         @*Control*@

@@ -1,4 +1,4 @@
-﻿.FractalRootPlaceHolder 
+﻿.FractalRootPanel 
 {
     position:absolute;
     left:0px;
@@ -8,7 +8,7 @@
     /*margin:5px;*/
     background-color:lightyellow; 
 }
-.FractalPlaceHolder 
+.FractalPanel
 {
     position:absolute;
     left:0px;
@@ -18,25 +18,6 @@
     background-color:lightyellow; 
 }
 
-.leftFractalPanel
-{
-    background-color:lightyellow;    
-    left:0px;
-    top:0px;
-    right:0px; 
-    bottom:0px;
-    position: absolute; 
-}
-
-.topFractalPanel
-{
-    background-color:lightyellow;    
-    left:0px;
-    top:0px;
-    right:0px; 
-    bottom:0px;
-    position: absolute; 
-}
 
 .topControlArea 
 {

@@ -174,6 +174,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\App\AppScripts.js" />
+    <Content Include="Scripts\App\Fractal.js" />
     <Content Include="Scripts\App\Suggestion.js" />
     <Content Include="Scripts\App\TabScripts.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

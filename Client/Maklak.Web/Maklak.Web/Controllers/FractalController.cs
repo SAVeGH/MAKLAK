@@ -16,17 +16,17 @@ namespace Maklak.Web.Controllers
     {
         public ActionResult FractalPanel(FractalModel model)
         {            
-            return PartialView("FractalPanel", model);
+            return PartialView(model.FractalPanelAction, model);
         }
 
         public ActionResult FractalControl(FractalModel model)
         {
-            return PartialView("FractalControl", model);
+            return PartialView(model.FractalControlAction, model);
         }
 
         public ActionResult FractalContent(FractalModel model)
         {
-            return PartialView("FractalContent", model);
+            return PartialView(model.FractalContentAction, model);
         }
     }
 }
