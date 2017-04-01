@@ -7,6 +7,7 @@
 
     string controlFormTargetID = string.Format("FractalPanel_{0}", fractalPanelKey);
     string fractalPanelRecursiveAction = this.Model.FractalPanelAction;
+    string keyName = this.Model.Key + "_KEY";
 
     RouteValueDictionary routControlValues = new RouteValueDictionary();
     routControlValues.Add("Key", fractalPanelKey); /* название модели для Control совпадает с ключом текущей модели*/
@@ -27,5 +28,6 @@
         @Html.Action(this.Model.ControlAction, this.Model.ControlController, routControlValues)
 
         @Html.HiddenFor(m => m.SID)
+        @Html.HiddenFor(m => m.Key, new { id = keyName })
     }
 }

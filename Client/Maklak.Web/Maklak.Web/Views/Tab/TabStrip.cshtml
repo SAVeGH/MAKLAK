@@ -25,7 +25,7 @@
 
     string selectedValue = string.Format("{0}_SelectedValue", this.Model.Key);
     string tabId = string.Format("{0}_TabStrip", this.Model.Key);
-    string keyName = string.Format("{0}_Key", this.Model.Key);
+    
     //string tabTestClass = string.Format("{0}TestClass", tabStripPrefix);
 
     string callbackEvent = string.Format("{0}TabMgr.OnComplete()", tabStripPrefix);
@@ -55,9 +55,7 @@
                 }
             }
 
-            <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>
-            
-            @Html.HiddenFor(m => m.Key, new { id = keyName })
+            <div class="@tabStubClass" style="left:@stubLeft;top:@stubTop;"></div>           
 
 
         </div>
