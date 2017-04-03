@@ -4,7 +4,7 @@
     string contentFormId = "mainForm";
 
     // Отображение формы для содержимого последнего FractalPanel-a
-    using (Ajax.BeginForm(this.Model.ContentAction, this.Model.ContentController,
+    using (Ajax.BeginForm(this.Model.FractalContentAction, this.Model.FractalController,
               null,
               new AjaxOptions()
               {
@@ -18,6 +18,8 @@
     {
             @*Отображение содержимого*@
             @Html.Action(this.Model.ContentAction, this.Model.ContentController)
+
+            @Html.HiddenFor(m=> m.Key)
 
             @Html.HiddenFor(m => m.SID)
         }   
