@@ -1,9 +1,9 @@
 ﻿function Fractal() { }
 
-Fractal.RefreshControl = function(control_key) {
-    
+Fractal.RefreshControl = function(control_key) {   
 
-    var url = GetURL() + '/Fractal/FractalControl';
+    
+    var url = 'Fractal/FractalControl';
     var form = $("#Control_" + control_key);
     
 
@@ -14,6 +14,6 @@ Fractal.RefreshControl = function(control_key) {
     function fillForm(data) {
         
         form.replaceWith(data);
-        $.validator.unobtrusive.parse(form);
+        //$.validator.unobtrusive.parse(form);
     }
 }
