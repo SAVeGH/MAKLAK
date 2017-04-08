@@ -39,7 +39,7 @@
         return false;
     }
 
-    Suggest.ShowSuggestion = function (e,inputElement) {
+    Suggest.ShowSuggestion = function (inputElement) {
         
        
 
@@ -64,7 +64,7 @@
         function fillSuggestion(data) {
 
             if (data == '') {
-                Suggest.HideSuggestion(null);
+                Suggest.HideSuggestion();
                 return;
             }
 
@@ -86,36 +86,15 @@
 
     }    
 
-    Suggest.SetSuggestion = function (itemId,suggestionValue) {
-        
-        
-        Suggest.currentInput.value = suggestionValue;
+    Suggest.SetSuggestion = function (suggestionValue) {        
 
-        $(Suggest.currentInput).data("itemId", itemId);
+        $(Suggest.currentInput).val(suggestionValue).trigger("input");
         
         Suggest.HideSuggestion();
 
-        
     }
 
-    Suggest.AddItem = function (inputId, suggestionKey) {
-
-        var inputElement = $('#' + inputId);
-        var itemId = inputElement.data('itemId');
-
-        inputElement.val('');
-        inputElement.data("itemId", 0);
-
-        var url = GetURL() + '/Suggestion/AddItem';
-
-        var sidValue = $("#SID").val();
-
-        var formValue = 'ItemId=' + itemId + '&SuggestionKey=' + suggestionKey + '&SID=' + sidValue;
-
-        $.post(url, formValue);
-
-    }
-
+   
     Suggest.defScroll = function () {
         var x = y = 0;
         // Gecko поддерживает свойства scrollX(scrollY)

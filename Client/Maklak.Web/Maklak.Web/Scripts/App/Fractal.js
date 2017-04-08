@@ -8,7 +8,7 @@ Fractal.RefreshControl = function(elem) {
     
     var element = $(elem);
     var form = element.closest('form');
-    var keyValue = form.find("[name='Key']").val();
+    //var keyValue = form.find("[name='Key']").val();
 
     var formValue = form.serialize();
 

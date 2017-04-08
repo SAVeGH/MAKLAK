@@ -15,24 +15,12 @@
     }
 </style>
 
-<script>
-    function RefreshControl(element) {
-        //var url = GetURL() + '/Search/FractalControl';
-        
-        //var sidValue = $("#SID").val();
-        
-        //var formValue = 'Key=' + suggestionKey + '&SID=' + sidValue;
-        //$.post(url, formValue);
-        
-        Fractal.RefreshControl(element);
-    }
 
-</script>
 
 <div style="margin-bottom:3px;">
     <div style="margin:2px"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.TAG, inputId, "Tag Name")</div>
     @*RefreshControl('@inputId','@suggestionKey')*@
-    <input type="button" value="Add" style="margin:2px" onclick="RefreshControl(this)" />
+    <input type="button" value="Add" style="margin:2px" onclick="Fractal.RefreshControl(this)" />
 
     <div  style="margin:4px;position:relative;right:0px;left:0px;">
         <table class="simpleTable">
