@@ -2377,7 +2377,7 @@ namespace Maklak.Models.DataSets {
             
             private global::System.Data.DataColumn columnKey;
             
-            private global::System.Data.DataColumn columnSelected_Id;
+            private global::System.Data.DataColumn columnItem_Id;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2422,9 +2422,9 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Selected_IdColumn {
+            public global::System.Data.DataColumn Item_IdColumn {
                 get {
-                    return this.columnSelected_Id;
+                    return this.columnItem_Id;
                 }
             }
             
@@ -2465,11 +2465,11 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionRow AddSelectionRow(string Key, int Selected_Id) {
+            public SelectionRow AddSelectionRow(string Key, int Item_Id) {
                 SelectionRow rowSelectionRow = ((SelectionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Key,
-                        Selected_Id};
+                        Item_Id};
                 rowSelectionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectionRow);
                 return rowSelectionRow;
@@ -2493,7 +2493,7 @@ namespace Maklak.Models.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnKey = base.Columns["Key"];
-                this.columnSelected_Id = base.Columns["Selected_Id"];
+                this.columnItem_Id = base.Columns["Item_Id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2501,8 +2501,8 @@ namespace Maklak.Models.DataSets {
             private void InitClass() {
                 this.columnKey = new global::System.Data.DataColumn("Key", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKey);
-                this.columnSelected_Id = new global::System.Data.DataColumn("Selected_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSelected_Id);
+                this.columnItem_Id = new global::System.Data.DataColumn("Item_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnItem_Id);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3482,17 +3482,17 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Selected_Id {
+            public int Item_Id {
                 get {
                     try {
-                        return ((int)(this[this.tableSelection.Selected_IdColumn]));
+                        return ((int)(this[this.tableSelection.Item_IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Selected_Id\' in table \'Selection\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Item_Id\' in table \'Selection\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelection.Selected_IdColumn] = value;
+                    this[this.tableSelection.Item_IdColumn] = value;
                 }
             }
             
@@ -3510,14 +3510,14 @@ namespace Maklak.Models.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSelected_IdNull() {
-                return this.IsNull(this.tableSelection.Selected_IdColumn);
+            public bool IsItem_IdNull() {
+                return this.IsNull(this.tableSelection.Item_IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSelected_IdNull() {
-                this[this.tableSelection.Selected_IdColumn] = global::System.Convert.DBNull;
+            public void SetItem_IdNull() {
+                this[this.tableSelection.Item_IdColumn] = global::System.Convert.DBNull;
             }
         }
         
