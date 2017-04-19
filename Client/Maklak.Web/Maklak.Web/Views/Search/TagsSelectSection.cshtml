@@ -1,4 +1,7 @@
 ﻿@using Maklak.Models
+@using Maklak.Models.DataSets
+
+@model Maklak.Models.TagModel
 
 @{ 
 
@@ -28,6 +31,13 @@
                 <td class="simpleTableCell">TAG</td>
                 <td class="simpleTableCell">&nbsp;</td>
             </tr>
+
+            @{ 
+                foreach (Maklak.Models.DataSets.ModelDS.TagsRow row in this.Model.Tags)
+                {
+                    Html.Raw(string.Format("<tr><td>{0}</td><td>{1}</td></tr>",row.TagName,"&nbsp"));                    
+                }
+            }
         </table>
     </div>
 </div>

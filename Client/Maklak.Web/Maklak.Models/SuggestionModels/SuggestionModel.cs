@@ -11,6 +11,7 @@ namespace Maklak.Models
     public class SuggestionModel : BaseModel
     {
         Dictionary<int, string> suggestionValues;
+        SuggestionModelHelper.SuggestionKeys suggestionKey;
 
         public SuggestionModel() 
         {
@@ -26,14 +27,44 @@ namespace Maklak.Models
             for (int i = 0; i < 8; i++)
                 suggestionValues.Add(i, "item_" + i.ToString());
 
-            ManageSelection();
+            //ManageSelection();
         }
 
         private void ManageSelection()
         {
-            
-              DataSets.ModelDS.SelectionRow row = base.data.Selection.Where(r => r.Key == SuggestionKey.ToString()).FirstOrDefault();
+            string key = SuggestionKey.ToString();
+            int itemId = this.ItemId;
 
+            DataSets.ModelDS.SelectionRow row = base.data.Selection.Where(r => r.Key == key).FirstOrDefault();
+
+            if (row == null)
+            {
+                if (itemId == 0)
+                    return;
+
+                // Добавить ключь и значение (CREATE)
+                row = base.data.Selection.NewSelectionRow();
+                row.Key = key;
+                row.Item_Id = itemId;
+                base.data.Selection.Rows.Add(row);
+                base.data.Selection.AcceptChanges();
+                return;
+            }
+
+            // row != null
+
+            if (itemId == 0)
+            {
+                // Ничего не выбрано и ключь найден (DELETE)
+                row.Delete();
+                base.data.Selection.AcceptChanges();
+                return;
+            }
+
+            // Найден ключь и задано значене (UPDATE)
+            row.Key = key;
+            row.Item_Id = itemId;
+            base.data.Selection.AcceptChanges();
 
         }
 
@@ -55,7 +86,19 @@ namespace Maklak.Models
                                        .ToDictionary(kvp=> kvp.Key,kvp=> kvp.Value);
             }
         }
-        public SuggestionModelHelper.SuggestionKeys SuggestionKey { get; set; }
+        public SuggestionModelHelper.SuggestionKeys SuggestionKey
+        {
+            get
+            {
+                return suggestionKey;
+            }
+            set
+            {
+                suggestionKey = value;
+
+                ManageSelection();
+            }
+        }
         public string InputValue { get; set; }
         public int ItemId
         {

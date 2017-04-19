@@ -42,9 +42,9 @@ namespace Maklak.Web.Controllers
             return new EmptyResult();
         }
 
-        public ActionResult TagsSelectSection()
+        public ActionResult TagsSelectSection(TagModel model)
         {
-            return PartialView();
+            return PartialView("TagsSelectSection", model);
         }
 
 

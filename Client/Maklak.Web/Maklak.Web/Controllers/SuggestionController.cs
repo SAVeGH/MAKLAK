@@ -14,9 +14,9 @@ namespace Maklak.Web.Controllers
         [HttpPost]
         public ActionResult MakeSuggestion(SuggestionModel model)
         {
-            //TODO: любое изменение в текстбоксе включая выбор из списка приведёт к событию oninput. 
+            //     Любое изменение в текстбоксе включая выбор из списка приведёт к событию oninput. 
             //      Поэтому в MakeSuggestion нужно запомнить ввденное значение в модель, а не только генерировать подсказку. 
-            //      Тогда SetSuggestion становится не нужен
+            //      SetSuggestion так же вызывает событие oninput и в итоге MakeSuggestion
 
             this.ModelState.Clear();            
 
