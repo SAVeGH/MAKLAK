@@ -33,6 +33,10 @@ namespace Maklak.Models.Helpers
         public static void SetModel(Models.DataSets.ModelDS modelDS)
         {
             string sid = modelDS.Identity[0].SID.ToString();
+
+            if (SessionHelper.GetModel(Guid.Parse(sid)) != null)
+                return;
+
             HttpContext.Current.Session[sid] = modelDS;
         }
 

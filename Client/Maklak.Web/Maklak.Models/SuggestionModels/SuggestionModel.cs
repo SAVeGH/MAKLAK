@@ -35,7 +35,8 @@ namespace Maklak.Models
             string key = SuggestionKey.ToString();
             int itemId = this.ItemId;
 
-            DataSets.ModelDS.SelectionRow row = base.data.Selection.Where(r => r.Key == key).FirstOrDefault();
+            DataSets.ModelDS.SelectionRow row = base.data.Selection.Where(r => r.Key == key).FirstOrDefault();           
+
 
             if (row == null)
             {
@@ -46,8 +47,8 @@ namespace Maklak.Models
                 row = base.data.Selection.NewSelectionRow();
                 row.Key = key;
                 row.Item_Id = itemId;
-                base.data.Selection.Rows.Add(row);
-                base.data.Selection.AcceptChanges();
+                base.data.Selection.AddSelectionRow(row);                
+                base.data.Selection.AcceptChanges();                
                 return;
             }
 
@@ -57,23 +58,16 @@ namespace Maklak.Models
             {
                 // Ничего не выбрано и ключь найден (DELETE)
                 row.Delete();
-                base.data.Selection.AcceptChanges();
+                base.data.Selection.AcceptChanges();                
                 return;
             }
 
             // Найден ключь и задано значене (UPDATE)
             row.Key = key;
             row.Item_Id = itemId;
-            base.data.Selection.AcceptChanges();
+            base.data.Selection.AcceptChanges();            
 
-        }
-
-        protected override bool IsModelInitialized()
-        {
-            return base.IsModelInitialized() && suggestionValues.Count() > 0;
-        }
-
-
+        }       
 
         public Dictionary<int, string> SuggestionValues
         {

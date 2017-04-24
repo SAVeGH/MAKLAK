@@ -19,23 +19,25 @@ namespace Maklak.Models
 
         public void Initialize(Guid sID)
         {
-            data = SessionHelper.GetModel(sID);
+            data = SessionHelper.GetModel(sID);            
 
-            if (IsModelInitialized())
-            {              
-                RiseOnModelReady();
-                return;                
-            }
+            if (!IsModelInitialized())
+            {
+                BaseInitialization(sID);
 
-            BaseInitialization(sID);
-
-            RiseOnModelInitialized();
+                RiseOnModelInitialized();
+            }            
 
             RiseOnModelReady();
 
         }
 
         protected virtual bool IsModelInitialized()
+        {
+            return IsBaseModelInitialized();
+        }
+
+        private bool IsBaseModelInitialized()
         {
             if (data == null)
                 return false;
@@ -47,12 +49,11 @@ namespace Maklak.Models
         }
 
         private void BaseInitialization(Guid sID)
-        {
-            // ! вызов не перегруженного метода
-            if (this.IsModelInitialized())
+        {            
+            if (IsBaseModelInitialized())
                 return;
             
-           data = new DataSets.ModelDS();
+           data = new DataSets.ModelDS();            
 
            InitIdenty(sID);
 
@@ -62,7 +63,8 @@ namespace Maklak.Models
 
            SessionHelper.SetModel(data);
             
-        }        
+        }
+        
 
         private void RiseOnModelReady()
         {

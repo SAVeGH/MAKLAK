@@ -35,7 +35,8 @@
             @{ 
                 foreach (Maklak.Models.DataSets.ModelDS.TagsRow row in this.Model.Tags)
                 {
-                    Html.Raw(string.Format("<tr><td>{0}</td><td>{1}</td></tr>",row.TagName,"&nbsp"));                    
+                    <tr><td>@row.TagName</td><td>&nbsp</td></tr>
+                    //Html.Raw(string.Format("<tr><td>{0}</td><td>{1}</td></tr>",row.TagName,"&nbsp"));                    
                 }
             }
         </table>

@@ -10,7 +10,7 @@ namespace Maklak.Models
     {
         public LoginModel(Guid sID)
         {
-            base.Initialize(sID);
+            //base.Initialize(sID);
             base.Action = "Login";
         }
         public string Login { get; set; }

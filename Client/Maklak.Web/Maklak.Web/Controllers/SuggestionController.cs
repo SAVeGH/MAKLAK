@@ -18,7 +18,7 @@ namespace Maklak.Web.Controllers
             //      Поэтому в MakeSuggestion нужно запомнить ввденное значение в модель, а не только генерировать подсказку. 
             //      SetSuggestion так же вызывает событие oninput и в итоге MakeSuggestion
 
-            this.ModelState.Clear();            
+            //this.ModelState.Clear();            
 
             if (model.SuggestionValues.Count == 0)
                 return new EmptyResult(); 

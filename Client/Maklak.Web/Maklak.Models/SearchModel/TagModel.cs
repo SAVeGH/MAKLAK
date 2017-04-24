@@ -20,7 +20,7 @@ namespace Maklak.Models
 
         private void UpdateTags()
         {
-            DataSets.ModelDS.SelectionRow sRow = base.data.Selection.Where(r => r.Key == "TAG").FirstOrDefault();
+            DataSets.ModelDS.SelectionRow sRow = base.data.Selection.Where(r => r.Key == "TAG").FirstOrDefault();            
 
             if (sRow == null)
                 return;
@@ -33,7 +33,6 @@ namespace Maklak.Models
 
             sRow.Delete();
             base.data.Selection.AcceptChanges();
-
 
         }
 
