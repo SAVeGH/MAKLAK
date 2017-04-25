@@ -12,10 +12,11 @@ namespace Maklak.Web.Controllers
     {
        
         // GET: Home
-        public ActionResult Index()
+        // Модель создаётся и инициализируется автоматически в BaseModelBinder
+        public ActionResult Index(BaseModel model)
         {
-            
-            BaseModel model = Maklak.Models.Helpers.ModelHelper.CreateBaseModel(this.SID);
+            Maklak.Models.Helpers.ModelHelper.SetDefaults(model);
+
             return View(model);
         }
 

@@ -14,45 +14,12 @@ namespace Maklak.Models
     public static class TabStripModelHelper
     {        
 
-        public enum TabModelType {NONE, CATEGORY, SEARCH, INOUT, MANAGE, LOGIN }
-
-
-
-        public static TabStripModel GenerateModel(Guid sID, TabModelType modelType)
-        {
-            // вызывается при первой загрузке страницы для генерции модели вруную
-            TabStripModel model = TabStripModelHelper.GenerateModel(modelType);
-            model.Initialize(sID);
-            return model;
-        }
-
-        internal static string DefaultController(Guid sID)
-        {           
-
-            ModelDS.SiteMapRow rootRow = GetRootTabRow(sID);
-            //ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
-            //ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
-
-            //return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Controller).FirstOrDefault();
-
-            return rootRow.RecursiveController;
-        }
-
-        internal static string DefaultAction(Guid sID)
-        {
-            ModelDS.SiteMapRow rootRow = GetRootTabRow(sID);
-            //ModelDS.SiteMapDataTable siteMap = (rootRow.Table as ModelDS.SiteMapDataTable);
-            //ModelDS.SiteMapRow verticalTabRow = siteMap.Where(r => r.Key == rootRow.DefaultKey).FirstOrDefault();
-
-            //return siteMap.Where(r => r.Key == verticalTabRow.DefaultKey).Select(mr => mr.Action).FirstOrDefault();
-
-            return rootRow.RecursiveAction;
-        }
+        public enum TabModelType {NONE, CATEGORY, SEARCH, INOUT, MANAGE, LOGIN }        
 
         public static TabStripModel GenerateModel(Guid sID, string key)
         {
             if (string.IsNullOrEmpty(key))
-                key = GetRootTabRow(sID).Key;
+                key = ModelHelper.RootKey(sID); 
             //вызывается при привязке запроса к модели. key приходит из запроса
             TabStripModelHelper.TabModelType tabModelType = ModelType(key);
 
@@ -85,30 +52,6 @@ namespace Maklak.Models
             }
             
             return model;
-        }
-
-        public static TabModelType GetDefaultXModelType(Guid sID)
-        {
-            ModelDS.SiteMapRow row = GetRootTabRow(sID);
-
-            return ModelType(row.DefaultKey);
-        }
-
-        public static TabModelType GetDefaultYModelType(Guid sID)
-        {
-            ModelDS.SiteMapRow row = GetRootTabRow(sID);
-
-            return ModelType(row.Key);
-        }
-
-        private static ModelDS.SiteMapRow GetRootTabRow(Guid sID)
-        {
-            ModelDS data = SessionHelper.GetModel(sID);
-
-            //ModelDS.SiteMapRow row = data.SiteMap.Where(r => r.Key == TabModelType.CATEGORY.ToString()).FirstOrDefault();
-            ModelDS.SiteMapRow row = data.SiteMap.Where(r => !r.IsRecursiveControllerNull()).FirstOrDefault();
-
-            return row;
         }
 
         public static TabModelType ModelType(string Key)

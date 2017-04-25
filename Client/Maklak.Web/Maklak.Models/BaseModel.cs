@@ -49,22 +49,22 @@ namespace Maklak.Models
         }
 
         private void BaseInitialization(Guid sID)
-        {            
+        {
             if (IsBaseModelInitialized())
                 return;
-            
-           data = new DataSets.ModelDS();            
 
-           InitIdenty(sID);
+            data = new DataSets.ModelDS();
 
-           InitSiteMap();
+            InitIdenty(sID);
 
-           InitFractalData();
+            SessionHelper.SetModel(data);
 
-           SessionHelper.SetModel(data);
-            
+            InitSiteMap();
+
+            InitFractalData();
+
         }
-        
+
 
         private void RiseOnModelReady()
         {
@@ -153,7 +153,7 @@ namespace Maklak.Models
 
             if (mapRow == null)
             {
-                mapRow = data.SiteMap.Where(r => r.Key == TabStripModelHelper.TabModelType.CATEGORY.ToString()).FirstOrDefault();
+                mapRow = ModelHelper.GetRootTabRow(this.SID); 
                 tabRow.SetParent_IdNull();
             }
             else
@@ -170,7 +170,7 @@ namespace Maklak.Models
                 tabRow.DokPosition = mapRow.DokPosition;
 
             data.FractalData.AddFractalDataRow(tabRow);
-
+            // рекурсивное заполнение по дочерним узлам
             foreach (ModelDS.SiteMapRow row in data.SiteMap.Where(r => !r.IsParent_IdNull() && r.Parent_Id == mapRow.Id))
             {
                 InitFractalData(row, mapRow, tabRow);
