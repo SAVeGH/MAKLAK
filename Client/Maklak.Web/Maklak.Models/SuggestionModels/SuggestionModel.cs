@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Maklak.Data;
+
 namespace Maklak.Models
 {
     
@@ -12,12 +14,13 @@ namespace Maklak.Models
     {
         Dictionary<int, string> suggestionValues;
         SuggestionModelHelper.SuggestionKeys suggestionKey;
+        Maklak.Data.TestClass test;
 
         public SuggestionModel() 
         {
             suggestionValues = new Dictionary<int, string>();
             this.OnModelReady += SuggestionModel_OnModelReady;
-            
+            test = new TestClass();
         }
 
         private void SuggestionModel_OnModelReady()
@@ -65,7 +68,9 @@ namespace Maklak.Models
             // Найден ключь и задано значене (UPDATE)
             row.Key = key;
             row.Item_Id = itemId;
-            base.data.Selection.AcceptChanges();            
+            base.data.Selection.AcceptChanges();
+
+            string result = test.GetData(itemId);           
 
         }       
 
