@@ -7,4 +7,8 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
+  <xs:complexType name="DataTestImpl">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="DataTestImpl" nillable="true" type="tns:DataTestImpl" />
 </xs:schema>

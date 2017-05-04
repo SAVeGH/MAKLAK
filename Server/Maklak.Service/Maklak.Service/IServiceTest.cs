@@ -20,6 +20,10 @@ namespace Maklak.Service
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here
+
+        [OperationContract]
+        [ServiceKnownType(typeof(DataTestImpl))]
+        IDataTest GetDataTest(int value);
     }
 
 

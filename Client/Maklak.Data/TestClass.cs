@@ -19,7 +19,13 @@ namespace Maklak.Data
 
         public string GetData(int input)
         {
+            
             return proxy.GetData(input);
+        }
+
+        public object GetIDataTest()
+        {
+            return proxy.GetIDataTest();
         }
     }
 }

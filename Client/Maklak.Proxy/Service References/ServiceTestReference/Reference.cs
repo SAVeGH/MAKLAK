@@ -74,6 +74,35 @@ namespace Maklak.Proxy.ServiceTestReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataTestImpl", Namespace="http://schemas.datacontract.org/2004/07/Maklak.Service")]
+    [System.SerializableAttribute()]
+    public partial class DataTestImpl : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceTestReference.IServiceTest")]
     public interface IServiceTest {
@@ -89,6 +118,14 @@ namespace Maklak.Proxy.ServiceTestReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTest/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IServiceTest/GetDataUsingDataContractResponse")]
         System.Threading.Tasks.Task<Maklak.Proxy.ServiceTestReference.CompositeType> GetDataUsingDataContractAsync(Maklak.Proxy.ServiceTestReference.CompositeType composite);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTest/GetDataTest", ReplyAction="http://tempuri.org/IServiceTest/GetDataTestResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Maklak.Proxy.ServiceTestReference.CompositeType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Maklak.Proxy.ServiceTestReference.DataTestImpl))]
+        object GetDataTest(int value);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTest/GetDataTest", ReplyAction="http://tempuri.org/IServiceTest/GetDataTestResponse")]
+        System.Threading.Tasks.Task<object> GetDataTestAsync(int value);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -132,6 +169,14 @@ namespace Maklak.Proxy.ServiceTestReference {
         
         public System.Threading.Tasks.Task<Maklak.Proxy.ServiceTestReference.CompositeType> GetDataUsingDataContractAsync(Maklak.Proxy.ServiceTestReference.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
+        }
+        
+        public object GetDataTest(int value) {
+            return base.Channel.GetDataTest(value);
+        }
+        
+        public System.Threading.Tasks.Task<object> GetDataTestAsync(int value) {
+            return base.Channel.GetDataTestAsync(value);
         }
     }
 }

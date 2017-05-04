@@ -17,6 +17,11 @@ namespace Maklak.Service
             return string.Format("You entered: {0}", value);
         }
 
+        public IDataTest GetDataTest(int value)
+        {
+            return new DataTestImpl();
+        }
+
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
             if (composite == null)

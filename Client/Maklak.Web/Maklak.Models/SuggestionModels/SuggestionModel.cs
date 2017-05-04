@@ -37,7 +37,7 @@ namespace Maklak.Models
         {
             string key = SuggestionKey.ToString();
             int itemId = this.ItemId;
-
+            object o = test.GetIDataTest();
             DataSets.ModelDS.SelectionRow row = base.data.Selection.Where(r => r.Key == key).FirstOrDefault();           
 
 
@@ -70,7 +70,10 @@ namespace Maklak.Models
             row.Item_Id = itemId;
             base.data.Selection.AcceptChanges();
 
-            string result = test.GetData(itemId);           
+            string result = test.GetData(itemId);
+
+            //object o = test.GetIDataTest();
+                       
 
         }       
 

@@ -19,6 +19,12 @@
   <wsdl:message name="IServiceTest_GetDataUsingDataContract_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceTest_GetDataTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataTest" />
+  </wsdl:message>
+  <wsdl:message name="IServiceTest_GetDataTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataTestResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceTest">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceTest/GetData" message="tns:IServiceTest_GetData_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="GetDataUsingDataContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceTest/GetDataUsingDataContract" message="tns:IServiceTest_GetDataUsingDataContract_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceTest/GetDataUsingDataContractResponse" message="tns:IServiceTest_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceTest/GetDataTest" message="tns:IServiceTest_GetDataTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceTest/GetDataTestResponse" message="tns:IServiceTest_GetDataTest_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceTest" type="tns:IServiceTest">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDataUsingDataContract">
       <soap:operation soapAction="http://tempuri.org/IServiceTest/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataTest">
+      <soap:operation soapAction="http://tempuri.org/IServiceTest/GetDataTest" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
