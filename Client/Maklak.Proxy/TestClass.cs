@@ -21,11 +21,6 @@ namespace Maklak.Proxy
             return client.GetData(i);
         }
 
-        public object GetIDataTest()
-        {
-            ServiceTestReference.DataTestImpl dti = client.GetDataTest(0) as ServiceTestReference.DataTestImpl;
-
-            return dti;
-        }
+        
     }
 }

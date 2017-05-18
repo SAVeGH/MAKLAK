@@ -66,8 +66,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTestImpl.cs" />
-    <Compile Include="IDataTest.cs" />
     <Compile Include="ServiceTest.svc.cs">
       <DependentUpon>ServiceTest.svc</DependentUpon>
     </Compile>

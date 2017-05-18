@@ -21,12 +21,15 @@ namespace Maklak.Service
 
         // TODO: Add your service operations here
 
-        [OperationContract]
-        [ServiceKnownType(typeof(DataTestImpl))]
-        IDataTest GetDataTest(int value);
+        //[OperationContract]
+        //[ServiceKnownType(typeof(DataTestImpl))]
+        //IDataTest GetDataTest(int value);        
     }
 
-
+    //public string GetData(int value)
+    //{
+    //    return string.Format("You entered: {0}", value);
+    //}
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
     public class CompositeType
