@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
+using System.Data;
+
 namespace Maklak.Service
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "DataSource" in code, svc and config file together.
@@ -13,6 +15,11 @@ namespace Maklak.Service
     {
         public void DoWork()
         {
+        }
+
+        public DataSet Suggestion(string inputValue)
+        {
+            return null;
         }
     }
 }
