@@ -5,17 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+using System.ServiceModel;
+using Maklak.Proxy.DataSourceServiceReference;
 
 namespace Maklak.Proxy
 {
-    public class DataSource
+    public class DataSource : ProxyBase
     {
-        DataSourceServiceReference.DataSourceClient client;
+        DataSourceClient client;
 
-        public DataSource()
+        protected override ICommunicationObject CreateProxy()
         {
-            client = new DataSourceServiceReference.DataSourceClient();
-        }
+            client = new DataSourceClient();
+            return client;
+
+        }        
 
         public void DoWork()
         {
