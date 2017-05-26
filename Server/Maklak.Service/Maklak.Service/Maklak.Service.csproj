@@ -64,7 +64,9 @@
   <ItemGroup>
     <Content Include="DataSource.svc" />
     <Content Include="ServiceTest.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSource.svc.cs">
@@ -87,6 +89,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maklak.DataAccess\Maklak.DataAccess.csproj">
+      <Project>{5e95ccea-7114-44e1-887b-077c995e0d9e}</Project>
+      <Name>Maklak.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

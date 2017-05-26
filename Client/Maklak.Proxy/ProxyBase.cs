@@ -49,19 +49,16 @@ namespace Maklak.Proxy
 
         protected void Dispose(bool disposeState)
         {
-            if (this.disposed)
-            {
-                return;
-            }
+            if (this.disposed)            
+                return;            
 
             this.disposed = true;
 
             Close();
 
-            if (!disposeState)
-            {
+            if (!disposeState)            
                 GC.SuppressFinalize(this);
-            }
+            
         }
 
         #endregion
@@ -72,16 +69,13 @@ namespace Maklak.Proxy
         /// </summary>
         protected void Close()
         {
-            if (this.Client == null)
-            {
+            if (this.Client == null)            
                 return;
-            }
+            
             if (this.Client.State == System.ServiceModel.CommunicationState.Closed ||
                 this.Client.State == System.ServiceModel.CommunicationState.Faulted ||
-                this.Client.State == System.ServiceModel.CommunicationState.Closing)
-            {
-                return;
-            }
+                this.Client.State == System.ServiceModel.CommunicationState.Closing)            
+                return;            
 
             this.Client.Close();
         }
@@ -91,15 +85,13 @@ namespace Maklak.Proxy
         /// </summary>
         protected void Open()
         {
-            if (this.Client == null)
-            {
+            if (this.Client == null)            
                 throw new NullReferenceException("ProxyBase: Proxy class not initialized");
-            }
+            
             if (this.Client.State == System.ServiceModel.CommunicationState.Opened ||
-                this.Client.State == System.ServiceModel.CommunicationState.Opening)
-            {
+                this.Client.State == System.ServiceModel.CommunicationState.Opening)            
                 return;
-            }
+            
             this.Client.Open();
         }
 
