@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Optimization;
 
-using Maklak.Models;
+using Maklak.Client.Models;
 using Maklak.Client.Web.ModelBinder;
 using Maklak.Client.Web.ControllerFactory;
 

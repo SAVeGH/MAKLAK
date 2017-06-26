@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using Maklak.Models;
+using Maklak.Client.Models;
 
 namespace Maklak.Client.Web.Controllers
 {
@@ -15,7 +15,7 @@ namespace Maklak.Client.Web.Controllers
         // Модель создаётся и инициализируется автоматически в BaseModelBinder
         public ActionResult Index(BaseModel model)
         {
-            Maklak.Models.Helpers.ModelHelper.SetDefaults(model);
+            Maklak.Client.Models.Helpers.ModelHelper.SetDefaults(model);
 
             return View(model);
         }

@@ -5,7 +5,7 @@ using System.Web;
 
 using System.Web.Mvc;
 
-using Maklak.Models;
+using Maklak.Client.Models;
 using Maklak.Client.Web.Controllers;
 
 namespace Maklak.Client.Web.ModelBinder

@@ -273,9 +273,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Maklak.Models\Maklak.Models.csproj">
+    <ProjectReference Include="..\..\Maklak.Client.Models\Maklak.Client.Models.csproj">
       <Project>{6d42ad31-6226-4a90-87ce-902df0eb9014}</Project>
-      <Name>Maklak.Models</Name>
+      <Name>Maklak.Client.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

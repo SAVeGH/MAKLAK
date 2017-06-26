@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Web", "Maklak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Web.Tests", "Maklak.Client.Web\Maklak.Client.Web.Tests\Maklak.Client.Web.Tests.csproj", "{2304209F-D4D0-4080-BA02-0D6539FC18EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Models", "Maklak.Client.Web\Maklak.Models\Maklak.Models.csproj", "{6D42AD31-6226-4A90-87CE-902DF0EB9014}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Models", "Maklak.Client.Models\Maklak.Client.Models.csproj", "{6D42AD31-6226-4A90-87CE-902DF0EB9014}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Data", "Maklak.Data\Maklak.Data.csproj", "{F656B1CA-01E9-445E-BEF0-D14D13D99513}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Data", "Maklak.Client.Data\Maklak.Client.Data.csproj", "{F656B1CA-01E9-445E-BEF0-D14D13D99513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Proxy", "Maklak.Proxy\Maklak.Proxy.csproj", "{C433D501-620A-45E1-A81F-5479D6AB809C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Proxy", "Maklak.Client.Proxy\Maklak.Client.Proxy.csproj", "{C433D501-620A-45E1-A81F-5479D6AB809C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

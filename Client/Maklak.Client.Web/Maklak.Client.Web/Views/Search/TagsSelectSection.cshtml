@@ -1,7 +1,7 @@
-﻿@using Maklak.Models
-@using Maklak.Models.DataSets
+﻿@using Maklak.Client.Models
+@using Maklak.Client.Models.DataSets
 
-@model Maklak.Models.TagModel
+@model Maklak.Client.Models.TagModel
 
 @{ 
 
@@ -33,7 +33,7 @@
             </tr>
 
             @{ 
-                foreach (Maklak.Models.DataSets.ModelDS.TagsRow row in this.Model.Tags)
+                foreach (Maklak.Client.Models.DataSets.ModelDS.TagsRow row in this.Model.Tags)
                 {
                     <tr><td>@row.TagName</td><td>&nbsp</td></tr>
                     //Html.Raw(string.Format("<tr><td>{0}</td><td>{1}</td></tr>",row.TagName,"&nbsp"));                    

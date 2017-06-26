@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using Maklak.Models;
+using Maklak.Client.Models;
 
 namespace Maklak.Client.Web.Controllers
 {
