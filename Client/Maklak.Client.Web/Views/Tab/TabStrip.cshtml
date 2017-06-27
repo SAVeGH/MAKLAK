@@ -1,10 +1,10 @@
 ﻿
 @model Maklak.Client.Models.TabStripModel
-
+@using Maklak.Client.DataSets
 
 
 @{
-    Maklak.Client.Models.DataSets.ModelDS.FractalDataDataTable dataTable = this.Model.StripData;
+    ModelDS.FractalDataDataTable dataTable = this.Model.StripData;
     int tabWidth = 130;
     int gapWidth = 2;
     int tabHeight = 33;
@@ -39,7 +39,7 @@
 
             <div class="@tabGapFirstClass"></div>
 
-            @{foreach (Maklak.Client.Models.DataSets.ModelDS.FractalDataRow row in dataTable)
+            @{foreach (ModelDS.FractalDataRow row in dataTable)
                 {
                     Maklak.Client.Models.TabRowModel rm = new Maklak.Client.Models.TabRowModel();
                     rm.Row = row;

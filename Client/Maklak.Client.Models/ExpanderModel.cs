@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Maklak.Client.Models.DataSets;
+using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Models
 {
@@ -47,7 +47,7 @@ namespace Maklak.Client.Models
             return base.IsModelInitialized() && this.data.ExpanderData.Count > 0;
         }
 
-        public Maklak.Client.Models.DataSets.ModelDS.ExpanderDataDataTable ExpanderData {
+        public ModelDS.ExpanderDataDataTable ExpanderData {
             get { return this.data.ExpanderData; }
         }
     }

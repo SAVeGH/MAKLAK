@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Data", "Makla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Proxy", "Maklak.Client.Proxy\Maklak.Client.Proxy.csproj", "{C433D501-620A-45E1-A81F-5479D6AB809C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.DataSets", "Maklak.Client.DataSets\Maklak.Client.DataSets.csproj", "{CC82A284-AB7A-49A5-A9DF-240AB401B239}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C433D501-620A-45E1-A81F-5479D6AB809C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C433D501-620A-45E1-A81F-5479D6AB809C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C433D501-620A-45E1-A81F-5479D6AB809C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC82A284-AB7A-49A5-A9DF-240AB401B239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC82A284-AB7A-49A5-A9DF-240AB401B239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC82A284-AB7A-49A5-A9DF-240AB401B239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC82A284-AB7A-49A5-A9DF-240AB401B239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

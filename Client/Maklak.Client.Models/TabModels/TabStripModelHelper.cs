@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MvcSiteMapProvider;
 
 using Maklak.Client.Models.Helpers;
-using Maklak.Client.Models.DataSets;
+using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Models
 {

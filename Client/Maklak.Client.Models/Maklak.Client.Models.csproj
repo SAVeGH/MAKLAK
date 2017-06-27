@@ -48,11 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
-    <Compile Include="DataSets\ModelDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ExpanderModel.cs" />
     <Compile Include="FractalModels\FractalModel.cs" />
     <Compile Include="Helpers\ModelHelper.cs" />
@@ -68,22 +63,13 @@
     <Compile Include="TabModels\TabStripModelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataSets\ModelDS.xsc">
-      <DependentUpon>ModelDS.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ModelDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ModelDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSets\ModelDS.xss">
-      <DependentUpon>ModelDS.xsd</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Maklak.Client.DataSets\Maklak.Client.DataSets.csproj">
+      <Project>{cc82a284-ab7a-49a5-a9df-240ab401b239}</Project>
+      <Name>Maklak.Client.DataSets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Maklak.Client.Data\Maklak.Client.Data.csproj">
       <Project>{f656b1ca-01e9-445e-bef0-d14d13d99513}</Project>
       <Name>Maklak.Client.Data</Name>

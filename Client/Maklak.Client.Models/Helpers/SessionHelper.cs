@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
+using Maklak.Client.DataSets;
+
 namespace Maklak.Client.Models.Helpers
 {
     public static class SessionHelper
@@ -30,7 +32,7 @@ namespace Maklak.Client.Models.Helpers
             return HttpContext.Current.Session[sid_key] != null && (bool)HttpContext.Current.Session[sid_key] == true;
         }
 
-        public static void SetModel(Models.DataSets.ModelDS modelDS)
+        public static void SetModel(ModelDS modelDS)
         {
             string sid = modelDS.Identity[0].SID.ToString();
 
@@ -40,10 +42,10 @@ namespace Maklak.Client.Models.Helpers
             HttpContext.Current.Session[sid] = modelDS;
         }
 
-        public static Models.DataSets.ModelDS GetModel(Guid sid)
+        public static ModelDS GetModel(Guid sid)
         {
             string sidKey = sid.ToString();
-            return HttpContext.Current.Session[sidKey] as Models.DataSets.ModelDS;
+            return HttpContext.Current.Session[sidKey] as ModelDS;
         }
     }
 }

@@ -273,6 +273,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Maklak.Client.DataSets\Maklak.Client.DataSets.csproj">
+      <Project>{cc82a284-ab7a-49a5-a9df-240ab401b239}</Project>
+      <Name>Maklak.Client.DataSets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Maklak.Client.Models\Maklak.Client.Models.csproj">
       <Project>{6d42ad31-6226-4a90-87ce-902df0eb9014}</Project>
       <Name>Maklak.Client.Models</Name>

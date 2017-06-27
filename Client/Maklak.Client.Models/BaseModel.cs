@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 using MvcSiteMapProvider;
 using Maklak.Client.Models.Helpers;
-using Maklak.Client.Models.DataSets;
+using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Models
 {
     public class BaseModel
     {
-        protected Models.DataSets.ModelDS data;
+        protected ModelDS data;
         protected event Action OnModelInitialized;
         protected event Action OnModelReady;
         
@@ -184,7 +184,7 @@ namespace Maklak.Client.Models
                 if (data == null)
                     return string.Empty;
 
-                Models.DataSets.ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
+                ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
@@ -197,7 +197,7 @@ namespace Maklak.Client.Models
                 if (data == null)
                     return;
 
-                Models.DataSets.ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
+                ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
 
                 if (row == null)
                 {
@@ -217,7 +217,7 @@ namespace Maklak.Client.Models
                 if (data == null)
                     return string.Empty;
 
-                Models.DataSets.ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
+                ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
 
                 if (row == null)
                     return string.Empty;
@@ -230,7 +230,7 @@ namespace Maklak.Client.Models
                 if (data == null)
                     return;
 
-                Models.DataSets.ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
+                ModelDS.ACDRow row = data.ACD.AsEnumerable().Where(r => r.CODE == "CURRENT").FirstOrDefault();
 
                 if (row == null)
                 {
@@ -250,7 +250,7 @@ namespace Maklak.Client.Models
                 if (data == null)
                     return Guid.Empty;
 
-                Models.DataSets.ModelDS.IdentityRow row = data.Identity[0];
+                ModelDS.IdentityRow row = data.Identity[0];
 
                 return row.SID;
             }            

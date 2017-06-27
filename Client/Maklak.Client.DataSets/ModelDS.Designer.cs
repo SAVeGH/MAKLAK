@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Maklak.Client.Models.DataSets {
+namespace Maklak.Client.DataSets {
     
     
     /// <summary>

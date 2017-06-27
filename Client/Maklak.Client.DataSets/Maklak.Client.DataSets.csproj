@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F656B1CA-01E9-445E-BEF0-D14D13D99513}</ProjectGuid>
+    <ProjectGuid>{CC82A284-AB7A-49A5-A9DF-240AB401B239}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Maklak.Client.Data</RootNamespace>
-    <AssemblyName>Maklak.Client.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Maklak.Client.DataSets</RootNamespace>
+    <AssemblyName>Maklak.Client.DataSets</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,19 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSource.cs" />
-    <Compile Include="TestClass.cs" />
+    <Compile Include="ModelDS.Designer.cs">
+      <DependentUpon>ModelDS.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Maklak.Client.DataSets\Maklak.Client.DataSets.csproj">
-      <Project>{cc82a284-ab7a-49a5-a9df-240ab401b239}</Project>
-      <Name>Maklak.Client.DataSets</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Maklak.Client.Proxy\Maklak.Client.Proxy.csproj">
-      <Project>{c433d501-620a-45e1-a81f-5479d6ab809c}</Project>
-      <Name>Maklak.Client.Proxy</Name>
-    </ProjectReference>
+    <None Include="ModelDS.xsc">
+      <DependentUpon>ModelDS.xsd</DependentUpon>
+    </None>
+    <None Include="ModelDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ModelDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelDS.xss">
+      <DependentUpon>ModelDS.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,17 +2,15 @@
 @using System.Web.Mvc;
 @using System.Web.Mvc.Html;
 @using Maklak.Client.Models
-
+@using Maklak.Client.DataSets
 
 @helper Expander(Maklak.Client.Models.ExpanderModel model)
 {
 
-//Maklak.Client.Models.DataSets.ModelDS.ExpanderDataDataTable
-
 <div class="expanderPanel">
 
     @{ 
-        foreach (Maklak.Client.Models.DataSets.ModelDS.ExpanderDataRow row in model.ExpanderData)
+        foreach (ModelDS.ExpanderDataRow row in model.ExpanderData)
         {
             string contentClass = row.Opened ? "expanderSectionContentOpened" : "expanderSectionContent";
             <div class="expanderSectionPanel">
