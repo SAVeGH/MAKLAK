@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Web", "Maklak.Client.Web\Maklak.Client.Web\Maklak.Client.Web.csproj", "{E4BD6FF1-0EA3-4754-BB9C-A022BE31C7F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Web", "Maklak.Client.Web\Maklak.Client.Web.csproj", "{E4BD6FF1-0EA3-4754-BB9C-A022BE31C7F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Web.Tests", "Maklak.Client.Web\Maklak.Client.Web.Tests\Maklak.Client.Web.Tests.csproj", "{2304209F-D4D0-4080-BA02-0D6539FC18EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Web.Tests", "Maklak.Client.Web.Tests\Maklak.Client.Web.Tests.csproj", "{2304209F-D4D0-4080-BA02-0D6539FC18EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Models", "Maklak.Client.Models\Maklak.Client.Models.csproj", "{6D42AD31-6226-4A90-87CE-902DF0EB9014}"
 EndProject
