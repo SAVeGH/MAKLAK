@@ -22,8 +22,11 @@
     <MetadataSource Address="http://localhost:64894/DataSource.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DataSource.xsd" MetadataType="Schema" ID="c88ed121-f081-4e3f-9edd-1a333f63b609" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd0" />
+    <MetadataFile FileName="SuggestionDS.xsd" MetadataType="Schema" ID="5745e7b1-f2f7-44d5-8c6a-bf7c7266e947" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd2" />
+    <MetadataFile FileName="DataSource1.xsd" MetadataType="Schema" ID="f552f390-4cde-44d0-99f8-44b485d34ff4" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd3" />
     <MetadataFile FileName="DataSource.wsdl" MetadataType="Wsdl" ID="ead4dc64-c367-4f24-9e19-18c6c1fc6092" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?wsdl" />
+    <MetadataFile FileName="DataSource11.xsd" MetadataType="Schema" ID="5ea9c165-5208-4a3d-a683-4639a9442266" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataSource.xsd" MetadataType="Schema" ID="c88ed121-f081-4e3f-9edd-1a333f63b609" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd0" />
     <MetadataFile FileName="DataSource.disco" MetadataType="Disco" ID="6f715fbe-f37e-495c-b41d-2e6c7d492f7b" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?disco" />
   </Metadata>
   <Extensions>

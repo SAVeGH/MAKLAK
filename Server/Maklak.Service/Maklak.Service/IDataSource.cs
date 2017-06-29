@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 
 using System.Data;
+using Maklak.DataAccess.DataSets;
 
 namespace Maklak.Service
 {
@@ -17,6 +18,6 @@ namespace Maklak.Service
         void DoWork();
 
         [OperationContract]
-        DataSet Suggestion(string inputValue);
+        SuggestionDS Suggestion(SuggestionDS inputDS);
     }
 }

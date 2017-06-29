@@ -7,6 +7,9 @@ using System.Text;
 
 using System.Data;
 
+using Maklak.DataAccess;
+using Maklak.DataAccess.DataSets;
+
 namespace Maklak.Service
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "DataSource" in code, svc and config file together.
@@ -17,9 +20,9 @@ namespace Maklak.Service
         {
         }
 
-        public DataSet Suggestion(string inputValue)
+        public SuggestionDS Suggestion(SuggestionDS inputDS)
         {
-            return null;
+            return Suggestions.Suggestion(inputDS);
         }
     }
 }

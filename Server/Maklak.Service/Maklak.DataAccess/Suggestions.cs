@@ -4,10 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Maklak.DataAccess.DataSets;
+
 namespace Maklak.DataAccess
 {
-    public class Suggestions
+    public static class Suggestions
     {
+        public static SuggestionDS Suggestion(SuggestionDS inputDS)
+        {
+            return null;
+        }
 
     }
 }
