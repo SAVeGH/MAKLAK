@@ -69,6 +69,19 @@
     <None Include="Service References\DataSourceServiceReference\DataSource.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\DataSourceServiceReference\DataSource1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataSourceServiceReference\DataSource11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataSourceServiceReference\Maklak.Client.Proxy.DataSourceServiceReference.SuggestionDS.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DataSourceServiceReference\Maklak.Client.Proxy.DataSourceServiceReference.SuggestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DataSourceServiceReference\SuggestionDS.xsd" />
     <None Include="Service References\ServiceTestReference\Maklak.Client.Proxy.ServiceTestReference.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
