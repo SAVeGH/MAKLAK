@@ -25,5 +25,10 @@ namespace Maklak.Client.Proxy
         {
             client.DoWork();
         }
+
+        public SuggestionDS MakeSuggestion(SuggestionDS inputDS)
+        {
+            return client.Suggestion(inputDS);
+        }
     }
 }

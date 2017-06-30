@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Maklak.Client.Proxy;
+//using Maklak.Client.Proxy;
+using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Data
 {
@@ -20,6 +21,12 @@ namespace Maklak.Client.Data
         public void DoWork()
         {
             dataSource.DoWork();
+        }
+
+        public void MakeSuggestion(ModelDS modelDS)
+        {
+
+            dataSource.MakeSuggestion();
         }
     }
 }

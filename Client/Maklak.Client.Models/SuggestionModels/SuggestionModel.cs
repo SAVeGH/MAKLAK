@@ -15,17 +15,20 @@ namespace Maklak.Client.Models
         Dictionary<int, string> suggestionValues;
         SuggestionModelHelper.SuggestionKeys suggestionKey;
         Maklak.Client.Data.TestClass test;
+        Maklak.Client.Data.DataSource dataSource;
 
         public SuggestionModel() 
         {
             suggestionValues = new Dictionary<int, string>();
             this.OnModelReady += SuggestionModel_OnModelReady;
             test = new TestClass();
+            dataSource = new DataSource();
         }
 
         private void SuggestionModel_OnModelReady()
         {
-            
+
+            //dataSource.
 
             for (int i = 0; i < 8; i++)
                 suggestionValues.Add(i, "item_" + i.ToString());
