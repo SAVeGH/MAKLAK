@@ -12,7 +12,7 @@
     <Shape ID="DesignTable:SiteMap" ZOrder="1" X="592" Y="73" Height="201" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
     <Shape ID="DesignTable:ExpanderData" ZOrder="8" X="596" Y="367" Height="105" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="101" />
     <Shape ID="DesignTable:Tags" ZOrder="3" X="55" Y="422" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
-    <Shape ID="DesignTable:Selection" ZOrder="4" X="865" Y="71" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
+    <Shape ID="DesignTable:Suggestion" ZOrder="4" X="865" Y="71" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_FractalData_FractalData" ZOrder="5" LineWidth="11">

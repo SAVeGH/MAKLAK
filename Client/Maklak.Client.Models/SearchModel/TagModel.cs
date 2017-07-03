@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Maklak.Client.Models
 {
-    public class TagModel : BaseModel
+    public class TagModel : SuggestionModel
     {
         public TagModel()
         {
@@ -15,32 +15,36 @@ namespace Maklak.Client.Models
 
         private void TagModel_OnModelReady()
         {
-            UpdateTags();
+            //UpdateTags();
         }
 
         private void UpdateTags()
         {
-            DataSets.ModelDS.SelectionRow sRow = base.data.Selection.Where(r => r.Key == "TAG").FirstOrDefault();            
+            DataSets.ModelDS.SuggestionRow sRow = base.data.Suggestion.Where(r => r.Key == "TAG").FirstOrDefault();            
 
             if (sRow == null)
                 return;
 
-            DataSets.ModelDS.TagsRow row = base.data.Tags.NewTagsRow();
-            row.Tag_Id = sRow.Item_Id;
-            row.TagName = sRow.Key;
-            base.data.Tags.Rows.Add(row);
-            base.data.Tags.AcceptChanges();
+            //DataSets.ModelDS.TagsRow row = base.data.Tags.NewTagsRow();
+            //row.Tag_Id = sRow.Item_Id;
+            //row.TagName = sRow.Key;
+            //base.data.Tags.Rows.Add(row);
+            //base.data.Tags.AcceptChanges();
 
-            sRow.Delete();
-            base.data.Selection.AcceptChanges();
+            //sRow.Delete();
+            //base.data.Suggestion.AcceptChanges();
 
         }
 
-        public DataSets.ModelDS.TagsDataTable Tags
+        public DataSets.ModelDS.SuggestionDataTable Tags
         {
             get
             {
-                return base.data.Tags;
+                DataSets.ModelDS.SuggestionDataTable tagsTable = new DataSets.ModelDS.SuggestionDataTable();
+                //tagsTable.ImportRow()
+                //base.data.Suggestion.Where(r => r.Key == "TAG").ToList().ForEach(r => tagsTable.ImportRow(r));
+                this.SuggestionData.ToList().ToList().ForEach(r => tagsTable.ImportRow(r));
+                return tagsTable;
             }
         }
     }

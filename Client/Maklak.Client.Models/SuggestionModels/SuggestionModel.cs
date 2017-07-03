@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Maklak.Client.Data;
+using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Models
 {
@@ -12,26 +13,39 @@ namespace Maklak.Client.Models
 
     public class SuggestionModel : BaseModel
     {
-        Dictionary<int, string> suggestionValues;
+        //Dictionary<int, string> suggestionValues;
         SuggestionModelHelper.SuggestionKeys suggestionKey;
-        Maklak.Client.Data.TestClass test;
+        //Maklak.Client.Data.TestClass test;
         Maklak.Client.Data.DataSource dataSource;
 
         public SuggestionModel() 
         {
-            suggestionValues = new Dictionary<int, string>();
+            //suggestionValues = new Dictionary<int, string>();
             this.OnModelReady += SuggestionModel_OnModelReady;
-            test = new TestClass();
+            //test = new TestClass();
             dataSource = new DataSource();
         }
 
         private void SuggestionModel_OnModelReady()
         {
 
-            //dataSource.
+
+            //dataSource.MakeSuggestion(this.data);
+            this.data.Suggestion.Clear();
 
             for (int i = 0; i < 8; i++)
-                suggestionValues.Add(i, "item_" + i.ToString());
+            {               
+
+                ModelDS.SuggestionRow row = this.data.Suggestion.NewSuggestionRow();
+
+                row.Id = i;
+                row.ItemValue = "item_" + i.ToString();
+                row.Key = "TAG";
+
+                this.data.Suggestion.AddSuggestionRow(row);
+
+            }
+                //suggestionValues.Add(i, "item_" + i.ToString());
 
             //ManageSelection();
         }
@@ -41,7 +55,7 @@ namespace Maklak.Client.Models
             string key = SuggestionKey.ToString();
             int itemId = this.ItemId;
             //object o = test.GetIDataTest();
-            DataSets.ModelDS.SelectionRow row = base.data.Selection.Where(r => r.Key == key).FirstOrDefault();           
+            DataSets.ModelDS.SuggestionRow row = base.data.Suggestion.Where(r => r.Key == key).FirstOrDefault();           
 
 
             if (row == null)
@@ -50,11 +64,11 @@ namespace Maklak.Client.Models
                     return;
 
                 // Добавить ключь и значение (CREATE)
-                row = base.data.Selection.NewSelectionRow();
+                row = base.data.Suggestion.NewSuggestionRow();
                 row.Key = key;
-                row.Item_Id = itemId;
-                base.data.Selection.AddSelectionRow(row);                
-                base.data.Selection.AcceptChanges();                
+                row.Id = itemId;
+                base.data.Suggestion.AddSuggestionRow(row);                
+                base.data.Suggestion.AcceptChanges();                
                 return;
             }
 
@@ -64,33 +78,55 @@ namespace Maklak.Client.Models
             {
                 // Ничего не выбрано и ключь найден (DELETE)
                 row.Delete();
-                base.data.Selection.AcceptChanges();                
+                base.data.Suggestion.AcceptChanges();                
                 return;
             }
 
             // Найден ключь и задано значене (UPDATE)
             row.Key = key;
-            row.Item_Id = itemId;
-            base.data.Selection.AcceptChanges();
+            row.Id = itemId;
+            base.data.Suggestion.AcceptChanges();
 
-            string result = test.GetData(itemId);
+            //string result = test.GetData(itemId);
 
             //object o = test.GetIDataTest();
                        
 
-        }       
+        }
 
-        public Dictionary<int, string> SuggestionValues
+        public ModelDS.SuggestionDataTable SuggestionData
         {
             get
             {
-                return suggestionValues.Where(i=> !string.IsNullOrEmpty(this.InputValue) &&
-                                                  i.Value.Contains(this.InputValue) && 
-                                                  !i.Value.Equals(this.InputValue,StringComparison.InvariantCultureIgnoreCase)
-                                                  )
-                                       .ToDictionary(kvp=> kvp.Key,kvp=> kvp.Value);
+                ModelDS.SuggestionDataTable suggestionData = new ModelDS.SuggestionDataTable();
+
+                this.data.Suggestion.Where(r => r.Key == suggestionKey.ToString() &&
+                                                !string.IsNullOrEmpty(this.InputValue) &&
+                                                !r.ItemValue.Contains(this.InputValue) &&
+                                                !r.ItemValue.Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase))
+                                    .ToList()
+                                    .ForEach(r => suggestionData.ImportRow(r));
+
+                suggestionData.AcceptChanges();
+
+                return suggestionData;
             }
         }
+
+
+        //public Dictionary<int, string> SuggestionValues
+        //{
+        //    get
+        //    {
+        //        return suggestionValues.Where(i=> !string.IsNullOrEmpty(this.InputValue) &&
+        //                                          i.Value.Contains(this.InputValue) && 
+        //                                          !i.Value.Equals(this.InputValue,StringComparison.InvariantCultureIgnoreCase)
+        //                                          )
+        //                               .ToDictionary(kvp=> kvp.Key,kvp=> kvp.Value);
+        //    }
+        //}
+
+        // Свойство устанавливается в SuggestinoModelBinder при привязке модели
         public SuggestionModelHelper.SuggestionKeys SuggestionKey
         {
             get
@@ -105,11 +141,20 @@ namespace Maklak.Client.Models
             }
         }
         public string InputValue { get; set; }
+        //public int ItemId
+        //{
+        //    get
+        //    {
+        //        return suggestionValues.Count() > 0 && suggestionValues.ContainsValue(this.InputValue) ? suggestionValues.Keys.Where(k=> suggestionValues[k].Equals(this.InputValue,StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault() : 0;
+        //    }
+        //}
+
         public int ItemId
         {
             get
             {
-                return suggestionValues.Count() > 0 && suggestionValues.ContainsValue(this.InputValue) ? suggestionValues.Keys.Where(k=> suggestionValues[k].Equals(this.InputValue,StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault() : 0;
+                return this.data.Suggestion.Where(r => r.ItemValue.Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase)).Select(r => r.Id).FirstOrDefault();
+                //return suggestionValues.Count() > 0 && suggestionValues.ContainsValue(this.InputValue) ? suggestionValues.Keys.Where(k => suggestionValues[k].Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault() : 0;
             }
         }
     }

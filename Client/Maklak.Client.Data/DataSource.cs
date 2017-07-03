@@ -25,8 +25,9 @@ namespace Maklak.Client.Data
 
         public void MakeSuggestion(ModelDS modelDS)
         {
+            Proxy.DataSourceServiceReference.SuggestionDS inputDS = new Proxy.DataSourceServiceReference.SuggestionDS();
 
-            dataSource.MakeSuggestion();
+            Proxy.DataSourceServiceReference.SuggestionDS  outputDS = dataSource.MakeSuggestion(inputDS);
         }
     }
 }
