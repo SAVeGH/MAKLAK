@@ -76,6 +76,7 @@
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
               <xs:element name="ItemValue" msprop:Generator_ColumnVarNameInTable="columnItemValue" msprop:Generator_ColumnPropNameInRow="ItemValue" msprop:Generator_ColumnPropNameInTable="ItemValueColumn" msprop:Generator_UserColumnName="ItemValue" type="xs:string" minOccurs="0" />
               <xs:element name="Key" msprop:Generator_ColumnVarNameInTable="columnKey" msprop:Generator_ColumnPropNameInRow="Key" msprop:Generator_ColumnPropNameInTable="KeyColumn" msprop:Generator_UserColumnName="Key" type="xs:string" minOccurs="0" />
+              <xs:element name="Suggested" msprop:Generator_ColumnVarNameInTable="columnSuggested" msprop:Generator_ColumnPropNameInRow="Suggested" msprop:Generator_ColumnPropNameInTable="SuggestedColumn" msprop:Generator_UserColumnName="Suggested" type="xs:unsignedByte" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

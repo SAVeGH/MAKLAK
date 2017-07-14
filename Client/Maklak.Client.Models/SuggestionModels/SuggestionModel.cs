@@ -30,21 +30,21 @@ namespace Maklak.Client.Models
         {
 
 
-            //dataSource.MakeSuggestion(this.data);
-            this.data.Suggestion.Clear();
+            
+            //this.data.Suggestion.Clear();
 
-            for (int i = 0; i < 8; i++)
-            {               
+            //for (int i = 0; i < 8; i++)
+            //{               
 
-                ModelDS.SuggestionRow row = this.data.Suggestion.NewSuggestionRow();
+            //    ModelDS.SuggestionRow row = this.data.Suggestion.NewSuggestionRow();
 
-                row.Id = i;
-                row.ItemValue = "item_" + i.ToString();
-                row.Key = "TAG";
+            //    row.Id = i;
+            //    row.ItemValue = "item_" + i.ToString();
+            //    row.Key = "TAG";
 
-                this.data.Suggestion.AddSuggestionRow(row);
+            //    this.data.Suggestion.AddSuggestionRow(row);
 
-            }
+            //}
                 //suggestionValues.Add(i, "item_" + i.ToString());
 
             //ManageSelection();
@@ -52,47 +52,65 @@ namespace Maklak.Client.Models
 
         private void ManageSelection()
         {
-            string key = SuggestionKey.ToString();
-            int itemId = this.ItemId;
-            //object o = test.GetIDataTest();
-            DataSets.ModelDS.SuggestionRow row = base.data.Suggestion.Where(r => r.Key == key).FirstOrDefault();           
 
+            ModelDS.SuggestionRow sgRow = this.data.Suggestion.Where(r => r.IsSuggestedNull()).FirstOrDefault();
 
-            if (row == null)
-            {
-                if (itemId == 0)
-                    return;
-
-                // Добавить ключь и значение (CREATE)
-                row = base.data.Suggestion.NewSuggestionRow();
-                row.Key = key;
-                row.Id = itemId;
-                base.data.Suggestion.AddSuggestionRow(row);                
-                base.data.Suggestion.AcceptChanges();                
-                return;
+            if (sgRow == null)
+            { 
+                sgRow = this.data.Suggestion.NewSuggestionRow();
+                this.data.Suggestion.AddSuggestionRow(sgRow);
             }
 
-            // row != null
+            sgRow.Key = this.SuggestionKey.ToString();
+            sgRow.ItemValue = this.InputValue;
+            this.data.Suggestion.AcceptChanges();
 
-            if (itemId == 0)
-            {
-                // Ничего не выбрано и ключь найден (DELETE)
-                row.Delete();
-                base.data.Suggestion.AcceptChanges();                
-                return;
-            }
-
-            // Найден ключь и задано значене (UPDATE)
-            row.Key = key;
-            row.Id = itemId;
-            base.data.Suggestion.AcceptChanges();
-
-            //string result = test.GetData(itemId);
-
-            //object o = test.GetIDataTest();
-                       
-
+            dataSource.MakeSuggestion(this.data);
         }
+
+        //private void ManageSelection()
+        //{
+        //    string key = SuggestionKey.ToString();
+        //    int itemId = this.ItemId;
+        //    //object o = test.GetIDataTest();
+        //    DataSets.ModelDS.SuggestionRow row = base.data.Suggestion.Where(r => r.Key == key).FirstOrDefault();           
+
+
+        //    if (row == null)
+        //    {
+        //        if (itemId == 0)
+        //            return;
+
+        //        // Добавить ключь и значение (CREATE)
+        //        row = base.data.Suggestion.NewSuggestionRow();
+        //        row.Key = key;
+        //        row.Id = itemId;
+        //        base.data.Suggestion.AddSuggestionRow(row);                
+        //        base.data.Suggestion.AcceptChanges();                
+        //        return;
+        //    }
+
+        //    // row != null
+
+        //    if (itemId == 0)
+        //    {
+        //        // Ничего не выбрано и ключь найден (DELETE)
+        //        row.Delete();
+        //        base.data.Suggestion.AcceptChanges();                
+        //        return;
+        //    }
+
+        //    // Найден ключь и задано значене (UPDATE)
+        //    row.Key = key;
+        //    row.Id = itemId;
+        //    base.data.Suggestion.AcceptChanges();
+
+        //    //string result = test.GetData(itemId);
+
+        //    //object o = test.GetIDataTest();
+
+
+        //}
 
         public ModelDS.SuggestionDataTable SuggestionData
         {
@@ -112,6 +130,25 @@ namespace Maklak.Client.Models
                 return suggestionData;
             }
         }
+
+        //public ModelDS.SuggestionDataTable SuggestionData
+        //{
+        //    get
+        //    {
+        //        ModelDS.SuggestionDataTable suggestionData = new ModelDS.SuggestionDataTable();
+
+        //        this.data.Suggestion.Where(r => r.Key == suggestionKey.ToString() &&
+        //                                        !string.IsNullOrEmpty(this.InputValue) &&
+        //                                        !r.ItemValue.Contains(this.InputValue) &&
+        //                                        !r.ItemValue.Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase))
+        //                            .ToList()
+        //                            .ForEach(r => suggestionData.ImportRow(r));
+
+        //        suggestionData.AcceptChanges();
+
+        //        return suggestionData;
+        //    }
+        //}
 
 
         //public Dictionary<int, string> SuggestionValues
@@ -140,7 +177,7 @@ namespace Maklak.Client.Models
                 ManageSelection();
             }
         }
-        public string InputValue { get; set; }
+        public string InputValue { set; get; }
         //public int ItemId
         //{
         //    get
@@ -153,7 +190,7 @@ namespace Maklak.Client.Models
         {
             get
             {
-                return this.data.Suggestion.Where(r => r.ItemValue.Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase)).Select(r => r.Id).FirstOrDefault();
+                return 0; // this.data.Suggestion.Where(r => r.ItemValue.Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase)).Select(r => r.Id).FirstOrDefault();
                 //return suggestionValues.Count() > 0 && suggestionValues.ContainsValue(this.InputValue) ? suggestionValues.Keys.Where(k => suggestionValues[k].Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault() : 0;
             }
         }
