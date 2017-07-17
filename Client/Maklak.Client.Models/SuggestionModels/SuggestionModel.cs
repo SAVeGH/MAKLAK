@@ -28,9 +28,19 @@ namespace Maklak.Client.Models
 
         private void SuggestionModel_OnModelReady()
         {
-
+            // строка для записи информации о вводе юзера
+            ModelDS.SuggestionRow sgRow = this.data.Suggestion.Where(r => r.IsSuggestedNull()).FirstOrDefault();
+            // Проверяем и добавляем только один раз
+            if (sgRow != null)
+                return;
 
             
+            sgRow = this.data.Suggestion.NewSuggestionRow();
+            sgRow.Key = string.Empty;
+            this.data.Suggestion.AddSuggestionRow(sgRow);
+            this.data.Suggestion.AcceptChanges();
+
+
             //this.data.Suggestion.Clear();
 
             //for (int i = 0; i < 8; i++)
@@ -45,7 +55,7 @@ namespace Maklak.Client.Models
             //    this.data.Suggestion.AddSuggestionRow(row);
 
             //}
-                //suggestionValues.Add(i, "item_" + i.ToString());
+            //suggestionValues.Add(i, "item_" + i.ToString());
 
             //ManageSelection();
         }
@@ -54,13 +64,6 @@ namespace Maklak.Client.Models
         {
 
             ModelDS.SuggestionRow sgRow = this.data.Suggestion.Where(r => r.IsSuggestedNull()).FirstOrDefault();
-
-            if (sgRow == null)
-            { 
-                sgRow = this.data.Suggestion.NewSuggestionRow();
-                this.data.Suggestion.AddSuggestionRow(sgRow);
-            }
-
             sgRow.Key = this.SuggestionKey.ToString();
             sgRow.ItemValue = this.InputValue;
             this.data.Suggestion.AcceptChanges();
@@ -118,10 +121,9 @@ namespace Maklak.Client.Models
             {
                 ModelDS.SuggestionDataTable suggestionData = new ModelDS.SuggestionDataTable();
 
-                this.data.Suggestion.Where(r => r.Key == suggestionKey.ToString() &&
-                                                !string.IsNullOrEmpty(this.InputValue) &&
-                                                !r.ItemValue.Contains(this.InputValue) &&
-                                                !r.ItemValue.Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase))
+                this.data.Suggestion.Where(r => r.Key == suggestionKey.ToString() && 
+                                                !r.IsSuggestedNull() && 
+                                                r.Suggested == 1)
                                     .ToList()
                                     .ForEach(r => suggestionData.ImportRow(r));
 
@@ -130,6 +132,25 @@ namespace Maklak.Client.Models
                 return suggestionData;
             }
         }
+
+        //public ModelDS.SuggestionDataTable SuggestionData
+        //{
+        //    get
+        //    {
+        //        ModelDS.SuggestionDataTable suggestionData = new ModelDS.SuggestionDataTable();
+
+        //        this.data.Suggestion.Where(r => r.Key == suggestionKey.ToString() &&
+        //                                        !string.IsNullOrEmpty(this.InputValue) &&
+        //                                        !r.ItemValue.Contains(this.InputValue) &&
+        //                                        !r.ItemValue.Equals(this.InputValue, StringComparison.InvariantCultureIgnoreCase))
+        //                            .ToList()
+        //                            .ForEach(r => suggestionData.ImportRow(r));
+
+        //        suggestionData.AcceptChanges();
+
+        //        return suggestionData;
+        //    }
+        //}
 
         //public ModelDS.SuggestionDataTable SuggestionData
         //{
@@ -178,6 +199,14 @@ namespace Maklak.Client.Models
             }
         }
         public string InputValue { set; get; }
+
+        //public string CurrentInputValue
+        //{
+        //    get
+        //    {
+        //        return this.data.Suggestion.Where(r => !r.IsSuggestedNull() && r.Suggested == 0 && r.Key == this.SuggestionKey.ToString()).Select(r => r.ItemValue).FirstOrDefault();
+        //    }
+        //}
         //public int ItemId
         //{
         //    get

@@ -36,6 +36,8 @@ namespace Maklak.Client.Models
 
         }
 
+        
+
         public DataSets.ModelDS.SuggestionDataTable Tags
         {
             get

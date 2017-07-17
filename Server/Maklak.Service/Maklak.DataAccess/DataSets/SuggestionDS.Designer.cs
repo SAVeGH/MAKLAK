@@ -281,9 +281,11 @@ namespace Maklak.DataAccess.DataSets {
             
             private global::System.Data.DataColumn columnId;
             
-            private global::System.Data.DataColumn columnCODE;
-            
             private global::System.Data.DataColumn columnItemValue;
+            
+            private global::System.Data.DataColumn columnKey;
+            
+            private global::System.Data.DataColumn columnSuggested;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -328,17 +330,25 @@ namespace Maklak.DataAccess.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CODEColumn {
+            public global::System.Data.DataColumn ItemValueColumn {
                 get {
-                    return this.columnCODE;
+                    return this.columnItemValue;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ItemValueColumn {
+            public global::System.Data.DataColumn KeyColumn {
                 get {
-                    return this.columnItemValue;
+                    return this.columnKey;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuggestedColumn {
+                get {
+                    return this.columnSuggested;
                 }
             }
             
@@ -379,12 +389,13 @@ namespace Maklak.DataAccess.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SuggestionsRow AddSuggestionsRow(int Id, string CODE, string ItemValue) {
+            public SuggestionsRow AddSuggestionsRow(int Id, string ItemValue, string Key, byte Suggested) {
                 SuggestionsRow rowSuggestionsRow = ((SuggestionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
-                        CODE,
-                        ItemValue};
+                        ItemValue,
+                        Key,
+                        Suggested};
                 rowSuggestionsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSuggestionsRow);
                 return rowSuggestionsRow;
@@ -408,8 +419,9 @@ namespace Maklak.DataAccess.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
-                this.columnCODE = base.Columns["CODE"];
                 this.columnItemValue = base.Columns["ItemValue"];
+                this.columnKey = base.Columns["Key"];
+                this.columnSuggested = base.Columns["Suggested"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -417,11 +429,12 @@ namespace Maklak.DataAccess.DataSets {
             private void InitClass() {
                 this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnId);
-                this.columnCODE = new global::System.Data.DataColumn("CODE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCODE);
                 this.columnItemValue = new global::System.Data.DataColumn("ItemValue", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnItemValue);
-                this.columnId.AllowDBNull = false;
+                this.columnKey = new global::System.Data.DataColumn("Key", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKey);
+                this.columnSuggested = new global::System.Data.DataColumn("Suggested", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuggested);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -566,26 +579,15 @@ namespace Maklak.DataAccess.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Id {
                 get {
-                    return ((int)(this[this.tableSuggestions.IdColumn]));
+                    try {
+                        return ((int)(this[this.tableSuggestions.IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'Suggestions\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableSuggestions.IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CODE {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuggestions.CODEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CODE\' in table \'Suggestions\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuggestions.CODEColumn] = value;
                 }
             }
             
@@ -607,14 +609,46 @@ namespace Maklak.DataAccess.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCODENull() {
-                return this.IsNull(this.tableSuggestions.CODEColumn);
+            public string Key {
+                get {
+                    try {
+                        return ((string)(this[this.tableSuggestions.KeyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Key\' in table \'Suggestions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSuggestions.KeyColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCODENull() {
-                this[this.tableSuggestions.CODEColumn] = global::System.Convert.DBNull;
+            public byte Suggested {
+                get {
+                    try {
+                        return ((byte)(this[this.tableSuggestions.SuggestedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Suggested\' in table \'Suggestions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSuggestions.SuggestedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIdNull() {
+                return this.IsNull(this.tableSuggestions.IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIdNull() {
+                this[this.tableSuggestions.IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -627,6 +661,30 @@ namespace Maklak.DataAccess.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetItemValueNull() {
                 this[this.tableSuggestions.ItemValueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsKeyNull() {
+                return this.IsNull(this.tableSuggestions.KeyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetKeyNull() {
+                this[this.tableSuggestions.KeyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuggestedNull() {
+                return this.IsNull(this.tableSuggestions.SuggestedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuggestedNull() {
+                this[this.tableSuggestions.SuggestedColumn] = global::System.Convert.DBNull;
             }
         }
         
