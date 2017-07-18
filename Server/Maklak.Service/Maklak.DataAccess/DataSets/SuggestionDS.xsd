@@ -12,13 +12,13 @@
   <xs:element name="SuggestionDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SuggestionDS" msprop:Generator_UserDSName="SuggestionDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Suggestions" msprop:Generator_TableClassName="SuggestionsDataTable" msprop:Generator_TableVarName="tableSuggestions" msprop:Generator_TablePropName="Suggestions" msprop:Generator_RowDeletingName="SuggestionsRowDeleting" msprop:Generator_RowChangingName="SuggestionsRowChanging" msprop:Generator_RowEvHandlerName="SuggestionsRowChangeEventHandler" msprop:Generator_RowDeletedName="SuggestionsRowDeleted" msprop:Generator_UserTableName="Suggestions" msprop:Generator_RowChangedName="SuggestionsRowChanged" msprop:Generator_RowEvArgName="SuggestionsRowChangeEvent" msprop:Generator_RowClassName="SuggestionsRow">
+        <xs:element name="Suggestions" msprop:Generator_TableClassName="SuggestionsDataTable" msprop:Generator_TableVarName="tableSuggestions" msprop:Generator_RowChangedName="SuggestionsRowChanged" msprop:Generator_TablePropName="Suggestions" msprop:Generator_RowDeletingName="SuggestionsRowDeleting" msprop:Generator_RowChangingName="SuggestionsRowChanging" msprop:Generator_RowEvHandlerName="SuggestionsRowChangeEventHandler" msprop:Generator_RowDeletedName="SuggestionsRowDeleted" msprop:Generator_RowClassName="SuggestionsRow" msprop:Generator_UserTableName="Suggestions" msprop:Generator_RowEvArgName="SuggestionsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
               <xs:element name="ItemValue" msprop:Generator_ColumnVarNameInTable="columnItemValue" msprop:Generator_ColumnPropNameInRow="ItemValue" msprop:Generator_ColumnPropNameInTable="ItemValueColumn" msprop:Generator_UserColumnName="ItemValue" type="xs:string" minOccurs="0" />
               <xs:element name="Key" msprop:Generator_ColumnVarNameInTable="columnKey" msprop:Generator_ColumnPropNameInRow="Key" msprop:Generator_ColumnPropNameInTable="KeyColumn" msprop:Generator_UserColumnName="Key" type="xs:string" minOccurs="0" />
-              <xs:element name="Suggested" msprop:Generator_ColumnVarNameInTable="columnSuggested" msprop:Generator_ColumnPropNameInRow="Suggested" msprop:Generator_ColumnPropNameInTable="SuggestedColumn" msprop:Generator_UserColumnName="Suggested" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="IsCurrent" msprop:Generator_ColumnVarNameInTable="columnIsCurrent" msprop:Generator_ColumnPropNameInRow="IsCurrent" msprop:Generator_ColumnPropNameInTable="IsCurrentColumn" msprop:Generator_UserColumnName="IsCurrent" type="xs:unsignedByte" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

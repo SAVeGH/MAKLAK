@@ -27,7 +27,7 @@ namespace Maklak.Client.Data
         {
             Proxy.DataSourceServiceReference.SuggestionDS inputDS = new Proxy.DataSourceServiceReference.SuggestionDS();
 
-            modelDS.Suggestion.Where(r=> (r.IsSuggestedNull() ? 0 : r.Suggested) != 1).ToList().ForEach(row => inputDS.Suggestions.ImportRow(row));            
+            modelDS.Suggestion.AsEnumerable().ToList().ForEach(row => inputDS.Suggestions.ImportRow(row));            
 
             Proxy.DataSourceServiceReference.SuggestionDS  outputDS = dataSource.MakeSuggestion(inputDS);
 

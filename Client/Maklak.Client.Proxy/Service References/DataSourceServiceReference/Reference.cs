@@ -305,7 +305,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             private global::System.Data.DataColumn columnKey;
             
-            private global::System.Data.DataColumn columnSuggested;
+            private global::System.Data.DataColumn columnIsCurrent;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -366,9 +366,9 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SuggestedColumn {
+            public global::System.Data.DataColumn IsCurrentColumn {
                 get {
-                    return this.columnSuggested;
+                    return this.columnIsCurrent;
                 }
             }
             
@@ -409,13 +409,13 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SuggestionsRow AddSuggestionsRow(int Id, string ItemValue, string Key, byte Suggested) {
+            public SuggestionsRow AddSuggestionsRow(int Id, string ItemValue, string Key, byte IsCurrent) {
                 SuggestionsRow rowSuggestionsRow = ((SuggestionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         ItemValue,
                         Key,
-                        Suggested};
+                        IsCurrent};
                 rowSuggestionsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSuggestionsRow);
                 return rowSuggestionsRow;
@@ -441,7 +441,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
                 this.columnId = base.Columns["Id"];
                 this.columnItemValue = base.Columns["ItemValue"];
                 this.columnKey = base.Columns["Key"];
-                this.columnSuggested = base.Columns["Suggested"];
+                this.columnIsCurrent = base.Columns["IsCurrent"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -453,8 +453,8 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
                 base.Columns.Add(this.columnItemValue);
                 this.columnKey = new global::System.Data.DataColumn("Key", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKey);
-                this.columnSuggested = new global::System.Data.DataColumn("Suggested", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSuggested);
+                this.columnIsCurrent = new global::System.Data.DataColumn("IsCurrent", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsCurrent);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -645,17 +645,17 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte Suggested {
+            public byte IsCurrent {
                 get {
                     try {
-                        return ((byte)(this[this.tableSuggestions.SuggestedColumn]));
+                        return ((byte)(this[this.tableSuggestions.IsCurrentColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Suggested\' in table \'Suggestions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsCurrent\' in table \'Suggestions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSuggestions.SuggestedColumn] = value;
+                    this[this.tableSuggestions.IsCurrentColumn] = value;
                 }
             }
             
@@ -697,14 +697,14 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSuggestedNull() {
-                return this.IsNull(this.tableSuggestions.SuggestedColumn);
+            public bool IsIsCurrentNull() {
+                return this.IsNull(this.tableSuggestions.IsCurrentColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSuggestedNull() {
-                this[this.tableSuggestions.SuggestedColumn] = global::System.Convert.DBNull;
+            public void SetIsCurrentNull() {
+                this[this.tableSuggestions.IsCurrentColumn] = global::System.Convert.DBNull;
             }
         }
         

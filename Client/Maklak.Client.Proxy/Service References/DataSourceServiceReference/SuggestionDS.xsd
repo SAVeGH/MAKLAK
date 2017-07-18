@@ -9,7 +9,7 @@
               <xs:element minOccurs="0" name="Id" type="xs:int" />
               <xs:element minOccurs="0" name="ItemValue" type="xs:string" />
               <xs:element minOccurs="0" name="Key" type="xs:string" />
-              <xs:element minOccurs="0" name="Suggested" type="xs:unsignedByte" />
+              <xs:element minOccurs="0" name="IsCurrent" type="xs:unsignedByte" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

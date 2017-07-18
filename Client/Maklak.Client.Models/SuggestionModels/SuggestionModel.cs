@@ -29,16 +29,16 @@ namespace Maklak.Client.Models
         private void SuggestionModel_OnModelReady()
         {
             // строка для записи информации о вводе юзера
-            ModelDS.SuggestionRow sgRow = this.data.Suggestion.Where(r => r.IsSuggestedNull()).FirstOrDefault();
+            //ModelDS.SuggestionRow sgRow = this.data.Suggestion.Where(r => r.IsSuggestedNull()).FirstOrDefault();
             // Проверяем и добавляем только один раз
-            if (sgRow != null)
-                return;
+            //if (sgRow != null)
+            //    return;
 
             
-            sgRow = this.data.Suggestion.NewSuggestionRow();
-            sgRow.Key = string.Empty;
-            this.data.Suggestion.AddSuggestionRow(sgRow);
-            this.data.Suggestion.AcceptChanges();
+            //sgRow = this.data.Suggestion.NewSuggestionRow();
+            //sgRow.Key = string.Empty;
+            //this.data.Suggestion.AddSuggestionRow(sgRow);
+            //this.data.Suggestion.AcceptChanges();
 
 
             //this.data.Suggestion.Clear();
@@ -62,10 +62,40 @@ namespace Maklak.Client.Models
 
         private void ManageSelection()
         {
+            string key = SuggestionKey.ToString();
+            ModelDS.SuggestionRow sgRow = this.data.Suggestion.Where(r => r.Key == key && r.IsIdNull()).FirstOrDefault();
+            bool validValue = !string.IsNullOrEmpty(this.InputValue) && !string.IsNullOrWhiteSpace(this.InputValue);
 
-            ModelDS.SuggestionRow sgRow = this.data.Suggestion.Where(r => r.IsSuggestedNull()).FirstOrDefault();
-            sgRow.Key = this.SuggestionKey.ToString();
-            sgRow.ItemValue = this.InputValue;
+            ModelDS.SuggestionRow currentRow = this.data.Suggestion.Where(r => !r.IsIsCurrentNull() && r.IsCurrent == 1).FirstOrDefault();
+
+            if (currentRow != null)
+            {
+                currentRow.SetIsCurrentNull();
+                this.data.Suggestion.AcceptChanges();
+            }
+
+            if (validValue)
+            {
+                if (sgRow == null)
+                {
+                    // Add
+                    sgRow = this.data.Suggestion.NewSuggestionRow();
+                    this.data.Suggestion.AddSuggestionRow(sgRow);
+                }
+
+                // or Update
+                sgRow.Key = key;
+                sgRow.ItemValue = this.InputValue;
+                sgRow.IsCurrent = 1;
+
+            }
+            else
+            {
+                // Delete
+                if (sgRow != null)
+                    this.data.Suggestion.RemoveSuggestionRow(sgRow); 
+            }
+                        
             this.data.Suggestion.AcceptChanges();
 
             dataSource.MakeSuggestion(this.data);
@@ -121,9 +151,9 @@ namespace Maklak.Client.Models
             {
                 ModelDS.SuggestionDataTable suggestionData = new ModelDS.SuggestionDataTable();
 
-                this.data.Suggestion.Where(r => r.Key == suggestionKey.ToString() && 
-                                                !r.IsSuggestedNull() && 
-                                                r.Suggested == 1)
+                this.data.Suggestion.Where(r => r.Key == suggestionKey.ToString() &&
+                                               !r.IsIdNull()&&
+                                               r.ItemValue != this.InputValue)
                                     .ToList()
                                     .ForEach(r => suggestionData.ImportRow(r));
 
