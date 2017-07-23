@@ -20,10 +20,10 @@ namespace Maklak.Client.Models
 
         private void UpdateTags()
         {
-            DataSets.ModelDS.SuggestionRow sRow = base.data.Suggestion.Where(r => r.Key == "TAG").FirstOrDefault();            
+            //DataSets.ModelDS.SuggestionRow sRow = base.data.Suggestion.Where(r => r.Key == "TAG").FirstOrDefault();            
 
-            if (sRow == null)
-                return;
+            //if (sRow == null)
+            //    return;
 
             //DataSets.ModelDS.TagsRow row = base.data.Tags.NewTagsRow();
             //row.Tag_Id = sRow.Item_Id;

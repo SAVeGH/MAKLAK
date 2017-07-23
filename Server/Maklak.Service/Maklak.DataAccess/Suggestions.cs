@@ -12,28 +12,50 @@ namespace Maklak.DataAccess
     {
         public static SuggestionDS Suggestion(SuggestionDS inputDS)
         {
-            
 
-
-            SuggestionDS.SuggestionsRow inputRow = inputDS.Suggestions.Where(r => r.IsCurrent == 1).FirstOrDefault();
-
-            SuggestionDS ds = GetRows(inputRow.Key);
-
+            SuggestionDS.SuggestionInputRow inputRow = inputDS.SuggestionInput.FirstOrDefault();
+            string key = inputRow.Key;
             string inputValue = inputRow.ItemValue;
 
-            SuggestionDS.SuggestionsRow idRow  = ds.Suggestions.Where(r => r.ItemValue == inputValue).FirstOrDefault();
+            bool emptyInput = string.IsNullOrEmpty(inputValue) || string.IsNullOrWhiteSpace(inputValue);
 
-            if (idRow != null)
+            SuggestionDS.SuggestionFilterRow fRow = inputDS.SuggestionFilter.Where(r => r.Key == key).FirstOrDefault();
+
+            if (emptyInput)
             {
-                // найден id
-                inputRow.Id = idRow.Id;
-                inputRow.ItemValue = idRow.ItemValue;
-                inputRow.Key = idRow.Key;
-                inputDS.AcceptChanges();
-                return inputDS;
+                if (fRow != null)
+                    inputDS.SuggestionFilter.RemoveSuggestionFilterRow(fRow);                
+            }
+            else
+            {
+                if (fRow == null)
+                {
+                    fRow = inputDS.SuggestionFilter.NewSuggestionFilterRow();
+                    inputDS.SuggestionFilter.AddSuggestionFilterRow(fRow);
+                }
+
+                fRow.Key = key;
+                fRow.ItemValue = inputValue;                
             }
 
-            ds.Suggestions.Where(r => r.ItemValue.Contains(inputValue)).ToList().ForEach(r => inputDS.Suggestions.ImportRow(r));
+            inputDS.SuggestionFilter.AcceptChanges();
+
+
+            SuggestionDS ds = GetRows(key);
+
+            int filterId = ds.Suggestion.Where(r => r.ItemValue == inputValue).Select(r => r.Id).FirstOrDefault();
+
+            if (!emptyInput && fRow!= null && filterId > 0)
+            {
+                fRow.Id = filterId;
+                inputDS.SuggestionFilter.AcceptChanges();
+
+            }
+
+            ds.Suggestion.Where(r => r.ItemValue.Contains(inputValue) && !r.ItemValue.Equals(inputValue, StringComparison.InvariantCultureIgnoreCase)).ToList().ForEach(r => inputDS.Suggestion.ImportRow(r));
+
+
+
             inputDS.AcceptChanges();
             return inputDS;
         }
@@ -44,11 +66,11 @@ namespace Maklak.DataAccess
 
             for (int i = 1; i < 6; i++)
             {
-                SuggestionDS.SuggestionsRow row = ds.Suggestions.NewSuggestionsRow();
+                SuggestionDS.SuggestionRow row = ds.Suggestion.NewSuggestionRow();
                 row.Id = i;
                 row.Key = key;
                 row.ItemValue = "item_" + i.ToString();
-                ds.Suggestions.AddSuggestionsRow(row);
+                ds.Suggestion.AddSuggestionRow(row);
 
             }
 

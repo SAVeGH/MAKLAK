@@ -3,13 +3,29 @@
   <xs:element msdata:IsDataSet="true" msdata:UseCurrentLocale="true" name="SuggestionDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Suggestions">
+        <xs:element name="Suggestion">
           <xs:complexType>
             <xs:sequence>
               <xs:element minOccurs="0" name="Id" type="xs:int" />
-              <xs:element minOccurs="0" name="ItemValue" type="xs:string" />
               <xs:element minOccurs="0" name="Key" type="xs:string" />
-              <xs:element minOccurs="0" name="IsCurrent" type="xs:unsignedByte" />
+              <xs:element minOccurs="0" name="ItemValue" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SuggestionInput">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Key" type="xs:string" />
+              <xs:element minOccurs="0" name="ItemValue" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SuggestionFilter">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Id" type="xs:int" />
+              <xs:element minOccurs="0" name="Key" type="xs:string" />
+              <xs:element minOccurs="0" name="ItemValue" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
