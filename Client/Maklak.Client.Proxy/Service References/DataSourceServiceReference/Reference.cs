@@ -644,6 +644,8 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SuggestionInputDataTable : global::System.Data.TypedTableBase<SuggestionInputRow> {
             
+            private global::System.Data.DataColumn columnId;
+            
             private global::System.Data.DataColumn columnKey;
             
             private global::System.Data.DataColumn columnItemValue;
@@ -679,6 +681,14 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             protected SuggestionInputDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -734,9 +744,10 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SuggestionInputRow AddSuggestionInputRow(string Key, string ItemValue) {
+            public SuggestionInputRow AddSuggestionInputRow(int Id, string Key, string ItemValue) {
                 SuggestionInputRow rowSuggestionInputRow = ((SuggestionInputRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        Id,
                         Key,
                         ItemValue};
                 rowSuggestionInputRow.ItemArray = columnValuesArray;
@@ -761,6 +772,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnId = base.Columns["Id"];
                 this.columnKey = base.Columns["Key"];
                 this.columnItemValue = base.Columns["ItemValue"];
             }
@@ -768,6 +780,8 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
                 this.columnKey = new global::System.Data.DataColumn("Key", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKey);
                 this.columnItemValue = new global::System.Data.DataColumn("ItemValue", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1288,6 +1302,22 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Id {
+                get {
+                    try {
+                        return ((int)(this[this.tableSuggestionInput.IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'SuggestionInput\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSuggestionInput.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Key {
                 get {
                     try {
@@ -1316,6 +1346,18 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
                 set {
                     this[this.tableSuggestionInput.ItemValueColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIdNull() {
+                return this.IsNull(this.tableSuggestionInput.IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIdNull() {
+                this[this.tableSuggestionInput.IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

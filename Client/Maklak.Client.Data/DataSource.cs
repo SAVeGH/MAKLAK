@@ -27,16 +27,23 @@ namespace Maklak.Client.Data
         {
             Proxy.DataSourceServiceReference.SuggestionDS inputDS = new Proxy.DataSourceServiceReference.SuggestionDS();
 
-            inputDS.SuggestionInput.ImportRow(modelDS.SuggestionInput.FirstOrDefault());
+            ModelDS.SuggestionInputRow inputRow = modelDS.SuggestionInput.FirstOrDefault();
+            inputRow.SetIdNull();
+            inputRow.AcceptChanges();
 
-            modelDS.SuggestionFilter.AsEnumerable().ToList().ForEach(r => inputDS.SuggestionFilter.ImportRow(r));       
+            inputDS.SuggestionInput.ImportRow(inputRow);
+
+            modelDS.SuggestionFilter.AsEnumerable().ToList().ForEach(r => inputDS.SuggestionFilter.ImportRow(r));              
 
             Proxy.DataSourceServiceReference.SuggestionDS  outputDS = dataSource.MakeSuggestion(inputDS);
 
-            modelDS.SuggestionFilter.Clear();
-            modelDS.Suggestion.Clear();
+            Proxy.DataSourceServiceReference.SuggestionDS.SuggestionInputRow outRow = outputDS.SuggestionInput.FirstOrDefault();
 
-            outputDS.SuggestionFilter.AsEnumerable().ToList().ForEach(r=> modelDS.SuggestionFilter.ImportRow(r));
+            if (!outRow.IsIdNull())
+                inputRow.Id = outRow.Id;
+
+            modelDS.Suggestion.Clear();
+                        
             outputDS.Suggestion.AsEnumerable().ToList().ForEach(r => modelDS.Suggestion.ImportRow(r));
 
             modelDS.AcceptChanges();

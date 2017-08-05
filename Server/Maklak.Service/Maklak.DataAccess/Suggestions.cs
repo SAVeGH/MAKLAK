@@ -18,44 +18,28 @@ namespace Maklak.DataAccess
             string inputValue = inputRow.ItemValue;
 
             bool emptyInput = string.IsNullOrEmpty(inputValue) || string.IsNullOrWhiteSpace(inputValue);
-            // строка фильтра для заданного ключа
-            SuggestionDS.SuggestionFilterRow fRow = inputDS.SuggestionFilter.Where(r => r.Key == key).FirstOrDefault();
+
+            inputDS.Suggestion.Clear();
+            inputDS.AcceptChanges();
 
             if (emptyInput)
-            {
-                if (fRow != null)
-                    inputDS.SuggestionFilter.RemoveSuggestionFilterRow(fRow);  // удалить фильтр              
-            }
-            else
-            {
-                // ввод не пустой
-                if (fRow == null)
-                {
-                    // добавить ключ если его ещё не было
-                    fRow = inputDS.SuggestionFilter.NewSuggestionFilterRow();
-                    inputDS.SuggestionFilter.AddSuggestionFilterRow(fRow);
-                }
-                // обновить данные фильтра
-                fRow.Key = key;
-                fRow.ItemValue = inputValue;                
-            }
-
-            inputDS.SuggestionFilter.AcceptChanges();
+                return inputDS;
 
             SuggestionDS ds = GetRows(key);
             // найти Id для inputValue
-            int filterId = ds.Suggestion.Where(r => r.ItemValue == inputValue).Select(r => r.Id).FirstOrDefault();
+            int inputId = ds.Suggestion.Where(r => r.ItemValue.Equals(inputValue, StringComparison.InvariantCultureIgnoreCase)).Select(r => r.Id).FirstOrDefault();
 
-            if (!emptyInput && fRow!= null && filterId > 0)
-            {
-                fRow.Id = filterId; // установить Id
-                inputDS.SuggestionFilter.AcceptChanges();
+            if (inputId > 0)
+                inputRow.Id = inputId; 
 
-            }
-
-            ds.Suggestion.Where(r => !emptyInput && r.ItemValue.Contains(inputValue) && !r.ItemValue.Equals(inputValue, StringComparison.InvariantCultureIgnoreCase)).ToList().ForEach(r => inputDS.Suggestion.ImportRow(r));
+            // Данные подсказки
+            ds.Suggestion
+              .Where(r => !emptyInput && r.ItemValue.Contains(inputValue) && !r.ItemValue.Equals(inputValue, StringComparison.InvariantCultureIgnoreCase))
+              .ToList()
+              .ForEach(r => inputDS.Suggestion.ImportRow(r));
             
             inputDS.AcceptChanges();
+
             return inputDS;
         }
 

@@ -35,7 +35,7 @@ namespace Maklak.Client.Web.ModelBinder
 
         protected BaseModel GenerateSuggestionModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
-            // method is calling inside BindModel method
+            // method is called inside BindModel method
             
 
             SuggestionModel model = SuggestionModelHelper.GenerateModel();
