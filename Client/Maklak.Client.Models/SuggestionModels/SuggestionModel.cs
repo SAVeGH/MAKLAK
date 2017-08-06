@@ -18,6 +18,8 @@ namespace Maklak.Client.Models
         //Maklak.Client.Data.TestClass test;
         Maklak.Client.Data.DataSource dataSource;
 
+        
+
         public SuggestionModel() 
         {            
             this.OnModelReady += SuggestionModel_OnModelReady;
@@ -39,7 +41,7 @@ namespace Maklak.Client.Models
 
         }
 
-        private void ManageSelection()
+        private void ManageInput()
         {
             string key = SuggestionKey.ToString();
             // строка для записи информации о вводе юзера
@@ -47,8 +49,60 @@ namespace Maklak.Client.Models
             inputRow.Key = key;
             inputRow.ItemValue = this.InputValue;
 
+            DropFilter();
+
             dataSource.MakeSuggestion(this.data);
-        }        
+
+            UpdateFilter();
+        }
+
+        private void DropFilter()
+        {
+            if (this.SkipFilter)
+                return;
+
+            ModelDS.SuggestionInputRow inputRow = this.data.SuggestionInput.FirstOrDefault();
+
+            if (inputRow.IsIdNull())
+                return;
+
+            ModelDS.SuggestionFilterRow filterRow = this.data.SuggestionFilter.Where(fr => fr.Id == inputRow.Id && fr.Key == this.SuggestionKey.ToString()).FirstOrDefault();
+
+            if (filterRow == null)
+                return;
+
+            this.data.SuggestionFilter.RemoveSuggestionFilterRow(filterRow);
+
+            this.data.SuggestionFilter.AcceptChanges();
+
+        }
+
+        private void UpdateFilter()
+        {
+            if (this.SkipFilter)
+                return;
+
+            ModelDS.SuggestionInputRow inputRow = this.data.SuggestionInput.FirstOrDefault();
+
+            if (inputRow.IsIdNull())
+                return;
+
+            ModelDS.SuggestionFilterRow filterRow = this.data.SuggestionFilter.Where(fr => fr.Id == inputRow.Id && fr.Key == this.SuggestionKey.ToString()).FirstOrDefault();
+
+            if (filterRow == null)
+            {
+                filterRow = this.data.SuggestionFilter.NewSuggestionFilterRow();
+                this.data.SuggestionFilter.AddSuggestionFilterRow(filterRow);
+            }
+
+            
+           filterRow.Id = inputRow.Id;
+           filterRow.Key = this.SuggestionKey.ToString();
+           filterRow.ItemValue = this.InputValue;
+           filterRow.AcceptChanges();
+                
+
+        }
 
         public ModelDS.SuggestionDataTable SuggestionData
         {
@@ -77,10 +131,12 @@ namespace Maklak.Client.Models
             {
                 suggestionKey = value;
 
-                ManageSelection();
+                ManageInput();
             }
         }
         public string InputValue { set; get; }
+
+        public bool SkipFilter { get; set; }
        
 
     }

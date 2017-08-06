@@ -20,10 +20,13 @@ namespace Maklak.Client.Models
 
         public static void InitModel(SuggestionModel model,string inputValue, string key)
         {
-            
+            SuggestionKeys sgKey = (SuggestionKeys)Enum.Parse(typeof(SuggestionKeys), key);
             model.InputValue = inputValue;
-            model.SuggestionKey = (SuggestionKeys)Enum.Parse(typeof(SuggestionKeys), key);
+            model.SkipFilter = sgKey == SuggestionKeys.TAG;
+            model.SuggestionKey = sgKey;
             
+
+
         }
     }
 }
