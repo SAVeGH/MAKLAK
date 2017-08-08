@@ -25,7 +25,7 @@ namespace Maklak.DataAccess
             if (emptyInput)
                 return inputDS;
 
-            SuggestionDS ds = GetRows(key);
+            SuggestionDS ds = GetRows(key, inputDS);
             // найти Id для inputValue
             int inputId = ds.Suggestion.Where(r => r.ItemValue.Equals(inputValue, StringComparison.InvariantCultureIgnoreCase)).Select(r => r.Id).FirstOrDefault();
 
@@ -43,16 +43,21 @@ namespace Maklak.DataAccess
             return inputDS;
         }
 
-        static SuggestionDS GetRows(string key)
+        static SuggestionDS GetRows(string key, SuggestionDS inputDS)
         {
             SuggestionDS ds = new SuggestionDS();
 
             for (int i = 1; i < 6; i++)
             {
+                string itemValue = "item_" + i.ToString();
+
+                if (inputDS.SuggestionFilter.Where(r => r.Key == key && r.ItemValue.Equals(itemValue, StringComparison.InvariantCultureIgnoreCase)).Any())
+                    continue;
+
                 SuggestionDS.SuggestionRow row = ds.Suggestion.NewSuggestionRow();
                 row.Id = i;
                 row.Key = key;
-                row.ItemValue = "item_" + i.ToString();
+                row.ItemValue = itemValue;
                 ds.Suggestion.AddSuggestionRow(row);
 
             }
