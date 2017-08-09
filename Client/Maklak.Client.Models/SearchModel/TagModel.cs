@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Maklak.Client.DataSets;
+
 namespace Maklak.Client.Models
 {
     public class TagModel : SuggestionModel
     {
+        int? filterId;
+
         public TagModel()
         {
             base.OnModelReady += TagModel_OnModelReady;
@@ -20,32 +24,76 @@ namespace Maklak.Client.Models
 
         private void UpdateTags()
         {
-            //DataSets.ModelDS.SuggestionRow sRow = base.data.Suggestion.Where(r => r.Key == "TAG").FirstOrDefault();            
+            if (FILTERID == null)
+                return;
 
-            //if (sRow == null)
-            //    return;
+            if (FILTERID == 0)
+                AddFilter();
+            else
+                DeleteFilter();
 
-            //DataSets.ModelDS.TagsRow row = base.data.Tags.NewTagsRow();
-            //row.Tag_Id = sRow.Item_Id;
-            //row.TagName = sRow.Key;
-            //base.data.Tags.Rows.Add(row);
-            //base.data.Tags.AcceptChanges();
-
-            //sRow.Delete();
-            //base.data.Suggestion.AcceptChanges();
-
+           
         }
 
-        
+        private void DeleteFilter()
+        {
+            int filterIdValue = this.FILTERID ?? 0;
 
-        public DataSets.ModelDS.SuggestionDataTable Tags
+            ModelDS.SuggestionFilterRow filterRow = this.data.SuggestionFilter.Where(r => r.Key == "TAG" && r.Id == filterIdValue).FirstOrDefault();
+
+            if (filterRow == null)
+                return;
+
+            this.data.SuggestionFilter.RemoveSuggestionFilterRow(filterRow);
+            this.data.SuggestionFilter.AcceptChanges();
+        }
+
+        private void AddFilter()
+        {
+            ModelDS.SuggestionInputRow row = this.data.SuggestionInput.Where(r => r.Key == "TAG" && !r.IsIdNull()).FirstOrDefault();
+
+            if (row == null)
+                return;
+
+            ModelDS.SuggestionFilterRow filterRow = this.data.SuggestionFilter.Where(r => r.Key == "TAG" && r.Id == row.Id).FirstOrDefault();
+
+            if (filterRow != null)
+                return;
+
+            filterRow = this.data.SuggestionFilter.NewSuggestionFilterRow();
+
+            filterRow.Id = row.Id;
+            filterRow.Key = row.Key;
+            filterRow.ItemValue = row.ItemValue;
+
+            this.data.SuggestionFilter.AddSuggestionFilterRow(filterRow);
+
+            this.data.SuggestionFilter.AcceptChanges();
+
+            this.data.SuggestionInput.RemoveSuggestionInputRow(row);
+            this.data.SuggestionInput.AcceptChanges();
+        }
+
+        public int? FILTERID
+        {
+            get { return filterId; }
+            set
+            {
+                filterId = value;
+
+                UpdateTags();
+            }
+        }
+
+        public DataSets.ModelDS.SuggestionFilterDataTable Tags
         {
             get
             {
-                DataSets.ModelDS.SuggestionDataTable tagsTable = new DataSets.ModelDS.SuggestionDataTable();
-                //tagsTable.ImportRow()
-                //base.data.Suggestion.Where(r => r.Key == "TAG").ToList().ForEach(r => tagsTable.ImportRow(r));
-                this.SuggestionData.ToList().ToList().ForEach(r => tagsTable.ImportRow(r));
+
+                ModelDS.SuggestionFilterDataTable tagsTable = new ModelDS.SuggestionFilterDataTable();
+                this.data.SuggestionFilter.Where(r => r.Key == "TAG").ToList().ForEach(r=> tagsTable.ImportRow(r));
+                tagsTable.AcceptChanges();
+                
                 return tagsTable;
             }
         }

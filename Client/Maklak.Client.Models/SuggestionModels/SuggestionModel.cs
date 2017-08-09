@@ -59,14 +59,9 @@ namespace Maklak.Client.Models
         private void DropFilter()
         {
             if (this.SkipFilter)
-                return;
+                return;           
 
-            ModelDS.SuggestionInputRow inputRow = this.data.SuggestionInput.FirstOrDefault();
-
-            if (inputRow.IsIdNull())
-                return;
-
-            ModelDS.SuggestionFilterRow filterRow = this.data.SuggestionFilter.Where(fr => fr.Id == inputRow.Id && fr.Key == this.SuggestionKey.ToString()).FirstOrDefault();
+            ModelDS.SuggestionFilterRow filterRow = this.data.SuggestionFilter.Where(fr => fr.Key == this.SuggestionKey.ToString()).FirstOrDefault();
 
             if (filterRow == null)
                 return;

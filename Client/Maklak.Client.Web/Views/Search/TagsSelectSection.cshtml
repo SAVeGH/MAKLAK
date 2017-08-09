@@ -23,7 +23,7 @@
 <div style="margin-bottom:3px;">
     <div style="margin:2px"> @SuggestionHelper.SuggestionInput(SuggestionModelHelper.SuggestionKeys.TAG, inputId, "Tag Name")</div>
     @*RefreshControl('@inputId','@suggestionKey')*@
-    <input type="button" value="Add" style="margin:2px" onclick="Fractal.RefreshControl(this)" />
+    <input type="button" value="Add" style="margin:2px" onclick="Fractal.RefreshControl(this,'FILTERID=0')" />
 
     <div  style="margin:4px;position:relative;right:0px;left:0px;">
         <table class="simpleTable">
@@ -33,7 +33,7 @@
             </tr>
 
             @{ 
-                foreach (ModelDS.SuggestionRow row in this.Model.Tags)
+                foreach (ModelDS.SuggestionFilterRow row in this.Model.Tags)
                 {
                     <tr><td>@row.ItemValue</td><td>&nbsp</td></tr>
                     //Html.Raw(string.Format("<tr><td>{0}</td><td>{1}</td></tr>",row.TagName,"&nbsp"));                    
