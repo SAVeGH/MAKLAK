@@ -35,7 +35,8 @@
             @{ 
                 foreach (ModelDS.SuggestionFilterRow row in this.Model.Tags)
                 {
-                    <tr><td>@row.ItemValue</td><td>&nbsp</td></tr>
+                    string delCommand = string.Format("FILTERID={0}",row.Id);
+                    <tr><td class="simpleTableCell">@row.ItemValue</td><td class="simpleTableCell"><input type="button" value="Delete" onclick="Fractal.RefreshControl(this, '@delCommand')" /></td></tr>
                     //Html.Raw(string.Format("<tr><td>{0}</td><td>{1}</td></tr>",row.TagName,"&nbsp"));                    
                 }
             }
