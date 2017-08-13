@@ -28,6 +28,7 @@ namespace Maklak.Client.Models
             row.Name = "Properties";
             row.Action = "PropertiesEditSection";
             row.Controller = "Search";
+            row.Opened = true;
             this.data.ExpanderData.AddExpanderDataRow(row);
 
             row = this.data.ExpanderData.NewExpanderDataRow();

@@ -39,7 +39,7 @@ namespace Maklak.Client.Web.Controllers
 
         public ActionResult PropertiesEditSection()
         {
-            return new EmptyResult();
+            return PartialView("PropertiesEditSection");
         }
 
         public ActionResult TagsSelectSection(TagModel model)
