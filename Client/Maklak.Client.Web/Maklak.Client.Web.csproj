@@ -263,6 +263,7 @@
     <Content Include="Views\Fractal\FractalControl.cshtml" />
     <Content Include="Views\Fractal\FractalContent.cshtml" />
     <Content Include="Views\Search\PropertiesEditSection.cshtml" />
+    <Content Include="Views\Search\ProducerSection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

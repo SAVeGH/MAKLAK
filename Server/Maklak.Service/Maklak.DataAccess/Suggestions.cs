@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Configuration;
+using System.Data.SqlClient;
+
 using Maklak.DataAccess.DataSets;
 
 namespace Maklak.DataAccess
@@ -12,6 +15,7 @@ namespace Maklak.DataAccess
     {
         public static SuggestionDS Suggestion(SuggestionDS inputDS)
         {
+            int result = DBTest();
 
             SuggestionDS.SuggestionInputRow inputRow = inputDS.SuggestionInput.FirstOrDefault();
             string key = inputRow.Key;
@@ -65,6 +69,25 @@ namespace Maklak.DataAccess
             ds.AcceptChanges();
 
             return ds;
+        }
+
+        public static int DBTest()
+        {
+
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings["srv"];
+
+            using (SqlConnection conn = new SqlConnection(settings.ConnectionString))
+            {
+                using (SqlCommand comm = conn.CreateCommand())
+                {
+                    comm.CommandType = System.Data.CommandType.StoredProcedure;
+                    comm.CommandText = "sp_DBTest";
+                    conn.Open();
+                    int result = (int)comm.ExecuteScalar();
+
+                    return result;
+                }
+            }
         }
 
     }

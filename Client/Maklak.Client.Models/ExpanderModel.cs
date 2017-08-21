@@ -24,6 +24,12 @@ namespace Maklak.Client.Models
             row.Opened = true;
             this.data.ExpanderData.AddExpanderDataRow(row);
 
+            row.Name = "Producer";
+            row.Action = "ProducerSection";
+            row.Controller = "Search";
+            row.Opened = true;
+            this.data.ExpanderData.AddExpanderDataRow(row);
+
             row = this.data.ExpanderData.NewExpanderDataRow();
             row.Name = "Properties";
             row.Action = "PropertiesEditSection";

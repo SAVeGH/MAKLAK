@@ -37,6 +37,11 @@ namespace Maklak.Client.Web.Controllers
             return PartialView();
         }
 
+        public ActionResult ProducerSection()
+        {
+            return PartialView();
+        }
+
         public ActionResult PropertiesEditSection()
         {
             return PartialView("PropertiesEditSection");
