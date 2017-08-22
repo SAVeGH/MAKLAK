@@ -64,10 +64,12 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Parent_Id" msprop:Generator_ColumnVarNameInTable="columnParent_Id" msprop:Generator_ColumnPropNameInRow="Parent_Id" msprop:Generator_ColumnPropNameInTable="Parent_IdColumn" msprop:Generator_UserColumnName="Parent_Id" type="xs:int" minOccurs="0" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
               <xs:element name="Action" msprop:Generator_ColumnVarNameInTable="columnAction" msprop:Generator_ColumnPropNameInRow="Action" msprop:Generator_ColumnPropNameInTable="ActionColumn" msprop:Generator_UserColumnName="Action" type="xs:string" minOccurs="0" />
               <xs:element name="Controller" msprop:Generator_ColumnVarNameInTable="columnController" msprop:Generator_ColumnPropNameInRow="Controller" msprop:Generator_ColumnPropNameInTable="ControllerColumn" msprop:Generator_UserColumnName="Controller" type="xs:string" minOccurs="0" />
               <xs:element name="Opened" msprop:Generator_ColumnVarNameInTable="columnOpened" msprop:Generator_ColumnPropNameInRow="Opened" msprop:Generator_ColumnPropNameInTable="OpenedColumn" msprop:Generator_UserColumnName="Opened" type="xs:boolean" default="false" />
+              <xs:element name="UseFilter" msprop:Generator_ColumnVarNameInTable="columnUseFilter" msprop:Generator_ColumnPropNameInRow="UseFilter" msprop:Generator_ColumnPropNameInTable="UseFilterColumn" msprop:Generator_UserColumnName="UseFilter" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -115,6 +117,7 @@
   <xs:annotation>
     <xs:appinfo>
       <msdata:Relationship name="SiteMap_SiteMap" msdata:parent="SiteMap" msdata:child="SiteMap" msdata:parentkey="Id" msdata:childkey="Parent_Id" msprop:Generator_UserChildTable="SiteMap" msprop:Generator_ChildPropName="GetSiteMapRows" msprop:Generator_UserRelationName="SiteMap_SiteMap" msprop:Generator_RelationVarName="relationSiteMap_SiteMap" msprop:Generator_UserParentTable="SiteMap" msprop:Generator_ParentPropName="SiteMapRowParent" />
+      <msdata:Relationship name="ExpanderData_ExpanderData" msdata:parent="ExpanderData" msdata:child="ExpanderData" msdata:parentkey="Id" msdata:childkey="Parent_Id" msprop:Generator_UserChildTable="ExpanderData" msprop:Generator_ChildPropName="GetExpanderDataRows" msprop:Generator_UserRelationName="ExpanderData_ExpanderData" msprop:Generator_RelationVarName="relationExpanderData_ExpanderData" msprop:Generator_UserParentTable="ExpanderData" msprop:Generator_ParentPropName="ExpanderDataRowParent" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
