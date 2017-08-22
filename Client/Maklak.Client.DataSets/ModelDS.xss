@@ -10,7 +10,7 @@
     <Shape ID="DesignTable:ACD" ZOrder="10" X="290" Y="70" Height="86" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
     <Shape ID="DesignTable:FractalData" ZOrder="7" X="-128" Y="-254" Height="124" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="24" SplitterPosition="120" />
     <Shape ID="DesignTable:SiteMap" ZOrder="3" X="592" Y="73" Height="201" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
-    <Shape ID="DesignTable:ExpanderData" ZOrder="9" X="596" Y="367" Height="105" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="101" />
+    <Shape ID="DesignTable:ExpanderData" ZOrder="9" X="596" Y="367" Height="124" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="120" />
     <Shape ID="DesignTable:Suggestion" ZOrder="5" X="865" Y="71" Height="67" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
     <Shape ID="DesignTable:SuggestionInput" ZOrder="2" X="861" Y="-159" Height="67" Width="162" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
     <Shape ID="DesignTable:SuggestionFilter" ZOrder="1" X="860" Y="-50" Height="86" Width="161" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
