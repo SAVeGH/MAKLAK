@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Maklak.Client.Models
 {
-    public class FilterItemModel : BaseModel
+    public class TreeModel : BaseModel
     {
+        TreeNodeModel rootNode;
 
+        public TreeNodeModel RootNode { get { return rootNode; } }
 
     }
 }

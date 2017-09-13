@@ -193,6 +193,7 @@
     <Content Include="App_Code\SuggestionHelper.cshtml" />
     <Content Include="App_Code\ExpanderHelper.cshtml" />
     <Content Include="App_Code\FilterListHelper.cshtml" />
+    <Content Include="App_Code\TreeHelper.cshtml" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>

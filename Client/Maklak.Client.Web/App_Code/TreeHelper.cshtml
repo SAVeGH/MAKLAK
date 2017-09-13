@@ -1,0 +1,40 @@
+﻿@inherits Maklak.Client.Web.Helpers.HelperPage
+
+@using Maklak.Client.Models
+
+@helper Tree(TreeModel treeModel) {
+
+    <div>
+
+        @{ foreach (TreeNodeModel node in treeModel.RootNode.Nodes)
+            {
+                TreeHelper.TreeNode(node);
+            }
+
+        }
+
+    </div>
+   
+}
+
+
+@helper TreeNode(TreeNodeModel rootNode)
+{
+    <div>
+
+        <div>
+            @rootNode.Name
+        </div>
+
+        @{ foreach (TreeNodeModel node in rootNode.Nodes)
+            {
+                TreeHelper.TreeNode(node);
+            }
+
+        }
+
+    </div>
+
+}
+
+

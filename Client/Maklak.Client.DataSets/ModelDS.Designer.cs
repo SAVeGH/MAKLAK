@@ -40,7 +40,7 @@ namespace Maklak.Client.DataSets {
         
         private SuggestionFilterDataTable tableSuggestionFilter;
         
-        private FilterItemDataTable tableFilterItem;
+        private TreeItemDataTable tableTreeItem;
         
         private global::System.Data.DataRelation relationFK_FractalData_FractalData;
         
@@ -48,7 +48,7 @@ namespace Maklak.Client.DataSets {
         
         private global::System.Data.DataRelation relationExpanderData_ExpanderData;
         
-        private global::System.Data.DataRelation relationFilterItem_FilterItem;
+        private global::System.Data.DataRelation relationTreeItem_TreeItem;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -102,8 +102,8 @@ namespace Maklak.Client.DataSets {
                 if ((ds.Tables["SuggestionFilter"] != null)) {
                     base.Tables.Add(new SuggestionFilterDataTable(ds.Tables["SuggestionFilter"]));
                 }
-                if ((ds.Tables["FilterItem"] != null)) {
-                    base.Tables.Add(new FilterItemDataTable(ds.Tables["FilterItem"]));
+                if ((ds.Tables["TreeItem"] != null)) {
+                    base.Tables.Add(new TreeItemDataTable(ds.Tables["TreeItem"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -207,9 +207,9 @@ namespace Maklak.Client.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public FilterItemDataTable FilterItem {
+        public TreeItemDataTable TreeItem {
             get {
-                return this.tableFilterItem;
+                return this.tableTreeItem;
             }
         }
         
@@ -304,8 +304,8 @@ namespace Maklak.Client.DataSets {
                 if ((ds.Tables["SuggestionFilter"] != null)) {
                     base.Tables.Add(new SuggestionFilterDataTable(ds.Tables["SuggestionFilter"]));
                 }
-                if ((ds.Tables["FilterItem"] != null)) {
-                    base.Tables.Add(new FilterItemDataTable(ds.Tables["FilterItem"]));
+                if ((ds.Tables["TreeItem"] != null)) {
+                    base.Tables.Add(new TreeItemDataTable(ds.Tables["TreeItem"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -388,16 +388,16 @@ namespace Maklak.Client.DataSets {
                     this.tableSuggestionFilter.InitVars();
                 }
             }
-            this.tableFilterItem = ((FilterItemDataTable)(base.Tables["FilterItem"]));
+            this.tableTreeItem = ((TreeItemDataTable)(base.Tables["TreeItem"]));
             if ((initTable == true)) {
-                if ((this.tableFilterItem != null)) {
-                    this.tableFilterItem.InitVars();
+                if ((this.tableTreeItem != null)) {
+                    this.tableTreeItem.InitVars();
                 }
             }
             this.relationFK_FractalData_FractalData = this.Relations["FK_FractalData_FractalData"];
             this.relationSiteMap_SiteMap = this.Relations["SiteMap_SiteMap"];
             this.relationExpanderData_ExpanderData = this.Relations["ExpanderData_ExpanderData"];
-            this.relationFilterItem_FilterItem = this.Relations["FilterItem_FilterItem"];
+            this.relationTreeItem_TreeItem = this.Relations["TreeItem_TreeItem"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -424,8 +424,8 @@ namespace Maklak.Client.DataSets {
             base.Tables.Add(this.tableSuggestionInput);
             this.tableSuggestionFilter = new SuggestionFilterDataTable();
             base.Tables.Add(this.tableSuggestionFilter);
-            this.tableFilterItem = new FilterItemDataTable();
-            base.Tables.Add(this.tableFilterItem);
+            this.tableTreeItem = new TreeItemDataTable();
+            base.Tables.Add(this.tableTreeItem);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_FractalData_FractalData", new global::System.Data.DataColumn[] {
                         this.tableFractalData.IdColumn}, new global::System.Data.DataColumn[] {
@@ -446,10 +446,10 @@ namespace Maklak.Client.DataSets {
                         this.tableExpanderData.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableExpanderData.Parent_IdColumn}, false);
             this.Relations.Add(this.relationExpanderData_ExpanderData);
-            this.relationFilterItem_FilterItem = new global::System.Data.DataRelation("FilterItem_FilterItem", new global::System.Data.DataColumn[] {
-                        this.tableFilterItem.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableFilterItem.Parent_IdColumn}, false);
-            this.Relations.Add(this.relationFilterItem_FilterItem);
+            this.relationTreeItem_TreeItem = new global::System.Data.DataRelation("TreeItem_TreeItem", new global::System.Data.DataColumn[] {
+                        this.tableTreeItem.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTreeItem.Parent_IdColumn}, false);
+            this.Relations.Add(this.relationTreeItem_TreeItem);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -502,7 +502,7 @@ namespace Maklak.Client.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeFilterItem() {
+        private bool ShouldSerializeTreeItem() {
             return false;
         }
         
@@ -586,7 +586,7 @@ namespace Maklak.Client.DataSets {
         public delegate void SuggestionFilterRowChangeEventHandler(object sender, SuggestionFilterRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void FilterItemRowChangeEventHandler(object sender, FilterItemRowChangeEvent e);
+        public delegate void TreeItemRowChangeEventHandler(object sender, TreeItemRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3055,7 +3055,7 @@ namespace Maklak.Client.DataSets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class FilterItemDataTable : global::System.Data.TypedTableBase<FilterItemRow> {
+        public partial class TreeItemDataTable : global::System.Data.TypedTableBase<TreeItemRow> {
             
             private global::System.Data.DataColumn columnId;
             
@@ -3075,8 +3075,8 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemDataTable() {
-                this.TableName = "FilterItem";
+            public TreeItemDataTable() {
+                this.TableName = "TreeItem";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -3084,7 +3084,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal FilterItemDataTable(global::System.Data.DataTable table) {
+            internal TreeItemDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -3101,7 +3101,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected FilterItemDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected TreeItemDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -3181,34 +3181,34 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemRow this[int index] {
+            public TreeItemRow this[int index] {
                 get {
-                    return ((FilterItemRow)(this.Rows[index]));
+                    return ((TreeItemRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event FilterItemRowChangeEventHandler FilterItemRowChanging;
+            public event TreeItemRowChangeEventHandler TreeItemRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event FilterItemRowChangeEventHandler FilterItemRowChanged;
+            public event TreeItemRowChangeEventHandler TreeItemRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event FilterItemRowChangeEventHandler FilterItemRowDeleting;
+            public event TreeItemRowChangeEventHandler TreeItemRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event FilterItemRowChangeEventHandler FilterItemRowDeleted;
+            public event TreeItemRowChangeEventHandler TreeItemRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddFilterItemRow(FilterItemRow row) {
+            public void AddTreeItemRow(TreeItemRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemRow AddFilterItemRow(FilterItemRow parentFilterItemRowByFilterItem_FilterItem, string Name, string Action, string Controller, bool Opened, bool UseFilter, bool Expandable) {
-                FilterItemRow rowFilterItemRow = ((FilterItemRow)(this.NewRow()));
+            public TreeItemRow AddTreeItemRow(TreeItemRow parentTreeItemRowByTreeItem_TreeItem, string Name, string Action, string Controller, bool Opened, bool UseFilter, bool Expandable) {
+                TreeItemRow rowTreeItemRow = ((TreeItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
@@ -3218,18 +3218,18 @@ namespace Maklak.Client.DataSets {
                         Opened,
                         UseFilter,
                         Expandable};
-                if ((parentFilterItemRowByFilterItem_FilterItem != null)) {
-                    columnValuesArray[1] = parentFilterItemRowByFilterItem_FilterItem[0];
+                if ((parentTreeItemRowByTreeItem_TreeItem != null)) {
+                    columnValuesArray[1] = parentTreeItemRowByTreeItem_TreeItem[0];
                 }
-                rowFilterItemRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowFilterItemRow);
-                return rowFilterItemRow;
+                rowTreeItemRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTreeItemRow);
+                return rowTreeItemRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                FilterItemDataTable cln = ((FilterItemDataTable)(base.Clone()));
+                TreeItemDataTable cln = ((TreeItemDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -3237,7 +3237,7 @@ namespace Maklak.Client.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new FilterItemDataTable();
+                return new TreeItemDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3279,28 +3279,28 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemRow NewFilterItemRow() {
-                return ((FilterItemRow)(this.NewRow()));
+            public TreeItemRow NewTreeItemRow() {
+                return ((TreeItemRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new FilterItemRow(builder);
+                return new TreeItemRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(FilterItemRow);
+                return typeof(TreeItemRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.FilterItemRowChanged != null)) {
-                    this.FilterItemRowChanged(this, new FilterItemRowChangeEvent(((FilterItemRow)(e.Row)), e.Action));
+                if ((this.TreeItemRowChanged != null)) {
+                    this.TreeItemRowChanged(this, new TreeItemRowChangeEvent(((TreeItemRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3308,8 +3308,8 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.FilterItemRowChanging != null)) {
-                    this.FilterItemRowChanging(this, new FilterItemRowChangeEvent(((FilterItemRow)(e.Row)), e.Action));
+                if ((this.TreeItemRowChanging != null)) {
+                    this.TreeItemRowChanging(this, new TreeItemRowChangeEvent(((TreeItemRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3317,8 +3317,8 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.FilterItemRowDeleted != null)) {
-                    this.FilterItemRowDeleted(this, new FilterItemRowChangeEvent(((FilterItemRow)(e.Row)), e.Action));
+                if ((this.TreeItemRowDeleted != null)) {
+                    this.TreeItemRowDeleted(this, new TreeItemRowChangeEvent(((TreeItemRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3326,14 +3326,14 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.FilterItemRowDeleting != null)) {
-                    this.FilterItemRowDeleting(this, new FilterItemRowChangeEvent(((FilterItemRow)(e.Row)), e.Action));
+                if ((this.TreeItemRowDeleting != null)) {
+                    this.TreeItemRowDeleting(this, new TreeItemRowChangeEvent(((TreeItemRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveFilterItemRow(FilterItemRow row) {
+            public void RemoveTreeItemRow(TreeItemRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -3360,7 +3360,7 @@ namespace Maklak.Client.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "FilterItemDataTable";
+                attribute2.FixedValue = "TreeItemDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4512,25 +4512,25 @@ namespace Maklak.Client.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class FilterItemRow : global::System.Data.DataRow {
+        public partial class TreeItemRow : global::System.Data.DataRow {
             
-            private FilterItemDataTable tableFilterItem;
+            private TreeItemDataTable tableTreeItem;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal FilterItemRow(global::System.Data.DataRowBuilder rb) : 
+            internal TreeItemRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableFilterItem = ((FilterItemDataTable)(this.Table));
+                this.tableTreeItem = ((TreeItemDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Id {
                 get {
-                    return ((int)(this[this.tableFilterItem.IdColumn]));
+                    return ((int)(this[this.tableTreeItem.IdColumn]));
                 }
                 set {
-                    this[this.tableFilterItem.IdColumn] = value;
+                    this[this.tableTreeItem.IdColumn] = value;
                 }
             }
             
@@ -4539,14 +4539,14 @@ namespace Maklak.Client.DataSets {
             public int Parent_Id {
                 get {
                     try {
-                        return ((int)(this[this.tableFilterItem.Parent_IdColumn]));
+                        return ((int)(this[this.tableTreeItem.Parent_IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Parent_Id\' in table \'FilterItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Parent_Id\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFilterItem.Parent_IdColumn] = value;
+                    this[this.tableTreeItem.Parent_IdColumn] = value;
                 }
             }
             
@@ -4555,14 +4555,14 @@ namespace Maklak.Client.DataSets {
             public string Name {
                 get {
                     try {
-                        return ((string)(this[this.tableFilterItem.NameColumn]));
+                        return ((string)(this[this.tableTreeItem.NameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'FilterItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFilterItem.NameColumn] = value;
+                    this[this.tableTreeItem.NameColumn] = value;
                 }
             }
             
@@ -4571,14 +4571,14 @@ namespace Maklak.Client.DataSets {
             public string Action {
                 get {
                     try {
-                        return ((string)(this[this.tableFilterItem.ActionColumn]));
+                        return ((string)(this[this.tableTreeItem.ActionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Action\' in table \'FilterItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Action\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFilterItem.ActionColumn] = value;
+                    this[this.tableTreeItem.ActionColumn] = value;
                 }
             }
             
@@ -4587,14 +4587,14 @@ namespace Maklak.Client.DataSets {
             public string Controller {
                 get {
                     try {
-                        return ((string)(this[this.tableFilterItem.ControllerColumn]));
+                        return ((string)(this[this.tableTreeItem.ControllerColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Controller\' in table \'FilterItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Controller\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFilterItem.ControllerColumn] = value;
+                    this[this.tableTreeItem.ControllerColumn] = value;
                 }
             }
             
@@ -4603,14 +4603,14 @@ namespace Maklak.Client.DataSets {
             public bool Opened {
                 get {
                     try {
-                        return ((bool)(this[this.tableFilterItem.OpenedColumn]));
+                        return ((bool)(this[this.tableTreeItem.OpenedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Opened\' in table \'FilterItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Opened\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFilterItem.OpenedColumn] = value;
+                    this[this.tableTreeItem.OpenedColumn] = value;
                 }
             }
             
@@ -4619,14 +4619,14 @@ namespace Maklak.Client.DataSets {
             public bool UseFilter {
                 get {
                     try {
-                        return ((bool)(this[this.tableFilterItem.UseFilterColumn]));
+                        return ((bool)(this[this.tableTreeItem.UseFilterColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'UseFilter\' in table \'FilterItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'UseFilter\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFilterItem.UseFilterColumn] = value;
+                    this[this.tableTreeItem.UseFilterColumn] = value;
                 }
             }
             
@@ -4635,120 +4635,120 @@ namespace Maklak.Client.DataSets {
             public bool Expandable {
                 get {
                     try {
-                        return ((bool)(this[this.tableFilterItem.ExpandableColumn]));
+                        return ((bool)(this[this.tableTreeItem.ExpandableColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Expandable\' in table \'FilterItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Expandable\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFilterItem.ExpandableColumn] = value;
+                    this[this.tableTreeItem.ExpandableColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemRow FilterItemRowParent {
+            public TreeItemRow TreeItemRowParent {
                 get {
-                    return ((FilterItemRow)(this.GetParentRow(this.Table.ParentRelations["FilterItem_FilterItem"])));
+                    return ((TreeItemRow)(this.GetParentRow(this.Table.ParentRelations["TreeItem_TreeItem"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FilterItem_FilterItem"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["TreeItem_TreeItem"]);
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsParent_IdNull() {
-                return this.IsNull(this.tableFilterItem.Parent_IdColumn);
+                return this.IsNull(this.tableTreeItem.Parent_IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetParent_IdNull() {
-                this[this.tableFilterItem.Parent_IdColumn] = global::System.Convert.DBNull;
+                this[this.tableTreeItem.Parent_IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNameNull() {
-                return this.IsNull(this.tableFilterItem.NameColumn);
+                return this.IsNull(this.tableTreeItem.NameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNameNull() {
-                this[this.tableFilterItem.NameColumn] = global::System.Convert.DBNull;
+                this[this.tableTreeItem.NameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsActionNull() {
-                return this.IsNull(this.tableFilterItem.ActionColumn);
+                return this.IsNull(this.tableTreeItem.ActionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetActionNull() {
-                this[this.tableFilterItem.ActionColumn] = global::System.Convert.DBNull;
+                this[this.tableTreeItem.ActionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsControllerNull() {
-                return this.IsNull(this.tableFilterItem.ControllerColumn);
+                return this.IsNull(this.tableTreeItem.ControllerColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetControllerNull() {
-                this[this.tableFilterItem.ControllerColumn] = global::System.Convert.DBNull;
+                this[this.tableTreeItem.ControllerColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsOpenedNull() {
-                return this.IsNull(this.tableFilterItem.OpenedColumn);
+                return this.IsNull(this.tableTreeItem.OpenedColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOpenedNull() {
-                this[this.tableFilterItem.OpenedColumn] = global::System.Convert.DBNull;
+                this[this.tableTreeItem.OpenedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsUseFilterNull() {
-                return this.IsNull(this.tableFilterItem.UseFilterColumn);
+                return this.IsNull(this.tableTreeItem.UseFilterColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetUseFilterNull() {
-                this[this.tableFilterItem.UseFilterColumn] = global::System.Convert.DBNull;
+                this[this.tableTreeItem.UseFilterColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsExpandableNull() {
-                return this.IsNull(this.tableFilterItem.ExpandableColumn);
+                return this.IsNull(this.tableTreeItem.ExpandableColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetExpandableNull() {
-                this[this.tableFilterItem.ExpandableColumn] = global::System.Convert.DBNull;
+                this[this.tableTreeItem.ExpandableColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemRow[] GetFilterItemRows() {
-                if ((this.Table.ChildRelations["FilterItem_FilterItem"] == null)) {
-                    return new FilterItemRow[0];
+            public TreeItemRow[] GetTreeItemRows() {
+                if ((this.Table.ChildRelations["TreeItem_TreeItem"] == null)) {
+                    return new TreeItemRow[0];
                 }
                 else {
-                    return ((FilterItemRow[])(base.GetChildRows(this.Table.ChildRelations["FilterItem_FilterItem"])));
+                    return ((TreeItemRow[])(base.GetChildRows(this.Table.ChildRelations["TreeItem_TreeItem"])));
                 }
             }
         }
@@ -5029,22 +5029,22 @@ namespace Maklak.Client.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class FilterItemRowChangeEvent : global::System.EventArgs {
+        public class TreeItemRowChangeEvent : global::System.EventArgs {
             
-            private FilterItemRow eventRow;
+            private TreeItemRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemRowChangeEvent(FilterItemRow row, global::System.Data.DataRowAction action) {
+            public TreeItemRowChangeEvent(TreeItemRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FilterItemRow Row {
+            public TreeItemRow Row {
                 get {
                     return this.eventRow;
                 }
