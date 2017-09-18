@@ -1,0 +1,15 @@
+﻿@using  Maklak.Client.Models
+
+@model Maklak.Client.Models.TreeModel
+
+<div style="position:absolute;width:150px;background-color:lightgray">
+
+    @{ 
+        foreach (TreeNodeModel node in this.Model.RootNode.Nodes)
+        {
+            @Html.Partial("TreeNode", node);
+                }
+
+            }
+
+</div>

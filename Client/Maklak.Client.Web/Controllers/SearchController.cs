@@ -18,19 +18,38 @@ namespace Maklak.Client.Web.Controllers
             return PartialView(model);
         }
 
-        public ActionResult Control(ExpanderModel expanderModel)
+        public ActionResult Control()
         {           
 
             //ExpanderModel expanderModel = new ExpanderModel();
             //expanderModel.Initialize(this.SID);
 
-            return PartialView(expanderModel);
+            return PartialView();
         }
 
         public ActionResult Content()
         {
             return PartialView();
         }
+
+        public ActionResult Tree(TreeModel treeModel)
+        {
+
+            //ExpanderModel expanderModel = new ExpanderModel();
+            //expanderModel.Initialize(this.SID);
+
+            return PartialView("TreeControl/Tree",treeModel);
+        }
+
+        public ActionResult TreeNode(TreeNodeModel treeNodeModel)
+        {
+
+            //ExpanderModel expanderModel = new ExpanderModel();
+            //expanderModel.Initialize(this.SID);
+
+            return PartialView("TreeControl/TreeNode",treeNodeModel);
+        }
+
 
         public ActionResult ProductEditSection()
         {

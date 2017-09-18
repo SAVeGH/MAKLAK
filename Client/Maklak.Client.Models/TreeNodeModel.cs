@@ -11,15 +11,41 @@ namespace Maklak.Client.Models
 {
     public class TreeNodeModel : BaseModel
     {
-        TreeNodeModel parent;
-        //List<TreeItemModel> children;
+        ModelDS.TreeItemRow nodeRow;
 
-        //public TreeItemModel()
-        //{
-        //    children = new List<TreeItemModel>();
-        //}        
+        public TreeNodeModel()
+        {
+            ModelDS.TreeItemRow rootRow = this.data.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
 
-        public int NodeId { get; set; }
+            if (rootRow == null)
+            { 
+                rootRow = this.data.TreeItem.NewTreeItemRow();
+                this.data.TreeItem.AddTreeItemRow(rootRow);
+            }
+
+
+            nodeRow = rootRow;
+            rootRow.Id = 1;
+        }
+
+        public TreeNodeModel(int nodeId,TreeNodeModel parentNode)
+        {
+            ModelDS.TreeItemRow row = this.data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Id == nodeId).FirstOrDefault();
+
+            if (row == null)
+            {
+                row = this.data.TreeItem.NewTreeItemRow();
+                this.data.TreeItem.AddTreeItemRow(row);
+            }
+
+            nodeRow = row;
+            row.Id = nodeId;
+            row.Parent_Id = parentNode.NodeId;
+
+        }
+
+
+        public int NodeId { get { return nodeRow.Id; } }
 
         public TreeNodeModel ParentNode { get; set; }
 
@@ -31,7 +57,7 @@ namespace Maklak.Client.Models
         {
             get
             {
-                return data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Parent_Id == this.NodeId).Select(r=> new TreeNodeModel() { ParentNode = this,NodeId = r.Id}).ToList();
+                return data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Parent_Id == this.NodeId).Select(r=> new TreeNodeModel(r.Id,this)).ToList();
             }
         }
     }

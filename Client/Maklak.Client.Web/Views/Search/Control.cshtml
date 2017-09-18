@@ -1,10 +1,10 @@
-﻿@model Maklak.Client.Models.ExpanderModel
+﻿
 
 <div class="divBackGround">
     <div class="searchControlArea">
 
-        @ExpanderHelper.Expander(this.Model)
-
+        @*@ExpanderHelper.Expander(this.Model)*@
+        @Html.Action("Tree")
         
 
     </div>
