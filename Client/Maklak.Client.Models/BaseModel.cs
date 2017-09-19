@@ -27,7 +27,7 @@ namespace Maklak.Client.Models
 
                 RiseOnModelInitialized();
             }            
-
+            // DataSet заполнен. Вызов события для работы с данными
             RiseOnModelReady();
 
         }

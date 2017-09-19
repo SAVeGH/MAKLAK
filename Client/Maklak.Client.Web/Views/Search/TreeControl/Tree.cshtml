@@ -7,7 +7,7 @@
     @{ 
         foreach (TreeNodeModel node in this.Model.RootNode.Nodes)
         {
-            @Html.Partial("TreeNode", node);
+            @Html.Partial("TreeControl/TreeNode", node);
                 }
 
             }

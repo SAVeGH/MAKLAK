@@ -9,55 +9,34 @@ using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Models
 {
-    public class TreeNodeModel : BaseModel
+    public class TreeNodeModel 
     {
         ModelDS.TreeItemRow nodeRow;
+        TreeNodeModel parentNode;
+        List<TreeNodeModel> nodes;
 
-        public TreeNodeModel()
+        public TreeNodeModel(ModelDS.TreeItemRow row, TreeNodeModel parentItem = null)
         {
-            ModelDS.TreeItemRow rootRow = this.data.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
-
-            if (rootRow == null)
-            { 
-                rootRow = this.data.TreeItem.NewTreeItemRow();
-                this.data.TreeItem.AddTreeItemRow(rootRow);
-            }
-
-
-            nodeRow = rootRow;
-            rootRow.Id = 1;
-        }
-
-        public TreeNodeModel(int nodeId,TreeNodeModel parentNode)
-        {
-            ModelDS.TreeItemRow row = this.data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Id == nodeId).FirstOrDefault();
-
-            if (row == null)
-            {
-                row = this.data.TreeItem.NewTreeItemRow();
-                this.data.TreeItem.AddTreeItemRow(row);
-            }
-
             nodeRow = row;
-            row.Id = nodeId;
-            row.Parent_Id = parentNode.NodeId;
+            parentNode = parentItem;
+            nodes = new List<TreeNodeModel>();
+        }       
 
+        public ModelDS.TreeItemRow NodeRow
+        {
+            get { return nodeRow; }
         }
+        
 
+        public TreeNodeModel ParentNode { get { return parentNode; } }
 
-        public int NodeId { get { return nodeRow.Id; } }
-
-        public TreeNodeModel ParentNode { get; set; }
-
-        public string Name {
-            get { return data.TreeItem.Where(r => r.Id == NodeId).Select(r => r.Name).FirstOrDefault(); }
-        }
+        
 
         public List<TreeNodeModel> Nodes
         {
             get
             {
-                return data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Parent_Id == this.NodeId).Select(r=> new TreeNodeModel(r.Id,this)).ToList();
+                return nodes;
             }
         }
     }

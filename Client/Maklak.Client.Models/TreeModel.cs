@@ -10,16 +10,46 @@ namespace Maklak.Client.Models
 {
     public class TreeModel : BaseModel
     {
-        //TreeNodeModel rootNode;
+        TreeNodeModel rootNode;
 
         public TreeModel()
         {
-            this.OnModelInitialized += TreeModel_OnModelInitialized;
             
+            this.OnModelReady += TreeModel_OnModelReady;
         }
 
-        private void TreeModel_OnModelInitialized()
+        private void TreeModel_OnModelReady()
         {
+            FillData();
+
+            FillNodes();
+        }
+
+        private void FillNodes()
+        {
+            ModelDS.TreeItemRow rootRow = base.data.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
+            rootNode = new TreeNodeModel(rootRow);
+
+            FillNodes(rootNode, null);                    
+
+        }
+
+        private void FillNodes(TreeNodeModel nodeItem, TreeNodeModel parentItem)
+        {
+            if(parentItem != null)
+                parentItem.Nodes.Add(nodeItem);
+
+            foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Parent_Id == nodeItem.NodeRow.Id))
+            {
+                TreeNodeModel itemNode = new TreeNodeModel(rowItem, nodeItem);                
+                FillNodes(itemNode, nodeItem);
+            }
+        }
+
+        private void FillData()
+        {
+            base.data.TreeItem.Clear();
+
             ModelDS.TreeItemRow row = base.data.TreeItem.NewTreeItemRow();
             ModelDS.TreeItemRow parentRow = null;
 
@@ -45,16 +75,11 @@ namespace Maklak.Client.Models
             row.Parent_Id = parentRow.Id;
             row.Name = "Tag";
             base.data.TreeItem.AddTreeItemRow(row);
-
-
         }
 
-        protected override bool IsModelInitialized()
-        {
-            return base.IsModelInitialized() && RootNode != null;
-        }
+       
 
-        public TreeNodeModel RootNode { get { return this.data.TreeItem.Where(r => r.IsParent_IdNull()).Select(r => new TreeNodeModel()).FirstOrDefault(); } }
+        public TreeNodeModel RootNode { get { return rootNode; } }
 
     }
 }
