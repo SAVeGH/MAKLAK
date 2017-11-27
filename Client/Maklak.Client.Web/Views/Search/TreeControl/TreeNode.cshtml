@@ -3,18 +3,24 @@
 @model Maklak.Client.Models.TreeNodeModel
 
 
-<div style="position:absolute;width:150px;background-color:lightgreen">
+<div style="position:relative;right:0px; left:0px;top:0px;bottom:0px;background-color:lightgreen;">
 
-    <div style="position:absolute;width:150px;background-color:lightgoldenrodyellow">
+    <div style="right:0px; left:0px;background-color:lightgoldenrodyellow">
         @this.Model.NodeRow.Name
     </div>
 
-    @{ 
-        foreach (TreeNodeModel node in this.Model.Nodes)
-        {
-                @Html.Partial("TreeNode",node)
-         }
+	<div style="background-color:aqua;">
+		test
+		@{
+			foreach (TreeNodeModel node in this.Model.Nodes)
+			{
+				
+				@Html.Partial("TreeControl/TreeNode", node)
+			}
 
-    }
+		}
+	</div>
+
+
 
 </div>

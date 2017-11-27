@@ -58,24 +58,24 @@ namespace Maklak.Client.Models
             parentRow = row;
             base.data.TreeItem.AddTreeItemRow(row);
 
-            row = base.data.TreeItem.NewTreeItemRow();
-            row.Id = 2;
-            row.Parent_Id = parentRow.Id;
-            row.Name = "Name";
-            base.data.TreeItem.AddTreeItemRow(row);
+			row = base.data.TreeItem.NewTreeItemRow();
+			row.Id = 2;
+			row.Parent_Id = parentRow.Id;
+			row.Name = "Name";
+			base.data.TreeItem.AddTreeItemRow(row);
 
-            row = base.data.TreeItem.NewTreeItemRow();
-            row.Id = 3;
-            row.Parent_Id = parentRow.Id;
-            row.Name = "Property";
-            base.data.TreeItem.AddTreeItemRow(row);
+			row = base.data.TreeItem.NewTreeItemRow();
+			row.Id = 3;
+			row.Parent_Id = parentRow.Id;
+			row.Name = "Property";
+			base.data.TreeItem.AddTreeItemRow(row);
 
-            row = base.data.TreeItem.NewTreeItemRow();
-            row.Id = 4;
-            row.Parent_Id = parentRow.Id;
-            row.Name = "Tag";
-            base.data.TreeItem.AddTreeItemRow(row);
-        }
+			row = base.data.TreeItem.NewTreeItemRow();
+			row.Id = 4;
+			row.Parent_Id = parentRow.Id;
+			row.Name = "Tag";
+			base.data.TreeItem.AddTreeItemRow(row);
+		}
 
        
 
