@@ -2,20 +2,13 @@
 
 @model Maklak.Client.Models.TreeModel
 
-<div style="position:absolute;background-color:red;right:0px; left:0px;top:0px;bottom:0px;">
+<div style="position:absolute;right:0px; left:0px;top:0px;bottom:0px;">
 
     @{
 		
 			@Html.Partial("TreeControl/TreeNode", this.Model.RootNode);
 		
 
-	}
-    
-        @*foreach (TreeNodeModel node in this.Model.RootNode.Nodes)
-        {
-            @Html.Partial("TreeControl/TreeNode", node);
-                }
-
-            }*@
+	}        
 
 </div>

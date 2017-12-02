@@ -3071,6 +3071,8 @@ namespace Maklak.Client.DataSets {
             
             private global::System.Data.DataColumn columnUseFilter;
             
+            private global::System.Data.DataColumn columnShowHeader;
+            
             private global::System.Data.DataColumn columnExpandable;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3164,6 +3166,14 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ShowHeaderColumn {
+                get {
+                    return this.columnShowHeader;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn ExpandableColumn {
                 get {
                     return this.columnExpandable;
@@ -3207,7 +3217,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TreeItemRow AddTreeItemRow(TreeItemRow parentTreeItemRowByTreeItem_TreeItem, string Name, string Action, string Controller, bool Opened, bool UseFilter, bool Expandable) {
+            public TreeItemRow AddTreeItemRow(TreeItemRow parentTreeItemRowByTreeItem_TreeItem, string Name, string Action, string Controller, bool Opened, bool UseFilter, bool ShowHeader, bool Expandable) {
                 TreeItemRow rowTreeItemRow = ((TreeItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3217,6 +3227,7 @@ namespace Maklak.Client.DataSets {
                         Controller,
                         Opened,
                         UseFilter,
+                        ShowHeader,
                         Expandable};
                 if ((parentTreeItemRowByTreeItem_TreeItem != null)) {
                     columnValuesArray[1] = parentTreeItemRowByTreeItem_TreeItem[0];
@@ -3250,6 +3261,7 @@ namespace Maklak.Client.DataSets {
                 this.columnController = base.Columns["Controller"];
                 this.columnOpened = base.Columns["Opened"];
                 this.columnUseFilter = base.Columns["UseFilter"];
+                this.columnShowHeader = base.Columns["ShowHeader"];
                 this.columnExpandable = base.Columns["Expandable"];
             }
             
@@ -3270,11 +3282,21 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnOpened);
                 this.columnUseFilter = new global::System.Data.DataColumn("UseFilter", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUseFilter);
+                this.columnShowHeader = new global::System.Data.DataColumn("ShowHeader", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShowHeader);
                 this.columnExpandable = new global::System.Data.DataColumn("Expandable", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExpandable);
                 this.columnId.AutoIncrement = true;
                 this.columnId.AutoIncrementSeed = 1;
                 this.columnId.AllowDBNull = false;
+                this.columnAction.AllowDBNull = false;
+                this.columnAction.DefaultValue = ((string)(""));
+                this.columnController.AllowDBNull = false;
+                this.columnController.DefaultValue = ((string)(""));
+                this.columnUseFilter.AllowDBNull = false;
+                this.columnUseFilter.DefaultValue = ((bool)(true));
+                this.columnShowHeader.AllowDBNull = false;
+                this.columnShowHeader.DefaultValue = ((bool)(true));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4570,12 +4592,7 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Action {
                 get {
-                    try {
-                        return ((string)(this[this.tableTreeItem.ActionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Action\' in table \'TreeItem\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableTreeItem.ActionColumn]));
                 }
                 set {
                     this[this.tableTreeItem.ActionColumn] = value;
@@ -4586,12 +4603,7 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Controller {
                 get {
-                    try {
-                        return ((string)(this[this.tableTreeItem.ControllerColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Controller\' in table \'TreeItem\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableTreeItem.ControllerColumn]));
                 }
                 set {
                     this[this.tableTreeItem.ControllerColumn] = value;
@@ -4618,15 +4630,21 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool UseFilter {
                 get {
-                    try {
-                        return ((bool)(this[this.tableTreeItem.UseFilterColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'UseFilter\' in table \'TreeItem\' is DBNull.", e);
-                    }
+                    return ((bool)(this[this.tableTreeItem.UseFilterColumn]));
                 }
                 set {
                     this[this.tableTreeItem.UseFilterColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ShowHeader {
+                get {
+                    return ((bool)(this[this.tableTreeItem.ShowHeaderColumn]));
+                }
+                set {
+                    this[this.tableTreeItem.ShowHeaderColumn] = value;
                 }
             }
             
@@ -4683,30 +4701,6 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsActionNull() {
-                return this.IsNull(this.tableTreeItem.ActionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetActionNull() {
-                this[this.tableTreeItem.ActionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsControllerNull() {
-                return this.IsNull(this.tableTreeItem.ControllerColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetControllerNull() {
-                this[this.tableTreeItem.ControllerColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsOpenedNull() {
                 return this.IsNull(this.tableTreeItem.OpenedColumn);
             }
@@ -4715,18 +4709,6 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOpenedNull() {
                 this[this.tableTreeItem.OpenedColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsUseFilterNull() {
-                return this.IsNull(this.tableTreeItem.UseFilterColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetUseFilterNull() {
-                this[this.tableTreeItem.UseFilterColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
