@@ -55,17 +55,14 @@ namespace Maklak.Client.Models
 
             row.Id = 1;
             row.Name = "root";
-			row.ShowHeader = false;
-			row.UseFilter = false;
+			row.Visible = false;			
             parentRow = row;
             base.data.TreeItem.AddTreeItemRow(row);
 
 			row = base.data.TreeItem.NewTreeItemRow();
 			row.Id = 2;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Name";
-			row.Action = "ProductEditSection";
-			row.Controller = "Search";
+			row.Name = "Name";			
 			base.data.TreeItem.AddTreeItemRow(row);
 
 			row = base.data.TreeItem.NewTreeItemRow();
@@ -77,9 +74,7 @@ namespace Maklak.Client.Models
 			row = base.data.TreeItem.NewTreeItemRow();
 			row.Id = 4;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Tag";
-			row.Action = "TagsSelectSection";
-			row.Controller = "Search";
+			row.Name = "Tag";			
 			base.data.TreeItem.AddTreeItemRow(row);
 		}
 

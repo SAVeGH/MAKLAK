@@ -41,17 +41,27 @@ namespace Maklak.Client.Web.Controllers
             return PartialView("TreeControl/Tree",treeModel);
         }
 
-        //public ActionResult TreeNode(TreeNodeModel treeNodeModel)
-        //{
+		//public ActionResult NodeFilter(TreeModel treeModel)
+		//{
+		//	return PartialView("TreeControl/NodeFilter", treeModel);
+		//}
 
-        //    //ExpanderModel expanderModel = new ExpanderModel();
-        //    //expanderModel.Initialize(this.SID);
+		//public ActionResult SelectionPanel(TreeModel treeModel)
+		//{
+		//	return PartialView("TreeControl/SelectionPanel", treeModel);
+		//}
 
-        //    return PartialView("TreeControl/TreeNode",treeNodeModel);
-        //}
+		//public ActionResult TreeNode(TreeNodeModel treeNodeModel)
+		//{
+
+		//    //ExpanderModel expanderModel = new ExpanderModel();
+		//    //expanderModel.Initialize(this.SID);
+
+		//    return PartialView("TreeControl/TreeNode",treeNodeModel);
+		//}
 
 
-        public ActionResult ProductEditSection()
+		public ActionResult ProductEditSection()
         {
             return PartialView();
         }

@@ -5,37 +5,22 @@
 
 <div style="position:relative;right:0px; left:0px;top:0px;bottom:0px;background-color:lightgreen;">
 
-	@{ 
-		if (this.Model.NodeRow.ShowHeader)
+	@{
+		//отображение самого узла
+		if (this.Model.NodeRow.Visible)
 		{
-           <div style="background-color:lightgoldenrodyellow">
-              @this.Model.NodeRow.Name
-           </div>
-		}
-	
-		if (this.Model.NodeRow.UseFilter)
-		{
-			<div style="background-color:antiquewhite">
-				filter section
-			</div>
+			@Html.Partial("TreeControl/NodeContent", this.Model)
 		}
 	}
 
 	<div style="background-color:aqua;">
-		
-		@{
-			if (!string.IsNullOrEmpty(this.Model.NodeRow.Action) && !string.IsNullOrEmpty(this.Model.NodeRow.Controller))
-			{
-				@Html.Action(this.Model.NodeRow.Action, this.Model.NodeRow.Controller)
-			}
-			else
-			{
-				foreach (TreeNodeModel node in this.Model.Nodes)
-				{
-					@Html.Partial("TreeControl/TreeNode", node)
-				}
-			}
 
+		@{
+			// рекурсивное отображение вложенных узлов
+			foreach (TreeNodeModel node in this.Model.Nodes)
+			{
+				@Html.Partial("TreeControl/TreeNode", node)
+			}
 		}
 	</div>
 
