@@ -3073,11 +3073,17 @@ namespace Maklak.Client.DataSets {
             
             private global::System.Data.DataColumn columnExpandable;
             
+            private global::System.Data.DataColumn columnExpanded;
+            
             private global::System.Data.DataColumn columnSelectable;
             
             private global::System.Data.DataColumn columnSelected;
             
             private global::System.Data.DataColumn columnUseSelectionPanel;
+            
+            private global::System.Data.DataColumn columnUseSeparator;
+            
+            private global::System.Data.DataColumn columnUseNodesBorder;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3178,6 +3184,14 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExpandedColumn {
+                get {
+                    return this.columnExpanded;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn SelectableColumn {
                 get {
                     return this.columnSelectable;
@@ -3197,6 +3211,22 @@ namespace Maklak.Client.DataSets {
             public global::System.Data.DataColumn UseSelectionPanelColumn {
                 get {
                     return this.columnUseSelectionPanel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UseSeparatorColumn {
+                get {
+                    return this.columnUseSeparator;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UseNodesBorderColumn {
+                get {
+                    return this.columnUseNodesBorder;
                 }
             }
             
@@ -3237,7 +3267,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TreeItemRow AddTreeItemRow(TreeItemRow parentTreeItemRowByTreeItem_TreeItem, string Name, bool Opened, bool UseFilterPanel, string FilterType, bool Visible, bool Expandable, bool Selectable, bool Selected, bool UseSelectionPanel) {
+            public TreeItemRow AddTreeItemRow(TreeItemRow parentTreeItemRowByTreeItem_TreeItem, string Name, bool Opened, bool UseFilterPanel, string FilterType, bool Visible, bool Expandable, bool Expanded, bool Selectable, bool Selected, bool UseSelectionPanel, bool UseSeparator, bool UseNodesBorder) {
                 TreeItemRow rowTreeItemRow = ((TreeItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3248,9 +3278,12 @@ namespace Maklak.Client.DataSets {
                         FilterType,
                         Visible,
                         Expandable,
+                        Expanded,
                         Selectable,
                         Selected,
-                        UseSelectionPanel};
+                        UseSelectionPanel,
+                        UseSeparator,
+                        UseNodesBorder};
                 if ((parentTreeItemRowByTreeItem_TreeItem != null)) {
                     columnValuesArray[1] = parentTreeItemRowByTreeItem_TreeItem[0];
                 }
@@ -3284,9 +3317,12 @@ namespace Maklak.Client.DataSets {
                 this.columnFilterType = base.Columns["FilterType"];
                 this.columnVisible = base.Columns["Visible"];
                 this.columnExpandable = base.Columns["Expandable"];
+                this.columnExpanded = base.Columns["Expanded"];
                 this.columnSelectable = base.Columns["Selectable"];
                 this.columnSelected = base.Columns["Selected"];
                 this.columnUseSelectionPanel = base.Columns["UseSelectionPanel"];
+                this.columnUseSeparator = base.Columns["UseSeparator"];
+                this.columnUseNodesBorder = base.Columns["UseNodesBorder"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3308,12 +3344,18 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnVisible);
                 this.columnExpandable = new global::System.Data.DataColumn("Expandable", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExpandable);
+                this.columnExpanded = new global::System.Data.DataColumn("Expanded", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpanded);
                 this.columnSelectable = new global::System.Data.DataColumn("Selectable", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSelectable);
                 this.columnSelected = new global::System.Data.DataColumn("Selected", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSelected);
                 this.columnUseSelectionPanel = new global::System.Data.DataColumn("UseSelectionPanel", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUseSelectionPanel);
+                this.columnUseSeparator = new global::System.Data.DataColumn("UseSeparator", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUseSeparator);
+                this.columnUseNodesBorder = new global::System.Data.DataColumn("UseNodesBorder", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUseNodesBorder);
                 this.columnId.AutoIncrement = true;
                 this.columnId.AutoIncrementSeed = 1;
                 this.columnId.AllowDBNull = false;
@@ -3323,12 +3365,18 @@ namespace Maklak.Client.DataSets {
                 this.columnVisible.DefaultValue = ((bool)(true));
                 this.columnExpandable.AllowDBNull = false;
                 this.columnExpandable.DefaultValue = ((bool)(true));
+                this.columnExpanded.AllowDBNull = false;
+                this.columnExpanded.DefaultValue = ((bool)(false));
                 this.columnSelectable.AllowDBNull = false;
                 this.columnSelectable.DefaultValue = ((bool)(false));
                 this.columnSelected.AllowDBNull = false;
                 this.columnSelected.DefaultValue = ((bool)(false));
                 this.columnUseSelectionPanel.AllowDBNull = false;
                 this.columnUseSelectionPanel.DefaultValue = ((bool)(true));
+                this.columnUseSeparator.AllowDBNull = false;
+                this.columnUseSeparator.DefaultValue = ((bool)(false));
+                this.columnUseNodesBorder.AllowDBNull = false;
+                this.columnUseNodesBorder.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4687,6 +4735,17 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Expanded {
+                get {
+                    return ((bool)(this[this.tableTreeItem.ExpandedColumn]));
+                }
+                set {
+                    this[this.tableTreeItem.ExpandedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Selectable {
                 get {
                     return ((bool)(this[this.tableTreeItem.SelectableColumn]));
@@ -4715,6 +4774,28 @@ namespace Maklak.Client.DataSets {
                 }
                 set {
                     this[this.tableTreeItem.UseSelectionPanelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool UseSeparator {
+                get {
+                    return ((bool)(this[this.tableTreeItem.UseSeparatorColumn]));
+                }
+                set {
+                    this[this.tableTreeItem.UseSeparatorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool UseNodesBorder {
+                get {
+                    return ((bool)(this[this.tableTreeItem.UseNodesBorderColumn]));
+                }
+                set {
+                    this[this.tableTreeItem.UseNodesBorderColumn] = value;
                 }
             }
             

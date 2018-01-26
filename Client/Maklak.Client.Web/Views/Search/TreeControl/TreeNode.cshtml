@@ -2,18 +2,26 @@
 
 @model Maklak.Client.Models.TreeNodeModel
 
+@{ 
 
-<div style="position:relative;right:0px; left:0px;top:0px;bottom:0px;background-color:lightgreen;">
+	string style = "position:relative;right:0px; left:0px;top:0px;bottom:0px;background-color:lightgreen;" + (this.Model.NodeRow.UseSeparator ? "padding-bottom:2px;" : "");
 
-	@{
-		//отображение самого узла
-		if (this.Model.NodeRow.Visible)
-		{
-			@Html.Partial("TreeControl/NodeContent", this.Model)
+	string style1 = "background-color:aqua;" + (this.Model.NodeRow.UseNodesBorder ? "border-width:1px; border-style:solid; border-color:black;" : "");
+}
+
+<div style="@style">
+
+	<div >
+		@{
+			//отображение самого узла
+			if (this.Model.NodeRow.Visible)
+			{
+				@Html.Partial("TreeControl/NodeContent", this.Model)
+			}
 		}
-	}
+	</div>
 
-	<div style="background-color:aqua;">
+	<div style="@style1">
 
 		@{
 			// рекурсивное отображение вложенных узлов

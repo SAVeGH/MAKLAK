@@ -62,19 +62,69 @@ namespace Maklak.Client.Models
 			row = base.data.TreeItem.NewTreeItemRow();
 			row.Id = 2;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Name";			
+			row.Name = "Name";
+			row.UseSeparator = true;
+			row.UseNodesBorder = true;
 			base.data.TreeItem.AddTreeItemRow(row);
 
 			row = base.data.TreeItem.NewTreeItemRow();
 			row.Id = 3;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Property";
+			row.Name = "Producer";
+			row.UseSeparator = true;
+			row.UseNodesBorder = true;
 			base.data.TreeItem.AddTreeItemRow(row);
 
 			row = base.data.TreeItem.NewTreeItemRow();
 			row.Id = 4;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Tag";			
+			row.Name = "Property";
+			row.UseSeparator = true;
+			row.UseNodesBorder = true;
+			base.data.TreeItem.AddTreeItemRow(row);
+
+			row = base.data.TreeItem.NewTreeItemRow();
+			row.Id = 5;
+			row.Parent_Id = parentRow.Id;
+			row.Name = "Tag";
+			row.UseSeparator = true;
+			row.UseNodesBorder = true;
+			base.data.TreeItem.AddTreeItemRow(row);
+
+			row = base.data.TreeItem.NewTreeItemRow();
+			row.Id = 6;
+			row.Parent_Id = 2;
+			row.Name = "Nail";
+			row.Expandable = false;
+			row.Opened = true;
+			row.Visible = true;
+			row.UseSelectionPanel = false;
+			row.UseFilterPanel = false;
+			row.Selectable = true;
+			base.data.TreeItem.AddTreeItemRow(row);
+
+			row = base.data.TreeItem.NewTreeItemRow();
+			row.Id = 7;
+			row.Parent_Id = 2;
+			row.Name = "Car";
+			row.Expandable = false;
+			row.Opened = true;
+			row.Visible = true;
+			row.UseSelectionPanel = false;
+			row.UseFilterPanel = false;
+			row.Selectable = true;
+			base.data.TreeItem.AddTreeItemRow(row);
+
+			row = base.data.TreeItem.NewTreeItemRow();
+			row.Id = 8;
+			row.Parent_Id = 2;
+			row.Name = "Ship";
+			row.Expandable = false;
+			row.Opened = true;
+			row.Visible = true;
+			row.UseSelectionPanel = false;
+			row.UseFilterPanel = false;
+			row.Selectable = true;
 			base.data.TreeItem.AddTreeItemRow(row);
 		}
 

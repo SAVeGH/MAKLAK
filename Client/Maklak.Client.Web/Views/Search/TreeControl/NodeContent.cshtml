@@ -3,36 +3,42 @@
 @model Maklak.Client.Models.TreeNodeModel
 
 @{
-	//отображение самого узла
+//отображение самого узла
 
-	//назване item для конечных листов
-		<div style="background-color:lightgoldenrodyellow">
+//назване item для конечных листов
+	<div style="background-color:lightgoldenrodyellow">
 
-			@if (this.Model.NodeRow.Expandable)
-			{
-				@Html.RadioButton("r", 1)
-			}
+		@if (this.Model.NodeRow.Expandable)
+		{
+			string sign = this.Model.NodeRow.Expanded ? "-" : "+";
+
+			<div style="width:15px;height:15px; border-width:1px; margin:2px; padding:2px; text-align:center;vertical-align:middle; border-style:solid; border-color:black;display:inline-block">@sign</div>
+		}
+
+		@if (this.Model.NodeRow.Selectable)
+		{
+			//bool selected = this.Model.NodeRow.Selected;
+
+			@Html.CheckBoxFor(m=> m.NodeRow.Selected)
+		}
+
+		@this.Model.NodeRow.Name
+	</div>
 
 
-
-
-			@this.Model.NodeRow.Name
+	if (this.Model.NodeRow.UseFilterPanel)
+	{
+		<div style="background-color:antiquewhite">
+			@Html.Partial("TreeControl/NodeFilter", this.Model)
 		</div>
+	}
 
+	if (this.Model.NodeRow.UseSelectionPanel)
+	{
+		// панель для отображения выбранных позиций
+		<div style="background-color:antiquewhite;border-width:1px; border-style:solid; border-color:black;">
+			@Html.Partial("TreeControl/SelectionPanel", this.Model)
+		</div>
+	}
 
-		if (this.Model.NodeRow.UseFilterPanel)
-		{
-			<div style="background-color:antiquewhite">
-				@Html.Partial("TreeControl/NodeFilter", this.Model)
-			</div>
-		}
-
-		if (this.Model.NodeRow.UseSelectionPanel)
-		{
-		    // панель для отображения выбранных позиций
-			<div style="background-color:antiquewhite">
-				@Html.Partial("TreeControl/SelectionPanel", this.Model)
-			</div>
-		}
-	
 }
