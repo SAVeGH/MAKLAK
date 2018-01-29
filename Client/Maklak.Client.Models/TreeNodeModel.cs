@@ -20,17 +20,24 @@ namespace Maklak.Client.Models
             nodeRow = row;
             parentNode = parentItem;
             nodes = new List<TreeNodeModel>();
-        }       
+        }
 
-        public ModelDS.TreeItemRow NodeRow
+		public bool IsVisibleRoot(ModelDS.TreeItemRow row)
+		{
+			if (row.IsParent_IdNull())
+				return false;
+
+			return row.Parent_Id == 6;
+		}
+
+
+		public ModelDS.TreeItemRow NodeRow
         {
             get { return nodeRow; }
         }
         
 
-        public TreeNodeModel ParentNode { get { return parentNode; } }
-
-        
+        public TreeNodeModel ParentNode { get { return parentNode; } }        
 
         public List<TreeNodeModel> Nodes
         {

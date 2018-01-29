@@ -127,7 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\App\ExpanderStyles.css" />
+    <Content Include="Content\App\TreeStyles.css" />
     <Content Include="Content\App\FractalStyles.css" />
     <Content Include="Content\App\SearchStyles.css" />
     <Content Include="Content\App\SuggestionStyle.css" />

@@ -63,6 +63,7 @@ namespace Maklak.Client.Models
 			row.Id = 2;
 			row.Parent_Id = parentRow.Id;
 			row.Name = "Name";
+			row.Selectable = true;
 			row.UseSeparator = true;
 			row.UseNodesBorder = true;
 			base.data.TreeItem.AddTreeItemRow(row);
@@ -128,7 +129,7 @@ namespace Maklak.Client.Models
 			base.data.TreeItem.AddTreeItemRow(row);
 		}
 
-       
+		
 
         public TreeNodeModel RootNode { get { return rootNode; } }//test
 

@@ -4,12 +4,12 @@
 
 @{ 
 
-	string style = "position:relative;right:0px; left:0px;top:0px;bottom:0px;background-color:lightgreen;" + (this.Model.NodeRow.UseSeparator ? "padding-bottom:2px;" : "");
+	string commonNodeStyle = "commonNodePanel " + (this.Model.NodeRow.UseSeparator ? "commonNodesPanelSeparator" : "");
 
-	string style1 = "background-color:aqua;" + (this.Model.NodeRow.UseNodesBorder ? "border-width:1px; border-style:solid; border-color:black;" : "");
+	string nestedNodesStyle = "nestedNodesPanel " + (this.Model.IsVisibleRoot(this.Model.NodeRow) ? "" : " nestedNodesShift ") + (this.Model.NodeRow.UseNodesBorder ? " nestedNodesPanelBorder" : "");
 }
 
-<div style="@style">
+<div class="@commonNodeStyle">
 
 	<div >
 		@{
@@ -21,7 +21,7 @@
 		}
 	</div>
 
-	<div style="@style1">
+	<div class="@nestedNodesStyle">
 
 		@{
 			// рекурсивное отображение вложенных узлов
