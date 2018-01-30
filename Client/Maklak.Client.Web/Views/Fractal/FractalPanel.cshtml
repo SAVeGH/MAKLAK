@@ -1,27 +1,28 @@
 ﻿@model Maklak.Client.Models.FractalModel
 
 @{
-    string panelClass = string.Empty;
-    string controlClass = string.Empty;
-    string contentClass = string.Empty;
-    string placeHolderClass = string.Empty;
+	string panelClass = string.Empty;
+	string controlClass = string.Empty;
+	string contentClass = string.Empty;
+	string placeHolderClass = string.Empty;
 
-    string fractalPanelKey = this.Model.ParentKey;
-    string nextFractalPanelKey = this.Model.NextKey;
+	string fractalPanelKey = this.Model.ParentKey;
+	string nextFractalPanelKey = this.Model.NextKey;
 
-    string panelFormID = string.Format("FractalPanel_{0}", fractalPanelKey);
+	string panelFormID = string.Format("FractalPanel_{0}", fractalPanelKey);
 
-    string fractalPanelRecursiveAction = this.Model.Action;
-    string fractalPanelRecursiveController = this.Model.Controller;
+	string fractalPanelRecursiveAction = this.Model.Action;
+	string fractalPanelRecursiveController = this.Model.Controller;
 
-    panelClass = this.Model.IsRoot ? "FractalRootPanel" : "FractalPanel";
-    controlClass = this.Model.ControlClass;
-    contentClass = this.Model.ContentClass;
+	panelClass = this.Model.IsRoot ? "FractalRootPanel" : "FractalPanel";
+	controlClass = this.Model.ControlClass;
+	contentClass = this.Model.ContentClass;
 
-    bool hasChildPanel = this.Model.HasChildPanel;
+	bool hasChildPanel = this.Model.HasChildPanel;
 
-    RouteValueDictionary routPanelValues = new RouteValueDictionary();
-    routPanelValues.Add("Key", nextFractalPanelKey); /*меняется ключ и следующая FractalPanel модель привязывается к дочернему ключу*/
+	//RouteValueDictionary routPanelValues = new RouteValueDictionary();
+	//routPanelValues.Add("Key", nextFractalPanelKey); /*меняется ключ и следующая FractalPanel модель привязывается к дочернему ключу*/
+	
 
 }
 
@@ -36,7 +37,8 @@
             @*Control*@                     
 
             @* Отображение контрола для FractalPanel-a*@
-            @Html.Action(this.Model.FractalControlAction, this.Model.FractalController,  this.Model)
+            @*@Html.Action(this.Model.FractalControlAction, this.Model.FractalController,  this.Model)*@
+			@Html.Partial(this.Model.FractalControlAction, this.Model)
             
             
         </div>
@@ -45,17 +47,20 @@
             @*Content*@
 
             @{
-                if (hasChildPanel)
-                {
-                    // Рекурсивное отображение вложенных FractalPanel-ов
-                    Html.RenderAction(fractalPanelRecursiveAction, fractalPanelRecursiveController, routPanelValues);
-                }
-                else
-                {
-                    // Отображение формы для содержимого последнего FractalPanel-a
-                    Html.RenderAction(this.Model.FractalContentAction, this.Model.FractalController, this.Model);                    
-                    
-                }
+				if (hasChildPanel)
+				{
+					this.Model.SetNextKey();
+					// Рекурсивное отображение вложенных FractalPanel-ов
+					//Html.RenderAction(fractalPanelRecursiveAction, fractalPanelRecursiveController, routPanelValues);
+					Html.RenderPartial(this.Model.FractalPanelAction, this.Model);
+				}
+				else
+				{
+					// Отображение формы для содержимого последнего FractalPanel-a
+					//Html.RenderAction(this.Model.FractalContentAction, this.Model.FractalController, this.Model);  
+					Html.RenderPartial(this.Model.FractalContentAction, this.Model);
+
+				}
 
             }
         </div>

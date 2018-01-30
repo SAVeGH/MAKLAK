@@ -62,6 +62,13 @@ namespace Maklak.Client.Models
             }
         }
 
+		public void SetNextKey()
+		{
+			key = this.NextKey;
+
+			SetActiveKey();
+		}
+
         // ключь который определяет DokPosition для TabPanel-a
         // ключь заменяется на дочерний при рекурсивном проходе в TabPanl-e
         public string Key

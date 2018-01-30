@@ -6,7 +6,7 @@
 
 	string commonNodeStyle = "commonNodePanel " + (this.Model.NodeRow.UseSeparator ? "commonNodesPanelSeparator" : "");
 
-	string nestedNodesStyle = "nestedNodesPanel " + (this.Model.IsVisibleRoot(this.Model.NodeRow) ? "" : " nestedNodesShift ") + (this.Model.NodeRow.UseNodesBorder ? " nestedNodesPanelBorder" : "");
+	string nestedNodesStyle = "nestedNodesPanel " + (this.Model.IsRoot ? "" : " nestedNodesShift ") + (this.Model.NodeRow.UseNodesBorder ? " nestedNodesPanelBorder" : "");
 }
 
 <div class="@commonNodeStyle">

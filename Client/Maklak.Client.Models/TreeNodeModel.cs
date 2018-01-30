@@ -22,12 +22,9 @@ namespace Maklak.Client.Models
             nodes = new List<TreeNodeModel>();
         }
 
-		public bool IsVisibleRoot(ModelDS.TreeItemRow row)
+		public bool IsRoot
 		{
-			if (row.IsParent_IdNull())
-				return false;
-
-			return row.Parent_Id == 6;
+			get { return nodeRow.IsParent_IdNull(); }
 		}
 
 

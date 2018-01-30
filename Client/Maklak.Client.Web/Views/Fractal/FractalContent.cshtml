@@ -19,9 +19,11 @@
             @*Отображение содержимого*@
             @Html.Action(this.Model.ContentAction, this.Model.ContentController)
 
-            @Html.HiddenFor(m=> m.Key)
+            @*@Html.HiddenFor(m=> m.Key)
+            @Html.HiddenFor(m => m.SID)*@
 
-            @Html.HiddenFor(m => m.SID)
-        }   
+			<input type="hidden"  name="Key" value="@this.Model.Key" /> @*ключь с которым происходит submit формы контента*@
+			<input type="hidden"  name="SID" value="@this.Model.SID" />
+	}
 
 }

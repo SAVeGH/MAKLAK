@@ -12,14 +12,14 @@ namespace Maklak.Client.Web.Controllers
             return PartialView(model.FractalPanelAction, model);
         }
 
-        public ActionResult FractalControl(FractalModel model)
-        {
-            return PartialView(model.FractalControlAction, model);
-        }
+		//public ActionResult FractalControl(FractalModel model)
+		//{
+		//    return PartialView(model.FractalControlAction, model);
+		//}
 
-        public ActionResult FractalContent(FractalModel model)
-        {
-            return PartialView(model.FractalContentAction, model);
-        }
-    }
+		public ActionResult FractalContent(FractalModel model)
+		{
+			return PartialView(model.FractalContentAction, model);
+		}
+	}
 }
