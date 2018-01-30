@@ -64,9 +64,9 @@ namespace Maklak.Client.Models
 
 		public void SetNextKey()
 		{
-			key = this.NextKey;
+			Key = this.NextKey;
 
-			SetActiveKey();
+			//SetActiveKey();
 		}
 
         // ключь который определяет DokPosition для TabPanel-a
