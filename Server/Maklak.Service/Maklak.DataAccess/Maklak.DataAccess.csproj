@@ -46,8 +46,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SuggestionDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\TreeDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TreeDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Suggestions.cs" />
+    <Compile Include="TreeBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSets\SuggestionDS.xsc">
@@ -60,6 +66,17 @@
     </None>
     <None Include="DataSets\SuggestionDS.xss">
       <DependentUpon>SuggestionDS.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TreeDS.xsc">
+      <DependentUpon>TreeDS.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TreeDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TreeDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\TreeDS.xss">
+      <DependentUpon>TreeDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

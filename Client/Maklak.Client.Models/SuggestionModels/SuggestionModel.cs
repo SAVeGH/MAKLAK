@@ -24,8 +24,9 @@ namespace Maklak.Client.Models
         {            
             this.OnModelReady += SuggestionModel_OnModelReady;
             //test = new TestClass();
-            dataSource = new DataSource();
-        }
+            dataSource = new DataSource(this.data);		
+
+		}
 
         private void SuggestionModel_OnModelReady()
         {
@@ -51,7 +52,7 @@ namespace Maklak.Client.Models
 
             DropFilter();
 
-            dataSource.MakeSuggestion(this.data);
+            dataSource.MakeSuggestion(/*this.data*/);
 
             UpdateFilter();
         }

@@ -4,23 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Maklak.Client.Data;
 using Maklak.Client.DataSets;
+
 
 namespace Maklak.Client.Models
 {
     public class TreeModel : BaseModel
     {
         TreeNodeModel rootNode;
+		Maklak.Client.Data.DataSource dataSource; 
 
-        public TreeModel()
+		public TreeModel()
         {
             
             this.OnModelReady += TreeModel_OnModelReady;
-        }
+
+			//dataSource = new DataSource(this.data);
+
+		}
 
         private void TreeModel_OnModelReady()
         {
-            FillData();
+			dataSource = new DataSource(this.data);
+
+			FillData();
 
             FillNodes();
         }
@@ -46,7 +54,12 @@ namespace Maklak.Client.Models
             }
         }
 
-        private void FillData()
+		private void FillData()
+		{
+			dataSource.ConstructTree();
+		}
+
+        private void FillData1()
         {
             base.data.TreeItem.Clear();
 

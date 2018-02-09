@@ -6,6 +6,7 @@
       <xsd:import schemaLocation="http://localhost:64894/DataSource.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:64894/DataSource.svc?xsd=xsd2" namespace="http://tempuri.org/SuggestionDS.xsd" />
       <xsd:import schemaLocation="http://localhost:64894/DataSource.svc?xsd=xsd3" />
+      <xsd:import schemaLocation="http://localhost:64894/DataSource.svc?xsd=xsd4" namespace="http://tempuri.org/TreeDS.xsd" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDataSource_DoWork_InputMessage">
@@ -20,6 +21,12 @@
   <wsdl:message name="IDataSource_Suggestion_OutputMessage">
     <wsdl:part name="parameters" element="tns:SuggestionResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataSource_Tree_InputMessage">
+    <wsdl:part name="parameters" element="tns:Tree" />
+  </wsdl:message>
+  <wsdl:message name="IDataSource_Tree_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TreeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDataSource">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataSource/DoWork" message="tns:IDataSource_DoWork_InputMessage" />
@@ -28,6 +35,10 @@
     <wsdl:operation name="Suggestion">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataSource/Suggestion" message="tns:IDataSource_Suggestion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataSource/SuggestionResponse" message="tns:IDataSource_Suggestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Tree">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSource/Tree" message="tns:IDataSource_Tree_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSource/TreeResponse" message="tns:IDataSource_Tree_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataSource" type="tns:IDataSource">
@@ -43,6 +54,15 @@
     </wsdl:operation>
     <wsdl:operation name="Suggestion">
       <soap:operation soapAction="http://tempuri.org/IDataSource/Suggestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tree">
+      <soap:operation soapAction="http://tempuri.org/IDataSource/Tree" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

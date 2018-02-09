@@ -12,28 +12,32 @@ namespace Maklak.Client.Data
     public class DataSource
     {
         Proxy.DataSource dataSource;
+		ModelDS modelDS;
 
-        public DataSource()
+		public DataSource(ModelDS clientModelDS)
         {
+			// класс который объединяет клиентскую модель и данные из proxy
             dataSource = new Proxy.DataSource();
-        }
+			modelDS = clientModelDS;
+
+		}
 
         public void DoWork()
         {
             dataSource.DoWork();
         }
 
-        public void MakeSuggestion(ModelDS modelDS)
+        public void MakeSuggestion(/*ModelDS modelDS*/)
         {
             Proxy.DataSourceServiceReference.SuggestionDS inputDS = new Proxy.DataSourceServiceReference.SuggestionDS();
 
-            ModelDS.SuggestionInputRow inputRow = modelDS.SuggestionInput.FirstOrDefault();
+            ModelDS.SuggestionInputRow inputRow = Model.SuggestionInput.FirstOrDefault();
             inputRow.SetIdNull();
             inputRow.AcceptChanges();
 
             inputDS.SuggestionInput.ImportRow(inputRow);
 
-            modelDS.SuggestionFilter.AsEnumerable().ToList().ForEach(r => inputDS.SuggestionFilter.ImportRow(r));              
+			Model.SuggestionFilter.AsEnumerable().ToList().ForEach(r => inputDS.SuggestionFilter.ImportRow(r));              
 
             Proxy.DataSourceServiceReference.SuggestionDS  outputDS = dataSource.MakeSuggestion(inputDS);
 
@@ -42,12 +46,41 @@ namespace Maklak.Client.Data
             if (!outRow.IsIdNull())
                 inputRow.Id = outRow.Id;
 
-            modelDS.Suggestion.Clear();
+			Model.Suggestion.Clear();
                         
-            outputDS.Suggestion.AsEnumerable().ToList().ForEach(r => modelDS.Suggestion.ImportRow(r));
+            outputDS.Suggestion.AsEnumerable().ToList().ForEach(r => Model.Suggestion.ImportRow(r));
 
-            modelDS.AcceptChanges();
+			Model.AcceptChanges();
 
         }
-    }
+
+		public void ConstructTree(/*ModelDS modelDS*/)
+		{
+			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(null);
+
+			foreach (Proxy.DataSourceServiceReference.TreeDS.TreeRow row in treeDS.Tree.Rows)
+			{
+				
+				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
+				tiRow.Id = row.Id;
+
+				if (row.IsParent_IdNull())
+					tiRow.SetParent_IdNull();
+				else
+					tiRow.Parent_Id = row.Parent_Id;
+				 
+				tiRow.Name = row.Name;
+				tiRow.Selected = row.IsSelectedNull() ? false : row.Selected;
+				this.Model.TreeItem.AddTreeItemRow(tiRow);
+			}
+		}
+
+		public ModelDS Model
+		{
+			get
+			{
+				return this.modelDS;
+			}
+		}
+	}
 }

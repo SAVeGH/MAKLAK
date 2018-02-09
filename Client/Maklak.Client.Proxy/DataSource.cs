@@ -30,5 +30,10 @@ namespace Maklak.Client.Proxy
         {
             return client.Suggestion(inputDS);
         }
+
+		public TreeDS ConstructTree(TreeDS treeDS)
+		{
+			return client.Tree(treeDS);
+		}
     }
 }

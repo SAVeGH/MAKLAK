@@ -81,7 +81,14 @@
     <None Include="Service References\DataSourceServiceReference\Maklak.Client.Proxy.DataSourceServiceReference.SuggestionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\DataSourceServiceReference\Maklak.Client.Proxy.DataSourceServiceReference.TreeDS.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DataSourceServiceReference\Maklak.Client.Proxy.DataSourceServiceReference.TreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\DataSourceServiceReference\SuggestionDS.xsd" />
+    <None Include="Service References\DataSourceServiceReference\TreeDS.xsd" />
     <None Include="Service References\ServiceTestReference\Maklak.Client.Proxy.ServiceTestReference.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

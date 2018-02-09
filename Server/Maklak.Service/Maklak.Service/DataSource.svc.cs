@@ -24,5 +24,10 @@ namespace Maklak.Service
         {
             return Suggestions.Suggestion(inputDS);
         }
+
+		public TreeDS Tree(TreeDS treeDS)
+		{
+			return TreeBuilder.ConstructTree(treeDS);
+		}
     }
 }

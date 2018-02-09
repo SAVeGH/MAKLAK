@@ -28,6 +28,7 @@
     <MetadataFile FileName="DataSource11.xsd" MetadataType="Schema" ID="5ea9c165-5208-4a3d-a683-4639a9442266" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd1" />
     <MetadataFile FileName="DataSource.xsd" MetadataType="Schema" ID="c88ed121-f081-4e3f-9edd-1a333f63b609" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd0" />
     <MetadataFile FileName="DataSource.disco" MetadataType="Disco" ID="6f715fbe-f37e-495c-b41d-2e6c7d492f7b" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?disco" />
+    <MetadataFile FileName="TreeDS.xsd" MetadataType="Schema" ID="ead7d9f0-d3d5-4b90-89ae-7a17b563ed09" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
