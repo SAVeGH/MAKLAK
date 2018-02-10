@@ -47,7 +47,13 @@ namespace Maklak.Client.Models
             if(parentItem != null)
                 parentItem.Nodes.Add(nodeItem);
 
-            foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Parent_Id == nodeItem.NodeRow.Id))
+			if (nodeItem.NodeRow.IsBranch_IdNull())
+				return; //  у узла нет потомков
+
+            foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem.Where(r => !r.IsParent_IdNull() && 
+			                                                                      !r.IsParentBranch_IdNull() && 
+																				  r.Parent_Id == nodeItem.NodeRow.Id && 
+																				  r.ParentBranch_Id == nodeItem.NodeRow.Branch_Id ))
             {
                 TreeNodeModel itemNode = new TreeNodeModel(rowItem, nodeItem);                
                 FillNodes(itemNode, nodeItem);
@@ -57,6 +63,33 @@ namespace Maklak.Client.Models
 		private void FillData()
 		{
 			dataSource.ConstructTree();
+
+			foreach (ModelDS.TreeItemRow row in this.data.TreeItem.Rows)
+			{
+				bool isRoot = row.IsParent_IdNull();
+				row.Visible = !isRoot;
+
+				if (isRoot)
+					continue;
+
+				if(row.ParentBranch_Id == 1 /*ROOT*/)
+				{
+					
+					row.Selectable = false;
+					row.UseSeparator = true;
+					row.UseNodesBorder = true;
+					
+				}
+				else
+				{
+					row.Expandable = false;
+					row.Opened = true;
+					row.Visible = true;
+					row.UseSelectionPanel = false;
+					row.UseFilterPanel = false;
+					row.Selectable = true;
+				}
+			}
 		}
 
         private void FillData1()

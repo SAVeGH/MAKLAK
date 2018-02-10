@@ -58,16 +58,29 @@ namespace Maklak.Client.Data
 		{
 			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(null);
 
+			this.Model.TreeItem.Clear();
+
 			foreach (Proxy.DataSourceServiceReference.TreeDS.TreeRow row in treeDS.Tree.Rows)
 			{
 				
 				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
 				tiRow.Id = row.Id;
+				if (row.IsBranch_IdNull())
+					tiRow.SetBranch_IdNull();
+				else
+					tiRow.Branch_Id = row.Branch_Id;
 
 				if (row.IsParent_IdNull())
 					tiRow.SetParent_IdNull();
 				else
 					tiRow.Parent_Id = row.Parent_Id;
+
+				if (row.IsParentBranch_IdNull())
+					tiRow.SetParentBranch_IdNull();
+				else
+					tiRow.ParentBranch_Id = row.ParentBranch_Id;
+
+				
 				 
 				tiRow.Name = row.Name;
 				tiRow.Selected = row.IsSelectedNull() ? false : row.Selected;

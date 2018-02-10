@@ -8,7 +8,8 @@
             <xs:sequence>
               <xs:element name="Id" type="xs:int" />
               <xs:element minOccurs="0" name="Parent_Id" type="xs:int" />
-              <xs:element minOccurs="0" name="Key" type="xs:string" />
+              <xs:element minOccurs="0" name="Branch_Id" type="xs:int" />
+              <xs:element minOccurs="0" name="ParentBranch_Id" type="xs:int" />
               <xs:element minOccurs="0" name="Name" type="xs:string" />
               <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
             </xs:sequence>
