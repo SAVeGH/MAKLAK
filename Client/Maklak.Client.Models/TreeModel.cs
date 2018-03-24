@@ -67,10 +67,17 @@ namespace Maklak.Client.Models
 			foreach (ModelDS.TreeItemRow row in this.data.TreeItem.Rows)
 			{
 				bool isRoot = row.IsParent_IdNull();
-				row.Visible = !isRoot;
+				
+
 
 				if (isRoot)
+				{
+					row.Visible = false;
+					row.UseFilterPanel = false;
+					row.UseSelectionPanel = false;
+					row.Expanded = true;
 					continue;
+				}
 
 				if(row.ParentBranch_Id == 1 /*ROOT*/)
 				{

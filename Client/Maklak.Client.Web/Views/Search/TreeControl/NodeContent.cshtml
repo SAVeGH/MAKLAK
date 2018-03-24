@@ -12,7 +12,7 @@
 		{
 			string sign = this.Model.NodeRow.Expanded ? "-" : "+";
 
-			<div class="expanderSwitch">@sign</div>
+			<div class="expanderSwitch" onclick="alert('Ok')">@sign</div>
 		}
 
 		@if (this.Model.NodeRow.Selectable)
@@ -22,21 +22,5 @@
 
 		@this.Model.NodeRow.Name
 	</div>
-
-
-	if (this.Model.NodeRow.UseFilterPanel)
-	{
-		<div class="filterPanel nodeMargins">
-			@Html.Partial("TreeControl/NodeFilter", this.Model)
-		</div>
-	}
-
-	if (this.Model.NodeRow.UseSelectionPanel)
-	{
-		// панель для отображения выбранных позиций
-		<div class="selectionPanel nodeMargins">
-			@Html.Partial("TreeControl/SelectionPanel", this.Model)
-		</div>
-	}
 
 }

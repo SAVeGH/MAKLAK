@@ -6,7 +6,7 @@
 
 	string commonNodeStyle = "commonNodePanel " + (this.Model.NodeRow.UseSeparator ? "commonNodesPanelSeparator" : "");
 
-	string nestedNodesStyle = "nestedNodesPanel " + (this.Model.IsRoot ? "" : " nestedNodesShift ") + (this.Model.NodeRow.UseNodesBorder ? " nestedNodesPanelBorder" : "");
+	string nestedNodesStyle = "nestedNodesPanel " + (this.Model.NodeRow.Expanded  ? "" : "hidden");
 }
 
 <div class="@commonNodeStyle">
@@ -23,13 +23,8 @@
 
 	<div class="@nestedNodesStyle">
 
-		@{
-			// рекурсивное отображение вложенных узлов
-			foreach (TreeNodeModel node in this.Model.Nodes)
-			{
-				@Html.Partial("TreeControl/TreeNode", node)
-			}
-		}
+		@Html.Partial("TreeControl/NestedContent", this.Model)
+
 	</div>
 
 
