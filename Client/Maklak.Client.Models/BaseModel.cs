@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web.Mvc;
 using MvcSiteMapProvider;
 using Maklak.Client.Models.Helpers;
 using Maklak.Client.DataSets;
@@ -65,8 +65,12 @@ namespace Maklak.Client.Models
 
         }
 
+		public virtual void Created(ControllerContext controllerContext, ModelBindingContext bindingContext)
+		{
+			
+		}
 
-        private void RiseOnModelReady()
+		private void RiseOnModelReady()
         {
             if (OnModelReady == null)
                 return;

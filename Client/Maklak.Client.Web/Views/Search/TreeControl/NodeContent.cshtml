@@ -11,8 +11,9 @@
 		@if (this.Model.NodeRow.Expandable)
 		{
 			string sign = this.Model.NodeRow.Expanded ? "-" : "+";
-
-			<div class="expanderSwitch" onclick="alert('Ok')">@sign</div>
+			int branchId = this.Model.NodeRow.Branch_Id;
+			int nodeId = this.Model.NodeRow.Id;
+			<div class="expanderSwitch" onclick="Tree.Toggle(this,@branchId,@nodeId)">@sign</div>
 		}
 
 		@if (this.Model.NodeRow.Selectable)

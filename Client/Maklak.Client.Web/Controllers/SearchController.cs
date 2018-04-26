@@ -41,6 +41,20 @@ namespace Maklak.Client.Web.Controllers
             return PartialView("TreeControl/Tree",treeModel);
         }
 
+		public ActionResult TreeNode(TreeNodeModel treeNodeModel)
+		{
+
+			//ExpanderModel expanderModel = new ExpanderModel();
+			//expanderModel.Initialize(this.SID);
+
+			//TreeNodeModel node = treeModel.FindNode();
+
+
+			//node.NodeRow.Expanded = !node.NodeRow.Expanded;
+
+			return PartialView("TreeControl/TreeNode", treeNodeModel);
+		}
+
 		//public ActionResult NodeFilter(TreeModel treeModel)
 		//{
 		//	return PartialView("TreeControl/NodeFilter", treeModel);

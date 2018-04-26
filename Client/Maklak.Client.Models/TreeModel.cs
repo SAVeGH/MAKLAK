@@ -60,6 +60,27 @@ namespace Maklak.Client.Models
             }
         }
 
+		public TreeNodeModel FindNode()
+		{
+			return FindNode(this.rootNode);
+		}
+
+		private TreeNodeModel FindNode(TreeNodeModel node)
+		{
+			if (node.NodeRow.Id == this.NodeID && node.NodeRow.Branch_Id == this.BranchID)
+				return node;
+
+			foreach (TreeNodeModel n in node.Nodes)
+			{
+				TreeNodeModel tnm = FindNode(n);
+
+				if (tnm != null)
+					return tnm;
+			}
+
+			return null;
+		}
+
 		private void FillData()
 		{
 			dataSource.ConstructTree();
@@ -185,6 +206,9 @@ namespace Maklak.Client.Models
 		
 
         public TreeNodeModel RootNode { get { return rootNode; } }//test
+
+		public int BranchID { get; set; }
+		public int NodeID { get; set; }
 
     }
 }

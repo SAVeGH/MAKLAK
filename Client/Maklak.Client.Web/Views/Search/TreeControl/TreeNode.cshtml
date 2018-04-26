@@ -6,7 +6,7 @@
 
 	string commonNodeStyle = "commonNodePanel " + (this.Model.NodeRow.UseSeparator ? "commonNodesPanelSeparator" : "");
 
-	string nestedNodesStyle = "nestedNodesPanel " + (this.Model.NodeRow.Expanded  ? "" : "hidden");
+	string nestedNodesStyle = "nestedNodesPanel ";
 }
 
 <div class="@commonNodeStyle">
@@ -21,11 +21,17 @@
 		}
 	</div>
 
-	<div class="@nestedNodesStyle">
+	@{
+		//отображение вложенного содержимого узла
+		if (this.Model.NodeRow.Expanded)
+		{
+			<div class="@nestedNodesStyle">
 
-		@Html.Partial("TreeControl/NestedContent", this.Model)
+				@Html.Partial("TreeControl/NestedContent", this.Model)
 
-	</div>
+			</div>
+			}
+		}
 
 
 

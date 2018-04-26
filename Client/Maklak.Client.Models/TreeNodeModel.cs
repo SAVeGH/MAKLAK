@@ -9,18 +9,44 @@ using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Models
 {
-    public class TreeNodeModel 
+    public class TreeNodeModel : BaseModel
     {
         ModelDS.TreeItemRow nodeRow;
         TreeNodeModel parentNode;
         List<TreeNodeModel> nodes;
+		Maklak.Client.Data.DataSource dataSource;
 
-        public TreeNodeModel(ModelDS.TreeItemRow row, TreeNodeModel parentItem = null)
+		public TreeNodeModel()
+		{
+			nodeRow = null;
+			parentNode = null;
+			nodes = new List<TreeNodeModel>();
+
+			this.OnModelReady += TreeNodeModel_OnModelReady;
+		}
+
+		private void TreeNodeModel_OnModelReady()
+		{
+			dataSource = new DataSource(this.data);
+
+			nodeRow = dataSource.FillNode();
+
+			FillModel();
+
+		}
+
+		public TreeNodeModel(ModelDS.TreeItemRow row, TreeNodeModel parentItem = null)
         {
             nodeRow = row;
             parentNode = parentItem;
             nodes = new List<TreeNodeModel>();
         }
+
+		private void FillModel()
+		{
+
+
+		}
 
 		public bool IsRoot
 		{

@@ -28,6 +28,8 @@ namespace Maklak.Client.Web.ModelBinder
             if (InitializeModel != null)
                 InitializeModel(controllerContext, bindingContext, modelType, model);
 
+			model.Created(controllerContext, bindingContext);
+
             return model;
         }
         
