@@ -17,7 +17,7 @@ namespace Maklak.Client.Models
         protected event Action OnModelReady;
         
 
-        public void Initialize(Guid sID)
+        public void InitializeSID(Guid sID)
         {
             data = SessionHelper.GetModel(sID);            
 
@@ -65,7 +65,7 @@ namespace Maklak.Client.Models
 
         }
 
-		public virtual void Created(ControllerContext controllerContext, ModelBindingContext bindingContext)
+		public virtual void InitializeData(ControllerContext controllerContext, ModelBindingContext bindingContext)
 		{
 			
 		}

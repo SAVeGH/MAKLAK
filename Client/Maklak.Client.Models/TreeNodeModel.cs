@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web.Mvc;
 using Maklak.Client.Data;
 using Maklak.Client.DataSets;
 
@@ -22,7 +22,7 @@ namespace Maklak.Client.Models
 			parentNode = null;
 			nodes = new List<TreeNodeModel>();
 
-			this.OnModelReady += TreeNodeModel_OnModelReady;
+			//this.OnModelReady += TreeNodeModel_OnModelReady;
 		}
 
 		private void TreeNodeModel_OnModelReady()
@@ -35,6 +35,15 @@ namespace Maklak.Client.Models
 
 		}
 
+		public override void InitializeData(ControllerContext controllerContext, ModelBindingContext bindingContext)
+		{
+			dataSource = new DataSource(this.data);
+
+			nodeRow = dataSource.FillNode();
+
+			FillModel();
+		}
+
 		public TreeNodeModel(ModelDS.TreeItemRow row, TreeNodeModel parentItem = null)
         {
             nodeRow = row;
@@ -44,8 +53,28 @@ namespace Maklak.Client.Models
 
 		private void FillModel()
 		{
+			
 
+			FillNodes(this, null);
 
+		}
+
+		private void FillNodes(TreeNodeModel nodeItem, TreeNodeModel parentItem)
+		{
+			if (parentItem != null)
+				parentItem.Nodes.Add(nodeItem);
+
+			if (nodeItem.NodeRow.IsBranch_IdNull())
+				return; //  у узла нет потомков
+
+			foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem.Where(r => !r.IsParent_IdNull() &&
+																				  !r.IsParentBranch_IdNull() &&
+																				  r.Parent_Id == nodeItem.NodeRow.Id &&
+																				  r.ParentBranch_Id == nodeItem.NodeRow.Branch_Id))
+			{
+				TreeNodeModel itemNode = new TreeNodeModel(rowItem, nodeItem);
+				FillNodes(itemNode, nodeItem);
+			}
 		}
 
 		public bool IsRoot
@@ -69,5 +98,8 @@ namespace Maklak.Client.Models
                 return nodes;
             }
         }
-    }
+
+		public int BranchID { get; set; }
+		public int NodeID { get; set; }
+	}
 }

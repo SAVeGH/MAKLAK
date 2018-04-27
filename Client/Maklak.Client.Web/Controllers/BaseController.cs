@@ -4,7 +4,11 @@ namespace Maklak.Client.Web.Controllers
 {
     public class BaseController : Controller
     {        
-        public Guid SID { get; set; }
+        public Guid SID
+		{
+			get;
+			set;
+		}
 
         
 

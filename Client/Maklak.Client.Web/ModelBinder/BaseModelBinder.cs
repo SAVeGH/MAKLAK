@@ -23,12 +23,12 @@ namespace Maklak.Client.Web.ModelBinder
             BaseController controller = controllerContext.Controller as BaseController;            
 
             // для всех автоматически генерируемых средой моделей происходит привязка к SID
-            model.Initialize(controller.SID);
-            // инициализация модели данными запроса
-            if (InitializeModel != null)
-                InitializeModel(controllerContext, bindingContext, modelType, model);
+            model.InitializeSID(controller.SID);
+			// инициализация модели данными запроса в кастомных биндерах
+			if (InitializeModel != null)
+				InitializeModel(controllerContext, bindingContext, modelType, model);
 
-			model.Created(controllerContext, bindingContext);
+			model.InitializeData(controllerContext, bindingContext);
 
             return model;
         }

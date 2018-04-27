@@ -32,14 +32,23 @@ namespace Maklak.Client.Web.Controllers
             return PartialView();
         }
 
-        public ActionResult Tree(TreeModel treeModel)
-        {
+        //public ActionResult Tree(TreeModel treeModel)
+        //{
 
-            //ExpanderModel expanderModel = new ExpanderModel();
-            //expanderModel.Initialize(this.SID);
+        //    //ExpanderModel expanderModel = new ExpanderModel();
+        //    //expanderModel.Initialize(this.SID);
 
-            return PartialView("TreeControl/Tree",treeModel);
-        }
+        //    return PartialView("TreeControl/Tree",treeModel);
+        //}
+
+		public ActionResult Tree(TreeNodeModel treeNodeModel)
+		{
+
+			//ExpanderModel expanderModel = new ExpanderModel();
+			//expanderModel.Initialize(this.SID);
+
+			return PartialView("TreeControl/TreeNode", treeNodeModel);
+		}
 
 		public ActionResult TreeNode(TreeNodeModel treeNodeModel)
 		{
