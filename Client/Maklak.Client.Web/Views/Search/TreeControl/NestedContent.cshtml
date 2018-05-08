@@ -5,7 +5,7 @@
 @{
 			string nodeMargins = this.Model.IsRoot ? "" : "nodeMargins";
 
-			if (this.Model.NodeRow.UseFilterPanel)
+			@*if (this.Model.NodeRow.UseFilterPanel)
 			{
 		<div class="filterPanel nodeMargins">
 			@Html.Partial("TreeControl/NodeFilter", this.Model)
@@ -18,7 +18,7 @@
 		<div class="selectionPanel nodeMargins">
 			@Html.Partial("TreeControl/SelectionPanel", this.Model)
 		</div>
-	 }
+	 }*@
 
 	 if (this.Model.Nodes.Count > 0)
 	 {

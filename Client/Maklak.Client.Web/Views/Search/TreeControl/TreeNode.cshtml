@@ -2,16 +2,21 @@
 
 @model Maklak.Client.Models.TreeNodeModel
 
-@{ 
+@{
 
 	string commonNodeStyle = "commonNodePanel " + (this.Model.NodeRow.UseSeparator ? "commonNodesPanelSeparator" : "");
 
 	string nestedNodesStyle = "nestedNodesPanel ";
+
+	string expandableContent = this.Model.IsRoot ? "expandableContentVisible" : "expandableContentHidden";
+
+	int branchId = this.Model.NodeRow.Branch_Id;
+	int nodeId = this.Model.NodeRow.Id;
 }
 
 <div class="@commonNodeStyle">
 
-	<div >
+	<div>
 		@{
 			//отображение самого узла
 			if (this.Model.NodeRow.Visible)
@@ -21,18 +26,53 @@
 		}
 	</div>
 
-	@{
-		//отображение вложенного содержимого узла
-		if (this.Model.NodeRow.Expanded)
-		{
-			<div class="@nestedNodesStyle">
+	@*разворачиваемый контент*@
+	<div class="@expandableContent" data-branchid="@branchId" data-nodeid="@nodeId">
+		@{
+			if (this.Model.UseCustomPanel)
+			{
+				<div>
+					@{
+						//отображение панелей фильтрации и выбора
 
-				@Html.Partial("TreeControl/NestedContent", this.Model)
+						string nodeMargins = this.Model.IsRoot ? "" : "nodeMargins";
 
-			</div>
+						if (this.Model.NodeRow.UseFilterPanel)
+						{
+							<div class="filterPanel nodeMargins">
+								@Html.Partial("TreeControl/NodeFilter", this.Model)
+							</div>
+						}
+
+						if (this.Model.NodeRow.UseSelectionPanel)
+						{
+							// панель для отображения выбранных позиций
+							<div class="selectionPanel nodeMargins">
+								@Html.Partial("TreeControl/SelectionPanel", this.Model)
+							</div>
+						}
+
+					}
+
+				</div>
 			}
 		}
 
+		@{
+			//отображение вложенного содержимого узла
 
+				<div class="@nestedNodesStyle" data-branchid="@branchId" data-nodeid="@nodeId" data-nestedcontent>
+					@{ 
+						if (this.Model.NodeRow.Expanded)
+						{
+							@Html.Partial("TreeControl/NestedContent", this.Model)
+						}
+					 }
+
+				</div>
+			
+		}
+
+	</div>
 
 </div>

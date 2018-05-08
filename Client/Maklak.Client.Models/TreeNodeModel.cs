@@ -14,7 +14,7 @@ namespace Maklak.Client.Models
         ModelDS.TreeItemRow nodeRow;
         TreeNodeModel parentNode;
         List<TreeNodeModel> nodes;
-		Maklak.Client.Data.DataSource dataSource;
+		//Maklak.Client.Data.DataSource dataSource;
 
 		public TreeNodeModel()
 		{
@@ -27,7 +27,7 @@ namespace Maklak.Client.Models
 
 		private void TreeNodeModel_OnModelReady()
 		{
-			dataSource = new DataSource(this.data);
+			//dataSource = new DataSource(this.data);
 
 			nodeRow = dataSource.FillNode();
 
@@ -101,5 +101,11 @@ namespace Maklak.Client.Models
 
 		public int BranchID { get; set; }
 		public int NodeID { get; set; }
+
+		public bool UseCustomPanel
+		{
+			get { return this.NodeRow.UseFilterPanel || this.NodeRow.UseSelectionPanel; }
+		}
+
 	}
 }

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MvcSiteMapProvider;
 using Maklak.Client.Models.Helpers;
 using Maklak.Client.DataSets;
+using Maklak.Client.Data;
 
 namespace Maklak.Client.Models
 {
@@ -15,13 +16,14 @@ namespace Maklak.Client.Models
         protected ModelDS data;
         protected event Action OnModelInitialized;
         protected event Action OnModelReady;
-        
+		protected Maklak.Client.Data.DataSource dataSource;
 
-        public void InitializeSID(Guid sID)
+		public void InitializeSID(Guid sID)
         {
-            data = SessionHelper.GetModel(sID);            
+            data = SessionHelper.GetModel(sID);
+			dataSource = new DataSource(this.data);
 
-            if (!IsModelInitialized())
+			if (!IsModelInitialized())
             {
                 BaseInitialization(sID);
 
@@ -68,6 +70,11 @@ namespace Maklak.Client.Models
 		public virtual void InitializeData(ControllerContext controllerContext, ModelBindingContext bindingContext)
 		{
 			
+		}
+
+		public virtual void ModelBound(ControllerContext controllerContext, ModelBindingContext bindingContext)
+		{
+			int r = 0;
 		}
 
 		private void RiseOnModelReady()
