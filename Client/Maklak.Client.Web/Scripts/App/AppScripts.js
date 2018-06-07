@@ -43,3 +43,12 @@ function GetURL() {
     return urlLocation;
 }
 
+AppManager.SID = function ()
+{
+	return $("#SID").val();
+}
+
+AppManager.SIDPRM = function () {
+	return 'SID=' + $("#SID").val();
+}
+

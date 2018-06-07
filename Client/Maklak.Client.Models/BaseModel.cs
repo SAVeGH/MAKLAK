@@ -74,7 +74,7 @@ namespace Maklak.Client.Models
 
 		public virtual void ModelBound(ControllerContext controllerContext, ModelBindingContext bindingContext)
 		{
-			int r = 0;
+			//int r = 0;
 		}
 
 		private void RiseOnModelReady()

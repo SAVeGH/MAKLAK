@@ -25,17 +25,17 @@ namespace Maklak.Client.Models
 			//this.OnModelReady += TreeNodeModel_OnModelReady;
 		}
 
-		private void TreeNodeModel_OnModelReady()
-		{
-			//dataSource = new DataSource(this.data);
+		//private void TreeNodeModel_OnModelReady()
+		//{
+		//	//dataSource = new DataSource(this.data);
 
-			nodeRow = dataSource.FillNode();
+		//	//nodeRow = dataSource.FillNode();
 
-			FillModel();
+		//	//FillModel();
 
-		}
+		//}
 
-		public override void InitializeData(ControllerContext controllerContext, ModelBindingContext bindingContext)
+		public override void ModelBound(ControllerContext controllerContext, ModelBindingContext bindingContext)
 		{
 			dataSource = new DataSource(this.data);
 
@@ -43,6 +43,15 @@ namespace Maklak.Client.Models
 
 			FillModel();
 		}
+
+		//public override void InitializeData(ControllerContext controllerContext, ModelBindingContext bindingContext)
+		//{
+		//	//dataSource = new DataSource(this.data);
+
+		//	//nodeRow = dataSource.FillNode();
+
+		//	//FillModel();
+		//}
 
 		public TreeNodeModel(ModelDS.TreeItemRow row, TreeNodeModel parentItem = null)
         {
@@ -79,7 +88,7 @@ namespace Maklak.Client.Models
 
 		public bool IsRoot
 		{
-			get { return nodeRow.IsParent_IdNull(); }
+			get { return nodeRow == null ? false : nodeRow.IsParent_IdNull(); }
 		}
 
 
@@ -104,7 +113,7 @@ namespace Maklak.Client.Models
 
 		public bool UseCustomPanel
 		{
-			get { return this.NodeRow.UseFilterPanel || this.NodeRow.UseSelectionPanel; }
+			get { return this.NodeRow == null ? false : (this.NodeRow.UseFilterPanel || this.NodeRow.UseSelectionPanel); }
 		}
 
 	}

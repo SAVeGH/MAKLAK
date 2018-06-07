@@ -15,7 +15,7 @@ Tree.Toggle = function (elm,branchId,nodeId) {
 
 	//var node = nodeExpander.parent().parent();
 	var url = 'Search/TreeNode';
-	var prm = 'BranchID=' + branchId.toString() + '&NodeID=' + nodeId.toString();
+	var prm = 'BranchID=' + branchId.toString() + '&NodeID=' + nodeId.toString() +'&'+ AppManager.SIDPRM();
 	$.post(url, prm, fillNode);
 
 	function fillNode(data) {

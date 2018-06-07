@@ -13,7 +13,7 @@ namespace Maklak.Client.Models
     public class TreeModel : BaseModel
     {
         TreeNodeModel rootNode;
-		Maklak.Client.Data.DataSource dataSource; 
+		//Maklak.Client.Data.DataSource dataSource; 
 
 		public TreeModel()
         {
