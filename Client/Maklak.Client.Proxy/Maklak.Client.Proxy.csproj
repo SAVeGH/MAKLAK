@@ -72,7 +72,7 @@
     <None Include="Service References\DataSourceServiceReference\DataSource1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DataSourceServiceReference\DataSource11.xsd">
+    <None Include="Service References\DataSourceServiceReference\DataSource2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DataSourceServiceReference\Maklak.Client.Proxy.DataSourceServiceReference.SuggestionDS.datasource">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0bcd8188-8cba-4031-8ede-26d4aeea440f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="287044f8-45b9-4488-b577-55a00f66af53" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,16 +19,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:64894/DataSource.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/Maklak.Service/DataSource.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SuggestionDS.xsd" MetadataType="Schema" ID="5745e7b1-f2f7-44d5-8c6a-bf7c7266e947" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd2" />
-    <MetadataFile FileName="DataSource1.xsd" MetadataType="Schema" ID="f552f390-4cde-44d0-99f8-44b485d34ff4" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd3" />
-    <MetadataFile FileName="DataSource.wsdl" MetadataType="Wsdl" ID="ead4dc64-c367-4f24-9e19-18c6c1fc6092" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?wsdl" />
-    <MetadataFile FileName="DataSource11.xsd" MetadataType="Schema" ID="5ea9c165-5208-4a3d-a683-4639a9442266" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd1" />
-    <MetadataFile FileName="DataSource.xsd" MetadataType="Schema" ID="c88ed121-f081-4e3f-9edd-1a333f63b609" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd0" />
-    <MetadataFile FileName="DataSource.disco" MetadataType="Disco" ID="6f715fbe-f37e-495c-b41d-2e6c7d492f7b" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?disco" />
-    <MetadataFile FileName="TreeDS.xsd" MetadataType="Schema" ID="ead7d9f0-d3d5-4b90-89ae-7a17b563ed09" SourceId="1" SourceUrl="http://localhost:64894/DataSource.svc?xsd=xsd4" />
+    <MetadataFile FileName="TreeDS.xsd" MetadataType="Schema" ID="7cd80f67-02c6-403f-abfb-b07f49b0eb52" SourceId="1" SourceUrl="http://localhost/Maklak.Service/DataSource.svc?xsd=xsd4" />
+    <MetadataFile FileName="DataSource.xsd" MetadataType="Schema" ID="62980f7f-5b89-4264-a013-9184d9257c1f" SourceId="1" SourceUrl="http://localhost/Maklak.Service/DataSource.svc?xsd=xsd1" />
+    <MetadataFile FileName="SuggestionDS.xsd" MetadataType="Schema" ID="a85c41d8-3d0c-443d-8bf3-d6aa744fa643" SourceId="1" SourceUrl="http://localhost/Maklak.Service/DataSource.svc?xsd=xsd2" />
+    <MetadataFile FileName="DataSource.disco" MetadataType="Disco" ID="4a79e75a-4645-47b3-a26f-cc037b80495a" SourceId="1" SourceUrl="http://localhost/Maklak.Service/DataSource.svc?disco" />
+    <MetadataFile FileName="DataSource1.xsd" MetadataType="Schema" ID="1a427f15-dc61-426b-8a7f-5fdc2ded3b4a" SourceId="1" SourceUrl="http://localhost/Maklak.Service/DataSource.svc?xsd=xsd3" />
+    <MetadataFile FileName="DataSource.wsdl" MetadataType="Wsdl" ID="e3630cef-cad8-481d-bfbb-bf7905514d84" SourceId="1" SourceUrl="http://localhost/Maklak.Service/DataSource.svc?wsdl" />
+    <MetadataFile FileName="DataSource2.xsd" MetadataType="Schema" ID="6f206fea-a8f8-4f73-afcf-4fd4e47b5c5b" SourceId="1" SourceUrl="http://localhost/Maklak.Service/DataSource.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -39,7 +39,7 @@ namespace Maklak.Client.Models
 		{
 			dataSource = new DataSource(this.data);
 
-			nodeRow = dataSource.FillNode();
+			nodeRow = dataSource.FillNode(this.BranchID,this.NodeID);
 
 			FillModel();
 		}

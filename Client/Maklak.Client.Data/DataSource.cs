@@ -54,7 +54,7 @@ namespace Maklak.Client.Data
 
         }
 
-		public ModelDS.TreeItemRow FillNode()
+		public ModelDS.TreeItemRow FillNode(int branchID, int nodeID)
 		{
 			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(null);
 
