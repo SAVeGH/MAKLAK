@@ -56,7 +56,14 @@ namespace Maklak.Client.Data
 
 		public ModelDS.TreeItemRow FillNode(int branchID, int nodeID)
 		{
-			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(null);
+			Proxy.DataSourceServiceReference.TreeDS inputTreeDS = new Proxy.DataSourceServiceReference.TreeDS();
+
+			Proxy.DataSourceServiceReference.TreeDS.RootNodeDataRow inputRootRow = inputTreeDS.RootNodeData.NewRootNodeDataRow();
+
+			inputRootRow.BranchID = branchID;
+			inputRootRow.NodeID = nodeID;
+
+			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(inputTreeDS);
 
 			this.Model.TreeItem.Clear();
 

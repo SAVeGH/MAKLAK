@@ -69,7 +69,15 @@ namespace Maklak.DataAccess
 
 		public static TreeDS ConstructTree(TreeDS treeDS)
 		{
+			TreeDS ds = DBMock();
 
+			return ds;
+
+
+		}
+
+		private static TreeDS DBMock()
+		{
 			TreeDS ds = new TreeDS();
 
 			TreeDS.TreeRow row = ds.Tree.NewTreeRow();
@@ -101,7 +109,7 @@ namespace Maklak.DataAccess
 			row = ds.Tree.NewTreeRow();
 			row.Id = 4;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Producer";			
+			row.Name = "Producer";
 			row.Branch_Id = 4; // PRODUCER
 			row.ParentBranch_Id = 1;
 			ds.Tree.AddTreeRow(row);
@@ -109,7 +117,7 @@ namespace Maklak.DataAccess
 			row = ds.Tree.NewTreeRow();
 			row.Id = 5;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Property";			
+			row.Name = "Property";
 			row.Branch_Id = 5; // PROPERTY
 			row.ParentBranch_Id = 1;
 			ds.Tree.AddTreeRow(row);
@@ -117,7 +125,7 @@ namespace Maklak.DataAccess
 			row = ds.Tree.NewTreeRow();
 			row.Id = 6;
 			row.Parent_Id = parentRow.Id;
-			row.Name = "Tag";			
+			row.Name = "Tag";
 			row.Branch_Id = 6; // TAG
 			row.ParentBranch_Id = 1;
 			ds.Tree.AddTreeRow(row);
@@ -125,21 +133,21 @@ namespace Maklak.DataAccess
 			row = ds.Tree.NewTreeRow();
 			row.Id = 1;
 			row.Parent_Id = 2;
-			row.Name = "Nail";			
+			row.Name = "Nail";
 			row.ParentBranch_Id = 2;
 			ds.Tree.AddTreeRow(row);
 
 			row = ds.Tree.NewTreeRow();
 			row.Id = 2;
 			row.Parent_Id = 2;
-			row.Name = "Car";			
+			row.Name = "Car";
 			row.ParentBranch_Id = 2;
 			ds.Tree.AddTreeRow(row);
 
 			row = ds.Tree.NewTreeRow();
 			row.Id = 3;
 			row.Parent_Id = 2;
-			row.Name = "Ship";			
+			row.Name = "Ship";
 			row.ParentBranch_Id = 2;
 			ds.Tree.AddTreeRow(row);
 
