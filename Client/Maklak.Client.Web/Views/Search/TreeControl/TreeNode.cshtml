@@ -10,8 +10,8 @@
 
 	string expandableContent = this.Model.IsRoot ? "expandableContentVisible" : "expandableContentHidden";
 
-	int branchId = this.Model.NodeRow.Branch_Id;
-	int nodeId = this.Model.NodeRow.Id;
+	string branchId = this.Model.NodeRow.IsBranch_IdNull() ? string.Empty : this.Model.NodeRow.Branch_Id.ToString();
+	string nodeId = this.Model.NodeRow.IsIdNull() ? string.Empty : this.Model.NodeRow.Id.ToString();
 }
 
 <div class="@commonNodeStyle">

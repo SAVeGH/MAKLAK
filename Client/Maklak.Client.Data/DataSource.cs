@@ -73,28 +73,39 @@ namespace Maklak.Client.Data
 			{
 
 				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
-				tiRow.Id = row.Id;
+
+				if (row.IsIdNull())
+					tiRow.SetIdNull();
+				else
+					tiRow.Id = row.Id;
+
 				if (row.IsBranch_IdNull())
 					tiRow.SetBranch_IdNull();
 				else
 					tiRow.Branch_Id = row.Branch_Id;
 
 				if (row.IsParent_IdNull())
+					tiRow.SetParent_IdNull();
+				else
+					tiRow.Parent_Id = row.Parent_Id;
+
+				if (row.IsIdNull())
 				{
 					tiRow.SetParent_IdNull();
+					tiRow.SetBranch_IdNull();
 					rootRow = tiRow;
 					rootRow.Expanded = true;
 					rootRow.Visible = false;
 					rootRow.UseFilterPanel = false;
 					rootRow.UseSelectionPanel = false;
 				}
-				else
-					tiRow.Parent_Id = row.Parent_Id;
+				//else
+				//	tiRow.Parent_Id = row.Parent_Id;
 
-				if (row.IsParentBranch_IdNull())
-					tiRow.SetParentBranch_IdNull();
-				else
-					tiRow.ParentBranch_Id = row.ParentBranch_Id;
+				//if (row.IsParentBranch_IdNull())
+				//	tiRow.SetParentBranch_IdNull();
+				//else
+				//	tiRow.ParentBranch_Id = row.ParentBranch_Id;
 
 
 
@@ -127,10 +138,10 @@ namespace Maklak.Client.Data
 				else
 					tiRow.Parent_Id = row.Parent_Id;
 
-				if (row.IsParentBranch_IdNull())
-					tiRow.SetParentBranch_IdNull();
-				else
-					tiRow.ParentBranch_Id = row.ParentBranch_Id;
+				//if (row.IsParentBranch_IdNull())
+				//	tiRow.SetParentBranch_IdNull();
+				//else
+				//	tiRow.ParentBranch_Id = row.ParentBranch_Id;
 
 				
 				 
