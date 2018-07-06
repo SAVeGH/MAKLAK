@@ -63,6 +63,8 @@ namespace Maklak.Client.Data
 			inputRootRow.BranchID = branchID;
 			inputRootRow.NodeID = nodeID;
 
+			inputTreeDS.RootNodeData.AddRootNodeDataRow(inputRootRow);
+
 			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(inputTreeDS);
 
 			this.Model.TreeItem.Clear();

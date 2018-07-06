@@ -71,8 +71,34 @@ namespace Maklak.DataAccess
 		{
 			TreeDS ds = DBMock();
 
-			return ds;
+			TreeDS.RootNodeDataRow inputRow = treeDS.RootNodeData[0];
 
+			int branchID = inputRow.IsBranchIDNull() ? 0 : inputRow.BranchID;
+			int nodeID = inputRow.IsNodeIDNull() ? 0 : inputRow.NodeID;
+
+			TreeDS.TreeRow rootRow = ds.Tree.Where(r => r.Branch_Id == branchID && r.Id == nodeID).FirstOrDefault();
+
+			TreeDS outputDS = new TreeDS();
+
+			//outputDS.Tree.ImportRow(rootRow);
+
+			if (rootRow == null)
+			{
+				foreach (TreeDS.TreeRow row in ds.Tree.Where(r => !r.IsBranch_IdNull() && r.IsParent_IdNull() && r.Id == 0))
+				{
+					outputDS.Tree.ImportRow(row);
+				}
+			}
+			else
+			{
+
+				foreach (TreeDS.TreeRow row in ds.Tree.Where(r => !r.IsBranch_IdNull() && r.Branch_Id == rootRow.Branch_Id && !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))
+				{
+					outputDS.Tree.ImportRow(row);
+				}
+			}
+
+			return outputDS;
 
 		}
 
@@ -80,15 +106,13 @@ namespace Maklak.DataAccess
 		{
 			TreeDS ds = new TreeDS();
 
-			TreeDS.TreeRow row = ds.Tree.NewTreeRow();
-			TreeDS.TreeRow parentRow = null;
+			TreeDS.TreeRow row = null;//ds.Tree.NewTreeRow();
+			//TreeDS.TreeRow parentRow = null;
 
-			//row.Id = 1;
-			row.Name = "root";
-			//row.Branch_Id = 1;
-			//row.		
-			parentRow = row;
-			ds.Tree.AddTreeRow(row);
+			//row.Id = 0;
+			//row.Branch_Id = 0;
+			//row.Name = "root";			
+			//ds.Tree.AddTreeRow(row);
 
 			row = ds.Tree.NewTreeRow();
 			row.Id = 0;
@@ -132,7 +156,7 @@ namespace Maklak.DataAccess
 
 			row = ds.Tree.NewTreeRow();
 			row.Id = 1;
-			row.Parent_Id = 1;
+			row.Parent_Id = 0;
 			row.Name = "Nail";
 			row.Branch_Id = 1;
 			//row.ParentBranch_Id = 2;
@@ -140,7 +164,7 @@ namespace Maklak.DataAccess
 
 			row = ds.Tree.NewTreeRow();
 			row.Id = 2;
-			row.Parent_Id = 1;
+			row.Parent_Id = 0;
 			row.Name = "Car";
 			row.Branch_Id = 1;
 			//row.ParentBranch_Id = 2;
@@ -148,7 +172,7 @@ namespace Maklak.DataAccess
 
 			row = ds.Tree.NewTreeRow();
 			row.Id = 3;
-			row.Parent_Id = 1;
+			row.Parent_Id = 0;
 			row.Name = "Ship";
 			row.Branch_Id = 1;
 			//row.ParentBranch_Id = 2;
