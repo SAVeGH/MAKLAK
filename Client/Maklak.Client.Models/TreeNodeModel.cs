@@ -39,7 +39,7 @@ namespace Maklak.Client.Models
 		{
 			dataSource = new DataSource(this.data);
 
-			nodeRow = dataSource.FillNode(this.BranchID,this.NodeID);
+			dataSource.FillNode(this.BranchID,this.NodeID);
 
 			FillModel();
 		}
@@ -62,34 +62,40 @@ namespace Maklak.Client.Models
 
 		private void FillModel()
 		{
-			
-
-			FillNodes(this, null);
-
+			FillNodes();
 		}
 
-		private void FillNodes(TreeNodeModel nodeItem, TreeNodeModel parentItem)
+		private void FillNodes()
 		{
-			if (parentItem != null)
-				parentItem.Nodes.Add(nodeItem);
-
-			//if (nodeItem.NodeRow.IsBranch_IdNull())
-			//	return; //  у узла нет потомков
-
-			foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem.Where(r => IsChildRow(nodeItem,r)))
+			foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem)
 			{
-				TreeNodeModel itemNode = new TreeNodeModel(rowItem, nodeItem);
-				FillNodes(itemNode, nodeItem);
+				TreeNodeModel itemNode = new TreeNodeModel(rowItem, this);
+				this.nodes.Add(itemNode);
 			}
 		}
 
-		private bool IsChildRow(TreeNodeModel nodeItem, ModelDS.TreeItemRow tiRow)
-		{
-			if (nodeItem.IsRoot)
-				return !tiRow.IsIdNull() && !tiRow.IsBranch_IdNull() && tiRow.IsParent_IdNull();
+		//private void FillNodes(TreeNodeModel nodeItem, TreeNodeModel parentItem)
+		//{
+		//	if (parentItem != null)
+		//		parentItem.Nodes.Add(nodeItem);
 
-			return !tiRow.IsParent_IdNull() && !tiRow.IsBranch_IdNull() && !tiRow.IsIdNull() && tiRow.Parent_Id == nodeItem.NodeRow.Id && tiRow.Branch_Id == nodeItem.NodeRow.Branch_Id;
-		}
+		//	//if (nodeItem.NodeRow.IsBranch_IdNull())
+		//	//	return; //  у узла нет потомков
+
+		//	foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem.Where(r => IsChildRow(nodeItem,r)))
+		//	{
+		//		TreeNodeModel itemNode = new TreeNodeModel(rowItem, nodeItem);
+		//		FillNodes(itemNode, nodeItem);
+		//	}
+		//}
+
+		//private bool IsChildRow(TreeNodeModel nodeItem, ModelDS.TreeItemRow tiRow)
+		//{
+		//	if (nodeItem.IsRoot)
+		//		return !tiRow.IsIdNull() && !tiRow.IsBranch_IdNull() && tiRow.IsParent_IdNull();
+
+		//	return !tiRow.IsParent_IdNull() && !tiRow.IsBranch_IdNull() && !tiRow.IsIdNull() && tiRow.Parent_Id == nodeItem.NodeRow.Id && tiRow.Branch_Id == nodeItem.NodeRow.Branch_Id;
+		//}
 
 		//private bool HasRootParent(ModelDS.TreeItemRow tiRow)
 		//{
@@ -98,7 +104,7 @@ namespace Maklak.Client.Models
 
 		public bool IsRoot
 		{
-			get { return nodeRow == null ? false : nodeRow.IsIdNull(); }
+			get { return BranchID == 0 && NodeID == 0; }
 		}
 
 

@@ -82,21 +82,13 @@ namespace Maklak.DataAccess
 
 			//outputDS.Tree.ImportRow(rootRow);
 
-			if (rootRow == null)
-			{
-				foreach (TreeDS.TreeRow row in ds.Tree.Where(r => !r.IsBranch_IdNull() && r.IsParent_IdNull() && r.Id == 0))
-				{
-					outputDS.Tree.ImportRow(row);
-				}
-			}
-			else
-			{
 
-				foreach (TreeDS.TreeRow row in ds.Tree.Where(r => !r.IsBranch_IdNull() && r.Branch_Id == rootRow.Branch_Id && !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))
-				{
-					outputDS.Tree.ImportRow(row);
-				}
+
+			foreach (TreeDS.TreeRow row in ds.Tree.Where(r => (rootRow == null && r.IsParent_IdNull()) || (rootRow != null && !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.Branch_Id == rootRow.Branch_Id)))
+			{
+				outputDS.Tree.ImportRow(row);
 			}
+			
 
 			return outputDS;
 

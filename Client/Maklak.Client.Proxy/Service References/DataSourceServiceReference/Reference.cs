@@ -49,7 +49,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("SuggestionDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
     public partial class SuggestionDS : global::System.Data.DataSet {
         
         private SuggestionDataTable tableSuggestion;
@@ -1641,7 +1641,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("TreeDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
     public partial class TreeDS : global::System.Data.DataSet {
         
         private TreeDataTable tableTree;
@@ -2139,6 +2139,8 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
                 base.Columns.Add(this.columnName);
                 this.columnSelected = new global::System.Data.DataColumn("Selected", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSelected);
+                this.columnId.AllowDBNull = false;
+                this.columnBranch_Id.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2806,12 +2808,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Id {
                 get {
-                    try {
-                        return ((int)(this[this.tableTree.IdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'Tree\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableTree.IdColumn]));
                 }
                 set {
                     this[this.tableTree.IdColumn] = value;
@@ -2838,12 +2835,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Branch_Id {
                 get {
-                    try {
-                        return ((int)(this[this.tableTree.Branch_IdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Branch_Id\' in table \'Tree\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableTree.Branch_IdColumn]));
                 }
                 set {
                     this[this.tableTree.Branch_IdColumn] = value;
@@ -2884,18 +2876,6 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tableTree.IdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIdNull() {
-                this[this.tableTree.IdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsParent_IdNull() {
                 return this.IsNull(this.tableTree.Parent_IdColumn);
             }
@@ -2904,18 +2884,6 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetParent_IdNull() {
                 this[this.tableTree.Parent_IdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsBranch_IdNull() {
-                return this.IsNull(this.tableTree.Branch_IdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetBranch_IdNull() {
-                this[this.tableTree.Branch_IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -54,7 +54,7 @@ namespace Maklak.Client.Data
 
         }
 
-		public ModelDS.TreeItemRow FillNode(int branchID, int nodeID)
+		public void FillNode(int branchID, int nodeID)
 		{
 			Proxy.DataSourceServiceReference.TreeDS inputTreeDS = new Proxy.DataSourceServiceReference.TreeDS();
 
@@ -69,21 +69,17 @@ namespace Maklak.Client.Data
 
 			this.Model.TreeItem.Clear();
 
-			ModelDS.TreeItemRow rootRow = null;
+			//ModelDS.TreeItemRow rootRow = null;
 
 			foreach (Proxy.DataSourceServiceReference.TreeDS.TreeRow row in treeDS.Tree.Rows)
 			{
 
 				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
 
-				if (row.IsIdNull())
-					tiRow.SetIdNull();
-				else
+				
 					tiRow.Id = row.Id;
 
-				if (row.IsBranch_IdNull())
-					tiRow.SetBranch_IdNull();
-				else
+				
 					tiRow.Branch_Id = row.Branch_Id;
 
 				if (row.IsParent_IdNull())
@@ -91,16 +87,16 @@ namespace Maklak.Client.Data
 				else
 					tiRow.Parent_Id = row.Parent_Id;
 
-				if (row.IsIdNull())
-				{
-					tiRow.SetParent_IdNull();
-					tiRow.SetBranch_IdNull();
-					rootRow = tiRow;
-					rootRow.Expanded = true;
-					rootRow.Visible = false;
-					rootRow.UseFilterPanel = false;
-					rootRow.UseSelectionPanel = false;
-				}
+				//if (row.IsIdNull())
+				//{
+				//	tiRow.SetParent_IdNull();
+				//	tiRow.SetBranch_IdNull();
+				//	rootRow = tiRow;
+				//	rootRow.Expanded = true;
+				//	rootRow.Visible = false;
+				//	rootRow.UseFilterPanel = false;
+				//	rootRow.UseSelectionPanel = false;
+				//}
 				//else
 				//	tiRow.Parent_Id = row.Parent_Id;
 
@@ -116,7 +112,7 @@ namespace Maklak.Client.Data
 				this.Model.TreeItem.AddTreeItemRow(tiRow);
 			}
 
-			return rootRow;
+			//return rootRow;
 		}
 
 		public void ConstructTree(/*ModelDS modelDS*/)
@@ -130,9 +126,7 @@ namespace Maklak.Client.Data
 				
 				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
 				tiRow.Id = row.Id;
-				if (row.IsBranch_IdNull())
-					tiRow.SetBranch_IdNull();
-				else
+				
 					tiRow.Branch_Id = row.Branch_Id;
 
 				if (row.IsParent_IdNull())

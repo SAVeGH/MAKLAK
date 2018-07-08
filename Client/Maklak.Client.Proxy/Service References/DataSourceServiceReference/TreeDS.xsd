@@ -6,9 +6,9 @@
         <xs:element name="Tree">
           <xs:complexType>
             <xs:sequence>
-              <xs:element minOccurs="0" name="Id" type="xs:int" />
+              <xs:element name="Id" type="xs:int" />
               <xs:element minOccurs="0" name="Parent_Id" type="xs:int" />
-              <xs:element minOccurs="0" name="Branch_Id" type="xs:int" />
+              <xs:element name="Branch_Id" type="xs:int" />
               <xs:element minOccurs="0" name="Name" type="xs:string" />
               <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
             </xs:sequence>
