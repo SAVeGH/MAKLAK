@@ -16,7 +16,7 @@
     <RootNamespace>Maklak.Client.Web</RootNamespace>
     <AssemblyName>Maklak.Client.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -273,6 +273,7 @@
     <Content Include="Views\Search\TreeControl\SelectionPanel.cshtml" />
     <Content Include="Views\Search\TreeControl\NodeContent.cshtml" />
     <Content Include="Views\Search\TreeControl\NestedContent.cshtml" />
+    <Content Include="Views\Search\TreeControl\TreeNode1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

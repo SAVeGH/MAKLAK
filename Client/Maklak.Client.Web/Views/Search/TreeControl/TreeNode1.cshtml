@@ -1,0 +1,30 @@
+﻿@using Maklak.Client.Models
+
+@model Maklak.Client.Models.TreeNodeModel
+
+@{
+
+	string commonNodeStyle = "commonNodePanel "; //+ (this.Model.NodeRow.UseSeparator ? "commonNodesPanelSeparator" : "");
+
+	string nestedNodesStyle = "nestedNodesPanel ";
+
+	string expandableContent = this.Model.IsRoot ? "expandableContentVisible" : "expandableContentHidden";
+
+	//string branchId = this.Model.NodeRow.IsBranch_IdNull() ? string.Empty : this.Model.NodeRow.Branch_Id.ToString();
+	//string nodeId = this.Model.NodeRow.IsIdNull() ? string.Empty : this.Model.NodeRow.Id.ToString();
+}
+
+<div class="@commonNodeStyle">
+
+	@{
+		foreach (TreeNodeModel node in this.Model.Nodes)
+		{
+			<div>					
+				@Html.Partial("TreeControl/NodeContent", node)				
+			</div>
+		}
+	}
+
+</div>
+
+
