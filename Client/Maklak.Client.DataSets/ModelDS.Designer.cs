@@ -46,8 +46,6 @@ namespace Maklak.Client.DataSets {
         
         private global::System.Data.DataRelation relationSiteMap_SiteMap;
         
-        private global::System.Data.DataRelation relationExpanderData_ExpanderData;
-        
         private global::System.Data.DataRelation relationTreeItem_TreeItem;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -396,7 +394,6 @@ namespace Maklak.Client.DataSets {
             }
             this.relationFK_FractalData_FractalData = this.Relations["FK_FractalData_FractalData"];
             this.relationSiteMap_SiteMap = this.Relations["SiteMap_SiteMap"];
-            this.relationExpanderData_ExpanderData = this.Relations["ExpanderData_ExpanderData"];
             this.relationTreeItem_TreeItem = this.Relations["TreeItem_TreeItem"];
         }
         
@@ -442,10 +439,6 @@ namespace Maklak.Client.DataSets {
                         this.tableSiteMap.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableSiteMap.Parent_IdColumn}, false);
             this.Relations.Add(this.relationSiteMap_SiteMap);
-            this.relationExpanderData_ExpanderData = new global::System.Data.DataRelation("ExpanderData_ExpanderData", new global::System.Data.DataColumn[] {
-                        this.tableExpanderData.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableExpanderData.Parent_IdColumn}, false);
-            this.Relations.Add(this.relationExpanderData_ExpanderData);
             this.relationTreeItem_TreeItem = new global::System.Data.DataRelation("TreeItem_TreeItem", new global::System.Data.DataColumn[] {
                         this.tableTreeItem.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableTreeItem.Parent_IdColumn}, false);
@@ -2047,19 +2040,16 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ExpanderDataRow AddExpanderDataRow(ExpanderDataRow parentExpanderDataRowByExpanderData_ExpanderData, string Name, string Action, string Controller, bool Opened, bool UseFilter) {
+            public ExpanderDataRow AddExpanderDataRow(int Parent_Id, string Name, string Action, string Controller, bool Opened, bool UseFilter) {
                 ExpanderDataRow rowExpanderDataRow = ((ExpanderDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        null,
+                        Parent_Id,
                         Name,
                         Action,
                         Controller,
                         Opened,
                         UseFilter};
-                if ((parentExpanderDataRowByExpanderData_ExpanderData != null)) {
-                    columnValuesArray[1] = parentExpanderDataRowByExpanderData_ExpanderData[0];
-                }
                 rowExpanderDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowExpanderDataRow);
                 return rowExpanderDataRow;
@@ -3061,7 +3051,11 @@ namespace Maklak.Client.DataSets {
             
             private global::System.Data.DataColumn columnParent_Id;
             
-            private global::System.Data.DataColumn columnBranch_Id;
+            private global::System.Data.DataColumn columnItem_Id;
+            
+            private global::System.Data.DataColumn columnItemParent_Id;
+            
+            private global::System.Data.DataColumn columnItemBranch_Id;
             
             private global::System.Data.DataColumn columnName;
             
@@ -3138,9 +3132,25 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Branch_IdColumn {
+            public global::System.Data.DataColumn Item_IdColumn {
                 get {
-                    return this.columnBranch_Id;
+                    return this.columnItem_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ItemParent_IdColumn {
+                get {
+                    return this.columnItemParent_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ItemBranch_IdColumn {
+                get {
+                    return this.columnItemBranch_Id;
                 }
             }
             
@@ -3277,12 +3287,30 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TreeItemRow AddTreeItemRow(int Id, TreeItemRow parentTreeItemRowByTreeItem_TreeItem, int Branch_Id, string Name, bool Opened, bool UseFilterPanel, string FilterType, bool Visible, bool Expandable, bool Expanded, bool Selectable, bool Selected, bool UseSelectionPanel, bool UseSeparator, bool UseNodesBorder) {
+            public TreeItemRow AddTreeItemRow(
+                        TreeItemRow parentTreeItemRowByTreeItem_TreeItem, 
+                        int Item_Id, 
+                        int ItemParent_Id, 
+                        int ItemBranch_Id, 
+                        string Name, 
+                        bool Opened, 
+                        bool UseFilterPanel, 
+                        string FilterType, 
+                        bool Visible, 
+                        bool Expandable, 
+                        bool Expanded, 
+                        bool Selectable, 
+                        bool Selected, 
+                        bool UseSelectionPanel, 
+                        bool UseSeparator, 
+                        bool UseNodesBorder) {
                 TreeItemRow rowTreeItemRow = ((TreeItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
                         null,
-                        Branch_Id,
+                        null,
+                        Item_Id,
+                        ItemParent_Id,
+                        ItemBranch_Id,
                         Name,
                         Opened,
                         UseFilterPanel,
@@ -3322,7 +3350,9 @@ namespace Maklak.Client.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnParent_Id = base.Columns["Parent_Id"];
-                this.columnBranch_Id = base.Columns["Branch_Id"];
+                this.columnItem_Id = base.Columns["Item_Id"];
+                this.columnItemParent_Id = base.Columns["ItemParent_Id"];
+                this.columnItemBranch_Id = base.Columns["ItemBranch_Id"];
                 this.columnName = base.Columns["Name"];
                 this.columnOpened = base.Columns["Opened"];
                 this.columnUseFilterPanel = base.Columns["UseFilterPanel"];
@@ -3344,8 +3374,12 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnParent_Id = new global::System.Data.DataColumn("Parent_Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnParent_Id);
-                this.columnBranch_Id = new global::System.Data.DataColumn("Branch_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBranch_Id);
+                this.columnItem_Id = new global::System.Data.DataColumn("Item_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnItem_Id);
+                this.columnItemParent_Id = new global::System.Data.DataColumn("ItemParent_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnItemParent_Id);
+                this.columnItemBranch_Id = new global::System.Data.DataColumn("ItemBranch_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnItemBranch_Id);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
                 this.columnOpened = new global::System.Data.DataColumn("Opened", typeof(bool), null, global::System.Data.MappingType.Element);
@@ -3370,7 +3404,10 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnUseSeparator);
                 this.columnUseNodesBorder = new global::System.Data.DataColumn("UseNodesBorder", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUseNodesBorder);
-                this.columnId.AutoIncrementSeed = 1;
+                this.columnId.AutoIncrement = true;
+                this.columnId.AllowDBNull = false;
+                this.columnItem_Id.AllowDBNull = false;
+                this.columnItemBranch_Id.AllowDBNull = false;
                 this.columnUseFilterPanel.AllowDBNull = false;
                 this.columnUseFilterPanel.DefaultValue = ((bool)(true));
                 this.columnVisible.AllowDBNull = false;
@@ -4273,17 +4310,6 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ExpanderDataRow ExpanderDataRowParent {
-                get {
-                    return ((ExpanderDataRow)(this.GetParentRow(this.Table.ParentRelations["ExpanderData_ExpanderData"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["ExpanderData_ExpanderData"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsParent_IdNull() {
                 return this.IsNull(this.tableExpanderData.Parent_IdColumn);
             }
@@ -4340,17 +4366,6 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetUseFilterNull() {
                 this[this.tableExpanderData.UseFilterColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ExpanderDataRow[] GetExpanderDataRows() {
-                if ((this.Table.ChildRelations["ExpanderData_ExpanderData"] == null)) {
-                    return new ExpanderDataRow[0];
-                }
-                else {
-                    return ((ExpanderDataRow[])(base.GetChildRows(this.Table.ChildRelations["ExpanderData_ExpanderData"])));
-                }
             }
         }
         
@@ -4641,12 +4656,7 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Id {
                 get {
-                    try {
-                        return ((int)(this[this.tableTreeItem.IdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'TreeItem\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableTreeItem.IdColumn]));
                 }
                 set {
                     this[this.tableTreeItem.IdColumn] = value;
@@ -4671,17 +4681,39 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Branch_Id {
+            public int Item_Id {
+                get {
+                    return ((int)(this[this.tableTreeItem.Item_IdColumn]));
+                }
+                set {
+                    this[this.tableTreeItem.Item_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ItemParent_Id {
                 get {
                     try {
-                        return ((int)(this[this.tableTreeItem.Branch_IdColumn]));
+                        return ((int)(this[this.tableTreeItem.ItemParent_IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Branch_Id\' in table \'TreeItem\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ItemParent_Id\' in table \'TreeItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTreeItem.Branch_IdColumn] = value;
+                    this[this.tableTreeItem.ItemParent_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ItemBranch_Id {
+                get {
+                    return ((int)(this[this.tableTreeItem.ItemBranch_IdColumn]));
+                }
+                set {
+                    this[this.tableTreeItem.ItemBranch_IdColumn] = value;
                 }
             }
             
@@ -4845,18 +4877,6 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tableTreeItem.IdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIdNull() {
-                this[this.tableTreeItem.IdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsParent_IdNull() {
                 return this.IsNull(this.tableTreeItem.Parent_IdColumn);
             }
@@ -4869,14 +4889,14 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsBranch_IdNull() {
-                return this.IsNull(this.tableTreeItem.Branch_IdColumn);
+            public bool IsItemParent_IdNull() {
+                return this.IsNull(this.tableTreeItem.ItemParent_IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetBranch_IdNull() {
-                this[this.tableTreeItem.Branch_IdColumn] = global::System.Convert.DBNull;
+            public void SetItemParent_IdNull() {
+                this[this.tableTreeItem.ItemParent_IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

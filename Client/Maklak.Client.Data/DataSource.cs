@@ -17,6 +17,7 @@ namespace Maklak.Client.Data
 		public DataSource(ModelDS clientModelDS)
         {
 			// класс который объединяет клиентскую модель и данные из proxy
+			// т.е. получает данные из сервиса и заполняет датасет модели на клиентской стороне
             dataSource = new Proxy.DataSource();
 			modelDS = clientModelDS;
 
@@ -60,8 +61,9 @@ namespace Maklak.Client.Data
 
 			Proxy.DataSourceServiceReference.TreeDS.RootNodeDataRow inputRootRow = inputTreeDS.RootNodeData.NewRootNodeDataRow();
 
-			inputRootRow.BranchID = branchID;
-			inputRootRow.NodeID = nodeID;
+			
+			inputRootRow.Item_Id = nodeID;
+			inputRootRow.ItemBranch_Id = branchID;
 
 			inputTreeDS.RootNodeData.AddRootNodeDataRow(inputRootRow);
 
@@ -77,15 +79,16 @@ namespace Maklak.Client.Data
 				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
 
 				
-					tiRow.Id = row.Id;
-
-				
+					tiRow.Id = row.Id;				
 					tiRow.Branch_Id = row.Branch_Id;
 
 				if (row.IsParent_IdNull())
 					tiRow.SetParent_IdNull();
 				else
 					tiRow.Parent_Id = row.Parent_Id;
+
+				//if(row.IsParentBranch_IdNull())
+					//tiRow.SetP
 
 				//if (row.IsIdNull())
 				//{
@@ -127,7 +130,7 @@ namespace Maklak.Client.Data
 				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
 				tiRow.Id = row.Id;
 				
-					tiRow.Branch_Id = row.Branch_Id;
+					//tiRow.Branch_Id = row.Branch_Id;
 
 				if (row.IsParent_IdNull())
 					tiRow.SetParent_IdNull();

@@ -37,6 +37,7 @@ namespace Maklak.Client.Models
 
 		public override void ModelBound(ControllerContext controllerContext, ModelBindingContext bindingContext)
 		{
+			// вызывается только для самого верхнего узла т.е. 1 раз
 			dataSource = new DataSource(this.data);
 
 			dataSource.FillNode(this.BranchID,this.NodeID);

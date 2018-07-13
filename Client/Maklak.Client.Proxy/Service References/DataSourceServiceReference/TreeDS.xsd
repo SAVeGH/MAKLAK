@@ -6,9 +6,11 @@
         <xs:element name="Tree">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" type="xs:int" />
+              <xs:element msdata:AutoIncrement="true" name="Id" type="xs:int" />
               <xs:element minOccurs="0" name="Parent_Id" type="xs:int" />
-              <xs:element name="Branch_Id" type="xs:int" />
+              <xs:element name="Item_Id" type="xs:int" />
+              <xs:element minOccurs="0" name="ItemParent_Id" type="xs:int" />
+              <xs:element name="ItemBranch_Id" type="xs:int" />
               <xs:element minOccurs="0" name="Name" type="xs:string" />
               <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
             </xs:sequence>
@@ -25,12 +27,17 @@
         <xs:element name="RootNodeData">
           <xs:complexType>
             <xs:sequence>
-              <xs:element minOccurs="0" name="BranchID" type="xs:int" />
-              <xs:element minOccurs="0" name="NodeID" type="xs:int" />
+              <xs:element minOccurs="0" name="Item_Id" type="xs:int" />
+              <xs:element minOccurs="0" name="ItemBranch_Id" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Tree_Tree" msdata:parent="Tree" msdata:child="Tree" msdata:parentkey="Id" msdata:childkey="Parent_Id" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>
