@@ -47,8 +47,8 @@ namespace Maklak.Client.Models
             if(parentItem != null)
                 parentItem.Nodes.Add(nodeItem);
 
-			if (nodeItem.NodeRow.IsBranch_IdNull())
-				return; //  у узла нет потомков
+			//if (nodeItem.NodeRow.IsBranch_IdNull())
+			//	return; //  у узла нет потомков
 
 			//foreach (ModelDS.TreeItemRow rowItem in base.data.TreeItem.Where(r => !r.IsParent_IdNull() &&
 			//																	  !r.IsParentBranch_IdNull() &&
@@ -67,8 +67,8 @@ namespace Maklak.Client.Models
 
 		private TreeNodeModel FindNode(TreeNodeModel node)
 		{
-			if (node.NodeRow.Id == this.NodeID && node.NodeRow.Branch_Id == this.BranchID)
-				return node;
+			//if (node.NodeRow.Id == this.NodeID && node.NodeRow.Branch_Id == this.BranchID)
+			//	return node;
 
 			foreach (TreeNodeModel n in node.Nodes)
 			{
@@ -83,45 +83,45 @@ namespace Maklak.Client.Models
 
 		private void FillData()
 		{
-			dataSource.ConstructTree();
+			//dataSource.ConstructTree();
 
-			foreach (ModelDS.TreeItemRow row in this.data.TreeItem.Rows)
-			{
-				bool isRoot = row.IsParent_IdNull() && row.IsBranch_IdNull();
+			//foreach (ModelDS.TreeItemRow row in this.data.TreeItem.Rows)
+			//{
+			//	bool isRoot = row.IsParent_IdNull() && row.IsBranch_IdNull();
 
-				if (isRoot)
-				{
-					row.Visible = false;
-					row.UseFilterPanel = false;
-					row.UseSelectionPanel = false;
-					row.Expanded = true;
-					continue;
-				}
+			//	if (isRoot)
+			//	{
+			//		row.Visible = false;
+			//		row.UseFilterPanel = false;
+			//		row.UseSelectionPanel = false;
+			//		row.Expanded = true;
+			//		continue;
+			//	}
 
-				if(IsParentRoot(row) /*ROOT*/)
-				{
+			//	if(IsParentRoot(row) /*ROOT*/)
+			//	{
 					
-					row.Selectable = false;
-					row.UseSeparator = true;
-					row.UseNodesBorder = true;
+			//		row.Selectable = false;
+			//		row.UseSeparator = true;
+			//		row.UseNodesBorder = true;
 					
-				}
-				else
-				{
-					row.Expandable = false;
-					row.Opened = true;
-					row.Visible = true;
-					row.UseSelectionPanel = false;
-					row.UseFilterPanel = false;
-					row.Selectable = true;
-				}
-			}
+			//	}
+			//	else
+			//	{
+			//		row.Expandable = false;
+			//		row.Opened = true;
+			//		row.Visible = true;
+			//		row.UseSelectionPanel = false;
+			//		row.UseFilterPanel = false;
+			//		row.Selectable = true;
+			//	}
+			//}
 		}
 
-		private bool IsParentRoot(ModelDS.TreeItemRow row)
-		{
-			return !this.data.TreeItem.Any(r => !r.IsParent_IdNull() && !r.IsBranch_IdNull() && r.Id == row.Parent_Id);
-		}
+		//private bool IsParentRoot(ModelDS.TreeItemRow row)
+		//{
+		//	return !this.data.TreeItem.Any(r => !r.IsParent_IdNull() && !r.IsBranch_IdNull() && r.Id == row.Parent_Id);
+		//}
 
         private void FillData1()
         {

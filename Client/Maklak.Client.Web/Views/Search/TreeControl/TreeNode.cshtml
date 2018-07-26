@@ -10,12 +10,15 @@
 
 	string expandableContent = this.Model.IsRoot ? "expandableContentVisible" : "expandableContentHidden";
 
-	string branchId = this.Model.NodeRow.IsBranch_IdNull() ? string.Empty : this.Model.NodeRow.Branch_Id.ToString();
-	string nodeId = this.Model.NodeRow.IsIdNull() ? string.Empty : this.Model.NodeRow.Id.ToString();
+	string branchId = this.Model.NodeRow.ItemBranch_Id.ToString();
+	string nodeId = this.Model.NodeRow.Item_Id.ToString();
 }
 
 <div class="@commonNodeStyle">
 
+	@{ 
+		if (!this.Model.IsRoot)
+		{
 	<div>
 		@{
 			//отображение самого узла
@@ -25,12 +28,15 @@
 			}
 		}
 	</div>
+				}
+			}
 
 	@*разворачиваемый контент*@
 	<div class="@expandableContent" data-branchid="@branchId" data-nodeid="@nodeId">
 		@{
 			if (this.Model.UseCustomPanel)
 			{
+				
 				<div>
 					@{
 						//отображение панелей фильтрации и выбора
@@ -55,8 +61,9 @@
 					}
 
 				</div>
-			}
-		}
+								
+							}
+						}
 
 		@{
 			//отображение вложенного содержимого узла

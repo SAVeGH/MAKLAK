@@ -42,6 +42,8 @@ namespace Maklak.Client.Models
 
 			dataSource.FillNode(this.BranchID,this.NodeID);
 
+			nodeRow = this.data.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
+
 			FillModel();
 		}
 
@@ -105,7 +107,7 @@ namespace Maklak.Client.Models
 
 		public bool IsRoot
 		{
-			get { return BranchID == 0 && NodeID == 0; }
+			get { return nodeRow == null ? true : nodeRow.IsParent_IdNull(); }
 		}
 
 

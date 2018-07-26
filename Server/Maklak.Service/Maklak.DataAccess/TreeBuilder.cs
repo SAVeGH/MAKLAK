@@ -158,20 +158,21 @@ namespace Maklak.DataAccess
 			ds.Tree.AddTreeRow(row);
 
 			row = ds.Tree.NewTreeRow();
+			row.Item_Id = 1;
 			row.Parent_Id = productRow.Id;
 			row.Name = "Nail";
 			row.ItemBranch_Id = 1;			
 			ds.Tree.AddTreeRow(row);
 
 			row = ds.Tree.NewTreeRow();
-			row.Id = 2;
+			row.Item_Id = 2;
 			row.Parent_Id = productRow.Id;
 			row.Name = "Car";
 			row.ItemBranch_Id = 1;			
 			ds.Tree.AddTreeRow(row);
 
 			row = ds.Tree.NewTreeRow();
-			row.Id = 3;
+			row.Item_Id = 3;
 			row.Parent_Id = productRow.Id;
 			row.Name = "Ship";
 			row.ItemBranch_Id = 1;			
