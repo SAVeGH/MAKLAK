@@ -42,9 +42,9 @@ namespace Maklak.Client.Models
 
 			dataSource.FillNode(this.BranchID,this.NodeID);
 
-			nodeRow = this.data.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
+			//nodeRow = this.data.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
 
-			FillModel();
+			FillNodes(null);
 		}
 
 		//public override void InitializeData(ControllerContext controllerContext, ModelBindingContext bindingContext)
@@ -62,6 +62,25 @@ namespace Maklak.Client.Models
             parentNode = parentItem;
             nodes = new List<TreeNodeModel>();
         }
+
+		private void FillNodes(TreeNodeModel parentItem)
+		{
+			if (parentItem == null)
+			{
+				parentItem = this;
+				nodeRow = this.data.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
+			}
+
+			parentItem.NodeRow.Expanded = true;
+
+			foreach (ModelDS.TreeItemRow row in this.data.TreeItem.Where(r => !r.IsParent_IdNull() && r.Parent_Id == parentItem.NodeRow.Id))
+			{
+				TreeNodeModel itemNode = new TreeNodeModel(row, parentItem);
+				parentItem.Nodes.Add(itemNode);
+				FillNodes(itemNode);
+			}
+
+		}
 
 		private void FillModel()
 		{

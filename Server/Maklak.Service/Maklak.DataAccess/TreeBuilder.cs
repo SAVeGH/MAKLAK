@@ -128,7 +128,7 @@ namespace Maklak.DataAccess
 			ds.Tree.AddTreeRow(row);
 
 			TreeDS.TreeRow productRow = row;
-
+			/*
 			row = ds.Tree.NewTreeRow();
 			row.Item_Id = 0;
 			row.Parent_Id = parentRow.Id;
@@ -156,7 +156,7 @@ namespace Maklak.DataAccess
 			row.Name = "Tag";
 			row.ItemBranch_Id = 5; // TAG			
 			ds.Tree.AddTreeRow(row);
-
+			*/
 			row = ds.Tree.NewTreeRow();
 			row.Item_Id = 1;
 			row.Parent_Id = productRow.Id;
