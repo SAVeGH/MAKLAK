@@ -93,7 +93,7 @@ namespace Maklak.Client.Data
 			tiRow.ItemBranch_Id = rootRow.ItemBranch_Id;
 			tiRow.Name = rootRow.Name;
 			//tiRow.Selected = rootRow.IsSelectedNull() ? false : row.Selected;
-			tiRow.Expandable = treeDS.Tree.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id).Count() > 0;
+			tiRow.Expandable = rootRow.HasChildNodes;
 			this.Model.TreeItem.AddTreeItemRow(tiRow);
 
 			foreach (Proxy.DataSourceServiceReference.NodeDS.TreeRow row in treeDS.Tree.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))

@@ -13,6 +13,7 @@
               <xs:element name="ItemBranch_Id" type="xs:int" />
               <xs:element minOccurs="0" name="Name" type="xs:string" />
               <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
+              <xs:element default="false" name="HasChildNodes" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

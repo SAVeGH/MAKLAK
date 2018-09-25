@@ -90,6 +90,8 @@ namespace Maklak.DataAccess
 		{
 			if (rootRow != null)
 			{
+				bool hasChildNodes = dbDS.Tree.Any(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id);
+				rootRow.HasChildNodes = hasChildNodes;
 				outputDS.Tree.ImportRow(rootRow);
 
 				int itemId = rootRow.Item_Id;
@@ -99,7 +101,7 @@ namespace Maklak.DataAccess
 
 				if (!isRowOpened && !rootRow.IsParent_IdNull() /*верхний узел всегда открыт*/)
 					return;// если узел не открыт - не заполняем данные
-			}
+			}			
 
 			foreach (NodeDS.TreeRow row in dbDS.Tree.Where(r=> !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))
 			{

@@ -370,6 +370,8 @@ namespace Maklak.DataAccess.DataSets {
             
             private global::System.Data.DataColumn columnSelected;
             
+            private global::System.Data.DataColumn columnHasChildNodes;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TreeDataTable() {
@@ -461,6 +463,14 @@ namespace Maklak.DataAccess.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HasChildNodesColumn {
+                get {
+                    return this.columnHasChildNodes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -496,7 +506,7 @@ namespace Maklak.DataAccess.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TreeRow AddTreeRow(TreeRow parentTreeRowByTree_Tree, int Item_Id, int ItemParent_Id, int ItemBranch_Id, string Name, bool Selected) {
+            public TreeRow AddTreeRow(TreeRow parentTreeRowByTree_Tree, int Item_Id, int ItemParent_Id, int ItemBranch_Id, string Name, bool Selected, bool HasChildNodes) {
                 TreeRow rowTreeRow = ((TreeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -505,7 +515,8 @@ namespace Maklak.DataAccess.DataSets {
                         ItemParent_Id,
                         ItemBranch_Id,
                         Name,
-                        Selected};
+                        Selected,
+                        HasChildNodes};
                 if ((parentTreeRowByTree_Tree != null)) {
                     columnValuesArray[1] = parentTreeRowByTree_Tree[0];
                 }
@@ -538,6 +549,7 @@ namespace Maklak.DataAccess.DataSets {
                 this.columnItemBranch_Id = base.Columns["ItemBranch_Id"];
                 this.columnName = base.Columns["Name"];
                 this.columnSelected = base.Columns["Selected"];
+                this.columnHasChildNodes = base.Columns["HasChildNodes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -557,10 +569,14 @@ namespace Maklak.DataAccess.DataSets {
                 base.Columns.Add(this.columnName);
                 this.columnSelected = new global::System.Data.DataColumn("Selected", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSelected);
+                this.columnHasChildNodes = new global::System.Data.DataColumn("HasChildNodes", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHasChildNodes);
                 this.columnId.AutoIncrement = true;
                 this.columnId.AllowDBNull = false;
                 this.columnItem_Id.AllowDBNull = false;
                 this.columnItemBranch_Id.AllowDBNull = false;
+                this.columnHasChildNodes.AllowDBNull = false;
+                this.columnHasChildNodes.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1318,6 +1334,17 @@ namespace Maklak.DataAccess.DataSets {
                 }
                 set {
                     this[this.tableTree.SelectedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool HasChildNodes {
+                get {
+                    return ((bool)(this[this.tableTree.HasChildNodesColumn]));
+                }
+                set {
+                    this[this.tableTree.HasChildNodesColumn] = value;
                 }
             }
             
