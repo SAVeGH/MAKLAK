@@ -8,14 +8,14 @@ using Maklak.DataAccess.DataSets;
 
 namespace Maklak.DataAccess
 {
-	public static class TreeBuilder
+	public static class NodeBuilder
 	{
-		//public static TreeDS FillNode(TreeDS treeDS)
+		//public static NodeDS FillNode(NodeDS NodeDS)
 		//{
-		//	TreeDS ds = new TreeDS();
+		//	NodeDS ds = new NodeDS();
 
-		//	TreeDS.TreeRow row = ds.Tree.NewTreeRow();
-		//	TreeDS.TreeRow parentRow = null;
+		//	NodeDS.TreeRow row = ds.Tree.NewTreeRow();
+		//	NodeDS.TreeRow parentRow = null;
 
 		//	row.Id = 1;
 		//	row.Name = "root";
@@ -67,57 +67,59 @@ namespace Maklak.DataAccess
 		//	return ds;
 		//}
 
-		public static TreeDS ConstructTree(TreeDS treeDS)
+		public static NodeDS GetNode(NodeDS inputNodeDS)
 		{
-			TreeDS ds = DBMock();
-
-			TreeDS.RootNodeDataRow inputRow = treeDS.RootNodeData[0];
+			NodeDS ds = DBMock();
+			// всегда одна строка
+			NodeDS.RootNodeDataRow inputRow = inputNodeDS.RootNodeData[0];
 
 			int itemId = inputRow.Item_Id;
 			int itemBranchId = inputRow.ItemBranch_Id;
+			//находим строку от которой стартовать
+			NodeDS.TreeRow rootRow = ds.Tree.Where(r => r.Item_Id == itemId && r.ItemBranch_Id == itemBranchId).FirstOrDefault();
 
-			TreeDS.TreeRow rootRow = ds.Tree.Where(r => r.Item_Id == itemId && r.ItemBranch_Id == itemBranchId).FirstOrDefault();
-
-			TreeDS outputDS = new TreeDS();
-
-			//outputDS.Tree.ImportRow(rootRow);
-
-			FillNode(ds,outputDS, rootRow);
-
-			//foreach (TreeDS.TreeRow row in ds.Tree.Where(r => (rootRow == null && r.IsParent_IdNull()) || (rootRow != null && !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id && r.Branch_Id == rootRow.Branch_Id)))
-			//{
-			//	outputDS.Tree.ImportRow(row);
-			//}
-
+			NodeDS outputDS = new NodeDS();			
+			// заполняем узел и вложенные узлы
+			FillNode(ds, inputNodeDS, outputDS, rootRow);
 
 			return outputDS;
 
 		}
 
-		private static void FillNode(TreeDS dbDS, TreeDS outputDS,TreeDS.TreeRow rootRow)
+		private static void FillNode(NodeDS dbDS, NodeDS inputDS, NodeDS outputDS,NodeDS.TreeRow rootRow)
 		{
-			if(rootRow != null)
+			if (rootRow != null)
+			{
 				outputDS.Tree.ImportRow(rootRow);
 
-			foreach (TreeDS.TreeRow row in dbDS.Tree.Where(r=> !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))
+				int itemId = rootRow.Item_Id;
+				int itemBranchId = rootRow.ItemBranch_Id;
+				// проверка по списку открытых узлов
+				bool isRowOpened = inputDS.Tree.Any(r => r.Item_Id == itemId && r.ItemBranch_Id == itemBranchId);
+
+				if (!isRowOpened && !rootRow.IsParent_IdNull() /*верхний узел всегда открыт*/)
+					return;// если узел не открыт - не заполняем данные
+			}
+
+			foreach (NodeDS.TreeRow row in dbDS.Tree.Where(r=> !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))
 			{
-				FillNode(dbDS, outputDS, row);
+				FillNode(dbDS, inputDS, outputDS, row);
 			}
 		}
 
-		private static TreeDS DBMock()
+		private static NodeDS DBMock()
 		{
 			
-			TreeDS ds = new TreeDS();
+			NodeDS ds = new NodeDS();
 
-			TreeDS.TreeRow row = ds.Tree.NewTreeRow();
+			NodeDS.TreeRow row = ds.Tree.NewTreeRow();
 
 			row.Item_Id = 0;
 			row.ItemBranch_Id = 0;
 			row.Name = "root";
 			ds.Tree.AddTreeRow(row);
 
-			TreeDS.TreeRow parentRow = row;
+			NodeDS.TreeRow parentRow = row;
 
 			row = ds.Tree.NewTreeRow();
 			
@@ -127,7 +129,7 @@ namespace Maklak.DataAccess
 			row.ItemBranch_Id = 1; // PRODUCT			
 			ds.Tree.AddTreeRow(row);
 
-			TreeDS.TreeRow productRow = row;
+			NodeDS.TreeRow productRow = row;
 			/*
 			row = ds.Tree.NewTreeRow();
 			row.Item_Id = 0;
@@ -181,13 +183,13 @@ namespace Maklak.DataAccess
 			return ds;
 		}
 
-		//private static TreeDS DBMock()
+		//private static NodeDS DBMock()
 		//{
 		//	//TODO: Нужна сквозная автонумерация узлов и связь по Parent_Id
-		//	TreeDS ds = new TreeDS();
+		//	NodeDS ds = new NodeDS();
 
-		//	TreeDS.TreeRow row = ds.Tree.NewTreeRow();
-		//	//TreeDS.TreeRow parentRow = null;
+		//	NodeDS.TreeRow row = ds.Tree.NewTreeRow();
+		//	//NodeDS.TreeRow parentRow = null;
 
 		//	//row.Id = 0;
 		//	row.Branch_Id = 0;

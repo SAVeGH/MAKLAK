@@ -46,14 +46,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Tree">
+  <xs:element name="Node">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="inputDS" nillable="true">
+        <xs:element minOccurs="0" name="inputNodeDS" nillable="true">
           <xs:complexType>
             <xs:annotation>
               <xs:appinfo>
-                <ActualType Name="TreeDS" Namespace="http://schemas.datacontract.org/2004/07/Maklak.DataAccess.DataSets" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                <ActualType Name="NodeDS" Namespace="http://schemas.datacontract.org/2004/07/Maklak.DataAccess.DataSets" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
               </xs:appinfo>
             </xs:annotation>
             <xs:sequence>
@@ -64,14 +64,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="TreeResponse">
+  <xs:element name="NodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="TreeResult" nillable="true">
+        <xs:element minOccurs="0" name="NodeResult" nillable="true">
           <xs:complexType>
             <xs:annotation>
               <xs:appinfo>
-                <ActualType Name="TreeDS" Namespace="http://schemas.datacontract.org/2004/07/Maklak.DataAccess.DataSets" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                <ActualType Name="NodeDS" Namespace="http://schemas.datacontract.org/2004/07/Maklak.DataAccess.DataSets" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
               </xs:appinfo>
             </xs:annotation>
             <xs:sequence>

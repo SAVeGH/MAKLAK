@@ -12,11 +12,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="TreeDS" nillable="true">
+  <xs:element name="NodeDS" nillable="true">
     <xs:complexType>
       <xs:annotation>
         <xs:appinfo>
-          <ActualType Name="TreeDS" Namespace="http://schemas.datacontract.org/2004/07/Maklak.DataAccess.DataSets" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          <ActualType Name="NodeDS" Namespace="http://schemas.datacontract.org/2004/07/Maklak.DataAccess.DataSets" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
         </xs:appinfo>
       </xs:annotation>
       <xs:sequence>

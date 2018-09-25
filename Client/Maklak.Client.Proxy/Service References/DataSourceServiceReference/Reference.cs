@@ -30,13 +30,13 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataSource/Suggestion", ReplyAction="http://tempuri.org/IDataSource/SuggestionResponse")]
         System.Threading.Tasks.Task<Maklak.Client.Proxy.DataSourceServiceReference.SuggestionResponse> SuggestionAsync(Maklak.Client.Proxy.DataSourceServiceReference.SuggestionRequest request);
         
-        // CODEGEN: Parameter 'TreeResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataSource/Tree", ReplyAction="http://tempuri.org/IDataSource/TreeResponse")]
+        // CODEGEN: Parameter 'NodeResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataSource/Node", ReplyAction="http://tempuri.org/IDataSource/NodeResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Maklak.Client.Proxy.DataSourceServiceReference.TreeResponse Tree(Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest request);
+        Maklak.Client.Proxy.DataSourceServiceReference.NodeResponse Node(Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataSource/Tree", ReplyAction="http://tempuri.org/IDataSource/TreeResponse")]
-        System.Threading.Tasks.Task<Maklak.Client.Proxy.DataSourceServiceReference.TreeResponse> TreeAsync(Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataSource/Node", ReplyAction="http://tempuri.org/IDataSource/NodeResponse")]
+        System.Threading.Tasks.Task<Maklak.Client.Proxy.DataSourceServiceReference.NodeResponse> NodeAsync(Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest request);
     }
     
     /// <summary>
@@ -1639,10 +1639,10 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("TreeDS")]
+    [global::System.Xml.Serialization.XmlRootAttribute("NodeDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
-    public partial class TreeDS : global::System.Data.DataSet {
+    public partial class NodeDS : global::System.Data.DataSet {
         
         private TreeDataTable tableTree;
         
@@ -1656,7 +1656,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TreeDS() {
+        public NodeDS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -1667,7 +1667,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected TreeDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected NodeDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -1779,7 +1779,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            TreeDS cln = ((TreeDS)(base.Clone()));
+            NodeDS cln = ((NodeDS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -1870,7 +1870,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "TreeDS";
+            this.DataSetName = "NodeDS";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/TreeDS.xsd";
             this.EnforceConstraints = true;
@@ -1916,7 +1916,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            TreeDS ds = new TreeDS();
+            NodeDS ds = new NodeDS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -2248,7 +2248,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TreeDS ds = new TreeDS();
+                NodeDS ds = new NodeDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2510,7 +2510,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TreeDS ds = new TreeDS();
+                NodeDS ds = new NodeDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2771,7 +2771,7 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TreeDS ds = new TreeDS();
+                NodeDS ds = new NodeDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3243,36 +3243,36 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="Tree", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class TreeRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Node", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class NodeRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Maklak.Client.Proxy.DataSourceServiceReference.TreeDS inputDS;
+        public Maklak.Client.Proxy.DataSourceServiceReference.NodeDS inputNodeDS;
         
-        public TreeRequest() {
+        public NodeRequest() {
         }
         
-        public TreeRequest(Maklak.Client.Proxy.DataSourceServiceReference.TreeDS inputDS) {
-            this.inputDS = inputDS;
+        public NodeRequest(Maklak.Client.Proxy.DataSourceServiceReference.NodeDS inputNodeDS) {
+            this.inputNodeDS = inputNodeDS;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="TreeResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class TreeResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="NodeResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class NodeResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Maklak.Client.Proxy.DataSourceServiceReference.TreeDS TreeResult;
+        public Maklak.Client.Proxy.DataSourceServiceReference.NodeDS NodeResult;
         
-        public TreeResponse() {
+        public NodeResponse() {
         }
         
-        public TreeResponse(Maklak.Client.Proxy.DataSourceServiceReference.TreeDS TreeResult) {
-            this.TreeResult = TreeResult;
+        public NodeResponse(Maklak.Client.Proxy.DataSourceServiceReference.NodeDS NodeResult) {
+            this.NodeResult = NodeResult;
         }
     }
     
@@ -3335,26 +3335,26 @@ namespace Maklak.Client.Proxy.DataSourceServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Maklak.Client.Proxy.DataSourceServiceReference.TreeResponse Maklak.Client.Proxy.DataSourceServiceReference.IDataSource.Tree(Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest request) {
-            return base.Channel.Tree(request);
+        Maklak.Client.Proxy.DataSourceServiceReference.NodeResponse Maklak.Client.Proxy.DataSourceServiceReference.IDataSource.Node(Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest request) {
+            return base.Channel.Node(request);
         }
         
-        public Maklak.Client.Proxy.DataSourceServiceReference.TreeDS Tree(Maklak.Client.Proxy.DataSourceServiceReference.TreeDS inputDS) {
-            Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest inValue = new Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest();
-            inValue.inputDS = inputDS;
-            Maklak.Client.Proxy.DataSourceServiceReference.TreeResponse retVal = ((Maklak.Client.Proxy.DataSourceServiceReference.IDataSource)(this)).Tree(inValue);
-            return retVal.TreeResult;
+        public Maklak.Client.Proxy.DataSourceServiceReference.NodeDS Node(Maklak.Client.Proxy.DataSourceServiceReference.NodeDS inputNodeDS) {
+            Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest inValue = new Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest();
+            inValue.inputNodeDS = inputNodeDS;
+            Maklak.Client.Proxy.DataSourceServiceReference.NodeResponse retVal = ((Maklak.Client.Proxy.DataSourceServiceReference.IDataSource)(this)).Node(inValue);
+            return retVal.NodeResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Maklak.Client.Proxy.DataSourceServiceReference.TreeResponse> Maklak.Client.Proxy.DataSourceServiceReference.IDataSource.TreeAsync(Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest request) {
-            return base.Channel.TreeAsync(request);
+        System.Threading.Tasks.Task<Maklak.Client.Proxy.DataSourceServiceReference.NodeResponse> Maklak.Client.Proxy.DataSourceServiceReference.IDataSource.NodeAsync(Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest request) {
+            return base.Channel.NodeAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Maklak.Client.Proxy.DataSourceServiceReference.TreeResponse> TreeAsync(Maklak.Client.Proxy.DataSourceServiceReference.TreeDS inputDS) {
-            Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest inValue = new Maklak.Client.Proxy.DataSourceServiceReference.TreeRequest();
-            inValue.inputDS = inputDS;
-            return ((Maklak.Client.Proxy.DataSourceServiceReference.IDataSource)(this)).TreeAsync(inValue);
+        public System.Threading.Tasks.Task<Maklak.Client.Proxy.DataSourceServiceReference.NodeResponse> NodeAsync(Maklak.Client.Proxy.DataSourceServiceReference.NodeDS inputNodeDS) {
+            Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest inValue = new Maklak.Client.Proxy.DataSourceServiceReference.NodeRequest();
+            inValue.inputNodeDS = inputNodeDS;
+            return ((Maklak.Client.Proxy.DataSourceServiceReference.IDataSource)(this)).NodeAsync(inValue);
         }
     }
 }

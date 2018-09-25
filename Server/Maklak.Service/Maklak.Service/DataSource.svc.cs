@@ -25,9 +25,9 @@ namespace Maklak.Service
             return Suggestions.Suggestion(inputDS);
         }
 
-		public TreeDS Tree(TreeDS treeDS)
+		public NodeDS Node(NodeDS inputNodeDS)
 		{
-			return TreeBuilder.ConstructTree(treeDS);
+			return NodeBuilder.GetNode(inputNodeDS);
 		}
     }
 }

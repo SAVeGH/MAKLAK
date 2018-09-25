@@ -192,9 +192,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Code\SuggestionHelper.cshtml" />
-    <Content Include="App_Code\ExpanderHelper.cshtml" />
     <Content Include="App_Code\FilterListHelper.cshtml" />
-    <Content Include="App_Code\TreeHelper.cshtml" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -267,7 +265,6 @@
     <Content Include="Views\Fractal\FractalContent.cshtml" />
     <Content Include="Views\Search\PropertiesEditSection.cshtml" />
     <Content Include="Views\Search\ProducerSection.cshtml" />
-    <Content Include="Views\Search\TreeControl\Tree.cshtml" />
     <Content Include="Views\Search\TreeControl\TreeNode.cshtml" />
     <Content Include="Views\Search\TreeControl\NodeFilter.cshtml" />
     <Content Include="Views\Search\TreeControl\SelectionPanel.cshtml" />

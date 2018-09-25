@@ -57,9 +57,9 @@ namespace Maklak.Client.Data
 
 		public void FillNode(int branchID, int nodeID)
 		{
-			Proxy.DataSourceServiceReference.TreeDS inputTreeDS = new Proxy.DataSourceServiceReference.TreeDS();
+			Proxy.DataSourceServiceReference.NodeDS inputTreeDS = new Proxy.DataSourceServiceReference.NodeDS();
 
-			Proxy.DataSourceServiceReference.TreeDS.RootNodeDataRow inputRootRow = inputTreeDS.RootNodeData.NewRootNodeDataRow();
+			Proxy.DataSourceServiceReference.NodeDS.RootNodeDataRow inputRootRow = inputTreeDS.RootNodeData.NewRootNodeDataRow();
 
 
 			inputRootRow.Item_Id = nodeID;
@@ -67,11 +67,11 @@ namespace Maklak.Client.Data
 
 			inputTreeDS.RootNodeData.AddRootNodeDataRow(inputRootRow);
 			// доставка данных
-			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(inputTreeDS);
+			Proxy.DataSourceServiceReference.NodeDS nodeDS = dataSource.Node(inputTreeDS);
 
 			this.Model.TreeItem.Clear();
 
-			FillNodeRecursive(null,null, treeDS);
+			FillNodeRecursive(null,null, nodeDS);
 
 			ModelDS.TreeItemRow rootNodeRow = this.modelDS.TreeItem.Where(r => r.IsParent_IdNull()).FirstOrDefault();
 			rootNodeRow.UseFilterPanel = false;
@@ -81,7 +81,7 @@ namespace Maklak.Client.Data
 			this.modelDS.TreeItem.AcceptChanges();
 		}
 
-		private void FillNodeRecursive(Proxy.DataSourceServiceReference.TreeDS.TreeRow rootRow, ModelDS.TreeItemRow rootItemRow, Proxy.DataSourceServiceReference.TreeDS treeDS)
+		private void FillNodeRecursive(Proxy.DataSourceServiceReference.NodeDS.TreeRow rootRow, ModelDS.TreeItemRow rootItemRow, Proxy.DataSourceServiceReference.NodeDS treeDS)
 		{
 			ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
 
@@ -96,7 +96,7 @@ namespace Maklak.Client.Data
 			tiRow.Expandable = treeDS.Tree.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id).Count() > 0;
 			this.Model.TreeItem.AddTreeItemRow(tiRow);
 
-			foreach (Proxy.DataSourceServiceReference.TreeDS.TreeRow row in treeDS.Tree.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))
+			foreach (Proxy.DataSourceServiceReference.NodeDS.TreeRow row in treeDS.Tree.Where(r => !r.IsParent_IdNull() && r.Parent_Id == rootRow.Id))
 			{
 				FillNodeRecursive(row, tiRow, treeDS);
 			}
@@ -165,37 +165,37 @@ namespace Maklak.Client.Data
 		//	//return rootRow;
 		//}
 
-		public void ConstructTree(/*ModelDS modelDS*/)
-		{
-			Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(null);
+		//public void ConstructTree(/*ModelDS modelDS*/)
+		//{
+		//	Proxy.DataSourceServiceReference.TreeDS treeDS = dataSource.ConstructTree(null);
 
-			this.Model.TreeItem.Clear();
+		//	this.Model.TreeItem.Clear();
 
-			foreach (Proxy.DataSourceServiceReference.TreeDS.TreeRow row in treeDS.Tree.Rows)
-			{
+		//	foreach (Proxy.DataSourceServiceReference.TreeDS.TreeRow row in treeDS.Tree.Rows)
+		//	{
 				
-				ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
-				tiRow.Id = row.Id;
+		//		ModelDS.TreeItemRow tiRow = this.Model.TreeItem.NewTreeItemRow();
+		//		tiRow.Id = row.Id;
 				
-					//tiRow.Branch_Id = row.Branch_Id;
+		//			//tiRow.Branch_Id = row.Branch_Id;
 
-				if (row.IsParent_IdNull())
-					tiRow.SetParent_IdNull();
-				else
-					tiRow.Parent_Id = row.Parent_Id;
+		//		if (row.IsParent_IdNull())
+		//			tiRow.SetParent_IdNull();
+		//		else
+		//			tiRow.Parent_Id = row.Parent_Id;
 
-				//if (row.IsParentBranch_IdNull())
-				//	tiRow.SetParentBranch_IdNull();
-				//else
-				//	tiRow.ParentBranch_Id = row.ParentBranch_Id;
+		//		//if (row.IsParentBranch_IdNull())
+		//		//	tiRow.SetParentBranch_IdNull();
+		//		//else
+		//		//	tiRow.ParentBranch_Id = row.ParentBranch_Id;
 
 				
 				 
-				tiRow.Name = row.Name;
-				tiRow.Selected = row.IsSelectedNull() ? false : row.Selected;
-				this.Model.TreeItem.AddTreeItemRow(tiRow);
-			}
-		}
+		//		tiRow.Name = row.Name;
+		//		tiRow.Selected = row.IsSelectedNull() ? false : row.Selected;
+		//		this.Model.TreeItem.AddTreeItemRow(tiRow);
+		//	}
+		//}
 
 		public ModelDS Model
 		{

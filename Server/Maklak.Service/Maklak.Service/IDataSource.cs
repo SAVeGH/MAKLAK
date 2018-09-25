@@ -21,6 +21,6 @@ namespace Maklak.Service
         SuggestionDS Suggestion(SuggestionDS inputDS);
 
 		[OperationContract]
-		TreeDS Tree(TreeDS inputDS);
+		NodeDS Node(NodeDS inputNodeDS);
 	}
 }

@@ -51,9 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
-    <Compile Include="ExpanderModel.cs" />
     <Compile Include="TreeNodeModel.cs" />
-    <Compile Include="TreeModel.cs" />
     <Compile Include="FractalModels\FractalModel.cs" />
     <Compile Include="Helpers\ModelHelper.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />

@@ -46,11 +46,11 @@
   <wsdl:message name="IDataSource_Suggestion_OutputMessage">
     <wsdl:part name="parameters" element="tns:SuggestionResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataSource_Tree_InputMessage">
-    <wsdl:part name="parameters" element="tns:Tree" />
+  <wsdl:message name="IDataSource_Node_InputMessage">
+    <wsdl:part name="parameters" element="tns:Node" />
   </wsdl:message>
-  <wsdl:message name="IDataSource_Tree_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TreeResponse" />
+  <wsdl:message name="IDataSource_Node_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NodeResponse" />
   </wsdl:message>
   <wsdl:portType name="IDataSource">
     <wsdl:operation name="DoWork">
@@ -61,9 +61,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDataSource/Suggestion" message="tns:IDataSource_Suggestion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataSource/SuggestionResponse" message="tns:IDataSource_Suggestion_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Tree">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDataSource/Tree" message="tns:IDataSource_Tree_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDataSource/TreeResponse" message="tns:IDataSource_Tree_OutputMessage" />
+    <wsdl:operation name="Node">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSource/Node" message="tns:IDataSource_Node_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSource/NodeResponse" message="tns:IDataSource_Node_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataSource" type="tns:IDataSource">
@@ -86,8 +86,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Tree">
-      <soap:operation soapAction="http://tempuri.org/IDataSource/Tree" style="document" />
+    <wsdl:operation name="Node">
+      <soap:operation soapAction="http://tempuri.org/IDataSource/Node" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -117,8 +117,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Tree">
-      <soap:operation soapAction="http://tempuri.org/IDataSource/Tree" style="document" />
+    <wsdl:operation name="Node">
+      <soap:operation soapAction="http://tempuri.org/IDataSource/Node" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

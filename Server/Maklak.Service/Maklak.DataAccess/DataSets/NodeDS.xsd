@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="TreeDS" targetNamespace="http://tempuri.org/TreeDS.xsd" xmlns:mstns="http://tempuri.org/TreeDS.xsd" xmlns="http://tempuri.org/TreeDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="NodeDS" targetNamespace="http://tempuri.org/TreeDS.xsd" xmlns:mstns="http://tempuri.org/TreeDS.xsd" xmlns="http://tempuri.org/TreeDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,10 +9,10 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="TreeDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TreeDS" msprop:Generator_UserDSName="TreeDS">
+  <xs:element name="NodeDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NodeDS" msprop:Generator_UserDSName="NodeDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Tree" msprop:Generator_TableClassName="TreeDataTable" msprop:Generator_TableVarName="tableTree" msprop:Generator_TablePropName="Tree" msprop:Generator_RowDeletingName="TreeRowDeleting" msprop:Generator_RowChangingName="TreeRowChanging" msprop:Generator_RowEvHandlerName="TreeRowChangeEventHandler" msprop:Generator_RowDeletedName="TreeRowDeleted" msprop:Generator_UserTableName="Tree" msprop:Generator_RowChangedName="TreeRowChanged" msprop:Generator_RowEvArgName="TreeRowChangeEvent" msprop:Generator_RowClassName="TreeRow">
+        <xs:element name="Tree" msprop:Generator_TableClassName="TreeDataTable" msprop:Generator_TableVarName="tableTree" msprop:Generator_RowChangedName="TreeRowChanged" msprop:Generator_TablePropName="Tree" msprop:Generator_RowDeletingName="TreeRowDeleting" msprop:Generator_RowChangingName="TreeRowChanging" msprop:Generator_RowEvHandlerName="TreeRowChangeEventHandler" msprop:Generator_RowDeletedName="TreeRowDeleted" msprop:Generator_RowClassName="TreeRow" msprop:Generator_UserTableName="Tree" msprop:Generator_RowEvArgName="TreeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -25,7 +25,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TreeInput" msprop:Generator_TableClassName="TreeInputDataTable" msprop:Generator_TableVarName="tableTreeInput" msprop:Generator_TablePropName="TreeInput" msprop:Generator_RowDeletingName="TreeInputRowDeleting" msprop:Generator_RowChangingName="TreeInputRowChanging" msprop:Generator_RowEvHandlerName="TreeInputRowChangeEventHandler" msprop:Generator_RowDeletedName="TreeInputRowDeleted" msprop:Generator_UserTableName="TreeInput" msprop:Generator_RowChangedName="TreeInputRowChanged" msprop:Generator_RowEvArgName="TreeInputRowChangeEvent" msprop:Generator_RowClassName="TreeInputRow">
+        <xs:element name="TreeInput" msprop:Generator_TableClassName="TreeInputDataTable" msprop:Generator_TableVarName="tableTreeInput" msprop:Generator_RowChangedName="TreeInputRowChanged" msprop:Generator_TablePropName="TreeInput" msprop:Generator_RowDeletingName="TreeInputRowDeleting" msprop:Generator_RowChangingName="TreeInputRowChanging" msprop:Generator_RowEvHandlerName="TreeInputRowChangeEventHandler" msprop:Generator_RowDeletedName="TreeInputRowDeleted" msprop:Generator_RowClassName="TreeInputRow" msprop:Generator_UserTableName="TreeInput" msprop:Generator_RowEvArgName="TreeInputRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -33,7 +33,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="RootNodeData" msprop:Generator_TableClassName="RootNodeDataDataTable" msprop:Generator_TableVarName="tableRootNodeData" msprop:Generator_TablePropName="RootNodeData" msprop:Generator_RowDeletingName="RootNodeDataRowDeleting" msprop:Generator_RowChangingName="RootNodeDataRowChanging" msprop:Generator_RowEvHandlerName="RootNodeDataRowChangeEventHandler" msprop:Generator_RowDeletedName="RootNodeDataRowDeleted" msprop:Generator_UserTableName="RootNodeData" msprop:Generator_RowChangedName="RootNodeDataRowChanged" msprop:Generator_RowEvArgName="RootNodeDataRowChangeEvent" msprop:Generator_RowClassName="RootNodeDataRow">
+        <xs:element name="RootNodeData" msprop:Generator_TableClassName="RootNodeDataDataTable" msprop:Generator_TableVarName="tableRootNodeData" msprop:Generator_RowChangedName="RootNodeDataRowChanged" msprop:Generator_TablePropName="RootNodeData" msprop:Generator_RowDeletingName="RootNodeDataRowDeleting" msprop:Generator_RowChangingName="RootNodeDataRowChanging" msprop:Generator_RowEvHandlerName="RootNodeDataRowChangeEventHandler" msprop:Generator_RowDeletedName="RootNodeDataRowDeleted" msprop:Generator_RowClassName="RootNodeDataRow" msprop:Generator_UserTableName="RootNodeData" msprop:Generator_RowEvArgName="RootNodeDataRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Item_Id" msprop:Generator_ColumnVarNameInTable="columnItem_Id" msprop:Generator_ColumnPropNameInRow="Item_Id" msprop:Generator_ColumnPropNameInTable="Item_IdColumn" msprop:Generator_UserColumnName="Item_Id" type="xs:int" minOccurs="0" />
@@ -46,7 +46,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Tree_Tree" msdata:parent="Tree" msdata:child="Tree" msdata:parentkey="Id" msdata:childkey="Parent_Id" msprop:Generator_UserChildTable="Tree" msprop:Generator_ChildPropName="GetTreeRows" msprop:Generator_UserRelationName="Tree_Tree" msprop:Generator_ParentPropName="TreeRowParent" msprop:Generator_RelationVarName="relationTree_Tree" msprop:Generator_UserParentTable="Tree" />
+      <msdata:Relationship name="Tree_Tree" msdata:parent="Tree" msdata:child="Tree" msdata:parentkey="Id" msdata:childkey="Parent_Id" msprop:Generator_UserChildTable="Tree" msprop:Generator_ChildPropName="GetTreeRows" msprop:Generator_UserRelationName="Tree_Tree" msprop:Generator_RelationVarName="relationTree_Tree" msprop:Generator_UserParentTable="Tree" msprop:Generator_ParentPropName="TreeRowParent" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
