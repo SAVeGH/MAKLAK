@@ -148,6 +148,7 @@ namespace Maklak.Client.Models
 
 		public int BranchID { get; set; }
 		public int NodeID { get; set; }
+		public bool IsOpened { get; set; }
 
 		public bool UseCustomPanel
 		{
