@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Maklak.Client._DataSets</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="FilterDS.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FilterDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="ModelDS.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ModelDS.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="FilterDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FilterDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="ModelDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ModelDS.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
