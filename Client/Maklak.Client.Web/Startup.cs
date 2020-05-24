@@ -13,13 +13,22 @@ using Maklak.Client.Web.Data;
 using Maklak.Client.Web.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 
+using Maklak.Client.Service;
+
 namespace Maklak.Client.Web
 {
 	public class Startup
 	{
+		//grpcProxy proxy;
 		public Startup(IConfiguration configuration)
 		{
-			Configuration = configuration;
+			//proxy = new grpcProxy();
+
+			Configuration = configuration;			
+
+			
+
+			//string geeteng = proxy.SayHello("Bob");
 		}
 
 		public IConfiguration Configuration { get; }
@@ -31,8 +40,10 @@ namespace Maklak.Client.Web
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
 			services.AddSingleton<WeatherForecastService>();
-			services.AddSingleton<LoginNotificator>();			
-			services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();			
+			services.AddSingleton<LoginNotificator>();
+			services.AddSingleton<grpcProxy>();
+			services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
+			
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,12 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using System.Security.Claims;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+
+using Maklak.Client.Service;
 
 namespace Maklak.Client.Web.Services
 {
 	public class AppAuthenticationStateProvider : AuthenticationStateProvider
-	{
+	{		
+		grpcProxy serviceProxy;
+
+		public AppAuthenticationStateProvider(grpcProxy proxy) 
+		{
+			serviceProxy = proxy;
+		}
 		public override Task<AuthenticationState> GetAuthenticationStateAsync()
 		{
 			List<string> usersList = new List<string>() { "1","2","3"};
@@ -24,6 +33,8 @@ namespace Maklak.Client.Web.Services
 			{
 				if (usersList.Contains(UserName))
 				{
+					string t = serviceProxy.SayHello(UserName);
+					string v = serviceProxy.SayHelloExt(UserName);
 					identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, UserName) }, "App");
 				}
 				else 

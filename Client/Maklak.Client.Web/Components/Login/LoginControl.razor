@@ -1,0 +1,23 @@
+﻿<AuthorizeView>
+
+	<Authorized>
+
+		<div>
+			<h2>Hello, @context.User.Identity.Name!</h2>
+		</div>
+		<div style="width:200px">
+			<NavLink class="nav-link" href="" @onclick="OnLogOut">
+				LogOut
+			</NavLink>
+		</div>
+	</Authorized>
+
+	<NotAuthorized>
+		<div style="width:200px">
+			<NavLink class="nav-link" href="login/loginpage">
+				LogIn
+			</NavLink>
+		</div>
+
+	</NotAuthorized>
+</AuthorizeView>

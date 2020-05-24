@@ -32,6 +32,7 @@ namespace Maklak.Service
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapGrpcService<GreeterService>();
+				endpoints.MapGrpcService<MaklakService>();
 
 				endpoints.MapGet("/", async context =>
 				{

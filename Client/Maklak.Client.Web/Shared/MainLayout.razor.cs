@@ -46,22 +46,22 @@ namespace Maklak.Client.Web.Shared
 		//	loginNotificator.LoginStateChanged -= LoginNotificator_LoginStateChanged;
 		//}
 
-		[Inject]
-		AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+		//[Inject]
+		//AuthenticationStateProvider AuthenticationStateProvider { get; set; }
 
-		public async Task OnLogOut()
-		{
-			AppAuthenticationStateProvider authStateProvider = this.AuthenticationStateProvider as AppAuthenticationStateProvider;
-			authStateProvider.UserName = "";
-			AuthenticationState authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+		//public async Task OnLogOut()
+		//{
+		//	AppAuthenticationStateProvider authStateProvider = this.AuthenticationStateProvider as AppAuthenticationStateProvider;
+		//	authStateProvider.UserName = "";
+		//	AuthenticationState authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
-			//await loginNotificator.UpdateLoginState(authState.User.Identity.IsAuthenticated);
+		//	//await loginNotificator.UpdateLoginState(authState.User.Identity.IsAuthenticated);
 
 
 
-			//this.AuthenticationStateProvider.NotifyAuthenticationStateChanged();
+		//	//this.AuthenticationStateProvider.NotifyAuthenticationStateChanged();
 
-			//this.StateHasChanged(); // re-render the page
-		}
+		//	//this.StateHasChanged(); // re-render the page
+		//}
 	}
 }

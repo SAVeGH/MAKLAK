@@ -16,8 +16,8 @@ div {
 	left: 0;
 	bottom: 0;
 	right: 0;
-	overflow: auto;
-	background: lime; 
+	/*overflow: auto;
+	background: lime;*/ 
 }
 
 .navBarSide {
@@ -26,8 +26,8 @@ div {
 	left: 0;
 	bottom: 0;
 	right: 350px;
-	overflow: auto;
-	background: red;
+	/*overflow: auto;
+	background: red;*/
 }
 
 .titleCell {
@@ -36,7 +36,7 @@ div {
 	left: 0;
 	width: 350px;
 	height: 100px;
-	background: yellow;
+	background: darkgrey;
 }
 
 .navBarCell {
@@ -44,8 +44,8 @@ div {
 	top: 100px;
 	left: 0;
 	width: 350px;
-	bottom:0px;
-	background: lightgreen;
+	bottom: 0px;
+	background: lightgrey;
 }
 
 .contentSide {
@@ -54,8 +54,8 @@ div {
 	left: 350px;
 	bottom: 0;
 	right: 0;
-	overflow: auto;
-	background: blue; 
+	/*overflow: auto;
+	background: blue;*/ 
 }
 
 .contentTopCell {
@@ -64,7 +64,9 @@ div {
 	left: 350px;
 	right: 0px;
 	height: 100px;
-	background: lightgrey;
+	display: flex; 
+	justify-content: flex-end;
+	background-color: bisque;
 }
 
 .contentCell {
@@ -74,7 +76,7 @@ div {
 	bottom: 0;
 	right: 0;
 	overflow: auto;
-	background-color: lightblue;
+	background-color: linen;
 }
 
 #blazor-error-ui {

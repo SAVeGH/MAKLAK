@@ -1,17 +1,21 @@
-﻿@inherits LayoutComponentBase
+﻿@using Maklak.Client.Web.Components.Login;
+@inherits LayoutComponentBase
 
-	<div class="indexMain">
 
-		<div class="navBarSide">
-			<div class="titleCell">Title</div>
-			<div class="navBarCell">
-				<NavMenu />
-			</div>
+<div class="indexMain">
+
+	<div class="navBarSide">
+		<div class="titleCell">Title</div>
+		<div class="navBarCell">
+			<NavMenu />
 		</div>
+	</div>
 
-		<div class="contentSide">
-			<div class="contentTopCell">
-				<AuthorizeView>
+	<div class="contentSide">
+		<div class="contentTopCell">
+
+			<LoginControl/>
+			@*<AuthorizeView>
 
 					<Authorized>
 						<NavLink class="nav-link" href="" @onclick="OnLogOut">
@@ -30,44 +34,44 @@
 						</NavLink>
 
 					</NotAuthorized>
-				</AuthorizeView>
-			</div>
-			<div class="contentCell">
-				@Body
-			</div>
+				</AuthorizeView>*@
+		</div>
+		<div class="contentCell">
+			@Body
 		</div>
 	</div>
-
-@*<div class="sidebar">
-    <NavMenu />
 </div>
 
-<div class="main">
-	<div class="top-row px-4">
-		<AuthorizeView>
-
-			<Authorized>
-				<NavLink class="nav-link" href="" @onclick="OnLogOut">
-					LogOut
-				</NavLink>
-
-				
-					<h1>Hello, @context.User.Identity.Name!</h1>
-					
-				
-
-			</Authorized>
-			<NotAuthorized>
-				<NavLink class="nav-link" href="login/loginpage">
-					LogIn
-				</NavLink>
-
-			</NotAuthorized>
-		</AuthorizeView>
-			
+@*<div class="sidebar">
+		<NavMenu />
 	</div>
 
-    <div class="content px-4">
-        @Body
-    </div>
-</div>*@
+	<div class="main">
+		<div class="top-row px-4">
+			<AuthorizeView>
+
+				<Authorized>
+					<NavLink class="nav-link" href="" @onclick="OnLogOut">
+						LogOut
+					</NavLink>
+
+
+						<h1>Hello, @context.User.Identity.Name!</h1>
+
+
+
+				</Authorized>
+				<NotAuthorized>
+					<NavLink class="nav-link" href="login/loginpage">
+						LogIn
+					</NavLink>
+
+				</NotAuthorized>
+			</AuthorizeView>
+
+		</div>
+
+		<div class="content px-4">
+			@Body
+		</div>
+	</div>*@

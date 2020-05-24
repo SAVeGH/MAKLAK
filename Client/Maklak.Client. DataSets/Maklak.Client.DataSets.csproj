@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Maklak.Client._DataSets</RootNamespace>
+    <RootNamespace>Maklak.Client.DataSets</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

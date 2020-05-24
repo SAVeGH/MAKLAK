@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Maklak.Service";
+
+package maklak;
+
+// The greeting service definition.
+service Maklak {
+  // Sends a greeting
+  rpc SayHello (HelloRequestExt) returns (HelloReplyExt);
+}
+
+// The request message containing the user's name.
+message HelloRequestExt {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReplyExt {
+  string message = 1;
+}

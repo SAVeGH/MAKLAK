@@ -26,6 +26,9 @@ namespace Maklak.Client.Web.Components.Login
         [Inject]
         AuthenticationStateProvider AuthenticationStateProvider { get; set;}
 
+        [Inject]
+        NavigationManager NavigationManager { get; set; }
+
         [Parameter]
         public string UserLogin { get; set; }
 
@@ -47,6 +50,8 @@ namespace Maklak.Client.Web.Components.Login
             else 
             {
                 errorMessage = null;
+
+                NavigationManager.NavigateTo("search");
             }
 
             //await loginNotificator.UpdateLoginState(authState.User.Identity.IsAuthenticated);

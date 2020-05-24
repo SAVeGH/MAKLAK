@@ -5,7 +5,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost/Maklak.Service"
+      "applicationUrl": "https://localhost:5001"
     }
   }
 }
