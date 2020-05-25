@@ -8,6 +8,8 @@ package maklak;
 service Maklak {
   // Sends a greeting
   rpc SayHello (HelloRequestExt) returns (HelloReplyExt);
+
+  rpc AuthenticateUser (AuthenticateRequest) returns (AuthenticateResponse);
 }
 
 // The request message containing the user's name.
@@ -18,4 +20,12 @@ message HelloRequestExt {
 // The response message containing the greetings.
 message HelloReplyExt {
   string message = 1;
+}
+
+message AuthenticateRequest{
+    string Login = 1;
+    string Password = 2;
+}
+message AuthenticateResponse{
+    bool IsAuthenticated = 1;
 }

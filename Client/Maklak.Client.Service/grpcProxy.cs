@@ -53,5 +53,12 @@ namespace Maklak.Client.Service
 
 			return reply.Message;
 		}
+
+		public bool AuthenticateUser(string login, string password) 
+		{
+			AuthenticateRequest request = new AuthenticateRequest() { Login = login, Password = (password??string.Empty) };
+			AuthenticateResponse response = mclient.AuthenticateUser(request);
+			return response.IsAuthenticated;
+		}
 	}
 }

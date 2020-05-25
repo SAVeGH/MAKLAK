@@ -31,10 +31,12 @@ namespace Maklak.Client.Web.Services
 			}
 			else 
 			{
-				if (usersList.Contains(UserName))
+				if (serviceProxy.AuthenticateUser(UserName, UserPassword))
 				{
-					string t = serviceProxy.SayHello(UserName);
-					string v = serviceProxy.SayHelloExt(UserName);
+					//string t = serviceProxy.SayHello(UserName);
+					//string v = serviceProxy.SayHelloExt(UserName);
+
+					//serviceProxy.A
 					identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, UserName) }, "App");
 				}
 				else 
@@ -55,6 +57,8 @@ namespace Maklak.Client.Web.Services
 		}		
 
 		public string UserName { get; set; }
+
+		public string UserPassword { get; set; }
 		public string ErrorMessage { get; set; }
 	}
 }

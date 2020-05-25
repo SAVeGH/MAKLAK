@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.Extensions.Logging;
 
 namespace Maklak.Service 
@@ -21,6 +22,17 @@ namespace Maklak.Service
 			{
 				Message = "Hello " + request.Name
 			});
+		}
+
+		public override Task<AuthenticateResponse> AuthenticateUser(AuthenticateRequest request, ServerCallContext context)
+		{
+			AuthenticateResponse response = new AuthenticateResponse();
+			response.IsAuthenticated = false;
+
+			if (request.Login == "1")
+				response.IsAuthenticated = true;
+
+			return Task.FromResult(response);
 		}
 	}
 }
