@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Maklak.Client.Web.Components.Filter
+namespace Maklak.Client.Web.Controls.Filter
 {
 	public partial class Filter
 	{

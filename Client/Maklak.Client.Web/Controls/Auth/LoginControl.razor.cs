@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
 
-namespace Maklak.Client.Web.Components.Login
+namespace Maklak.Client.Web.Controls.Auth
 {
 	public partial class LoginControl
 	{

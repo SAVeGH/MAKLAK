@@ -16,7 +16,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Components.Authorization;
 
 
-namespace Maklak.Client.Web.Components.Login
+namespace Maklak.Client.Web.Controls.Auth
 {
     public partial class Login
     {
@@ -24,7 +24,7 @@ namespace Maklak.Client.Web.Components.Login
         LoginNotificator loginNotificator { get; set; }
 
         [Inject]
-        AuthenticationStateProvider AuthenticationStateProvider { get; set;}
+        AuthenticationStateProvider AuthenticationStateProvider { get; set; }
 
         [Inject]
         NavigationManager NavigationManager { get; set; }
@@ -47,7 +47,7 @@ namespace Maklak.Client.Web.Components.Login
             {
                 errorMessage = authStateProvider.ErrorMessage;
             }
-            else 
+            else
             {
                 errorMessage = null;
 

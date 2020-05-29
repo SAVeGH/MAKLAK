@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maklak.Client.Web", "Maklak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maklak.Client.DataSets", "Maklak.Client.DataSets\Maklak.Client.DataSets.csproj", "{DEAAFB0C-B8C9-469F-99E5-730884ED8436}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Client.Service", "Maklak.Client.Service\Maklak.Client.Service.csproj", "{BBC192A7-330A-47ED-A53D-DA21220214C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maklak.Client.Service", "Maklak.Client.Service\Maklak.Client.Service.csproj", "{BBC192A7-330A-47ED-A53D-DA21220214C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
