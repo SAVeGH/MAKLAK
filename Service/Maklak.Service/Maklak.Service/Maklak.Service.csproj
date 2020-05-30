@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-	<Protobuf Include="Protos\maklak.proto" GrpcServices="Server" />
+	<Protobuf Include="..\..\..\Protos\greet.proto">
+	  <Link>Protos\greet.proto</Link>
+	</Protobuf>
+	<Protobuf Include="..\..\..\Protos\maklak.proto">
+	  <Link>Protos\maklak.proto</Link>
+	</Protobuf>
   </ItemGroup>
 
   <ItemGroup>
