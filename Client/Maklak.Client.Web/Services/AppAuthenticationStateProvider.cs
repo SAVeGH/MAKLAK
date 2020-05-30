@@ -15,48 +15,83 @@ namespace Maklak.Client.Web.Services
 	{		
 		grpcProxy serviceProxy;
 
-		public AppAuthenticationStateProvider(grpcProxy proxy) 
+		public AppAuthenticationStateProvider(grpcProxy proxy /*from DI container*/) 
 		{
 			serviceProxy = proxy;
 		}
 		public override Task<AuthenticationState> GetAuthenticationStateAsync()
 		{
-			List<string> usersList = new List<string>() { "1","2","3"};
-			ClaimsIdentity identity = null;
+			ClaimsPrincipal user = null;
 			this.ErrorMessage = null;
 
-			if (string.IsNullOrEmpty(UserName))
-			{
-				identity = new ClaimsIdentity();
-			}
-			else 
-			{
-				if (serviceProxy.AuthenticateUser(UserName, UserPassword))
-				{
-					//string t = serviceProxy.SayHello(UserName);
-					//string v = serviceProxy.SayHelloExt(UserName);
-
-					//serviceProxy.A
-					identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, UserName) }, "App");
-				}
-				else 
-				{
-					identity = new ClaimsIdentity();
-					this.ErrorMessage = "Invalid user";
-				}
-			
-			}
-			
-			ClaimsPrincipal user = new ClaimsPrincipal(identity);
+			if (!this.IsRegister)
+				user = AuthenticateUser();
+			else
+				user = RegisterUser();
 
 			Task<AuthenticationState> authTask = Task.FromResult(new AuthenticationState(user));
 
 			base.NotifyAuthenticationStateChanged(authTask);
 
 			return authTask;			
-		}		
+		}
+
+		private ClaimsPrincipal RegisterUser()
+		{
+			ClaimsIdentity identity = null;
+
+			if (string.IsNullOrEmpty(UserName))
+			{
+				identity = new ClaimsIdentity();
+			}
+			else
+			{
+				if (serviceProxy.RegisterUser(UserName, UserPassword))
+				{
+					identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, UserName) }, "App");
+				}
+				else
+				{
+					identity = new ClaimsIdentity();
+					this.ErrorMessage = "Invalid user";
+				}
+
+			}
+
+			ClaimsPrincipal user = new ClaimsPrincipal(identity);
+
+			return user;
+		}
+
+		private ClaimsPrincipal AuthenticateUser() 
+		{
+			ClaimsIdentity identity = null;
+
+			if (string.IsNullOrEmpty(UserName))
+			{
+				identity = new ClaimsIdentity();
+			}
+			else
+			{
+				if (serviceProxy.AuthenticateUser(UserName, UserPassword))
+				{					
+					identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, UserName) }, "App");
+				}
+				else
+				{
+					identity = new ClaimsIdentity();
+					this.ErrorMessage = "Invalid user";
+				}
+
+			}
+
+			ClaimsPrincipal user = new ClaimsPrincipal(identity);
+
+			return user;
+		}
 
 		public string UserName { get; set; }
+		public bool IsRegister { get; set; }
 
 		public string UserPassword { get; set; }
 		public string ErrorMessage { get; set; }

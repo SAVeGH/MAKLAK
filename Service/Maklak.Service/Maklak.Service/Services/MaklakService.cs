@@ -34,5 +34,16 @@ namespace Maklak.Service
 
 			return Task.FromResult(response);
 		}
+
+		public override Task<RegisterResponse> RegisterUser(RegisterRequest request, ServerCallContext context)
+		{
+			RegisterResponse response = new RegisterResponse();
+			response.IsAuthenticated = false;
+
+			if (request.Login == "1")
+				response.IsAuthenticated = true;
+
+			return Task.FromResult(response);
+		}
 	}
 }

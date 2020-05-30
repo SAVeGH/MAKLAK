@@ -9,9 +9,9 @@ namespace Maklak.Client.Service
 {
 	public class grpcProxy
 	{
-		Maklak.Service.Greeter.GreeterClient client;
+		Maklak.Service.Greeter.GreeterClient greetClient;
 
-		Maklak.Service.Maklak.MaklakClient mclient;
+		Maklak.Service.Maklak.MaklakClient client;
 		public grpcProxy() 
 		{
 			// See solution here: https://docs.microsoft.com/ru-ru/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.1
@@ -26,21 +26,21 @@ namespace Maklak.Client.Service
 
 			
 
-			client = new Maklak.Service.Greeter.GreeterClient(channel);
+			greetClient = new Maklak.Service.Greeter.GreeterClient(channel);
 
-			mclient = new Maklak.Service.Maklak.MaklakClient(channel);
+			client = new Maklak.Service.Maklak.MaklakClient(channel);
 
 			//HelloRequest request = new HelloRequest();
 			//request.Name = "Bob";
 			//HelloReply reply = client.SayHello(request);
 
-		}
+		}	
 
 		public string SayHello(string name) 
 		{
 			HelloRequest request = new HelloRequest();
 			request.Name = name;
-			HelloReply reply = client.SayHello(request);
+			HelloReply reply = greetClient.SayHello(request);
 
 			return reply.Message;
 		}
@@ -49,7 +49,7 @@ namespace Maklak.Client.Service
 		{
 			HelloRequestExt request = new HelloRequestExt();
 			request.Name = name;
-			HelloReplyExt reply = mclient.SayHello(request);
+			HelloReplyExt reply = client.SayHello(request);
 
 			return reply.Message;
 		}
@@ -57,7 +57,14 @@ namespace Maklak.Client.Service
 		public bool AuthenticateUser(string login, string password) 
 		{
 			AuthenticateRequest request = new AuthenticateRequest() { Login = login, Password = (password??string.Empty) };
-			AuthenticateResponse response = mclient.AuthenticateUser(request);
+			AuthenticateResponse response = client.AuthenticateUser(request);
+			return response.IsAuthenticated;
+		}
+
+		public bool RegisterUser(string login, string password)
+		{
+			RegisterRequest request = new RegisterRequest() { Login = login, Password = (password ?? string.Empty) };
+			RegisterResponse response = client.RegisterUser(request);
 			return response.IsAuthenticated;
 		}
 	}

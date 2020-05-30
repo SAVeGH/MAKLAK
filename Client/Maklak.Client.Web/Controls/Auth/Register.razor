@@ -1,0 +1,23 @@
+﻿<h3>Register</h3>
+
+<div>
+
+	<div class="content px-4">
+		<input id="login" type="text" @bind-value="UserLogin" />
+	</div>
+
+	<div class="content px-4">
+		<input id="pass" type="password" @bind-value="UserPassword" />
+	</div>
+
+	<div class="content px-4">
+		<button type="button" @onclick="OnRegister">Register</button>
+	</div>	
+
+	<AuthorizeView>
+		<NotAuthorized>
+			@errorMessage
+		</NotAuthorized>
+	</AuthorizeView>
+
+</div>

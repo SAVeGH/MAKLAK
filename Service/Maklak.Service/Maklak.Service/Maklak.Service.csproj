@@ -17,4 +17,8 @@
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Maklak.Service.Data\Maklak.Service.Data.csproj" />
+  </ItemGroup>
+
 </Project>

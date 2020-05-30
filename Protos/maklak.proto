@@ -10,6 +10,7 @@ service Maklak {
   rpc SayHello (HelloRequestExt) returns (HelloReplyExt);
 
   rpc AuthenticateUser (AuthenticateRequest) returns (AuthenticateResponse);
+  rpc RegisterUser (RegisterRequest) returns (RegisterResponse);
 }
 
 // The request message containing the user's name.
@@ -27,5 +28,13 @@ message AuthenticateRequest{
     string Password = 2;
 }
 message AuthenticateResponse{
+    bool IsAuthenticated = 1;
+}
+
+message RegisterRequest{
+    string Login = 1;
+    string Password = 2;
+}
+message RegisterResponse{
     bool IsAuthenticated = 1;
 }
