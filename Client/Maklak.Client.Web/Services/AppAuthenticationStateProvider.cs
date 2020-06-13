@@ -53,7 +53,7 @@ namespace Maklak.Client.Web.Services
 				else
 				{
 					identity = new ClaimsIdentity();
-					this.ErrorMessage = "Invalid user";
+					this.ErrorMessage = "User exists";
 				}
 
 			}

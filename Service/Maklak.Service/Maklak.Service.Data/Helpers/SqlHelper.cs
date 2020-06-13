@@ -7,20 +7,50 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
 using System.Configuration;
+using System.Runtime.CompilerServices;
 
 namespace Maklak.Service.Data.Helpers
 {
+    
     public static class SqlHelper
     {
+        public static IDbDataParameter AddInParameter(this IDbCommand command, string paramName, DbType paramType, object paramValue) 
+        {
+            IDbDataParameter parameter = command.CreateParameter();
+
+            parameter.ParameterName = paramName;
+            parameter.DbType = paramType;
+            parameter.Value = paramValue;
+
+            command.Parameters.Add(parameter);
+
+            return parameter;
+        }
+        public static IDbDataParameter AddInParameter(this IDbCommand command, string paramName, DbType paramType, int paramSize, object paramValue)
+        {
+            IDbDataParameter parameter = command.AddInParameter(paramName, paramType, paramValue);
+            parameter.Size = paramSize;
+            return parameter;
+        }
+
         // Methods
         private static SqlConnection sqlConnect;
         private static Object lockObject;
 
         static SqlHelper()
         {
-            string connectStr = System.Configuration.ConfigurationManager.ConnectionStrings["ServiceDB"].ConnectionString;
+            //string connectStr = System.Configuration.ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
+
+            string connectStr = @"Data Source=BOOK\SQLEXPRESS; Initial Catalog=Srv; User ID=sa;Password=saP@s$w0rd;";
             sqlConnect = new SqlConnection(connectStr);
             lockObject = new Object();
+        }
+
+        private static IDbConnection Connection { get { return sqlConnect; } }
+
+        public static void Test()
+        {
+            int i = 0;
         }
 
 
@@ -56,6 +86,32 @@ namespace Maklak.Service.Data.Helpers
 
         }
 
+        public static IDbCommand GetDbCommand()        
+        {
+            IDbCommand command = SqlHelper.Connection.CreateCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            return command;
+        }
+
+        public static IDbCommand GetDbCommand(string spName)
+        {
+            IDbCommand command = SqlHelper.GetDbCommand();
+            command.CommandText = spName;
+            return command;
+        }
+
+        public static object ExecuteScalar(IDbCommand command) 
+        {
+            SqlHelper.Open();
+
+            command.Prepare();
+
+            object result = command.ExecuteScalar();
+
+            SqlHelper.Close();
+
+            return result;
+        }
 
 
         //private static void AssignParameterValues(SqlParameter[] commandParameters, object[] parameterValues)

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.Extensions.Logging;
+using Maklak.Service.Data;
 
 namespace Maklak.Service 
 {
@@ -28,9 +29,8 @@ namespace Maklak.Service
 		{
 			AuthenticateResponse response = new AuthenticateResponse();
 			response.IsAuthenticated = false;
-
-			if (request.Login == "1")
-				response.IsAuthenticated = true;
+			
+			response.IsAuthenticated = Auth.GetUser(request.Login, request.Password);
 
 			return Task.FromResult(response);
 		}
@@ -40,8 +40,7 @@ namespace Maklak.Service
 			RegisterResponse response = new RegisterResponse();
 			response.IsAuthenticated = false;
 
-			if (request.Login == "1")
-				response.IsAuthenticated = true;
+			response.IsAuthenticated = Auth.RegisterUser(request.Login, request.Password);
 
 			return Task.FromResult(response);
 		}
