@@ -41,6 +41,9 @@ namespace Maklak.Client.Web.Controls.Auth
         {
             AppAuthenticationStateProvider authStateProvider = this.AuthenticationStateProvider as AppAuthenticationStateProvider;
             authStateProvider.UserName = UserLogin;
+            authStateProvider.UserPassword = UserPassword;
+            authStateProvider.IsRegister = false;
+
             AuthenticationState authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
             if (!authState.User.Identity.IsAuthenticated)

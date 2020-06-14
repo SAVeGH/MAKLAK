@@ -39,6 +39,7 @@ namespace Maklak.Client.Web.Services
 		private ClaimsPrincipal RegisterUser()
 		{
 			ClaimsIdentity identity = null;
+			this.ErrorMessage = string.Empty;
 
 			if (string.IsNullOrEmpty(UserName))
 			{
@@ -66,6 +67,7 @@ namespace Maklak.Client.Web.Services
 		private ClaimsPrincipal AuthenticateUser() 
 		{
 			ClaimsIdentity identity = null;
+			this.ErrorMessage = string.Empty;
 
 			if (string.IsNullOrEmpty(UserName))
 			{

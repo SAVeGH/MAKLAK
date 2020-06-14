@@ -14,9 +14,16 @@ namespace Maklak.Service.Data
 			IDbCommand command = SqlHelper.GetDbCommand("sp_RegisterUser");
 
 			command.AddInParameter("@UserName", DbType.String, 250, userName);
-			command.AddInParameter("@UserPassword", DbType.String, 50, userPassword);			
+			command.AddInParameter("@UserPassword", DbType.String, 50, userPassword);
 
-			return SqlHelper.ExecuteScalar(command) != DBNull.Value;
+			object userIdObject = SqlHelper.ExecuteScalar(command);
+
+			if (userIdObject == null)
+				return false;
+
+			int userId = userIdObject != DBNull.Value ? Convert.ToInt32(userIdObject) : 0;
+
+			return userId != 0;
 		}
 
 		public static bool GetUser(string userName, string userPassword)
@@ -26,7 +33,14 @@ namespace Maklak.Service.Data
 			command.AddInParameter("@UserName", DbType.String, 250, userName);
 			command.AddInParameter("@UserPassword", DbType.String, 50, userPassword);
 
-			return SqlHelper.ExecuteScalar(command) != DBNull.Value;
+			object userIdObject = SqlHelper.ExecuteScalar(command);
+
+			if (userIdObject == null)
+				return false;
+
+			int userId = userIdObject != DBNull.Value ? Convert.ToInt32(userIdObject) : 0;
+
+			return userId != 0;
 		}
 	}
 }
