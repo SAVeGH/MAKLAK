@@ -65,12 +65,10 @@
 .mainSplitter {
 	grid-template-columns: 350px 1fr;
 }
-.searchWrapper {
-	/*display: grid;*/
+.searchWrapper {	
 	grid-template-columns: 300px 1fr;
 }
 
-.searchPageMain {
-	/*display: flex;*/
+.searchPageMain {	
 	flex-direction: column;
 }
