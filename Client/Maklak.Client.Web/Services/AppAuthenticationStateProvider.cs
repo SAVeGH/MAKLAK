@@ -15,9 +15,9 @@ namespace Maklak.Client.Web.Services
 	{		
 		grpcProxy serviceProxy;
 
-		public AppAuthenticationStateProvider(grpcProxy proxy /*from DI container*/) 
+		public AppAuthenticationStateProvider(grpcProxy srvProxy /*from DI container*/) 
 		{
-			serviceProxy = proxy;
+			serviceProxy = srvProxy;
 		}
 		public override Task<AuthenticationState> GetAuthenticationStateAsync()
 		{

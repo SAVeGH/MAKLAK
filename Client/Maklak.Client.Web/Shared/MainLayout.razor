@@ -2,22 +2,23 @@
 @inherits LayoutComponentBase
 
 
-<div class="grid mainSplitter">
+<div class="fullScreen">
 
-	<div class="flex flexColumn">
+	<div class="flexColumn">
 		<div class="titleCell">Title</div>
 		<div class="navBarCell">
 			<NavMenu />
 		</div>
 	</div>
 
-	<div class="flex flexColumn">
-		<div class="contentTopCell">
+	<div class="flexColumn">
+		<div class="contentTopCell">			
 
-			<LoginControl/>
-			
+			<LoginControl />
+
 		</div>
-		<div class="contentCell">
+		
+		<div class="contentCell" >
 			@Body
 		</div>
 	</div>

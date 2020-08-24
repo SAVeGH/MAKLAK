@@ -17,31 +17,88 @@
 	position: fixed;
 	top: 100px;
 	left: 0;
-	width: 350px;
 	bottom: 0px;
+	height: 100%;
+	width: 350px;
 	background: lightgrey;
 }
-
-.contentTopCell {
-	position: fixed;
-	top: 0;
-	left: 350px;
-	right: 0px;
-	height: 100px;
-	display: flex; 
-	justify-content: flex-end;
-	background-color: bisque;
-}
-
 .contentCell {
 	position: fixed;
 	top: 100px;
 	left: 350px;
 	bottom: 0;
 	right: 0;
-	overflow: auto;
+	overflow: hidden;
 	background-color: linen;
 }
+
+.contentCellBase {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	background-color: linen;
+}
+
+.contentCellTitle {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0;
+	height: 50px;
+	background-color: linen;
+}
+
+.contentCellData {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	right: 0;
+	bottom: 0;
+	background-color: linen;
+}
+
+.contentCellFilter {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0;
+	bottom: 0;
+	background-color: linen;
+}
+
+.contentCellContent {
+	position: absolute;
+	top: 0px;
+	left: 350px;
+	right: 0;
+	bottom: 0;
+	background-color: linen;
+	overflow:auto;
+}
+
+.contentBlock {
+	position: relative;
+	height: 400px;
+	left:0px;
+	right: 50px;
+	background-color: red;
+}		
+
+.contentTopCell {
+	position: fixed;
+	top: 0;
+	left: 350px;
+	right: 0px;
+	height: 100px;	
+	display: flex; 
+	justify-content: flex-end;
+	background-color: bisque;
+}
+
+
 
 #blazor-error-ui {
 	display: none;
@@ -55,20 +112,46 @@
 }
 
 .flexColumn {
+	display: flex;
 	flex-direction: column;
 }
 
 .flexRow {
-	flex-direction:row;
+	display: flex;
+	flex-direction: row;
 }
 
 .mainSplitter {
 	grid-template-columns: 350px 1fr;
 }
 .searchWrapper {	
-	grid-template-columns: 300px 1fr;
+	grid-template-columns: 350px 1fr;
 }
 
 .searchPageMain {	
 	flex-direction: column;
+}
+
+.fullScreen {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+.border {
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+	
+}
+
+.filterBase {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 350px;
+	bottom: 0px;
+	overflow:auto;
 }

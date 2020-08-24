@@ -14,6 +14,7 @@ using Maklak.Client.Web.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 
 using Maklak.Client.Service;
+using Maklak.Client.Web.Models;
 
 namespace Maklak.Client.Web
 {
@@ -43,7 +44,8 @@ namespace Maklak.Client.Web
 			services.AddSingleton<LoginNotificator>();
 			services.AddSingleton<grpcProxy>();
 			services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
-			
+			services.AddSingleton<StateModel, StateModel>();
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
