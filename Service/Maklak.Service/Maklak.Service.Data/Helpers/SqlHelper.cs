@@ -39,9 +39,11 @@ namespace Maklak.Service.Data.Helpers
 
         static SqlHelper()
         {
-            //string connectStr = System.Configuration.ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
+            //string connectStr1 = System.Configuration.ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
 
-            string connectStr = @"Data Source=BOOK\SQLEXPRESS; Initial Catalog=Srv; User ID=sa;Password=saP@s$w0rd;";
+            //var y = System.Configuration.ConfigurationManager.AppSettings.AllKeys;
+
+            string connectStr = System.Configuration.ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString; //@"Data Source=DESKTOP-BV0EAT6\SQLEXPRESS; Initial Catalog=Srv; User ID=sa;Password=saP@ssw0rd;";
             sqlConnect = new SqlConnection(connectStr);
             lockObject = new Object();
         }
