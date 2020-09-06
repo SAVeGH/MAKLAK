@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Maklak.Client.DataSets\Maklak.Client.DataSets.csproj" />
     <ProjectReference Include="..\Maklak.Client.Service\Maklak.Client.Service.csproj" />
   </ItemGroup>
 

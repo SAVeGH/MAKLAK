@@ -1,16 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
-<xs:schema id="FilterDS" 
-                  targetNamespace="http://tempuri.org/FilterDS.xsd"
-                  elementFormDefault="qualified"
-                  attributeFormDefault="qualified"
-                  xmlns="http://tempuri.org/FilterDS.xsd"
-                  xmlns:mstns="http://tempuri.org/FilterDS.xsd"
-                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                  xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-                  xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
-    <xs:element name="FilterDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true">
-        <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded"></xs:choice>
-        </xs:complexType>
-    </xs:element>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FilterDS" targetNamespace="http://tempuri.org/FilterDS.xsd" xmlns:mstns="http://tempuri.org/FilterDS.xsd" xmlns="http://tempuri.org/FilterDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FilterDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FilterDS" msprop:Generator_UserDSName="FilterDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SearchInput" msprop:Generator_TableClassName="SearchInputDataTable" msprop:Generator_TableVarName="tableSearchInput" msprop:Generator_TablePropName="SearchInput" msprop:Generator_RowDeletingName="SearchInputRowDeleting" msprop:Generator_RowChangingName="SearchInputRowChanging" msprop:Generator_RowEvHandlerName="SearchInputRowChangeEventHandler" msprop:Generator_RowDeletedName="SearchInputRowDeleted" msprop:Generator_UserTableName="SearchInput" msprop:Generator_RowChangedName="SearchInputRowChanged" msprop:Generator_RowEvArgName="SearchInputRowChangeEvent" msprop:Generator_RowClassName="SearchInputRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InputName" msprop:Generator_ColumnVarNameInTable="columnInputName" msprop:Generator_ColumnPropNameInRow="InputName" msprop:Generator_ColumnPropNameInTable="InputNameColumn" msprop:Generator_UserColumnName="InputName" type="xs:string" minOccurs="0" />
+              <xs:element name="InputValue" msprop:Generator_ColumnVarNameInTable="columnInputValue" msprop:Generator_ColumnPropNameInRow="InputValue" msprop:Generator_ColumnPropNameInTable="InputValueColumn" msprop:Generator_UserColumnName="InputValue" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SearchSelection" msprop:Generator_TableClassName="SearchSelectionDataTable" msprop:Generator_TableVarName="tableSearchSelection" msprop:Generator_TablePropName="SearchSelection" msprop:Generator_RowDeletingName="SearchSelectionRowDeleting" msprop:Generator_RowChangingName="SearchSelectionRowChanging" msprop:Generator_RowEvHandlerName="SearchSelectionRowChangeEventHandler" msprop:Generator_RowDeletedName="SearchSelectionRowDeleted" msprop:Generator_UserTableName="SearchSelection" msprop:Generator_RowChangedName="SearchSelectionRowChanged" msprop:Generator_RowEvArgName="SearchSelectionRowChangeEvent" msprop:Generator_RowClassName="SearchSelectionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InputName" msprop:Generator_ColumnVarNameInTable="columnInputName" msprop:Generator_ColumnPropNameInRow="InputName" msprop:Generator_ColumnPropNameInTable="InputNameColumn" msprop:Generator_UserColumnName="InputName" type="xs:string" minOccurs="0" />
+              <xs:element name="ValueId" msprop:Generator_ColumnVarNameInTable="columnValueId" msprop:Generator_ColumnPropNameInRow="ValueId" msprop:Generator_ColumnPropNameInTable="ValueIdColumn" msprop:Generator_UserColumnName="ValueId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

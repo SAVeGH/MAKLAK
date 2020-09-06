@@ -14,40 +14,40 @@ namespace Maklak.Client.Web.Pages
 		public StateModel StateStorage { get; set; }
 
 
-		protected override void OnInitialized()
-		{
-			base.OnInitialized();
-
-			//if (string.IsNullOrEmpty(SID))
-			//{
-			//	System.Guid.NewGuid().ToString();
-			//	StateStorage.SID = System.Guid.NewGuid().ToString();
-			//	SID = StateStorage.SID;
-			//}
-		}
-
-		protected override void OnParametersSet()
-		{
-			base.OnParametersSet();
-
-			if (string.IsNullOrEmpty(SID))
-			{
-				System.Guid.NewGuid().ToString();
-				StateStorage.SID = System.Guid.NewGuid().ToString();
-				SID = StateStorage.SID;
-			}
-		}
-
-		//protected override Task OnAfterRenderAsync(bool firstRender)
+		//protected override void OnInitialized()
 		//{
-		//	return base.OnAfterRenderAsync(firstRender);
+		//	base.OnInitialized();
+
+		//	//if (string.IsNullOrEmpty(SID))
+		//	//{
+		//	//	System.Guid.NewGuid().ToString();
+		//	//	StateStorage.SID = System.Guid.NewGuid().ToString();
+		//	//	SID = StateStorage.SID;
+		//	//}
 		//}
-		[Parameter]
-		public string SID 
-		{
-			get; 			
-			set;
-		}
+
+		//protected override void OnParametersSet()
+		//{
+		//	base.OnParametersSet();
+
+		//	if (string.IsNullOrEmpty(SID))
+		//	{
+		//		System.Guid.NewGuid().ToString();
+		//		StateStorage.SID = System.Guid.NewGuid().ToString();
+		//		SID = StateStorage.SID;
+		//	}
+		//}
+
+		////protected override Task OnAfterRenderAsync(bool firstRender)
+		////{
+		////	return base.OnAfterRenderAsync(firstRender);
+		////}
+		//[Parameter]
+		//public string SID 
+		//{
+		//	get; 			
+		//	set;
+		//}
 
 
 	}

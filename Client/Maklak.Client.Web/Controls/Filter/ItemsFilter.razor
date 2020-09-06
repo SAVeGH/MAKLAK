@@ -20,22 +20,22 @@
 			</AuthorizeView>
 
 			<div>
-				<input type="search"  @bind="SearchText" @bind:event="oninput" />  @*@oninput="Search_OnInput"*@
+				<input type="search" @bind="SearchText" @bind:event="oninput" />  @*@oninput="Search_OnInput"*@
 			</div>
 
 			@*<div style="background-color: lightgray; height:40px">selection area</div>*@
 
 			<div style="background-color:aliceblue; height:120px">
-			<ul>
-			@foreach(string str in this.SearchList) 
-			{
-				<li>@str</li>
-			}
+				<ul>
+					@foreach (string str in this.SearchList)
+					{
+						<li>@str</li>
+					}
 				</ul>
 			</div>
 
 
 		</div>
-	</fieldset>
+			</fieldset>
 
-</div>
+		</div>
