@@ -13,6 +13,9 @@ namespace Maklak.Client.Web.Models
 	public class FilterModel : ComponentBase // component inherits from this class. To do it  - class must be inherited from ComponentBase
 	{
 		[Inject]
+		public StateModel StateStorage { get; set; }
+
+		[Inject]
 		private grpcProxy serviceProxy { get; set; }
 
 		//[Parameter]
@@ -28,6 +31,8 @@ namespace Maklak.Client.Web.Models
 			{ 
 				searchText = value;
 
+				StateStorage.AddSearchValue(this.ItemsFilterType, this.SearchText);
+
 				List<string> list = this.SearchList.Where(s => s == this.SearchText).ToList(); //new List<string>() { "3", "4", "5" };
 
 				this.SearchList = list;
@@ -38,6 +43,11 @@ namespace Maklak.Client.Web.Models
 
 		[Parameter]
 		public List<string> SearchList { get; set; }
+
+		public string ItemsFilterType 
+		{
+			get; set;
+		}
 
 		protected override void OnInitialized()
 		{

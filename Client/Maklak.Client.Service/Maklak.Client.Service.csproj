@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Maklak.Client.DataSets\Maklak.Client.DataSets.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Protobuf Include="..\..\Protos\greet.proto">
       <Link>Protos\greet.proto</Link>
     </Protobuf>

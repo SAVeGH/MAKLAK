@@ -44,5 +44,10 @@ namespace Maklak.Service
 
 			return Task.FromResult(response);
 		}
+
+		public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
+		{
+			return base.Search(request, context);
+		}
 	}
 }

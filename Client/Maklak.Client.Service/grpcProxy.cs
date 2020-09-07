@@ -5,6 +5,9 @@ using Maklak.Service; // from proto file
 using Grpc.Net.Client;
 using System.Net.Http;
 
+using Maklak.Client.DataSets;
+using System.Linq;
+
 namespace Maklak.Client.Service
 {
 	public class grpcProxy
@@ -66,6 +69,15 @@ namespace Maklak.Client.Service
 			RegisterRequest request = new RegisterRequest() { Login = login, Password = (password ?? string.Empty) };
 			RegisterResponse response = client.RegisterUser(request);
 			return response.IsAuthenticated;
+		}
+
+		public Maklak.Client.DataSets.FilterDS Search(Maklak.Client.DataSets.FilterDS filterData)
+		{
+			SearchRequest request = new SearchRequest();
+			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
+			request.SerchInput.AddRange(filterData.SearchInput.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
+			SearchResponse response = client.Search(request);
+			return filterData;
 		}
 	}
 }

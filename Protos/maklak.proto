@@ -11,6 +11,9 @@ service Maklak {
 
   rpc AuthenticateUser (AuthenticateRequest) returns (AuthenticateResponse);
   rpc RegisterUser (RegisterRequest) returns (RegisterResponse);
+
+  rpc Search (SearchRequest) returns (SearchResponse);
+  
 }
 
 // The request message containing the user's name.
@@ -37,4 +40,22 @@ message RegisterRequest{
 }
 message RegisterResponse{
     bool IsAuthenticated = 1;
+}
+
+message SearchRequest{
+    message InputData{
+        //map<string, string> values = 1;
+        string InputType = 1;
+        string InputValue = 2;
+    }
+
+    repeated InputData SerchInput = 1;
+}
+
+message SearchResponse{
+    message OutputData{
+        map<string, string> values = 1;
+    }
+
+    repeated OutputData output = 1;
 }

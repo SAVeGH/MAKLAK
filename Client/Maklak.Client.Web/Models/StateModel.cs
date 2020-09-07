@@ -24,11 +24,17 @@ namespace Maklak.Client.Web.Models
 
 		public void AddSearchValue(string inputName, string inputValue) 
 		{
-			FilterDS.SearchInputRow row = filterDS.SearchInput.NewSearchInputRow();
-			row.InputName = inputName;
-			row.InputValue = inputValue;
+			FilterDS.SearchInputRow row = filterDS.SearchInput.FirstOrDefault(r => r.InputName == inputName); 
 
-			filterDS.SearchInput.AddSearchInputRow(row);
+			if (row == null)
+			{
+				row = filterDS.SearchInput.NewSearchInputRow();
+				row.InputName = inputName;
+				filterDS.SearchInput.AddSearchInputRow(row);
+			}
+			
+			row.InputValue = inputValue;
+			
 		}
 
 	}
