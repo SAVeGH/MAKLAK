@@ -77,6 +77,18 @@ namespace Maklak.Client.Service
 			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
 			request.SerchInput.AddRange(filterData.SearchInput.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
 			SearchResponse response = client.Search(request);
+
+			filterData.SearchOutput.Clear();
+
+			foreach (SearchResponse.Types.OutputData item in response.Items) 
+			{
+				FilterDS.SearchOutputRow row = filterData.SearchOutput.NewSearchOutputRow();
+
+				row.ItemId = item.ItemId;
+				row.ItemValue = item.ItemValue;
+
+				filterData.SearchOutput.AddSearchOutputRow(row);
+			}
 			return filterData;
 		}
 	}

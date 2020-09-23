@@ -54,8 +54,9 @@ message SearchRequest{
 
 message SearchResponse{
     message OutputData{
-        map<string, string> values = 1;
+        int32 ItemId = 1;  
+        string ItemValue = 2;
     }
 
-    repeated OutputData output = 1;
+    repeated OutputData Items = 1;
 }

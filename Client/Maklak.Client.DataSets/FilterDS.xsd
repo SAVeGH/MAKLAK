@@ -12,7 +12,7 @@
   <xs:element name="FilterDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FilterDS" msprop:Generator_UserDSName="FilterDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SearchInput" msprop:Generator_TableClassName="SearchInputDataTable" msprop:Generator_TableVarName="tableSearchInput" msprop:Generator_TablePropName="SearchInput" msprop:Generator_RowDeletingName="SearchInputRowDeleting" msprop:Generator_RowChangingName="SearchInputRowChanging" msprop:Generator_RowEvHandlerName="SearchInputRowChangeEventHandler" msprop:Generator_RowDeletedName="SearchInputRowDeleted" msprop:Generator_UserTableName="SearchInput" msprop:Generator_RowChangedName="SearchInputRowChanged" msprop:Generator_RowEvArgName="SearchInputRowChangeEvent" msprop:Generator_RowClassName="SearchInputRow">
+        <xs:element name="SearchInput" msprop:Generator_TableClassName="SearchInputDataTable" msprop:Generator_TableVarName="tableSearchInput" msprop:Generator_RowChangedName="SearchInputRowChanged" msprop:Generator_TablePropName="SearchInput" msprop:Generator_RowDeletingName="SearchInputRowDeleting" msprop:Generator_RowChangingName="SearchInputRowChanging" msprop:Generator_RowEvHandlerName="SearchInputRowChangeEventHandler" msprop:Generator_RowDeletedName="SearchInputRowDeleted" msprop:Generator_RowClassName="SearchInputRow" msprop:Generator_UserTableName="SearchInput" msprop:Generator_RowEvArgName="SearchInputRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="InputName" msprop:Generator_ColumnVarNameInTable="columnInputName" msprop:Generator_ColumnPropNameInRow="InputName" msprop:Generator_ColumnPropNameInTable="InputNameColumn" msprop:Generator_UserColumnName="InputName" type="xs:string" minOccurs="0" />
@@ -20,11 +20,19 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SearchSelection" msprop:Generator_TableClassName="SearchSelectionDataTable" msprop:Generator_TableVarName="tableSearchSelection" msprop:Generator_TablePropName="SearchSelection" msprop:Generator_RowDeletingName="SearchSelectionRowDeleting" msprop:Generator_RowChangingName="SearchSelectionRowChanging" msprop:Generator_RowEvHandlerName="SearchSelectionRowChangeEventHandler" msprop:Generator_RowDeletedName="SearchSelectionRowDeleted" msprop:Generator_UserTableName="SearchSelection" msprop:Generator_RowChangedName="SearchSelectionRowChanged" msprop:Generator_RowEvArgName="SearchSelectionRowChangeEvent" msprop:Generator_RowClassName="SearchSelectionRow">
+        <xs:element name="SearchSelection" msprop:Generator_TableClassName="SearchSelectionDataTable" msprop:Generator_TableVarName="tableSearchSelection" msprop:Generator_RowChangedName="SearchSelectionRowChanged" msprop:Generator_TablePropName="SearchSelection" msprop:Generator_RowDeletingName="SearchSelectionRowDeleting" msprop:Generator_RowChangingName="SearchSelectionRowChanging" msprop:Generator_RowEvHandlerName="SearchSelectionRowChangeEventHandler" msprop:Generator_RowDeletedName="SearchSelectionRowDeleted" msprop:Generator_RowClassName="SearchSelectionRow" msprop:Generator_UserTableName="SearchSelection" msprop:Generator_RowEvArgName="SearchSelectionRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="InputName" msprop:Generator_ColumnVarNameInTable="columnInputName" msprop:Generator_ColumnPropNameInRow="InputName" msprop:Generator_ColumnPropNameInTable="InputNameColumn" msprop:Generator_UserColumnName="InputName" type="xs:string" minOccurs="0" />
               <xs:element name="ValueId" msprop:Generator_ColumnVarNameInTable="columnValueId" msprop:Generator_ColumnPropNameInRow="ValueId" msprop:Generator_ColumnPropNameInTable="ValueIdColumn" msprop:Generator_UserColumnName="ValueId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SearchOutput" msprop:Generator_TableClassName="SearchOutputDataTable" msprop:Generator_TableVarName="tableSearchOutput" msprop:Generator_TablePropName="SearchOutput" msprop:Generator_RowDeletingName="SearchOutputRowDeleting" msprop:Generator_RowChangingName="SearchOutputRowChanging" msprop:Generator_RowEvHandlerName="SearchOutputRowChangeEventHandler" msprop:Generator_RowDeletedName="SearchOutputRowDeleted" msprop:Generator_UserTableName="SearchOutput" msprop:Generator_RowChangedName="SearchOutputRowChanged" msprop:Generator_RowEvArgName="SearchOutputRowChangeEvent" msprop:Generator_RowClassName="SearchOutputRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ItemId" msprop:Generator_ColumnVarNameInTable="columnItemId" msprop:Generator_ColumnPropNameInRow="ItemId" msprop:Generator_ColumnPropNameInTable="ItemIdColumn" msprop:Generator_UserColumnName="ItemId" type="xs:int" minOccurs="0" />
+              <xs:element name="ItemValue" msprop:Generator_ColumnVarNameInTable="columnItemValue" msprop:Generator_ColumnPropNameInRow="ItemValue" msprop:Generator_ColumnPropNameInTable="ItemValueColumn" msprop:Generator_UserColumnName="ItemValue" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

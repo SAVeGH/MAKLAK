@@ -33,9 +33,11 @@ namespace Maklak.Client.Web.Models
 
 				StateStorage.AddSearchValue(this.ItemsFilterType, this.SearchText);
 
-				List<string> list = this.SearchList.Where(s => s == this.SearchText).ToList(); //new List<string>() { "3", "4", "5" };
+				serviceProxy.Search(StateStorage.SearchData);
 
-				this.SearchList = list;
+				//List<string> list = this.SearchList.Where(s => s == this.SearchText).ToList(); //new List<string>() { "3", "4", "5" };
+
+				//this.SearchList = list;
 
 				//this.StateHasChanged();
 			}
