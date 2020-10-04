@@ -78,16 +78,17 @@ namespace Maklak.Client.Service
 			request.SerchInput.AddRange(filterData.SearchInput.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
 			SearchResponse response = client.Search(request);
 
-			filterData.SearchOutput.Clear();
+			filterData.Items.Clear();
 
 			foreach (SearchResponse.Types.OutputData item in response.Items) 
 			{
-				FilterDS.SearchOutputRow row = filterData.SearchOutput.NewSearchOutputRow();
+				FilterDS.ItemsRow row = filterData.Items.NewItemsRow();
 
 				row.ItemId = item.ItemId;
 				row.ItemValue = item.ItemValue;
+				row.Name = item.Name;
 
-				filterData.SearchOutput.AddSearchOutputRow(row);
+				filterData.Items.AddItemsRow(row);
 			}
 			return filterData;
 		}

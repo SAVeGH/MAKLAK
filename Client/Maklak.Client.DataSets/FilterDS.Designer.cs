@@ -28,7 +28,7 @@ namespace Maklak.Client.DataSets {
         
         private SearchSelectionDataTable tableSearchSelection;
         
-        private SearchOutputDataTable tableSearchOutput;
+        private ItemsDataTable tableItems;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -64,8 +64,8 @@ namespace Maklak.Client.DataSets {
                 if ((ds.Tables["SearchSelection"] != null)) {
                     base.Tables.Add(new SearchSelectionDataTable(ds.Tables["SearchSelection"]));
                 }
-                if ((ds.Tables["SearchOutput"] != null)) {
-                    base.Tables.Add(new SearchOutputDataTable(ds.Tables["SearchOutput"]));
+                if ((ds.Tables["Items"] != null)) {
+                    base.Tables.Add(new ItemsDataTable(ds.Tables["Items"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -109,9 +109,9 @@ namespace Maklak.Client.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SearchOutputDataTable SearchOutput {
+        public ItemsDataTable Items {
             get {
-                return this.tableSearchOutput;
+                return this.tableItems;
             }
         }
         
@@ -188,8 +188,8 @@ namespace Maklak.Client.DataSets {
                 if ((ds.Tables["SearchSelection"] != null)) {
                     base.Tables.Add(new SearchSelectionDataTable(ds.Tables["SearchSelection"]));
                 }
-                if ((ds.Tables["SearchOutput"] != null)) {
-                    base.Tables.Add(new SearchOutputDataTable(ds.Tables["SearchOutput"]));
+                if ((ds.Tables["Items"] != null)) {
+                    base.Tables.Add(new ItemsDataTable(ds.Tables["Items"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -236,10 +236,10 @@ namespace Maklak.Client.DataSets {
                     this.tableSearchSelection.InitVars();
                 }
             }
-            this.tableSearchOutput = ((SearchOutputDataTable)(base.Tables["SearchOutput"]));
+            this.tableItems = ((ItemsDataTable)(base.Tables["Items"]));
             if ((initTable == true)) {
-                if ((this.tableSearchOutput != null)) {
-                    this.tableSearchOutput.InitVars();
+                if ((this.tableItems != null)) {
+                    this.tableItems.InitVars();
                 }
             }
         }
@@ -256,8 +256,8 @@ namespace Maklak.Client.DataSets {
             base.Tables.Add(this.tableSearchInput);
             this.tableSearchSelection = new SearchSelectionDataTable();
             base.Tables.Add(this.tableSearchSelection);
-            this.tableSearchOutput = new SearchOutputDataTable();
-            base.Tables.Add(this.tableSearchOutput);
+            this.tableItems = new ItemsDataTable();
+            base.Tables.Add(this.tableItems);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -274,7 +274,7 @@ namespace Maklak.Client.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeSearchOutput() {
+        private bool ShouldSerializeItems() {
             return false;
         }
         
@@ -340,7 +340,7 @@ namespace Maklak.Client.DataSets {
         public delegate void SearchSelectionRowChangeEventHandler(object sender, SearchSelectionRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void SearchOutputRowChangeEventHandler(object sender, SearchOutputRowChangeEvent e);
+        public delegate void ItemsRowChangeEventHandler(object sender, ItemsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -869,7 +869,9 @@ namespace Maklak.Client.DataSets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SearchOutputDataTable : global::System.Data.TypedTableBase<SearchOutputRow> {
+        public partial class ItemsDataTable : global::System.Data.TypedTableBase<ItemsRow> {
+            
+            private global::System.Data.DataColumn columnName;
             
             private global::System.Data.DataColumn columnItemId;
             
@@ -877,8 +879,8 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SearchOutputDataTable() {
-                this.TableName = "SearchOutput";
+            public ItemsDataTable() {
+                this.TableName = "Items";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -886,7 +888,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal SearchOutputDataTable(global::System.Data.DataTable table) {
+            internal ItemsDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -903,9 +905,17 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected SearchOutputDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ItemsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NameColumn {
+                get {
+                    return this.columnName;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -935,46 +945,47 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SearchOutputRow this[int index] {
+            public ItemsRow this[int index] {
                 get {
-                    return ((SearchOutputRow)(this.Rows[index]));
+                    return ((ItemsRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SearchOutputRowChangeEventHandler SearchOutputRowChanging;
+            public event ItemsRowChangeEventHandler ItemsRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SearchOutputRowChangeEventHandler SearchOutputRowChanged;
+            public event ItemsRowChangeEventHandler ItemsRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SearchOutputRowChangeEventHandler SearchOutputRowDeleting;
+            public event ItemsRowChangeEventHandler ItemsRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SearchOutputRowChangeEventHandler SearchOutputRowDeleted;
+            public event ItemsRowChangeEventHandler ItemsRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddSearchOutputRow(SearchOutputRow row) {
+            public void AddItemsRow(ItemsRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SearchOutputRow AddSearchOutputRow(int ItemId, string ItemValue) {
-                SearchOutputRow rowSearchOutputRow = ((SearchOutputRow)(this.NewRow()));
+            public ItemsRow AddItemsRow(string Name, int ItemId, string ItemValue) {
+                ItemsRow rowItemsRow = ((ItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        Name,
                         ItemId,
                         ItemValue};
-                rowSearchOutputRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSearchOutputRow);
-                return rowSearchOutputRow;
+                rowItemsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowItemsRow);
+                return rowItemsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SearchOutputDataTable cln = ((SearchOutputDataTable)(base.Clone()));
+                ItemsDataTable cln = ((ItemsDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -982,12 +993,13 @@ namespace Maklak.Client.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SearchOutputDataTable();
+                return new ItemsDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
+                this.columnName = base.Columns["Name"];
                 this.columnItemId = base.Columns["ItemId"];
                 this.columnItemValue = base.Columns["ItemValue"];
             }
@@ -995,6 +1007,8 @@ namespace Maklak.Client.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
+                this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnName);
                 this.columnItemId = new global::System.Data.DataColumn("ItemId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnItemId);
                 this.columnItemValue = new global::System.Data.DataColumn("ItemValue", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1003,28 +1017,28 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SearchOutputRow NewSearchOutputRow() {
-                return ((SearchOutputRow)(this.NewRow()));
+            public ItemsRow NewItemsRow() {
+                return ((ItemsRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SearchOutputRow(builder);
+                return new ItemsRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SearchOutputRow);
+                return typeof(ItemsRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SearchOutputRowChanged != null)) {
-                    this.SearchOutputRowChanged(this, new SearchOutputRowChangeEvent(((SearchOutputRow)(e.Row)), e.Action));
+                if ((this.ItemsRowChanged != null)) {
+                    this.ItemsRowChanged(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1032,8 +1046,8 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SearchOutputRowChanging != null)) {
-                    this.SearchOutputRowChanging(this, new SearchOutputRowChangeEvent(((SearchOutputRow)(e.Row)), e.Action));
+                if ((this.ItemsRowChanging != null)) {
+                    this.ItemsRowChanging(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1041,8 +1055,8 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SearchOutputRowDeleted != null)) {
-                    this.SearchOutputRowDeleted(this, new SearchOutputRowChangeEvent(((SearchOutputRow)(e.Row)), e.Action));
+                if ((this.ItemsRowDeleted != null)) {
+                    this.ItemsRowDeleted(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1050,14 +1064,14 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SearchOutputRowDeleting != null)) {
-                    this.SearchOutputRowDeleting(this, new SearchOutputRowChangeEvent(((SearchOutputRow)(e.Row)), e.Action));
+                if ((this.ItemsRowDeleting != null)) {
+                    this.ItemsRowDeleting(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveSearchOutputRow(SearchOutputRow row) {
+            public void RemoveItemsRow(ItemsRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1084,7 +1098,7 @@ namespace Maklak.Client.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SearchOutputDataTable";
+                attribute2.FixedValue = "ItemsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1270,15 +1284,31 @@ namespace Maklak.Client.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SearchOutputRow : global::System.Data.DataRow {
+        public partial class ItemsRow : global::System.Data.DataRow {
             
-            private SearchOutputDataTable tableSearchOutput;
+            private ItemsDataTable tableItems;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal SearchOutputRow(global::System.Data.DataRowBuilder rb) : 
+            internal ItemsRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSearchOutput = ((SearchOutputDataTable)(this.Table));
+                this.tableItems = ((ItemsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Name {
+                get {
+                    try {
+                        return ((string)(this[this.tableItems.NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.NameColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1286,14 +1316,14 @@ namespace Maklak.Client.DataSets {
             public int ItemId {
                 get {
                     try {
-                        return ((int)(this[this.tableSearchOutput.ItemIdColumn]));
+                        return ((int)(this[this.tableItems.ItemIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ItemId\' in table \'SearchOutput\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ItemId\' in table \'Items\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSearchOutput.ItemIdColumn] = value;
+                    this[this.tableItems.ItemIdColumn] = value;
                 }
             }
             
@@ -1302,39 +1332,51 @@ namespace Maklak.Client.DataSets {
             public string ItemValue {
                 get {
                     try {
-                        return ((string)(this[this.tableSearchOutput.ItemValueColumn]));
+                        return ((string)(this[this.tableItems.ItemValueColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ItemValue\' in table \'SearchOutput\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ItemValue\' in table \'Items\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSearchOutput.ItemValueColumn] = value;
+                    this[this.tableItems.ItemValueColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsNameNull() {
+                return this.IsNull(this.tableItems.NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetNameNull() {
+                this[this.tableItems.NameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsItemIdNull() {
-                return this.IsNull(this.tableSearchOutput.ItemIdColumn);
+                return this.IsNull(this.tableItems.ItemIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetItemIdNull() {
-                this[this.tableSearchOutput.ItemIdColumn] = global::System.Convert.DBNull;
+                this[this.tableItems.ItemIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsItemValueNull() {
-                return this.IsNull(this.tableSearchOutput.ItemValueColumn);
+                return this.IsNull(this.tableItems.ItemValueColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetItemValueNull() {
-                this[this.tableSearchOutput.ItemValueColumn] = global::System.Convert.DBNull;
+                this[this.tableItems.ItemValueColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1410,22 +1452,22 @@ namespace Maklak.Client.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class SearchOutputRowChangeEvent : global::System.EventArgs {
+        public class ItemsRowChangeEvent : global::System.EventArgs {
             
-            private SearchOutputRow eventRow;
+            private ItemsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SearchOutputRowChangeEvent(SearchOutputRow row, global::System.Data.DataRowAction action) {
+            public ItemsRowChangeEvent(ItemsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SearchOutputRow Row {
+            public ItemsRow Row {
                 get {
                     return this.eventRow;
                 }

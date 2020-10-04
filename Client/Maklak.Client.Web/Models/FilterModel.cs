@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Components; // for ComponentBase
 using Maklak.Client.Service;
-
+using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Web.Models
 {
@@ -40,11 +40,19 @@ namespace Maklak.Client.Web.Models
 				//this.SearchList = list;
 
 				//this.StateHasChanged();
+
+				//List<string> list = new List<string>();
+
+				//foreach () { }
+
 			}
 		}
 
 		[Parameter]
 		public List<string> SearchList { get; set; }
+
+		//[Parameter]
+		public FilterDS.ItemsDataTable SearchResult { get { return StateStorage.SearchData.Items; } }
 
 		public string ItemsFilterType 
 		{
@@ -55,7 +63,18 @@ namespace Maklak.Client.Web.Models
 		{
 			base.OnInitialized();
 
-			SearchList = new List<string>() {"1","2","3" };
+			//SearchList = new List<string>() {"1","2","3" };
+			FilterDS.ItemsRow row = SearchResult.NewItemsRow();
+			row.ItemId = 1;
+			row.ItemValue = "1";
+			row.Name = this.ItemsFilterType;
+			SearchResult.AddItemsRow(row);
+
+			row = SearchResult.NewItemsRow();
+			row.ItemId = 2;
+			row.ItemValue = "2";
+			row.Name = this.ItemsFilterType;
+			SearchResult.AddItemsRow(row);
 		}
 	}
 }
