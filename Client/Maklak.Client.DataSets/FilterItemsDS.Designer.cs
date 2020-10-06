@@ -20,17 +20,19 @@ namespace Maklak.Client.DataSets {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("FilterDS")]
+    [global::System.Xml.Serialization.XmlRootAttribute("FilterItemsDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class FilterDS : global::System.Data.DataSet {
+    public partial class FilterItemsDS : global::System.Data.DataSet {
         
-        private SelectionDataTable tableSelection;
+        private ItemsDataTable tableItems;
+        
+        private InputDataTable tableInput;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public FilterDS() {
+        public FilterItemsDS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +43,7 @@ namespace Maklak.Client.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected FilterDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected FilterItemsDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +56,11 @@ namespace Maklak.Client.DataSets {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Selection"] != null)) {
-                    base.Tables.Add(new SelectionDataTable(ds.Tables["Selection"]));
+                if ((ds.Tables["Items"] != null)) {
+                    base.Tables.Add(new ItemsDataTable(ds.Tables["Items"]));
+                }
+                if ((ds.Tables["Input"] != null)) {
+                    base.Tables.Add(new InputDataTable(ds.Tables["Input"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +84,19 @@ namespace Maklak.Client.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SelectionDataTable Selection {
+        public ItemsDataTable Items {
             get {
-                return this.tableSelection;
+                return this.tableItems;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public InputDataTable Input {
+            get {
+                return this.tableInput;
             }
         }
         
@@ -127,7 +142,7 @@ namespace Maklak.Client.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            FilterDS cln = ((FilterDS)(base.Clone()));
+            FilterItemsDS cln = ((FilterItemsDS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +167,11 @@ namespace Maklak.Client.DataSets {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Selection"] != null)) {
-                    base.Tables.Add(new SelectionDataTable(ds.Tables["Selection"]));
+                if ((ds.Tables["Items"] != null)) {
+                    base.Tables.Add(new ItemsDataTable(ds.Tables["Items"]));
+                }
+                if ((ds.Tables["Input"] != null)) {
+                    base.Tables.Add(new InputDataTable(ds.Tables["Input"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +206,16 @@ namespace Maklak.Client.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableSelection = ((SelectionDataTable)(base.Tables["Selection"]));
+            this.tableItems = ((ItemsDataTable)(base.Tables["Items"]));
             if ((initTable == true)) {
-                if ((this.tableSelection != null)) {
-                    this.tableSelection.InitVars();
+                if ((this.tableItems != null)) {
+                    this.tableItems.InitVars();
+                }
+            }
+            this.tableInput = ((InputDataTable)(base.Tables["Input"]));
+            if ((initTable == true)) {
+                if ((this.tableInput != null)) {
+                    this.tableInput.InitVars();
                 }
             }
         }
@@ -199,18 +223,26 @@ namespace Maklak.Client.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "FilterDS";
+            this.DataSetName = "FilterItemsDS";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/FilterDS.xsd";
+            this.Namespace = "http://tempuri.org/FilterItemsDS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableSelection = new SelectionDataTable();
-            base.Tables.Add(this.tableSelection);
+            this.tableItems = new ItemsDataTable();
+            base.Tables.Add(this.tableItems);
+            this.tableInput = new InputDataTable();
+            base.Tables.Add(this.tableInput);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeSelection() {
+        private bool ShouldSerializeItems() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializeInput() {
             return false;
         }
         
@@ -225,7 +257,7 @@ namespace Maklak.Client.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            FilterDS ds = new FilterDS();
+            FilterItemsDS ds = new FilterItemsDS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,23 +302,26 @@ namespace Maklak.Client.DataSets {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void SelectionRowChangeEventHandler(object sender, SelectionRowChangeEvent e);
+        public delegate void ItemsRowChangeEventHandler(object sender, ItemsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void InputRowChangeEventHandler(object sender, InputRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SelectionDataTable : global::System.Data.TypedTableBase<SelectionRow> {
-            
-            private global::System.Data.DataColumn columnInputName;
+        public partial class ItemsDataTable : global::System.Data.TypedTableBase<ItemsRow> {
             
             private global::System.Data.DataColumn columnItemId;
             
+            private global::System.Data.DataColumn columnItemValue;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectionDataTable() {
-                this.TableName = "Selection";
+            public ItemsDataTable() {
+                this.TableName = "Items";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -294,7 +329,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal SelectionDataTable(global::System.Data.DataTable table) {
+            internal ItemsDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -311,17 +346,9 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected SelectionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ItemsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn InputNameColumn {
-                get {
-                    return this.columnInputName;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -329,6 +356,14 @@ namespace Maklak.Client.DataSets {
             public global::System.Data.DataColumn ItemIdColumn {
                 get {
                     return this.columnItemId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ItemValueColumn {
+                get {
+                    return this.columnItemValue;
                 }
             }
             
@@ -343,46 +378,46 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectionRow this[int index] {
+            public ItemsRow this[int index] {
                 get {
-                    return ((SelectionRow)(this.Rows[index]));
+                    return ((ItemsRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectionRowChangeEventHandler SelectionRowChanging;
+            public event ItemsRowChangeEventHandler ItemsRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectionRowChangeEventHandler SelectionRowChanged;
+            public event ItemsRowChangeEventHandler ItemsRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectionRowChangeEventHandler SelectionRowDeleting;
+            public event ItemsRowChangeEventHandler ItemsRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectionRowChangeEventHandler SelectionRowDeleted;
+            public event ItemsRowChangeEventHandler ItemsRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddSelectionRow(SelectionRow row) {
+            public void AddItemsRow(ItemsRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectionRow AddSelectionRow(string InputName, int ItemId) {
-                SelectionRow rowSelectionRow = ((SelectionRow)(this.NewRow()));
+            public ItemsRow AddItemsRow(int ItemId, string ItemValue) {
+                ItemsRow rowItemsRow = ((ItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        InputName,
-                        ItemId};
-                rowSelectionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSelectionRow);
-                return rowSelectionRow;
+                        ItemId,
+                        ItemValue};
+                rowItemsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowItemsRow);
+                return rowItemsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SelectionDataTable cln = ((SelectionDataTable)(base.Clone()));
+                ItemsDataTable cln = ((ItemsDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -390,49 +425,49 @@ namespace Maklak.Client.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SelectionDataTable();
+                return new ItemsDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnInputName = base.Columns["InputName"];
                 this.columnItemId = base.Columns["ItemId"];
+                this.columnItemValue = base.Columns["ItemValue"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnInputName = new global::System.Data.DataColumn("InputName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInputName);
                 this.columnItemId = new global::System.Data.DataColumn("ItemId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnItemId);
+                this.columnItemValue = new global::System.Data.DataColumn("ItemValue", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnItemValue);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectionRow NewSelectionRow() {
-                return ((SelectionRow)(this.NewRow()));
+            public ItemsRow NewItemsRow() {
+                return ((ItemsRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SelectionRow(builder);
+                return new ItemsRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SelectionRow);
+                return typeof(ItemsRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SelectionRowChanged != null)) {
-                    this.SelectionRowChanged(this, new SelectionRowChangeEvent(((SelectionRow)(e.Row)), e.Action));
+                if ((this.ItemsRowChanged != null)) {
+                    this.ItemsRowChanged(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -440,8 +475,8 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SelectionRowChanging != null)) {
-                    this.SelectionRowChanging(this, new SelectionRowChangeEvent(((SelectionRow)(e.Row)), e.Action));
+                if ((this.ItemsRowChanging != null)) {
+                    this.ItemsRowChanging(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -449,8 +484,8 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SelectionRowDeleted != null)) {
-                    this.SelectionRowDeleted(this, new SelectionRowChangeEvent(((SelectionRow)(e.Row)), e.Action));
+                if ((this.ItemsRowDeleted != null)) {
+                    this.ItemsRowDeleted(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -458,14 +493,14 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SelectionRowDeleting != null)) {
-                    this.SelectionRowDeleting(this, new SelectionRowChangeEvent(((SelectionRow)(e.Row)), e.Action));
+                if ((this.ItemsRowDeleting != null)) {
+                    this.ItemsRowDeleting(this, new ItemsRowChangeEvent(((ItemsRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveSelectionRow(SelectionRow row) {
+            public void RemoveItemsRow(ItemsRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -474,7 +509,7 @@ namespace Maklak.Client.DataSets {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FilterDS ds = new FilterDS();
+                FilterItemsDS ds = new FilterItemsDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -492,7 +527,268 @@ namespace Maklak.Client.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SelectionDataTable";
+                attribute2.FixedValue = "ItemsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class InputDataTable : global::System.Data.TypedTableBase<InputRow> {
+            
+            private global::System.Data.DataColumn columnInputName;
+            
+            private global::System.Data.DataColumn columnInputValue;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InputDataTable() {
+                this.TableName = "Input";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal InputDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected InputDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn InputNameColumn {
+                get {
+                    return this.columnInputName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn InputValueColumn {
+                get {
+                    return this.columnInputValue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InputRow this[int index] {
+                get {
+                    return ((InputRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event InputRowChangeEventHandler InputRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event InputRowChangeEventHandler InputRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event InputRowChangeEventHandler InputRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event InputRowChangeEventHandler InputRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddInputRow(InputRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InputRow AddInputRow(string InputName, string InputValue) {
+                InputRow rowInputRow = ((InputRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        InputName,
+                        InputValue};
+                rowInputRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowInputRow);
+                return rowInputRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                InputDataTable cln = ((InputDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new InputDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnInputName = base.Columns["InputName"];
+                this.columnInputValue = base.Columns["InputValue"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnInputName = new global::System.Data.DataColumn("InputName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInputName);
+                this.columnInputValue = new global::System.Data.DataColumn("InputValue", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInputValue);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InputRow NewInputRow() {
+                return ((InputRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new InputRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(InputRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.InputRowChanged != null)) {
+                    this.InputRowChanged(this, new InputRowChangeEvent(((InputRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.InputRowChanging != null)) {
+                    this.InputRowChanging(this, new InputRowChangeEvent(((InputRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.InputRowDeleted != null)) {
+                    this.InputRowDeleted(this, new InputRowChangeEvent(((InputRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.InputRowDeleting != null)) {
+                    this.InputRowDeleting(this, new InputRowChangeEvent(((InputRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveInputRow(InputRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                FilterItemsDS ds = new FilterItemsDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "InputDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -536,31 +832,15 @@ namespace Maklak.Client.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SelectionRow : global::System.Data.DataRow {
+        public partial class ItemsRow : global::System.Data.DataRow {
             
-            private SelectionDataTable tableSelection;
+            private ItemsDataTable tableItems;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal SelectionRow(global::System.Data.DataRowBuilder rb) : 
+            internal ItemsRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSelection = ((SelectionDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string InputName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSelection.InputNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'InputName\' in table \'Selection\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSelection.InputNameColumn] = value;
-                }
+                this.tableItems = ((ItemsDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -568,39 +848,126 @@ namespace Maklak.Client.DataSets {
             public int ItemId {
                 get {
                     try {
-                        return ((int)(this[this.tableSelection.ItemIdColumn]));
+                        return ((int)(this[this.tableItems.ItemIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ItemId\' in table \'Selection\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ItemId\' in table \'Items\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelection.ItemIdColumn] = value;
+                    this[this.tableItems.ItemIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string ItemValue {
+                get {
+                    try {
+                        return ((string)(this[this.tableItems.ItemValueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ItemValue\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.ItemValueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsItemIdNull() {
+                return this.IsNull(this.tableItems.ItemIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetItemIdNull() {
+                this[this.tableItems.ItemIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsItemValueNull() {
+                return this.IsNull(this.tableItems.ItemValueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetItemValueNull() {
+                this[this.tableItems.ItemValueColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class InputRow : global::System.Data.DataRow {
+            
+            private InputDataTable tableInput;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal InputRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableInput = ((InputDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string InputName {
+                get {
+                    try {
+                        return ((string)(this[this.tableInput.InputNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'InputName\' in table \'Input\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInput.InputNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string InputValue {
+                get {
+                    try {
+                        return ((string)(this[this.tableInput.InputValueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'InputValue\' in table \'Input\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInput.InputValueColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsInputNameNull() {
-                return this.IsNull(this.tableSelection.InputNameColumn);
+                return this.IsNull(this.tableInput.InputNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetInputNameNull() {
-                this[this.tableSelection.InputNameColumn] = global::System.Convert.DBNull;
+                this[this.tableInput.InputNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsItemIdNull() {
-                return this.IsNull(this.tableSelection.ItemIdColumn);
+            public bool IsInputValueNull() {
+                return this.IsNull(this.tableInput.InputValueColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetItemIdNull() {
-                this[this.tableSelection.ItemIdColumn] = global::System.Convert.DBNull;
+            public void SetInputValueNull() {
+                this[this.tableInput.InputValueColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -608,22 +975,56 @@ namespace Maklak.Client.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class SelectionRowChangeEvent : global::System.EventArgs {
+        public class ItemsRowChangeEvent : global::System.EventArgs {
             
-            private SelectionRow eventRow;
+            private ItemsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectionRowChangeEvent(SelectionRow row, global::System.Data.DataRowAction action) {
+            public ItemsRowChangeEvent(ItemsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectionRow Row {
+            public ItemsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class InputRowChangeEvent : global::System.EventArgs {
+            
+            private InputRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InputRowChangeEvent(InputRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InputRow Row {
                 get {
                     return this.eventRow;
                 }

@@ -71,26 +71,26 @@ namespace Maklak.Client.Service
 			return response.IsAuthenticated;
 		}
 
-		public Maklak.Client.DataSets.FilterDS Search(Maklak.Client.DataSets.FilterDS filterData)
+		public void Search(Maklak.Client.DataSets.FilterItemsDS filterData)
 		{
 			SearchRequest request = new SearchRequest();
 			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
-			request.SerchInput.AddRange(filterData.SearchInput.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
+			request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
 			SearchResponse response = client.Search(request);
 
 			filterData.Items.Clear();
 
 			foreach (SearchResponse.Types.OutputData item in response.Items) 
 			{
-				FilterDS.ItemsRow row = filterData.Items.NewItemsRow();
+				FilterItemsDS.ItemsRow row = filterData.Items.NewItemsRow();
 
 				row.ItemId = item.ItemId;
 				row.ItemValue = item.ItemValue;
-				row.Name = item.Name;
+				//row.Name = item.Name;
 
 				filterData.Items.AddItemsRow(row);
 			}
-			return filterData;
+			//return filterData;
 		}
 	}
 }

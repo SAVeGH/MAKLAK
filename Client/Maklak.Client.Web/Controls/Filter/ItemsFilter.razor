@@ -27,7 +27,7 @@
 
 			<div style="background-color:aliceblue; height:120px">
 				<ul>
-					@foreach (Maklak.Client.DataSets.FilterDS.ItemsRow row in this.SearchResult.Where(r=> r.Name == ItemsFilterType))
+					@foreach (Maklak.Client.DataSets.FilterItemsDS.ItemsRow row in this.Items)
 					{
 						<li data-itemId="@row.ItemId">@row.ItemValue</li>
 					}

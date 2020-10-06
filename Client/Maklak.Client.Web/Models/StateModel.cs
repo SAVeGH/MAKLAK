@@ -6,6 +6,10 @@ using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Web.Models
 {
+	/// <summary>
+	/// Модель содержит глобальное состояние (аналог SESSION)
+	/// Добавлена в Sturtup как Singletone объект
+	/// </summary>
 	public class StateModel
 	{
 		//public string SID { get; set; }
@@ -22,20 +26,22 @@ namespace Maklak.Client.Web.Models
 			get { return this.filterDS; }			
 		}
 
-		public void AddSearchValue(string inputName, string inputValue) 
-		{
-			FilterDS.SearchInputRow row = filterDS.SearchInput.FirstOrDefault(r => r.InputName == inputName); 
+		//public void AddSearchValue(string inputName, string inputValue) 
+		//{
+		//	filterDS.SearchInput.Clear();
 
-			if (row == null)
-			{
-				row = filterDS.SearchInput.NewSearchInputRow();
-				row.InputName = inputName;
-				filterDS.SearchInput.AddSearchInputRow(row);
-			}
+		//	//FilterDS.SearchInputRow row = filterDS.SearchInput.FirstOrDefault(r => r.InputName == inputName);
+
+		//	//if (row == null)
+		//	//{
+		//	FilterDS.SearchInputRow row = filterDS.SearchInput.NewSearchInputRow();
+		//		row.InputName = inputName;
+		//		filterDS.SearchInput.AddSearchInputRow(row);
+		//	//}
 			
-			row.InputValue = inputValue;
+		//	row.InputValue = inputValue;
 			
-		}
+		//}
 
 	}
 }

@@ -12,6 +12,13 @@ namespace Maklak.Client.Web.Models
 	
 	public class FilterModel : ComponentBase // component inherits from this class. To do it  - class must be inherited from ComponentBase
 	{
+		private FilterItemsDS itemsDS;
+
+		public FilterModel() 
+		{
+			itemsDS = new FilterItemsDS();
+		}
+
 		[Inject]
 		public StateModel StateStorage { get; set; }
 
@@ -31,9 +38,15 @@ namespace Maklak.Client.Web.Models
 			{ 
 				searchText = value;
 
-				StateStorage.AddSearchValue(this.ItemsFilterType, this.SearchText);
+				//StateStorage.AddSearchValue(this.ItemsFilterType, this.SearchText);
+				itemsDS.Input.Clear();
 
-				serviceProxy.Search(StateStorage.SearchData);
+				FilterItemsDS.InputRow row = itemsDS.Input.NewInputRow();
+				row.InputName = this.ItemsFilterType;
+				row.InputValue = searchText;
+				itemsDS.Input.AddInputRow(row);
+
+				serviceProxy.Search(itemsDS);
 
 				//List<string> list = this.SearchList.Where(s => s == this.SearchText).ToList(); //new List<string>() { "3", "4", "5" };
 
@@ -52,7 +65,7 @@ namespace Maklak.Client.Web.Models
 		public List<string> SearchList { get; set; }
 
 		//[Parameter]
-		public FilterDS.ItemsDataTable SearchResult { get { return StateStorage.SearchData.Items; } }
+		public FilterItemsDS.ItemsDataTable Items { get { return itemsDS.Items; } }
 
 		public string ItemsFilterType 
 		{
@@ -64,17 +77,17 @@ namespace Maklak.Client.Web.Models
 			base.OnInitialized();
 
 			//SearchList = new List<string>() {"1","2","3" };
-			FilterDS.ItemsRow row = SearchResult.NewItemsRow();
+			FilterItemsDS.ItemsRow row = Items.NewItemsRow();
 			row.ItemId = 1;
-			row.ItemValue = "1";
-			row.Name = this.ItemsFilterType;
-			SearchResult.AddItemsRow(row);
+			row.ItemValue = "1" + this.ItemsFilterType;
+			//row.Name = this.ItemsFilterType;
+			Items.AddItemsRow(row);
 
-			row = SearchResult.NewItemsRow();
+			row = Items.NewItemsRow();
 			row.ItemId = 2;
-			row.ItemValue = "2";
-			row.Name = this.ItemsFilterType;
-			SearchResult.AddItemsRow(row);
+			row.ItemValue = "2" + this.ItemsFilterType;
+			//row.Name = this.ItemsFilterType;
+			Items.AddItemsRow(row);
 		}
 	}
 }

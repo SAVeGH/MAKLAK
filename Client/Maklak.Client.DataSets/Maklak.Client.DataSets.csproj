@@ -11,6 +11,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>FilterDS.xsd</DependentUpon>
     </Compile>
+    <Compile Update="FilterItemsDS.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FilterItemsDS.xsd</DependentUpon>
+    </Compile>
     <Compile Update="ModelDS.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -22,6 +27,10 @@
     <None Update="FilterDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>FilterDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="FilterItemsDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FilterItemsDS.Designer.cs</LastGenOutput>
     </None>
     <None Update="ModelDS.xsd">
       <Generator>MSDataSetGenerator</Generator>

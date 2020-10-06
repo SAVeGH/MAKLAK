@@ -51,7 +51,7 @@ namespace Maklak.Service
 
 			SearchResponse response = new SearchResponse();
 
-			SearchResponse.Types.OutputData respData = new SearchResponse.Types.OutputData() { ItemId = 1, ItemValue = "Value 1", Name = request.SerchInput[0].InputType };
+			SearchResponse.Types.OutputData respData = new SearchResponse.Types.OutputData() { ItemId = 1, ItemValue = "Value 1" };
 
 			response.Items.Add(respData);
 

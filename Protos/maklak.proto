@@ -55,8 +55,7 @@ message SearchRequest{
 message SearchResponse{
     message OutputData{
         int32 ItemId = 1;  
-        string ItemValue = 2;
-        string Name = 3;
+        string ItemValue = 2;        
     }
 
     repeated OutputData Items = 1;
