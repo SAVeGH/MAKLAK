@@ -1,16 +1,16 @@
-﻿<div class="filterBase" >
+﻿<div class="filterBase flexColumn">
 
-	<ItemsFilter FilterType="Name" />
+	<ItemsFilter FilterType="Name" FilterClass="itemsfilterName" />
 
-	<ItemsFilter FilterType="Producer" />
+	<ItemsFilter FilterType="Producer"  FilterClass="itemsfilterProducer" />
 
-	<PriceFilter />
+	<div style="position:absolute; top:200px;height:50px;"><h3>Price</h3></div>
 
-	<ItemsFilter FilterType="Property" />
+	<ItemsFilter FilterType="Property" FilterClass="itemsfilterProperty"/>
 
-	<ItemsFilter FilterType="Category" />
+	<ItemsFilter FilterType="Category" FilterClass="itemsfilterCategory"/>
 
-	<ItemsFilter FilterType="Tag" />
+	<ItemsFilter FilterType="Tag" FilterClass="itemsfilterTag"/>
 
 </div>
 

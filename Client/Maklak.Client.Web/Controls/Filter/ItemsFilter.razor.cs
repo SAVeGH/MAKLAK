@@ -13,8 +13,13 @@ namespace Maklak.Client.Web.Controls.Filter
 		//[Inject]
 		//public StateModel StateStorage { get; set; }
 
+		string filterClass;
+
 		[Parameter]
 		public string FilterType { get { return this.ItemsFilterType; } set { this.ItemsFilterType = value; } }
+
+		[Parameter]
+		public string FilterClass { get { return this.filterClass; } set { this.filterClass = value; } }
 
 		private void Search_OnInput() 
 		{

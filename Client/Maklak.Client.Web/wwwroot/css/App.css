@@ -153,5 +153,61 @@
 	left: 0px;
 	width: 350px;
 	bottom: 0px;
-	overflow:auto;
+	overflow:auto;	
+}
+
+.itemsfilterBase {
+	position: absolute;	
+	left: 0px;
+	width: 330px;	
+}
+
+.itemsfilterFieldset {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	height: 180px;
+}
+
+.itemsfilterLegend {
+	width: auto;
+	margin: 2px;
+	padding: 2px;
+	font-size: initial;
+	font-weight: bold
+}
+
+.itemsfilterName {
+	top:0px;
+}
+.itemsfilterProducer {
+	top: 250px;
+}
+
+.itemsfilterProperty {
+	top: 450px;
+}
+.itemsfilterCategory {
+	top:650px;
+}
+.itemsfilterTag {
+	top: 850px;
+}
+
+.itemsfilterOuter {
+	position: absolute;
+}
+.itemsfilterSearchCell {
+	position: absolute;	
+}
+.itemsfilterItemsCell {
+	position: absolute;
+	background-color: aliceblue;
+	height: 136px;
+	width: 300px;
+	overflow-y: auto;
+	top: 24px;
+}
+.itemsfilterSearchInput {
+	width:300px;
 }

@@ -1,7 +1,34 @@
-﻿@inherits Maklak.Client.Web.Models.FilterModel 
+﻿@inherits Maklak.Client.Web.Models.FilterModel
 @*inherits from model class*@
 
-<div>
+@*style="background-color: red; height:200px; width:auto;"*@
+<div class="itemsfilterBase @FilterClass">
+
+	<fieldset class="itemsfilterFieldset">
+		<legend class="itemsfilterLegend">@FilterType</legend>
+
+		<div class="itemsfilterOuter">
+
+			<div class="itemsfilterSearchCell" >
+				<input class="itemsfilterSearchInput" type="search" @bind="SearchText" @bind:event="oninput" />
+			</div>
+
+			<div class="itemsfilterItemsCell">
+
+					<div>
+						@foreach (Maklak.Client.DataSets.FilterItemsDS.ItemsRow row in this.Items)
+						{
+							<div  data-itemId="@row.ItemId" >@row.ItemValue</div>
+						}
+					</div>
+			</div>
+
+		</div>
+</fieldset>
+</div>
+
+
+<!--<div>
 
 	<fieldset style="border-color:black; border-style:solid; border-width:1px;">
 
@@ -20,12 +47,12 @@
 			</AuthorizeView>
 
 			<div>
-				<input type="search" @bind="SearchText" @bind:event="oninput" />  @*@oninput="Search_OnInput"*@
-			</div>
+				<input type="search" @bind="SearchText" @bind:event="oninput" />-->
+@*@oninput="Search_OnInput"*@
+<!--</div>-->
+@*<div style="background-color: lightgray; height:40px">selection area</div>*@
 
-			@*<div style="background-color: lightgray; height:40px">selection area</div>*@
-
-			<div style="background-color:aliceblue; height:120px">
+<!--<div style="position:absolute; background-color:aliceblue; height:120px; overflow-y:auto">
 				<ul>
 					@foreach (Maklak.Client.DataSets.FilterItemsDS.ItemsRow row in this.Items)
 					{
@@ -36,6 +63,7 @@
 
 
 		</div>
-			</fieldset>
 
-		</div>
+	</fieldset>
+
+</div>-->

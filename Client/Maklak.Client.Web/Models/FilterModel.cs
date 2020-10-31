@@ -77,17 +77,28 @@ namespace Maklak.Client.Web.Models
 			base.OnInitialized();
 
 			//SearchList = new List<string>() {"1","2","3" };
-			FilterItemsDS.ItemsRow row = Items.NewItemsRow();
-			row.ItemId = 1;
-			row.ItemValue = "1" + this.ItemsFilterType;
-			//row.Name = this.ItemsFilterType;
-			Items.AddItemsRow(row);
+			//FilterItemsDS.ItemsRow row = Items.NewItemsRow();
+			//row.ItemId = 1;
+			//row.ItemValue = "1" + this.ItemsFilterType;
+			////row.Name = this.ItemsFilterType;
+			//Items.AddItemsRow(row);
 
-			row = Items.NewItemsRow();
-			row.ItemId = 2;
-			row.ItemValue = "2" + this.ItemsFilterType;
-			//row.Name = this.ItemsFilterType;
-			Items.AddItemsRow(row);
+			//row = Items.NewItemsRow();
+			//row.ItemId = 2;
+			//row.ItemValue = "2" + this.ItemsFilterType;
+			////row.Name = this.ItemsFilterType;
+			//Items.AddItemsRow(row);
+
+			FilterItemsDS.ItemsRow row = null;
+
+			for (int i = 0; i < 20; i++) 
+			{
+				row = Items.NewItemsRow();
+				row.ItemId = 1 + i;
+				row.ItemValue = i.ToString() + " " + this.ItemsFilterType;
+				//row.Name = this.ItemsFilterType;
+				Items.AddItemsRow(row);
+			}
 		}
 	}
 }
