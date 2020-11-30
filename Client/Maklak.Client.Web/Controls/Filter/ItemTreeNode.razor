@@ -1,8 +1,29 @@
 ﻿@inherits Maklak.Client.Web.Models.ItemTreeNodeModel
 
-<h3>ItemTreeNode</h3>
+@foreach (Maklak.Client.DataSets.ItemsTreeDS.ItemsRow row in this.Items)
+{
+<div data-itemId="@row.Id">
 
+	@{string contentPadding = "treeContentPadding";}
 
-@code {
+	@if (row.Id == int.MaxValue)
+	{		
+		contentPadding = string.Empty;		
+	}
+	else
+	{
+		<div>@row.Name</div>
+	}
+
+	<div class="@contentPadding">
+		<ItemTreeNode ItemsSource=ItemsSource ParentRow=row />
+	</div>
+</div>
+
 
 }
+
+
+
+
+

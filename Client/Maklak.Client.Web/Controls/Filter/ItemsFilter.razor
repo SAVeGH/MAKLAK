@@ -2,7 +2,7 @@
 @*inherits from model class*@
 
 @*style="background-color: red; height:200px; width:auto;"*@
-<div class="itemsfilterBase @FilterClass">
+<div class="itemsfilterBase">
 
 	<fieldset class="itemsfilterFieldset">
 		<legend class="itemsfilterLegend">@FilterType</legend>
@@ -16,10 +16,12 @@
 			<div class="itemsfilterItemsCell">
 
 					<div>
-						@foreach (Maklak.Client.DataSets.FilterItemsDS.ItemsRow row in this.Items)
+
+						<ItemsTree />
+						@*@foreach (Maklak.Client.DataSets.FilterItemsDS.ItemsRow row in this.Items)
 						{
 							<div  data-itemId="@row.ItemId" >@row.ItemValue</div>
-						}
+						}*@
 					</div>
 			</div>
 

@@ -157,7 +157,7 @@
 }
 
 .itemsfilterBase {
-	position: absolute;	
+	position: relative;	
 	left: 0px;
 	width: 330px;	
 }
@@ -210,4 +210,8 @@
 }
 .itemsfilterSearchInput {
 	width:300px;
+}
+
+.treeContentPadding {
+	padding-left: 4px;
 }

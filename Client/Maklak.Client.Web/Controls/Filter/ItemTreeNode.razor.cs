@@ -9,5 +9,6 @@ namespace Maklak.Client.Web.Controls.Filter
 {
 	public partial class ItemTreeNode : Maklak.Client.Web.Models.ItemTreeNodeModel
 	{
+		
 	}
 }

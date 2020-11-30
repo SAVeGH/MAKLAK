@@ -21,6 +21,9 @@ namespace Maklak.Client.Web.Controls.Filter
 		[Parameter]
 		public string FilterClass { get { return this.filterClass; } set { this.filterClass = value; } }
 
+		//[Parameter]
+		//public bool ShowRoot { get; set; }
+
 		private void Search_OnInput() 
 		{
 			int u = 0;
