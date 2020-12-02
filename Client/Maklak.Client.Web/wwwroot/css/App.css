@@ -217,14 +217,17 @@
 }
 
 .popUpShow {
-	position:absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	display:block;
-	background-color:rgba(0,0,0,0.3);
-	
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	display: block;
+	background-color: rgba(0,0,0,0.3);
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
 }
 .popUpHide {
 	display: none;
