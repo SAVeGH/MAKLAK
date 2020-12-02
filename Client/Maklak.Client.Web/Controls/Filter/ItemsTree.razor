@@ -2,11 +2,6 @@
 
 <div>
 
-	@*@foreach (Maklak.Client.DataSets.ItemsTreeDS.ItemsRow row in this.Items)
-	{
-		<div data-itemId="@row.Id">@row.Name</div>
-	}*@
-
 	<ItemTreeNode ItemsSource=this.Items />
 
 </div>

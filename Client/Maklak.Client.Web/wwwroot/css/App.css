@@ -166,7 +166,7 @@
 	border-color: black;
 	border-style: solid;
 	border-width: 1px;
-	height: 180px;
+	height: 204px;
 }
 
 .itemsfilterLegend {
@@ -198,7 +198,7 @@
 	position: absolute;
 }
 .itemsfilterSearchCell {
-	position: absolute;	
+	position: relative;	
 }
 .itemsfilterItemsCell {
 	position: absolute;
@@ -206,7 +206,7 @@
 	height: 136px;
 	width: 300px;
 	overflow-y: auto;
-	top: 24px;
+	top: 48px;
 }
 .itemsfilterSearchInput {
 	width:300px;
@@ -214,4 +214,18 @@
 
 .treeContentPadding {
 	padding-left: 4px;
+}
+
+.popUpShow {
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	display:block;
+	background-color:rgba(0,0,0,0.3);
+	
+}
+.popUpHide {
+	display: none;
 }

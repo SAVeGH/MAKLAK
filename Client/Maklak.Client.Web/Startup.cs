@@ -45,7 +45,7 @@ namespace Maklak.Client.Web
 			services.AddSingleton<grpcProxy>();
 			services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
 			services.AddSingleton<StateModel, StateModel>();
-
+			services.AddSingleton<PopUpStateModel, PopUpStateModel>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

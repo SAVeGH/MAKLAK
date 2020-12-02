@@ -9,6 +9,12 @@
 
 		<div class="itemsfilterOuter">
 
+			<div style="position:relative">
+				<input type="button" value="Add" @onclick="OnAdd" />
+				<input type="button" value="Edit" />
+				<input type="button" value="Delete" />
+			</div>
+
 			<div class="itemsfilterSearchCell" >
 				<input class="itemsfilterSearchInput" type="search" @bind="SearchText" @bind:event="oninput" />
 			</div>

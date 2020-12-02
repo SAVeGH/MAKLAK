@@ -13,6 +13,8 @@ service Maklak {
   rpc RegisterUser (RegisterRequest) returns (RegisterResponse);
 
   rpc Search (SearchRequest) returns (SearchResponse);
+
+  rpc AddItem (ItemRequest) returns (ItemResponse);
   
 }
 
@@ -59,4 +61,18 @@ message SearchResponse{
     }
 
     repeated OutputData Items = 1;
+}
+
+message ItemRequest{
+    
+        int32 ItemId = 1;  
+        string ItemValue = 2;        
+    
+}
+
+message ItemResponse{
+    
+        int32 ItemId = 1;  
+        string ItemValue = 2;        
+    
 }

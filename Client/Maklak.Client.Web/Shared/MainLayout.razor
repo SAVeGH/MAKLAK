@@ -1,4 +1,5 @@
 ﻿@using Maklak.Client.Web.Controls.Auth;
+@using Maklak.Client.Web.Controls.PopUp;
 @inherits LayoutComponentBase
 
 
@@ -12,15 +13,17 @@
 	</div>
 
 	<div class="flexColumn">
-		<div class="contentTopCell">			
+		<div class="contentTopCell">
 
 			<LoginControl />
 
 		</div>
-		
-		<div class="contentCell" >
+
+		<div class="contentCell">
 			@Body
 		</div>
 	</div>
+
+	<PopUpScreen />
 </div>
 

@@ -11,7 +11,7 @@ namespace Maklak.Client.Web.Pages
 	public partial class Index
 	{
 		[Inject]
-		public StateModel StateStorage { get; set; }
+		public StateModel StateStorage { get; set; }		
 
 
 		//protected override void OnInitialized()

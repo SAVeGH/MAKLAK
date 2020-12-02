@@ -13,6 +13,9 @@ namespace Maklak.Client.Web.Controls.Filter
 		//[Inject]
 		//public StateModel StateStorage { get; set; }
 
+		[Inject]
+		public PopUpStateModel popUpState { get; set; }
+
 		string filterClass;
 
 		[Parameter]
@@ -34,6 +37,18 @@ namespace Maklak.Client.Web.Controls.Filter
 			//this.SearchList = list;
 
 			//this.SearchText = "123";
+		}
+
+		//public async Task OnAdd()
+		public void OnAdd()
+		{
+
+			popUpState.IsVisible = true;
+
+			//popUpState.Update();
+			//this.AuthenticationStateProvider.NotifyAuthenticationStateChanged();
+
+			//this.StateHasChanged(); // re-render the page
 		}
 	}
 }

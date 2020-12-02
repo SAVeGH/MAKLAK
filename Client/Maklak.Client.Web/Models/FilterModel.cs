@@ -34,7 +34,7 @@ namespace Maklak.Client.Web.Models
 		public string SearchText 
 		{
 			get { return searchText; }
-			set 
+			set // устанавливается на oninput
 			{ 
 				searchText = value;
 
@@ -57,7 +57,7 @@ namespace Maklak.Client.Web.Models
 				//List<string> list = new List<string>();
 
 				//foreach () { }
-
+				
 			}
 		}
 

@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using Maklak.Client.Web.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Maklak.Client.Web.Models;
 
 namespace Maklak.Client.Web.Shared
 {
 	public partial class MainLayout //: IDisposable
 	{
+		
 		//string linkText = "Login";
 
 		//[Inject]
