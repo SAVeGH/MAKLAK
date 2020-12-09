@@ -7,11 +7,6 @@ namespace Maklak.Client.Web.Controls.PopUp
 {
 	public partial class PopUpContent : Maklak.Client.Web.Models.PopUpContentModel
 	{
-
-		//public RenderF
-		//public void Show() 
-		//{
-			
-		//}
+		
 	}
 }

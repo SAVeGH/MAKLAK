@@ -1,4 +1,6 @@
-﻿<div class="filterBase flexColumn">
+﻿@inherits Models.FilterModel
+
+<div class="filterBase flexColumn">
 
 	<ItemsFilter ItemsFilterType="Name" />
 
@@ -10,19 +12,7 @@
 
 	<ItemsFilter ItemsFilterType="Category"  />
 
-	<ItemsFilter ItemsFilterType="Tag"  />
-
-	@*<ItemsFilter FilterType="Name" FilterClass="itemsfilterName" />
-
-		<ItemsFilter FilterType="Producer"  FilterClass="itemsfilterProducer" />
-
-		<div style="position:relative; height:50px;"><h3>Price</h3></div>
-
-		<ItemsFilter FilterType="Property" FilterClass="itemsfilterProperty"/>
-
-		<ItemsFilter FilterType="Category" FilterClass="itemsfilterCategory" />
-
-		<ItemsFilter FilterType="Tag" FilterClass="itemsfilterTag"/>*@
+	<ItemsFilter ItemsFilterType="Tag"  />	
 
 </div>
 

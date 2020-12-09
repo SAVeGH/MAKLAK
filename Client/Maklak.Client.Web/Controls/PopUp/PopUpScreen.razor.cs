@@ -9,7 +9,6 @@ namespace Maklak.Client.Web.Controls.PopUp
 {
 	public partial class PopUpScreen : Maklak.Client.Web.Models.PopUpModel
 	{
-		//[Parameter]
-		//public string IsVisibleClass { get; set; }
+		
 	}
 }

@@ -9,7 +9,6 @@ namespace Maklak.Client.Web.Controls.Filter
 {
 	public partial class ItemsTree : Maklak.Client.Web.Models.ItemsTreeModel
 	{
-		//[Parameter]
-		//public int? ParentID { get { return this.ItemsFilterType; } set { this.ItemsFilterType = value; } }
+		
 	}
 }

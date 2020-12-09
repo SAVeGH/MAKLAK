@@ -24,10 +24,7 @@
 					<div>
 
 						<ItemsTree />
-						@*@foreach (Maklak.Client.DataSets.FilterItemsDS.ItemsRow row in this.Items)
-						{
-							<div  data-itemId="@row.ItemId" >@row.ItemValue</div>
-						}*@
+						
 					</div>
 			</div>
 
@@ -36,42 +33,3 @@
 </div>
 
 
-<!--<div>
-
-	<fieldset style="border-color:black; border-style:solid; border-width:1px;">
-
-		<legend style="width:auto; margin:2px; padding: 2px; font-size:initial; font-weight:bold">@FilterType</legend>
-
-
-
-		<div class="flexColumn">
-
-			<AuthorizeView>
-				<div class="flexRow">
-					<input type="button" value="Add" />
-					<input type="button" value="Edt" />
-					<input type="button" value="Del" />
-				</div>
-			</AuthorizeView>
-
-			<div>
-				<input type="search" @bind="SearchText" @bind:event="oninput" />-->
-@*@oninput="Search_OnInput"*@
-<!--</div>-->
-@*<div style="background-color: lightgray; height:40px">selection area</div>*@
-
-<!--<div style="position:absolute; background-color:aliceblue; height:120px; overflow-y:auto">
-				<ul>
-					@foreach (Maklak.Client.DataSets.FilterItemsDS.ItemsRow row in this.Items)
-					{
-						<li data-itemId="@row.ItemId">@row.ItemValue</li>
-					}
-				</ul>
-			</div>
-
-
-		</div>
-
-	</fieldset>
-
-</div>-->

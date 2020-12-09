@@ -12,7 +12,7 @@ namespace Maklak.Client.Web.Models
 {
 	public class ItemTreeNodeModel : ComponentBase
 	{
-		//[Parameter]
+		
 		public IEnumerable<ItemsTreeDS.ItemsRow> Items 
 		{ 
 			get 
@@ -21,7 +21,7 @@ namespace Maklak.Client.Web.Models
 				int parentId = ParentRow == null ? int.MinValue : ParentRow.Id;
 				return ItemsSource.Where(i => i.Parent_Id == parentId);
 			}
-			//set { }
+			
 		}
 
 		[Parameter]
@@ -29,10 +29,6 @@ namespace Maklak.Client.Web.Models
 
 		[Parameter]
 		public ItemsTreeDS.ItemsRow ParentRow { get; set; }
-
-		//[Parameter]
-		//public bool ShowRoot { get; set; }
-
 
 	}
 }

@@ -37,8 +37,6 @@ namespace Maklak.Client.Web.Models
 			}
 		}
 		public ItemsTreeDS.ItemsDataTable Items { get { return itemsDS.Items; } }
-
-		//[Parameter]
-		//public bool ShowRoot { get; set; }
+		
 	}
 }

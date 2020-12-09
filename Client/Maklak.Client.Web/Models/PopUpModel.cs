@@ -12,11 +12,7 @@ namespace Maklak.Client.Web.Models
 	public class PopUpModel : ComponentBase
 	{
 		[Inject]
-		public PopUpStateModel PopUpState { get; set; }
-
-		//[Parameter]
-		//public bool IsVisible { get { return popUpState.IsVisible; } set { popUpState.IsVisible = value; } }
-
+		public PopUpStateModel PopUpState { get; set; }		
 		
 		protected override void OnInitialized()
 		{
@@ -32,8 +28,7 @@ namespace Maklak.Client.Web.Models
 
 		public void HidePopUp() 
 		{
-			PopUpState.IsVisible = false;
-			//PopUpState.Update();
+			PopUpState.IsVisible = false;			
 		}
 
 		public string VisibilityClass 

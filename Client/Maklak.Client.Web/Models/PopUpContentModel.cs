@@ -16,12 +16,7 @@ namespace Maklak.Client.Web.Models
 		[Inject]
 		public PopUpStateModel PopUpState { get; set; }
 
-		public RenderFragment Content { get { return new RenderFragment(x => { x.OpenComponent(1, typeof(ItemEditor)); x.CloseComponent(); }); } }
-
-		//public void Show()
-		//{
-		//	Content = new RenderFragment(x => { x.OpenComponent(1, typeof(ItemEditor)); x.CloseComponent(); });
-		//}
+		public RenderFragment Content { get { return new RenderFragment(x => { x.OpenComponent(1, typeof(ItemEditor)); x.CloseComponent(); }); } }		
 
 	}
 }
