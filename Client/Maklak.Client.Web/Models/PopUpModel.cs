@@ -36,5 +36,14 @@ namespace Maklak.Client.Web.Models
 			//PopUpState.Update();
 		}
 
+		public string VisibilityClass 
+		{
+			get 
+			{
+				return this.PopUpState.IsVisible ? "popUpShow" : "popUpHide";
+			}
+		}
+
+
 	}
 }

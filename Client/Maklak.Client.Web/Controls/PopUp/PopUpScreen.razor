@@ -1,13 +1,10 @@
 ﻿@inherits Maklak.Client.Web.Models.PopUpModel
 
-@{ 
-	string visibility = this.PopUpState.IsVisible ? "popUpShow" : "popUpHide";
-}
 
 
-<div class="@visibility">
+<div class="@VisibilityClass">
 	<div style="background-color:white;  position:absolute; height:300px; width:300px;">
-		<h3>@visibility</h3>
+		<PopUpContent/>
 		<input type="button" @onclick="HidePopUp" value="Ok" />
 	</div>
 </div>

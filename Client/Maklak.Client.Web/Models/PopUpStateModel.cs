@@ -12,10 +12,8 @@ namespace Maklak.Client.Web.Models
 		public event Action OnRefresh;
 
 
-		//public void Update() 
-		//{
-		//	this.OnUpdate?.Invoke();
-		//}
+		public object InputParameters { get; set; }
+		public object OutputParameters { get; set; }
 		public bool IsVisible 
 		{ 
 			get 
@@ -29,4 +27,21 @@ namespace Maklak.Client.Web.Models
 			} 
 		}
 	}
+
+	public class PopUpOutput
+	{
+		public int Id;
+		public int? ParentId;
+		public string Value;
+		public string FilterType;
+	}
+
+	public class PopUpInput
+	{
+		public int Id;
+		public int? ParentId;
+		public string Value;
+		public string FilterType;
+	}
+
 }
