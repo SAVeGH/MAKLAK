@@ -45,34 +45,56 @@ message RegisterResponse{
 }
 
 message SearchRequest{
-    message InputData{
+    //message InputData{
         //map<string, string> values = 1;
-        string InputType = 1;
-        string InputValue = 2;
-    }
+        //string InputType = 1;
+        //string InputValue = 2;
+    //}
 
-    repeated InputData SerchInput = 1;
+    //repeated InputData SerchInput = 1;
+
+    string InputType = 1;
+    string InputValue = 2;
 }
 
 message SearchResponse{
-    message OutputData{
+    message ItemsData{
         int32 ItemId = 1;  
-        string ItemValue = 2;        
+        int32 ParentId = 2;
+        string ItemValue = 3;        
     }
 
-    repeated OutputData Items = 1;
+    repeated ItemsData Items = 1;
 }
 
 message ItemRequest{
     
-        int32 ItemId = 1;  
+        string ItemType = 1;  
         string ItemValue = 2;        
     
 }
 
 message ItemResponse{
     
-        int32 ItemId = 1;  
-        string ItemValue = 2;        
+        int32 Result = 1;              
     
 }
+/*
+message ItemsRequest{
+    
+        string ItemType = 1;  
+        string InputValue = 2;        
+    
+}
+
+message ItemsResponse{
+    
+        message OutputData{
+        int32 ItemId = 1;  
+        string ItemValue = 2;        
+    }
+
+    repeated OutputData Items = 1;           
+    
+}
+*/

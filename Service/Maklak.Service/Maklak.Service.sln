@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maklak.Service", "Maklak.Service\Maklak.Service.csproj", "{C8928404-5B95-4480-A254-7A69E5F50277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Service.Data", "Maklak.Service.Data\Maklak.Service.Data.csproj", "{576788CF-3EB7-48AD-BA81-E8033BEC54BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maklak.Service.Data", "Maklak.Service.Data\Maklak.Service.Data.csproj", "{576788CF-3EB7-48AD-BA81-E8033BEC54BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maklak.Service.DataSets", "Maklak.Service.DataSets\Maklak.Service.DataSets.csproj", "{E2387762-E5F3-4D2F-AB37-CD4DCFD0B78F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{576788CF-3EB7-48AD-BA81-E8033BEC54BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{576788CF-3EB7-48AD-BA81-E8033BEC54BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{576788CF-3EB7-48AD-BA81-E8033BEC54BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2387762-E5F3-4D2F-AB37-CD4DCFD0B78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2387762-E5F3-4D2F-AB37-CD4DCFD0B78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2387762-E5F3-4D2F-AB37-CD4DCFD0B78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2387762-E5F3-4D2F-AB37-CD4DCFD0B78F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

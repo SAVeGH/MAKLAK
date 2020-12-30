@@ -73,24 +73,64 @@ namespace Maklak.Client.Service
 
 		public void Search(Maklak.Client.DataSets.FilterItemsDS filterData)
 		{
+			//SearchRequest request = new SearchRequest();
+			////Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
+			//request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
+			//SearchResponse response = client.Search(request);
+
+			//filterData.Items.Clear();
+
+			//foreach (SearchResponse.Types.OutputData item in response.Items) 
+			//{
+			//	FilterItemsDS.ItemsRow row = filterData.Items.NewItemsRow();
+
+			//	row.ItemId = item.ItemId;
+			//	row.ItemValue = item.ItemValue;
+			//	//row.Name = item.Name;
+
+			//	filterData.Items.AddItemsRow(row);
+			//}
+			//return filterData;
+		}
+
+		public void Search(string itemType, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
+		{
 			SearchRequest request = new SearchRequest();
 			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
-			request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
+			//request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
+
+			request.InputType = itemType;
+			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
+
 			SearchResponse response = client.Search(request);
 
-			filterData.Items.Clear();
+			itemsData.Items.Clear();
 
-			foreach (SearchResponse.Types.OutputData item in response.Items) 
+			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
+			rootRow.Id = int.MaxValue;        // не существующий Id
+			rootRow.Parent_Id = int.MinValue; // вместо NULL
+			rootRow.Name = "Root";
+			itemsData.Items.AddItemsRow(rootRow);
+
+			foreach (SearchResponse.Types.ItemsData item in response.Items)
 			{
-				FilterItemsDS.ItemsRow row = filterData.Items.NewItemsRow();
+				ItemsTreeDS.ItemsRow row = itemsData.Items.NewItemsRow();
 
-				row.ItemId = item.ItemId;
-				row.ItemValue = item.ItemValue;
+				row.Id = item.ItemId;
+				row.Parent_Id = rootRow.Id;
+				row.Name = item.ItemValue;
 				//row.Name = item.Name;
 
-				filterData.Items.AddItemsRow(row);
+				itemsData.Items.AddItemsRow(row);
 			}
 			//return filterData;
+		}
+
+		public int AddItem(string itemType, string itemValue) 
+		{
+			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemValue = itemValue };
+			ItemResponse response = client.AddItem(request);
+			return response.Result;
 		}
 	}
 }

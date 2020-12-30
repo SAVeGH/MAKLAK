@@ -10,10 +10,15 @@ namespace Maklak.Client.Web.Models
 		private bool popUpState = false;
 
 		public event Action OnRefresh;
+		public event Action OnClose;
 
-
-		public object InputParameters { get; set; }
-		public object OutputParameters { get; set; }
+		public PopUpStateModel() 
+		{
+			InputParameters = new PopUpInput();
+			OutputParameters = new PopUpOutput();
+		}
+		public PopUpInput InputParameters { get; private set; }
+		public PopUpOutput OutputParameters { get; private set; }
 		public bool IsVisible 
 		{ 
 			get 
@@ -23,6 +28,10 @@ namespace Maklak.Client.Web.Models
 			set 
 			{
 				popUpState = value;
+
+				if (!popUpState)
+					this.OnClose?.Invoke();
+
 				this.OnRefresh?.Invoke();
 			} 
 		}
@@ -34,14 +43,17 @@ namespace Maklak.Client.Web.Models
 		public int? ParentId;
 		public string Value;
 		public string FilterType;
+
 	}
 
-	public class PopUpInput
+	public class PopUpInput//<T> where T: ComponentBase
 	{
 		public int Id;
 		public int? ParentId;
 		public string Value;
 		public string FilterType;
+		//public Microsoft.AspNetCore.Components.IComponent dialogType;
+		public Type dialogType;
 	}
 
 }

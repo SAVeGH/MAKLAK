@@ -14,9 +14,28 @@ namespace Maklak.Client.Web.Models
 	public class PopUpContentModel : ComponentBase
 	{
 		[Inject]
-		public PopUpStateModel PopUpState { get; set; }
+		public PopUpStateModel PopUpState { get; set; }		
 
-		public RenderFragment Content { get { return new RenderFragment(x => { x.OpenComponent(1, typeof(ItemEditor)); x.CloseComponent(); }); } }		
+		private void PopUpState_OnRefresh()
+		{
+			this.InvokeAsync(StateHasChanged); // Иначе содержимое не отображается		
+		}
+
+		protected override void OnInitialized()
+		{
+			base.OnInitialized();
+
+			PopUpState.OnRefresh += PopUpState_OnRefresh;
+		}
+
+		public RenderFragment Content 
+		{ 
+			get 
+			{				
+				RenderFragment content = PopUpState.InputParameters.dialogType == null ? null : new RenderFragment(x => { x.OpenComponent(1, PopUpState.InputParameters.dialogType); x.CloseComponent(); });
+				return content; 
+			} 
+		}		
 
 	}
 }

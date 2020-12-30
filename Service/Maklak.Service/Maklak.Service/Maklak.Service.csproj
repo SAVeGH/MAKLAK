@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Maklak.Service.DataSets\Maklak.Service.DataSets.csproj" />
     <ProjectReference Include="..\Maklak.Service.Data\Maklak.Service.Data.csproj" />
   </ItemGroup>
 

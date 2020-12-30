@@ -11,11 +11,12 @@ namespace Maklak.Client.Web.Models
 {
 	public class ItemsFilterModel : ComponentBase
 	{
-		private FilterItemsDS itemsDS;
+		private ItemsTreeDS itemsDS;
 
 		public ItemsFilterModel()
 		{
-			itemsDS = new FilterItemsDS();
+			itemsDS = new ItemsTreeDS();
+			//LoadItems();
 		}
 
 		[Inject]
@@ -38,21 +39,10 @@ namespace Maklak.Client.Web.Models
 			set // устанавливается на oninput
 			{
 				searchText = value;
-
-				
-				itemsDS.Input.Clear();
-
-				FilterItemsDS.InputRow row = itemsDS.Input.NewInputRow();
-				row.InputName = this.ItemsFilterType;
-				row.InputValue = searchText;
-				itemsDS.Input.AddInputRow(row);
-
-				serviceProxy.Search(itemsDS);				
-
+				LoadItems();
 			}
-		}
+		}	
 		
-		public FilterItemsDS.ItemsDataTable Items { get { return itemsDS.Items; } }
 
 		[Parameter]
 		public string ItemsFilterType
@@ -60,28 +50,40 @@ namespace Maklak.Client.Web.Models
 			get; set;
 		}
 
+		public ItemsTreeDS.ItemsDataTable Items
+		{
+			get
+			{				
+				return itemsDS.Items;
+			}
+		}
+
 		protected override void OnInitialized()
 		{
 			base.OnInitialized();
-			
 
-			FilterItemsDS.ItemsRow row = null;
+			LoadItems();
+		}
 
-			for (int i = 0; i < 20; i++)
-			{
-				row = Items.NewItemsRow();
-				row.ItemId = 1 + i;
-				row.ItemValue = i.ToString() + " " + this.ItemsFilterType;
-				//row.Name = this.ItemsFilterType;
-				Items.AddItemsRow(row);
-			}
+		private void LoadItems()
+		{
+			//itemsDS.Clear();
+
+			//ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.NewItemsRow();
+			//rootRow.Id = int.MaxValue;        // не существующий Id
+			//rootRow.Parent_Id = int.MinValue; // вместо NULL
+			//rootRow.Name = "Root";
+			//itemsDS.Items.AddItemsRow(rootRow);
+
+			serviceProxy.Search(ItemsFilterType, searchText, itemsDS);
 		}
 
 		public void OnAdd()
 		{
-			PopUpInput popUpInput = new PopUpInput();
+			PopUpInput popUpInput = popUpState.InputParameters;
 			popUpInput.FilterType = this.ItemsFilterType;
-			popUpState.InputParameters = popUpInput;
+			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
+			//popUpState.InputParameters = popUpInput;
 			popUpState.IsVisible = true;			
 		}
 	}
