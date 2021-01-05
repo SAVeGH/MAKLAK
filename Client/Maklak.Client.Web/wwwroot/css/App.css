@@ -232,3 +232,15 @@
 .popUpHide {
 	display: none;
 }
+
+.treeItem {
+	background-color: aquamarine;
+	margin-bottom: 1px;
+	margin-top: 1px;
+}
+
+.treeItemSelected {
+	background-color: cornflowerblue;
+	margin-bottom: 1px;
+	margin-top: 1px;
+}

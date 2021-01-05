@@ -1,3 +1,4 @@
+--drop proc sp_GetItems
 CREATE PROCEDURE sp_GetItems
 	@ItemType nvarchar(20),
 	@ItemValue nvarchar(100)
@@ -11,7 +12,9 @@ BEGIN
 		insert into @result(Id, Parent_Id, [Name])
 		select 
 		Id,NULL,[Name] 
-		from Product;
+		from Product
+		where
+		isnull(@ItemValue,'') = N'' or [Name] like '%' + @ItemValue + '%';
 	end
 	else if(@ItemType = N'Vendor')
 	begin

@@ -4,7 +4,11 @@
 {
 <div data-itemId="@row.Id">
 
-	@{string contentPadding = "treeContentPadding";}
+	@{
+		string contentPadding = "treeContentPadding";
+		string itemClass = row.Id == this.SelectedId ? "treeItemSelected" : "treeItem";
+
+		}
 
 	@if (row.Id == int.MaxValue)
 	{		
@@ -12,7 +16,10 @@
 	}
 	else
 	{
-		<div>@row.Name</div>
+		<div class="@itemClass" @onclick="(e=>OnClick(row.Id))"> 
+			<input type="checkbox" />
+			@row.Name
+		</div>
 	}
 
 	<div class="@contentPadding">

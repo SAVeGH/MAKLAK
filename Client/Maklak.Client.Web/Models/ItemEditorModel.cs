@@ -34,7 +34,10 @@ namespace Maklak.Client.Web.Models
 
 		private void PopUpState_OnClose()
 		{
+			PopUpState.OnClose -= PopUpState_OnClose;
+
 			serviceProxy.AddItem(PopUpState.InputParameters.FilterType, Text);
+			
 			//string res = this.Text;
 		}
 

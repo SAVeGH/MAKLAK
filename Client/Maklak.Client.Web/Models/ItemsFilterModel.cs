@@ -62,10 +62,12 @@ namespace Maklak.Client.Web.Models
 		{
 			base.OnInitialized();
 
+			popUpState.OnRefresh += PopUpState_OnRefresh;
+
 			LoadItems();
 		}
 
-		private void LoadItems()
+		private async Task LoadItems()
 		{
 			//itemsDS.Clear();
 
@@ -75,7 +77,14 @@ namespace Maklak.Client.Web.Models
 			//rootRow.Name = "Root";
 			//itemsDS.Items.AddItemsRow(rootRow);
 
-			serviceProxy.Search(ItemsFilterType, searchText, itemsDS);
+			await serviceProxy.SearchAsync(ItemsFilterType, searchText, itemsDS);
+
+			//await Task.Run(() => { serviceProxy.Search(ItemsFilterType, searchText, itemsDS); });
+
+			//await serviceProxy.Search(ItemsFilterType, searchText, itemsDS);
+
+			//this.InvokeAsync(StateHasChanged);	
+			StateHasChanged();
 		}
 
 		public void OnAdd()
@@ -83,8 +92,19 @@ namespace Maklak.Client.Web.Models
 			PopUpInput popUpInput = popUpState.InputParameters;
 			popUpInput.FilterType = this.ItemsFilterType;
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
+			//popUpState.OnRefresh += PopUpState_OnRefresh;
 			//popUpState.InputParameters = popUpInput;
 			popUpState.IsVisible = true;			
+		}
+
+		private void PopUpState_OnRefresh()
+		{
+			LoadItems();
+
+			//this.InvokeAsync(StateHasChanged);
+
+			//this.StateHasChanged(); // Иначе содержимое не отображается		
+
 		}
 	}
 }

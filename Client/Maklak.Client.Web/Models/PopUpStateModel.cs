@@ -30,7 +30,11 @@ namespace Maklak.Client.Web.Models
 				popUpState = value;
 
 				if (!popUpState)
+				{
 					this.OnClose?.Invoke();
+					InputParameters.Clear();
+
+				}
 
 				this.OnRefresh?.Invoke();
 			} 
@@ -54,6 +58,15 @@ namespace Maklak.Client.Web.Models
 		public string FilterType;
 		//public Microsoft.AspNetCore.Components.IComponent dialogType;
 		public Type dialogType;
+
+		public void Clear() 
+		{
+			Id = int.MinValue;
+			ParentId = null;
+			Value = null;
+			FilterType = null;
+			dialogType = null;
+		}
 	}
 
 }

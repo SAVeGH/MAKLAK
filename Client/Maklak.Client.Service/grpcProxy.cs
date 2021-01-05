@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Maklak.Service; // from proto file
 using Grpc.Net.Client;
 using System.Net.Http;
@@ -94,6 +95,39 @@ namespace Maklak.Client.Service
 		}
 
 		public void Search(string itemType, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
+		{
+			SearchRequest request = new SearchRequest();
+			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
+			//request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
+
+			request.InputType = itemType;
+			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
+
+			SearchResponse response = client.Search(request);
+
+			itemsData.Items.Clear();
+
+			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
+			rootRow.Id = int.MaxValue;        // не существующий Id
+			rootRow.Parent_Id = int.MinValue; // вместо NULL
+			rootRow.Name = "Root";
+			itemsData.Items.AddItemsRow(rootRow);
+
+			foreach (SearchResponse.Types.ItemsData item in response.Items)
+			{
+				ItemsTreeDS.ItemsRow row = itemsData.Items.NewItemsRow();
+
+				row.Id = item.ItemId;
+				row.Parent_Id = rootRow.Id;
+				row.Name = item.ItemValue;
+				//row.Name = item.Name;
+
+				itemsData.Items.AddItemsRow(row);
+			}
+			//return filterData;
+		}
+
+		public async Task SearchAsync(string itemType, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
 			SearchRequest request = new SearchRequest();
 			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
