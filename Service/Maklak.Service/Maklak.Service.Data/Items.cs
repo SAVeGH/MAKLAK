@@ -39,5 +39,16 @@ namespace Maklak.Service.Data
 			return dataSet;
 		}
 
+		public static int DeleteItem(string itemType, int itemId)
+		{
+			IDbCommand command = SqlHelper.GetDbCommand("sp_DeleteItem");
+
+			command.AddInParameter("@ItemType", DbType.String, 20, itemType);
+			command.AddInParameter("@ItemId", DbType.Int32, itemId);
+
+			object id = SqlHelper.ExecuteScalar(command);
+
+			return Convert.ToInt32(id);
+		}
 	}
 }

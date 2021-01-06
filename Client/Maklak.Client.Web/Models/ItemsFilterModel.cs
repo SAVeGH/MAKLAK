@@ -97,6 +97,23 @@ namespace Maklak.Client.Web.Models
 			popUpState.IsVisible = true;			
 		}
 
+		public void OnDelete() 
+		{
+			DeleteItem();
+		}
+
+		private void DeleteItem()
+		{
+			ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
+
+			if (currentSelectedRow == null)
+				return;
+
+			serviceProxy.DeleteItem(ItemsFilterType, currentSelectedRow.Id);
+
+			LoadItems();
+		}
+
 		private void PopUpState_OnRefresh()
 		{
 			LoadItems();

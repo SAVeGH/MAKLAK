@@ -285,6 +285,8 @@ namespace Maklak.Client.DataSets {
             
             private global::System.Data.DataColumn columnName;
             
+            private global::System.Data.DataColumn columnIsSelected;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ItemsDataTable() {
@@ -344,6 +346,14 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsSelectedColumn {
+                get {
+                    return this.columnIsSelected;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -379,12 +389,13 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ItemsRow AddItemsRow(int Id, int Parent_Id, string Name) {
+            public ItemsRow AddItemsRow(int Id, int Parent_Id, string Name, bool IsSelected) {
                 ItemsRow rowItemsRow = ((ItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         Parent_Id,
-                        Name};
+                        Name,
+                        IsSelected};
                 rowItemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemsRow);
                 return rowItemsRow;
@@ -410,6 +421,7 @@ namespace Maklak.Client.DataSets {
                 this.columnId = base.Columns["Id"];
                 this.columnParent_Id = base.Columns["Parent_Id"];
                 this.columnName = base.Columns["Name"];
+                this.columnIsSelected = base.Columns["IsSelected"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,6 +433,9 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnParent_Id);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
+                this.columnIsSelected = new global::System.Data.DataColumn("IsSelected", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsSelected);
+                this.columnIsSelected.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -611,6 +626,22 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsSelected {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItems.IsSelectedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsSelected\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.IsSelectedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableItems.IdColumn);
             }
@@ -643,6 +674,18 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetNameNull() {
                 this[this.tableItems.NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsSelectedNull() {
+                return this.IsNull(this.tableItems.IsSelectedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsSelectedNull() {
+                this[this.tableItems.IsSelectedColumn] = global::System.Convert.DBNull;
             }
         }
         

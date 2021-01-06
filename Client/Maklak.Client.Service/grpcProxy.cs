@@ -94,6 +94,13 @@ namespace Maklak.Client.Service
 			//return filterData;
 		}
 
+		public int DeleteItem(string itemType, int itemId)
+		{
+			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = itemId };
+			ItemResponse response = client.DeleteItem(request);
+			return response.Result;
+		}
+
 		public void Search(string itemType, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
 			SearchRequest request = new SearchRequest();
@@ -136,7 +143,7 @@ namespace Maklak.Client.Service
 			request.InputType = itemType;
 			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
 
-			SearchResponse response = client.Search(request);
+			SearchResponse response = await client.SearchAsync(request);
 
 			itemsData.Items.Clear();
 

@@ -81,5 +81,13 @@ namespace Maklak.Service
 			return Task.FromResult(response);
 		}
 
+		public override Task<ItemResponse> DeleteItem(ItemRequest request, ServerCallContext context)
+		{
+			ItemResponse response = new ItemResponse();
+			response.Result = Items.DeleteItem(request.ItemType, request.ItemId);
+
+			return Task.FromResult(response);
+		}
+
 	}
 }
