@@ -52,8 +52,8 @@ namespace Maklak.Client.Web.Models
 
 	public class PopUpInput//<T> where T: ComponentBase
 	{
-		public int Id;
-		public int? ParentId;
+		public int? Id;
+		//public int? ParentId;
 		public string Value;
 		public string FilterType;
 		//public Microsoft.AspNetCore.Components.IComponent dialogType;
@@ -62,7 +62,7 @@ namespace Maklak.Client.Web.Models
 		public void Clear() 
 		{
 			Id = int.MinValue;
-			ParentId = null;
+			//ParentId = null;
 			Value = null;
 			FilterType = null;
 			dialogType = null;

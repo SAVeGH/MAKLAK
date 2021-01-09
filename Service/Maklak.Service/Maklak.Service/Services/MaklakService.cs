@@ -50,7 +50,7 @@ namespace Maklak.Service
 		{
 			//return base.Search(request, context);
 
-			ItemsTreeDS ds = Items.GetItems(request.InputType, request.InputValue);
+			ItemsTreeDS ds = Items.GetItems(request.InputType, request.ItemId, request.InputValue);
 
 			SearchResponse response = new SearchResponse();
 			//SearchResponse.Types.ItemsData respData = new SearchResponse.Types.ItemsData();
@@ -77,6 +77,14 @@ namespace Maklak.Service
 		{
 			ItemResponse response = new ItemResponse();
 			response.Result = Items.AddItem(request.ItemType, request.ItemValue);
+
+			return Task.FromResult(response);
+		}
+
+		public override Task<ItemResponse> EditItem(ItemRequest request, ServerCallContext context)
+		{
+			ItemResponse response = new ItemResponse();
+			response.Result = Items.EditItem(request.ItemType, request.ItemId, request.ItemValue);
 
 			return Task.FromResult(response);
 		}

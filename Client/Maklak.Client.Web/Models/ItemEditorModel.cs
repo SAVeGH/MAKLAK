@@ -29,15 +29,29 @@ namespace Maklak.Client.Web.Models
 		{
 			base.OnInitialized();
 
-			PopUpState.OnClose += PopUpState_OnClose;
+			Init();
 		}
 
+		private void Init() 
+		{
+			PopUpState.OnClose += PopUpState_OnClose;
+
+			if (PopUpState.InputParameters.Id == null)
+				return;
+
+			ItemsTreeDS itemData = new ItemsTreeDS();
+			serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, null, itemData);
+			Text = itemData.Items.FirstOrDefault(r=> r.Parent_Id == int.MaxValue).Name;
+		}
 		private void PopUpState_OnClose()
 		{
 			PopUpState.OnClose -= PopUpState_OnClose;
 
-			serviceProxy.AddItem(PopUpState.InputParameters.FilterType, Text);
-			
+			if (PopUpState.InputParameters.Id == null) 
+				serviceProxy.AddItem(PopUpState.InputParameters.FilterType, Text);
+			else
+				serviceProxy.EditItem(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, Text);
+
 			//string res = this.Text;
 		}
 

@@ -38,7 +38,7 @@ namespace Maklak.Client.Service
 			//request.Name = "Bob";
 			//HelloReply reply = client.SayHello(request);
 
-		}	
+		}		
 
 		public string SayHello(string name) 
 		{
@@ -70,29 +70,7 @@ namespace Maklak.Client.Service
 			RegisterRequest request = new RegisterRequest() { Login = login, Password = (password ?? string.Empty) };
 			RegisterResponse response = client.RegisterUser(request);
 			return response.IsAuthenticated;
-		}
-
-		public void Search(Maklak.Client.DataSets.FilterItemsDS filterData)
-		{
-			//SearchRequest request = new SearchRequest();
-			////Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
-			//request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
-			//SearchResponse response = client.Search(request);
-
-			//filterData.Items.Clear();
-
-			//foreach (SearchResponse.Types.OutputData item in response.Items) 
-			//{
-			//	FilterItemsDS.ItemsRow row = filterData.Items.NewItemsRow();
-
-			//	row.ItemId = item.ItemId;
-			//	row.ItemValue = item.ItemValue;
-			//	//row.Name = item.Name;
-
-			//	filterData.Items.AddItemsRow(row);
-			//}
-			//return filterData;
-		}
+		}		
 
 		public int DeleteItem(string itemType, int itemId)
 		{
@@ -101,12 +79,11 @@ namespace Maklak.Client.Service
 			return response.Result;
 		}
 
-		public void Search(string itemType, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
+		public void Search(string itemType, int? itemId, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
-			SearchRequest request = new SearchRequest();
-			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
-			//request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
+			SearchRequest request = new SearchRequest();			
 
+			request.ItemId = itemId ?? int.MaxValue;
 			request.InputType = itemType;
 			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
 
@@ -134,13 +111,14 @@ namespace Maklak.Client.Service
 			//return filterData;
 		}
 
-		public async Task SearchAsync(string itemType, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
+		public async Task SearchAsync(string itemType, int? itemId, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
 			SearchRequest request = new SearchRequest();
 			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
 			//request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
 
-			request.InputType = itemType;
+			request.ItemId = itemId?? int.MaxValue;
+			request.InputType = itemType;			
 			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
 
 			SearchResponse response = await client.SearchAsync(request);
@@ -165,6 +143,13 @@ namespace Maklak.Client.Service
 				itemsData.Items.AddItemsRow(row);
 			}
 			//return filterData;
+		}
+
+		public int EditItem(string itemType, int? itemId, string itemValue)
+		{
+			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = (itemId ?? int.MaxValue) , ItemValue = itemValue };
+			ItemResponse response = client.EditItem(request);
+			return response.Result;
 		}
 
 		public int AddItem(string itemType, string itemValue) 

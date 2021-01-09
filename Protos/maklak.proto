@@ -16,6 +16,8 @@ service Maklak {
 
   rpc AddItem (ItemRequest) returns (ItemResponse);
 
+  rpc EditItem (ItemRequest) returns (ItemResponse);
+
   rpc DeleteItem (ItemRequest) returns (ItemResponse);
   
 }
@@ -54,9 +56,9 @@ message SearchRequest{
     //}
 
     //repeated InputData SerchInput = 1;
-
-    string InputType = 1;
-    string InputValue = 2;
+    int32 ItemId = 1;
+    string InputType = 2;
+    string InputValue = 3;
 }
 
 message SearchResponse{

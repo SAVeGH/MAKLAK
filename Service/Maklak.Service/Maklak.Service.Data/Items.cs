@@ -23,10 +23,11 @@ namespace Maklak.Service.Data
 			return Convert.ToInt32(id);
 		}
 
-		public static ItemsTreeDS GetItems(string itemType, string itemValue) 
+		public static ItemsTreeDS GetItems(string itemType, int itemId, string itemValue) 
 		{
 			IDbCommand command = SqlHelper.GetDbCommand("sp_GetItems");
 
+			command.AddInParameter("@ItemId", DbType.Int32, itemId);
 			command.AddInParameter("@ItemType", DbType.String, 20, itemType);
 			command.AddInParameter("@ItemValue", DbType.String, 100, itemValue);
 
@@ -45,6 +46,19 @@ namespace Maklak.Service.Data
 
 			command.AddInParameter("@ItemType", DbType.String, 20, itemType);
 			command.AddInParameter("@ItemId", DbType.Int32, itemId);
+
+			object id = SqlHelper.ExecuteScalar(command);
+
+			return Convert.ToInt32(id);
+		}
+
+		public static int EditItem(string itemType, int itemId, string itemValue)
+		{
+			IDbCommand command = SqlHelper.GetDbCommand("sp_EditItem");
+
+			command.AddInParameter("@ItemType", DbType.String, 20, itemType);
+			command.AddInParameter("@ItemId", DbType.Int32, itemId);
+			command.AddInParameter("@ItemValue", DbType.String, 100, itemValue);
 
 			object id = SqlHelper.ExecuteScalar(command);
 

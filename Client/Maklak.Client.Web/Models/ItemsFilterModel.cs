@@ -58,6 +58,14 @@ namespace Maklak.Client.Web.Models
 			}
 		}
 
+		public ItemsTreeDS.ItemsRow CurrentItemRow
+		{
+			get
+			{
+				return this.Items.FirstOrDefault(r => r.IsSelected);
+			}
+		}
+
 		protected override void OnInitialized()
 		{
 			base.OnInitialized();
@@ -77,7 +85,7 @@ namespace Maklak.Client.Web.Models
 			//rootRow.Name = "Root";
 			//itemsDS.Items.AddItemsRow(rootRow);
 
-			await serviceProxy.SearchAsync(ItemsFilterType, searchText, itemsDS);
+			await serviceProxy.SearchAsync(ItemsFilterType, null, searchText, itemsDS);
 
 			//await Task.Run(() => { serviceProxy.Search(ItemsFilterType, searchText, itemsDS); });
 
@@ -97,6 +105,24 @@ namespace Maklak.Client.Web.Models
 			popUpState.IsVisible = true;			
 		}
 
+		public void OnEdit()
+		{
+			EditItem();
+		}
+
+		private void EditItem()
+		{
+			if (this.CurrentItemRow == null)
+				return;
+
+			PopUpInput popUpInput = popUpState.InputParameters;
+			popUpInput.FilterType = this.ItemsFilterType;
+			popUpInput.Id = this.CurrentItemRow.Id;
+			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
+			
+			popUpState.IsVisible = true;
+		}
+
 		public void OnDelete() 
 		{
 			DeleteItem();
@@ -104,12 +130,12 @@ namespace Maklak.Client.Web.Models
 
 		private void DeleteItem()
 		{
-			ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
+			//ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
 
-			if (currentSelectedRow == null)
+			if (this.CurrentItemRow == null)
 				return;
 
-			serviceProxy.DeleteItem(ItemsFilterType, currentSelectedRow.Id);
+			serviceProxy.DeleteItem(ItemsFilterType, this.CurrentItemRow.Id);
 
 			LoadItems();
 		}
