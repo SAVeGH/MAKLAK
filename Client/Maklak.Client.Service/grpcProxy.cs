@@ -81,9 +81,9 @@ namespace Maklak.Client.Service
 
 		public void Search(string itemType, int? itemId, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
-			SearchRequest request = new SearchRequest();			
+			SearchRequest request = new SearchRequest();
 
-			request.ItemId = itemId ?? int.MaxValue;
+			request.ItemId = itemId; // ?? int.MaxValue;
 			request.InputType = itemType;
 			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
 
@@ -94,6 +94,8 @@ namespace Maklak.Client.Service
 			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
 			rootRow.Id = int.MaxValue;        // не существующий Id
 			rootRow.Parent_Id = int.MinValue; // вместо NULL
+
+			//rootRow.
 			rootRow.Name = "Root";
 			itemsData.Items.AddItemsRow(rootRow);
 
@@ -117,7 +119,7 @@ namespace Maklak.Client.Service
 			//Dictionary<string, string> inputData = filterData.SearchInput.ToDictionary(keyField => keyField.InputName, valueField => valueField.InputValue);
 			//request.SerchInput.AddRange(filterData.Input.Select(r => new SearchRequest.Types.InputData() { InputType = r.InputName, InputValue = r.InputValue }));
 
-			request.ItemId = itemId?? int.MaxValue;
+			request.ItemId = itemId; //?? int.MaxValue;
 			request.InputType = itemType;			
 			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
 
@@ -126,8 +128,7 @@ namespace Maklak.Client.Service
 			itemsData.Items.Clear();
 
 			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
-			rootRow.Id = int.MaxValue;        // не существующий Id
-			rootRow.Parent_Id = int.MinValue; // вместо NULL
+			rootRow.Id = int.MaxValue;        // не существующий Id для самого верхнего узла			
 			rootRow.Name = "Root";
 			itemsData.Items.AddItemsRow(rootRow);
 
@@ -137,12 +138,11 @@ namespace Maklak.Client.Service
 
 				row.Id = item.ItemId;
 				row.Parent_Id = rootRow.Id;
-				row.Name = item.ItemValue;
-				//row.Name = item.Name;
+				row.Name = item.ItemValue;				
 
 				itemsData.Items.AddItemsRow(row);
 			}
-			//return filterData;
+			
 		}
 
 		public int EditItem(string itemType, int? itemId, string itemValue)

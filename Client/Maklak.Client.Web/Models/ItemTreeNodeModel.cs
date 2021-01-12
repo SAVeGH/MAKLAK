@@ -18,9 +18,11 @@ namespace Maklak.Client.Web.Models
 		{ 
 			get 
 			{
-				// что бы не работать с DBNull использую int.MinValue
-				int parentId = ParentRow == null ? int.MinValue : ParentRow.Id;
-				return ItemsSource.Where(i => i.Parent_Id == parentId);
+				
+				int? parentId = ParentRow == null ? null : (int?)ParentRow.Id;				
+				
+				return ItemsSource.Where(i => parentId == null ? i.IsParent_IdNull() : ((!i.IsParent_IdNull()) && i.Parent_Id == parentId));
+				
 			}
 			
 		}

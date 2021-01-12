@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/wrappers.proto"; // for nullable types
+
 option csharp_namespace = "Maklak.Service";
 
 package maklak;
@@ -56,7 +58,7 @@ message SearchRequest{
     //}
 
     //repeated InputData SerchInput = 1;
-    int32 ItemId = 1;
+    google.protobuf.Int32Value ItemId = 1;
     string InputType = 2;
     string InputValue = 3;
 }
@@ -64,7 +66,7 @@ message SearchRequest{
 message SearchResponse{
     message ItemsData{
         int32 ItemId = 1;  
-        int32 ParentId = 2;
+        google.protobuf.Int32Value ParentId = 2; //nullable type
         string ItemValue = 3;        
     }
 
@@ -73,7 +75,7 @@ message SearchResponse{
 
 message ItemRequest{
     
-        int32 ItemId = 1;
+        google.protobuf.Int32Value ItemId = 1;
         string ItemType = 2;  
         string ItemValue = 3;        
     
@@ -84,22 +86,3 @@ message ItemResponse{
         int32 Result = 1;              
     
 }
-/*
-message ItemsRequest{
-    
-        string ItemType = 1;  
-        string InputValue = 2;        
-    
-}
-
-message ItemsResponse{
-    
-        message OutputData{
-        int32 ItemId = 1;  
-        string ItemValue = 2;        
-    }
-
-    repeated OutputData Items = 1;           
-    
-}
-*/

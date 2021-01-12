@@ -15,7 +15,7 @@ BEGIN
 		Id,NULL,[Name] 
 		from Product p
 		where
-		(p.Id = @ItemId or @ItemId = 2147483647)
+		(@ItemId is NULL or p.Id = @ItemId) -- 2147483647
 		and
 		(isnull(@ItemValue,'') = N'' or [Name] like '%' + @ItemValue + '%');
 	end
@@ -30,3 +30,5 @@ BEGIN
 	select * from @result;
 END
 GO
+
+--exec sp_GetItems NULL,'Name', NULL

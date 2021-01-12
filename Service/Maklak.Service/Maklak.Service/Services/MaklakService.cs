@@ -46,29 +46,23 @@ namespace Maklak.Service
 			return Task.FromResult(response);
 		}
 
-		public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
-		{
-			//return base.Search(request, context);
+		public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)		{
+			
 
 			ItemsTreeDS ds = Items.GetItems(request.InputType, request.ItemId, request.InputValue);
 
-			SearchResponse response = new SearchResponse();
-			//SearchResponse.Types.ItemsData respData = new SearchResponse.Types.ItemsData();
+			SearchResponse response = new SearchResponse();			
 
 			foreach (ItemsTreeDS.ItemsRow row in ds.Items) 
 			{
 				SearchResponse.Types.ItemsData respData = new SearchResponse.Types.ItemsData();
 
 				respData.ItemId = row.Id;
-				respData.ParentId = (row["Parent_Id"] == DBNull.Value ? int.MinValue : row.Parent_Id);
+				respData.ParentId = row.IsParent_IdNull() ? null : (int?)row.Parent_Id; 
 				respData.ItemValue = row.Name;
 				
 				response.Items.Add(respData);
-			}
-
-			//SearchResponse.Types.ItemsData respData = new SearchResponse.Types.ItemsData() { ItemId = 1, ParentId = int.MinValue, ItemValue = "Value 1" };
-
-			//response.Items.Add(respData);
+			}		
 
 			return Task.FromResult(response);
 		}
@@ -84,7 +78,7 @@ namespace Maklak.Service
 		public override Task<ItemResponse> EditItem(ItemRequest request, ServerCallContext context)
 		{
 			ItemResponse response = new ItemResponse();
-			response.Result = Items.EditItem(request.ItemType, request.ItemId, request.ItemValue);
+			response.Result = Items.EditItem(request.ItemType, (int)request.ItemId, request.ItemValue);
 
 			return Task.FromResult(response);
 		}
@@ -92,7 +86,7 @@ namespace Maklak.Service
 		public override Task<ItemResponse> DeleteItem(ItemRequest request, ServerCallContext context)
 		{
 			ItemResponse response = new ItemResponse();
-			response.Result = Items.DeleteItem(request.ItemType, request.ItemId);
+			response.Result = Items.DeleteItem(request.ItemType, (int)request.ItemId);
 
 			return Task.FromResult(response);
 		}
