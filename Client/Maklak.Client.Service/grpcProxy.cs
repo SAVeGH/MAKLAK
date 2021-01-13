@@ -93,8 +93,8 @@ namespace Maklak.Client.Service
 
 			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
 			rootRow.Id = int.MaxValue;        // не существующий Id
-			rootRow.Parent_Id = int.MinValue; // вместо NULL
-
+											  //rootRow.Parent_Id = int.MinValue; // вместо NULL
+			rootRow.SetParent_IdNull();
 			//rootRow.
 			rootRow.Name = "Root";
 			itemsData.Items.AddItemsRow(rootRow);
@@ -128,7 +128,8 @@ namespace Maklak.Client.Service
 			itemsData.Items.Clear();
 
 			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
-			rootRow.Id = int.MaxValue;        // не существующий Id для самого верхнего узла			
+			rootRow.Id = int.MaxValue;        // не существующий Id для самого верхнего узла	
+			rootRow.SetParent_IdNull();
 			rootRow.Name = "Root";
 			itemsData.Items.AddItemsRow(rootRow);
 

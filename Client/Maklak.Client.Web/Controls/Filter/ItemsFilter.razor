@@ -9,11 +9,14 @@
 
 		<div class="itemsfilterOuter">
 
+			@if (!this.IsReadOnly)
+			{
 			<div style="position:relative">
 				<input type="button" value="Add" @onclick="OnAdd" />
 				<input type="button" value="Edit" @onclick="OnEdit" />
 				<input type="button" value="Delete" @onclick="OnDelete" />
 			</div>
+			}
 
 			<div class="itemsfilterSearchCell" >
 				<input class="itemsfilterSearchInput" type="search" @bind="SearchText" @bind:event="oninput" />

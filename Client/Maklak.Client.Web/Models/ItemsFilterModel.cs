@@ -50,6 +50,12 @@ namespace Maklak.Client.Web.Models
 			get; set;
 		}
 
+		[Parameter]
+		public bool IsReadOnly
+		{
+			get; set;
+		}
+
 		public ItemsTreeDS.ItemsDataTable Items
 		{
 			get
@@ -100,9 +106,13 @@ namespace Maklak.Client.Web.Models
 			PopUpInput popUpInput = popUpState.InputParameters;
 			popUpInput.FilterType = this.ItemsFilterType;
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
+			popUpInput.Height = 120;
+			popUpInput.Width = 300;
+			popUpInput.Title = "Add";
 			//popUpState.OnRefresh += PopUpState_OnRefresh;
 			//popUpState.InputParameters = popUpInput;
-			popUpState.IsVisible = true;			
+			//popUpState.IsVisible = true;	
+			popUpState.Show();
 		}
 
 		public void OnEdit()
@@ -119,8 +129,12 @@ namespace Maklak.Client.Web.Models
 			popUpInput.FilterType = this.ItemsFilterType;
 			popUpInput.Id = this.CurrentItemRow.Id;
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
-			
-			popUpState.IsVisible = true;
+			popUpInput.Height = 120;
+			popUpInput.Width = 300;
+			popUpInput.Title = "Edit";
+
+			//popUpState.IsVisible = true;
+			popUpState.Show();
 		}
 
 		public void OnDelete() 

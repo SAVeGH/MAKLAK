@@ -26,10 +26,16 @@ namespace Maklak.Client.Web.Models
 			this.InvokeAsync(StateHasChanged); // Только асинхронно т.к. выполняется не в контексте вызова 			
 		}
 
-		public void HidePopUp() 
-		{
-			PopUpState.IsVisible = false;			
+		public void ClosePopUp(bool isCancel = false) 
+		{			
+			PopUpState.Close(isCancel);
 		}
+
+		public string Height { get { return $"{PopUpState.InputParameters.Height.ToString()}px"; } }
+
+		public string Width { get { return $"{PopUpState.InputParameters.Width.ToString()}px"; } }
+
+		public string Title { get { return PopUpState.InputParameters.Title; } }
 
 		public string VisibilityClass 
 		{

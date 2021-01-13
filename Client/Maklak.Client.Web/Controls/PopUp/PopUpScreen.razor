@@ -1,10 +1,16 @@
 ﻿@inherits Maklak.Client.Web.Models.PopUpModel
 
-
-
 <div class="@VisibilityClass">
-	<div style="background-color:white;  position:absolute; height:300px; width:300px;">
-		<PopUpContent/>
-		<input type="button" @onclick="HidePopUp" value="Ok" />
+	<div class="popUpScreen">
+		<fieldset>
+			<legend class="itemsfilterLegend">@Title</legend>
+			<div>
+				<PopUpContent /> @*содержимое всплывающего окна*@
+			</div>
+			<div>
+				<input type="button" @onclick="(e=>ClosePopUp(false))" value="Ok" />
+				<input type="button" @onclick="(e=>ClosePopUp(true))" value="Cancel" />
+			</div>
+		</fieldset>
 	</div>
 </div>

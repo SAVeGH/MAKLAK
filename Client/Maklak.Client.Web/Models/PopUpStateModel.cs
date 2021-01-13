@@ -14,55 +14,63 @@ namespace Maklak.Client.Web.Models
 
 		public PopUpStateModel() 
 		{
-			InputParameters = new PopUpInput();
-			OutputParameters = new PopUpOutput();
+			InputParameters = new PopUpInput();			
 		}
-		public PopUpInput InputParameters { get; private set; }
-		public PopUpOutput OutputParameters { get; private set; }
-		public bool IsVisible 
-		{ 
-			get 
-			{ 
-				return popUpState; 
-			}
-			set 
+		public PopUpInput InputParameters { get; private set; }		
+
+		public bool IsVisible
+		{
+			get
 			{
-				popUpState = value;
-
-				if (!popUpState)
-				{
-					this.OnClose?.Invoke();
-					InputParameters.Clear();
-
-				}
-
-				this.OnRefresh?.Invoke();
-			} 
+				return popUpState;
+			}			
 		}
-	}
 
-	public class PopUpOutput
+		public void Show() 
+		{
+			popUpState = true;
+
+			this.OnRefresh?.Invoke();
+		}
+
+		public void Close(bool isCancel = false) 
+		{
+			popUpState = false;
+
+			if(!isCancel)
+				this.OnClose?.Invoke();
+
+			CleanSubscriptions();
+
+			InputParameters.Clear();
+
+			this.OnRefresh?.Invoke();
+		}
+
+		private void CleanSubscriptions() 
+		{
+			// освобождает все подписки на событие
+			Delegate[] subscriptions = this.OnClose.GetInvocationList();
+
+			foreach (Delegate closeDelegate in subscriptions)			
+				this.OnClose -= (Action)closeDelegate;			
+		}
+	}	
+
+	public class PopUpInput
 	{
-		public int Id;
-		public int? ParentId;
+		public int? Id;		
 		public string Value;
-		public string FilterType;
-
-	}
-
-	public class PopUpInput//<T> where T: ComponentBase
-	{
-		public int? Id;
-		//public int? ParentId;
-		public string Value;
-		public string FilterType;
-		//public Microsoft.AspNetCore.Components.IComponent dialogType;
+		public string FilterType;		
 		public Type dialogType;
+		public int Height;
+		public int Width;
+		public string Title;
+
 
 		public void Clear() 
 		{
-			Id = int.MinValue;
-			//ParentId = null;
+			Id = null;			
 			Value = null;
 			FilterType = null;
 			dialogType = null;

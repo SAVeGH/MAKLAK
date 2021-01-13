@@ -201,12 +201,12 @@
 	position: relative;	
 }
 .itemsfilterItemsCell {
-	position: absolute;
+	position: relative;
 	background-color: aliceblue;
 	height: 136px;
 	width: 300px;
 	overflow-y: auto;
-	top: 48px;
+	/*top: 48px;*/
 }
 .itemsfilterSearchInput {
 	width:300px;
@@ -231,6 +231,10 @@
 }
 .popUpHide {
 	display: none;
+}
+.popUpScreen {
+	position: absolute;
+	background-color: white;
 }
 
 .treeItem {

@@ -11,8 +11,7 @@ using Maklak.Client.DataSets;
 namespace Maklak.Client.Web.Models
 {
 	public class ItemTreeNodeModel : ComponentBase
-	{
-		//int selectedId;
+	{		
 
 		public IEnumerable<ItemsTreeDS.ItemsRow> Items 
 		{ 
@@ -32,12 +31,10 @@ namespace Maklak.Client.Web.Models
 
 		[Parameter]
 		public ItemsTreeDS.ItemsRow ParentRow { get; set; }
-
-		//public int SelectedId { get { return selectedId; } }
+		
 
 		public void OnClick(int itemId) 
-		{
-			//selectedId = itemId;
+		{			
 
 			ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
 
