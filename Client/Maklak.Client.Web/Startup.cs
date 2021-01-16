@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 using Maklak.Client.Service;
 using Maklak.Client.Web.Models;
+using Maklak.Client.Web.Models.PopUp;
 
 namespace Maklak.Client.Web
 {

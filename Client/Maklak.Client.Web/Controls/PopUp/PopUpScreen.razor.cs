@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components; // for [Parameter] attribute
 
 namespace Maklak.Client.Web.Controls.PopUp
 {
-	public partial class PopUpScreen : Maklak.Client.Web.Models.PopUpModel
+	public partial class PopUpScreen : Maklak.Client.Web.Models.PopUp.PopUpScreenModel
 	{
 		
 	}

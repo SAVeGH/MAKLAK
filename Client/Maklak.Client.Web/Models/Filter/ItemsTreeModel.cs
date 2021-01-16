@@ -8,7 +8,7 @@ using Maklak.Client.Service;
 using Maklak.Client.DataSets;
 
 
-namespace Maklak.Client.Web.Models
+namespace Maklak.Client.Web.Models.Filter
 {
 	public class ItemsTreeModel : ComponentBase
 	{

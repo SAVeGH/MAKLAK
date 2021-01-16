@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Maklak.Client.Web.Controls.PopUp
 {
-	public partial class PopUpContent : Maklak.Client.Web.Models.PopUpContentModel
+	public partial class PopUpContent : Maklak.Client.Web.Models.PopUp.PopUpContentModel
 	{
 		
 	}

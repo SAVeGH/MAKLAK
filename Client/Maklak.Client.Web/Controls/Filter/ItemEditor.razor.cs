@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components; // for [Parameter] attribute
 
 namespace Maklak.Client.Web.Controls.Filter
 {
-	public partial class ItemEditor : Maklak.Client.Web.Models.ItemEditorModel
+	public partial class ItemEditor : Maklak.Client.Web.Models.Filter.ItemEditorModel
 	{
 		
 	}

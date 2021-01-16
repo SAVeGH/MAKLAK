@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Maklak.Client.Web.Models
+namespace Maklak.Client.Web.Models.PopUp
 {
 	public class PopUpStateModel
 	{

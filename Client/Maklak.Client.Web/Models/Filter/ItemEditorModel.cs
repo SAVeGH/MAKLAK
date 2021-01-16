@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components; // for ComponentBase.
 using Maklak.Client.Service;
 using Maklak.Client.DataSets;
+using Maklak.Client.Web.Models.PopUp;
 
 
-namespace Maklak.Client.Web.Models
+namespace Maklak.Client.Web.Models.Filter
 {
 	public class ItemEditorModel : ComponentBase
 	{

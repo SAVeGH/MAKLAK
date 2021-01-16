@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components; // for [Parameter] attribute
 
 namespace Maklak.Client.Web.Controls.Filter
 {
-	public partial class ItemTreeNode : Maklak.Client.Web.Models.ItemTreeNodeModel
+	public partial class ItemTreeNode : Maklak.Client.Web.Models.Filter.ItemTreeNodeModel
 	{
 		
 	}

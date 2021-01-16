@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components; // for ComponentBase.
 using Maklak.Client.Service;
 using Maklak.Client.DataSets;
+using Maklak.Client.Web.Models.PopUp;
 
-namespace Maklak.Client.Web.Models
+namespace Maklak.Client.Web.Models.Filter
 {
 	public class ItemsFilterModel : ComponentBase
 	{
@@ -16,6 +17,7 @@ namespace Maklak.Client.Web.Models
 		public ItemsFilterModel()
 		{
 			itemsDS = new ItemsTreeDS();
+			this.IsEditable = true;
 			//LoadItems();
 		}
 
@@ -51,7 +53,7 @@ namespace Maklak.Client.Web.Models
 		}
 
 		[Parameter]
-		public bool IsReadOnly
+		public bool IsEditable
 		{
 			get; set;
 		}
@@ -77,6 +79,8 @@ namespace Maklak.Client.Web.Models
 			base.OnInitialized();
 
 			popUpState.OnRefresh += PopUpState_OnRefresh;
+
+			//this.IsEditable = true;
 
 			LoadItems();
 		}

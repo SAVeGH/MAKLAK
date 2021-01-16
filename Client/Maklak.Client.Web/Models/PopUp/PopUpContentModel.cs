@@ -9,7 +9,7 @@ using Maklak.Client.DataSets;
 
 using Maklak.Client.Web.Controls.Filter;
 
-namespace Maklak.Client.Web.Models
+namespace Maklak.Client.Web.Models.PopUp
 {
 	public class PopUpContentModel : ComponentBase
 	{

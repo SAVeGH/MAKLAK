@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components; // for ComponentBase
 using Maklak.Client.Service;
 using Maklak.Client.DataSets;
 
-namespace Maklak.Client.Web.Models
+namespace Maklak.Client.Web.Models.Filter
 {
 	
 	public class FilterModel : ComponentBase // component inherits from this class. To do it  - class must be inherited from ComponentBase

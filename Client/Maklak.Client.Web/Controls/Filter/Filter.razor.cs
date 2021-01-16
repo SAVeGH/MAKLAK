@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Maklak.Client.Web.Controls.Filter
 {
-	public partial class Filter : Maklak.Client.Web.Models.FilterModel
+	public partial class Filter : Maklak.Client.Web.Models.Filter.FilterModel
 	{
 	}
 }

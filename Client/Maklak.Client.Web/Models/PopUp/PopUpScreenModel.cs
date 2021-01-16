@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Components; // for ComponentBase.
 using Maklak.Client.Service;
 using Maklak.Client.DataSets;
 
-namespace Maklak.Client.Web.Models
+namespace Maklak.Client.Web.Models.PopUp
 {
-	public class PopUpModel : ComponentBase
+	public class PopUpScreenModel : ComponentBase
 	{
 		[Inject]
 		public PopUpStateModel PopUpState { get; set; }		

@@ -1,4 +1,4 @@
-﻿@inherits Maklak.Client.Web.Models.ItemsFilterModel
+﻿@inherits Maklak.Client.Web.Models.Filter.ItemsFilterModel
 @*inherits from model class*@
 
 @*style="background-color: red; height:200px; width:auto;"*@
@@ -9,7 +9,7 @@
 
 		<div class="itemsfilterOuter">
 
-			@if (!this.IsReadOnly)
+			@if (this.IsEditable)
 			{
 			<div style="position:relative">
 				<input type="button" value="Add" @onclick="OnAdd" />
@@ -24,11 +24,11 @@
 
 			<div class="itemsfilterItemsCell">
 
-					<div>
+					@*<div>*@
 
 						<ItemsTree Items=this.Items/>
 						
-					</div>
+					@*</div>*@
 			</div>
 
 		</div>
