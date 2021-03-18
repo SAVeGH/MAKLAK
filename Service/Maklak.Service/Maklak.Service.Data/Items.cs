@@ -30,12 +30,14 @@ namespace Maklak.Service.Data
 			return dataSet;
 		}
 
-		public static int AddItem(string itemType, string itemValue)
+		public static int AddItem(string itemType, int? itemId, int? measureUnitId, string itemValue)
 		{
 			IDbCommand command = SqlHelper.GetDbCommand("sp_AddItem");
 
 			command.AddInParameter("@ItemType", DbType.String, 20, itemType);
 			command.AddInParameter("@ItemValue", DbType.String, 100, itemValue);
+			command.AddInParameter("@ItemId", DbType.Int32, itemId?? (object)DBNull.Value);
+			command.AddInParameter("@MeasureUnitId", DbType.Int32, measureUnitId?? (object)DBNull.Value);
 
 			object id = SqlHelper.ExecuteScalar(command);
 
@@ -65,6 +67,21 @@ namespace Maklak.Service.Data
 			object id = SqlHelper.ExecuteScalar(command);
 
 			return Convert.ToInt32(id);
+		}
+
+		public static LookupDS GetLookupItems(string lookupType)
+		{
+			IDbCommand command = SqlHelper.GetDbCommand("sp_GetLookupItems");
+			
+			command.AddInParameter("@LookupType", DbType.String, 20, lookupType);
+
+			LookupDS dataSet = new LookupDS();
+
+			SqlHelper.FillDataTable(command, dataSet.Items);
+
+			//ItemsTreeDS dataSet = SqlHelper.ExecuteDataset<ItemsTreeDS>(command);
+
+			return dataSet;
 		}
 	}
 }

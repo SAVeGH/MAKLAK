@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto"; // for nullable types
+// Доступные nullable типы
+//https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/wrappers.proto
 
 option csharp_namespace = "Maklak.Service";
 
@@ -21,6 +23,8 @@ service Maklak {
   rpc EditItem (ItemRequest) returns (ItemResponse);
 
   rpc DeleteItem (ItemRequest) returns (ItemResponse);
+
+  rpc GetLookupItems (LookupRequest) returns (LookupResponse);
   
 }
 
@@ -67,22 +71,40 @@ message SearchResponse{
     message ItemsData{
         int32 ItemId = 1;  
         google.protobuf.Int32Value ParentId = 2; //nullable type
-        string ItemValue = 3;        
+        string ItemValue = 3;       
+        google.protobuf.Int32Value MeasureUnitId = 4; //nullable type
+        google.protobuf.BoolValue HasChildren = 5; //nullable type
     }
 
     repeated ItemsData Items = 1;
 }
 
-message ItemRequest{
-    
+message ItemRequest{    
+
         google.protobuf.Int32Value ItemId = 1;
-        string ItemType = 2;  
-        string ItemValue = 3;        
+        google.protobuf.Int32Value MeasureUnitId = 2;
+        string ItemType = 3;  
+        string ItemValue = 4;        
     
 }
 
 message ItemResponse{
     
         int32 Result = 1;              
+    
+}
+
+message LookupRequest{
+string LookupType = 1;
+}
+
+message LookupResponse{
+    
+        message ItemsData{
+        int32 ItemId = 1;       
+        string ItemValue = 3;        
+    }
+
+    repeated ItemsData Items = 1;           
     
 }

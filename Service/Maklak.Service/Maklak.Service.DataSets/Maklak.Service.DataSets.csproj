@@ -10,12 +10,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ItemsTreeDS.xsd</DependentUpon>
     </Compile>
+    <Compile Update="LookupDS.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LookupDS.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <None Update="ItemsTreeDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ItemsTreeDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="LookupDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LookupDS.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

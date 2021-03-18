@@ -1,0 +1,27 @@
+﻿@inherits Maklak.Client.Web.Models.Filter.PropertyEditorModel
+
+
+<div>
+	<div>Property Name: <input type="text" @bind-value="Text" /></div>	
+	<div>Measure Units: 
+		<select @bind="SelectedMeasureId" >
+			@foreach (Maklak.Client.DataSets.LookupDS.ItemsRow row in this.MeasureUnits.Items)
+			{
+				@if (row.IsSelected)
+				{
+					<option value="@row.Id" selected>
+						@row.Name
+					</option>
+				}
+				else
+				{
+					<option value="@row.Id">
+						@row.Name
+					</option>
+				}
+			}
+		</select>
+	</div>
+</div>
+
+

@@ -17,7 +17,7 @@ namespace Maklak.Client.Web.Models.Filter
 		public PopUpStateModel PopUpState { get; set; }
 
 		[Inject]
-		private grpcProxy serviceProxy { get; set; }
+		protected grpcProxy serviceProxy { get; set; }
 
 		[Parameter]
 		public string FilterType { get; set; }
@@ -28,7 +28,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 		protected override void OnInitialized()
 		{
-			base.OnInitialized();
+			//base.OnInitialized();
 
 			Init();
 		}

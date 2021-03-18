@@ -106,6 +106,11 @@ namespace Maklak.Client.Service
 				row.Id = item.ItemId;
 				row.Parent_Id = rootRow.Id;
 				row.Name = item.ItemValue;
+				if (item.MeasureUnitId != null)
+					row.MeasureUnit_Id = (int)item.MeasureUnitId;
+				if (item.HasChildren != null)
+					row.HasChildren = (bool)item.HasChildren;
+				
 				//row.Name = item.Name;
 
 				itemsData.Items.AddItemsRow(row);
@@ -158,6 +163,42 @@ namespace Maklak.Client.Service
 			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemValue = itemValue };
 			ItemResponse response = client.AddItem(request);
 			return response.Result;
+		}
+
+		public int AddPropertyItem(int? propertyId, int measureUnitId, string itemValue)
+		{
+			ItemRequest request = new ItemRequest() { ItemType = "Property", ItemId = propertyId, MeasureUnitId = measureUnitId, ItemValue = itemValue };
+			ItemResponse response = client.AddItem(request);
+			return response.Result;			
+		}
+
+		public int EditPropertyItem(string itemType, int? itemParentId, int? itemId, string itemValue)
+		{
+			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = (itemId ?? int.MaxValue), ItemValue = itemValue };
+			ItemResponse response = client.EditItem(request);
+			return response.Result;
+		}
+
+		public void GetLookupItems(string lookupType, Maklak.Client.DataSets.LookupDS itemsData)
+		{
+			LookupRequest request = new LookupRequest();
+
+			request.LookupType = lookupType;
+
+			LookupResponse response = client.GetLookupItems(request);
+
+			itemsData.Items.Clear();			
+
+			foreach (LookupResponse.Types.ItemsData item in response.Items)
+			{
+				LookupDS.ItemsRow row = itemsData.Items.NewItemsRow();
+
+				row.Id = item.ItemId;				
+				row.Name = item.ItemValue;				
+
+				itemsData.Items.AddItemsRow(row);
+			}
+			
 		}
 	}
 }

@@ -12,17 +12,14 @@ namespace Maklak.Client.Web.Models.Filter
 {
 	public class ItemsFilterModel : ComponentBase
 	{
-		private ItemsTreeDS itemsDS;
 
-		public ItemsFilterModel()
-		{
-			itemsDS = new ItemsTreeDS();
-			this.IsEditable = true;
-			//LoadItems();
-		}
+		// так как разметка унаследована от этого класса, а обработка Add,Edit,Del своя для каждого лукапа - сделан класс с виртуальными методами куда 
+		// передаётся обработка событий. Иначе нужно дублировать разметку для лукапов 
+		// Например можно сделать модель PropertiesFilterModel : ItemsFilterModel, но придется делать отдельную разметку (копию ItemsFilter.razor) для PropertiesFilter что ыб от неё унаследоваться
+		ItemsFilterBase iFilter;		
 
-		[Inject]
-		public StateModel StateStorage { get; set; }
+		//[Inject]
+		//public StateModel StateStorage { get; set; }
 
 		[Inject]
 		private grpcProxy serviceProxy { get; set; }
@@ -30,142 +27,91 @@ namespace Maklak.Client.Web.Models.Filter
 		[Inject]
 		public PopUpStateModel popUpState { get; set; }
 
-		
 
-		private string searchText;
+		public ItemsFilterModel() 
+		{
+			this.IsEditable = true; // по умолчанию - true
+		}
+
 
 		[Parameter]
 		public string SearchText
 		{
-			get { return searchText; }
+			get { return iFilter == null ? null : iFilter.SearchText; }
 			set // устанавливается на oninput
 			{
-				searchText = value;
-				LoadItems();
+				if (iFilter == null)
+					return;
+
+				iFilter.SearchText = value;
+				
 			}
 		}	
 		
-
+		// устанавливается 1 раз после инициализации (после вызова конструктора)
 		[Parameter]
 		public string ItemsFilterType
 		{
-			get; set;
-		}
+			get;
+			set;
+		}		
 
+		// устанавливается 1 раз после инициализации (после вызова конструктора)
 		[Parameter]
 		public bool IsEditable
 		{
-			get; set;
-		}
+			get;
+			set;
+		}		
 
 		public ItemsTreeDS.ItemsDataTable Items
 		{
 			get
 			{				
-				return itemsDS.Items;
+				return iFilter == null ? null : iFilter.Items;
 			}
-		}
-
-		public ItemsTreeDS.ItemsRow CurrentItemRow
-		{
-			get
-			{
-				return this.Items.FirstOrDefault(r => r.IsSelected);
-			}
-		}
+		}	
 
 		protected override void OnInitialized()
 		{
 			base.OnInitialized();
 
-			popUpState.OnRefresh += PopUpState_OnRefresh;
+			CreateManagementInstance();
 
-			//this.IsEditable = true;
+			iFilter.ItemsFilterType = this.ItemsFilterType;
+			iFilter.IsEditable = this.IsEditable;
 
-			LoadItems();
+			iFilter.OnInitialized();
+
+			iFilter.OnStateHasChanged += this.StateHasChanged;
+			
 		}
 
-		private async Task LoadItems()
+		private void CreateManagementInstance() 
 		{
-			//itemsDS.Clear();
+			switch (this.ItemsFilterType) 
+			{
+				case "Property":
+					iFilter = new PropertyFilterModel(popUpState, serviceProxy);
+					break;
+				default:
+					iFilter = new ItemsFilterBase(popUpState, serviceProxy);
+					break;
 
-			//ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.NewItemsRow();
-			//rootRow.Id = int.MaxValue;        // не существующий Id
-			//rootRow.Parent_Id = int.MinValue; // вместо NULL
-			//rootRow.Name = "Root";
-			//itemsDS.Items.AddItemsRow(rootRow);
-
-			await serviceProxy.SearchAsync(ItemsFilterType, null, searchText, itemsDS);
-
-			//await Task.Run(() => { serviceProxy.Search(ItemsFilterType, searchText, itemsDS); });
-
-			//await serviceProxy.Search(ItemsFilterType, searchText, itemsDS);
-
-			//this.InvokeAsync(StateHasChanged);	
-			StateHasChanged();
+			}
 		}
 
 		public void OnAdd()
 		{
-			PopUpInput popUpInput = popUpState.InputParameters;
-			popUpInput.FilterType = this.ItemsFilterType;
-			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
-			popUpInput.Height = 120;
-			popUpInput.Width = 300;
-			popUpInput.Title = "Add";
-			//popUpState.OnRefresh += PopUpState_OnRefresh;
-			//popUpState.InputParameters = popUpInput;
-			//popUpState.IsVisible = true;	
-			popUpState.Show();
-		}
-
+			iFilter.AddItem();			
+		}		
 		public void OnEdit()
 		{
-			EditItem();
-		}
-
-		private void EditItem()
-		{
-			if (this.CurrentItemRow == null)
-				return;
-
-			PopUpInput popUpInput = popUpState.InputParameters;
-			popUpInput.FilterType = this.ItemsFilterType;
-			popUpInput.Id = this.CurrentItemRow.Id;
-			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
-			popUpInput.Height = 120;
-			popUpInput.Width = 300;
-			popUpInput.Title = "Edit";
-
-			//popUpState.IsVisible = true;
-			popUpState.Show();
-		}
-
+			iFilter.EditItem();			
+		}		
 		public void OnDelete() 
 		{
-			DeleteItem();
-		}
-
-		private void DeleteItem()
-		{
-			//ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
-
-			if (this.CurrentItemRow == null)
-				return;
-
-			serviceProxy.DeleteItem(ItemsFilterType, this.CurrentItemRow.Id);
-
-			LoadItems();
-		}
-
-		private void PopUpState_OnRefresh()
-		{
-			LoadItems();
-
-			//this.InvokeAsync(StateHasChanged);
-
-			//this.StateHasChanged(); // Иначе содержимое не отображается		
-
-		}
+			iFilter.DeleteItem();			
+		}				
 	}
 }

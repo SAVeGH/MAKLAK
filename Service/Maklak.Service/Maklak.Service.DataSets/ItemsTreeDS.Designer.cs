@@ -285,6 +285,10 @@ namespace Maklak.Service.DataSets {
             
             private global::System.Data.DataColumn columnName;
             
+            private global::System.Data.DataColumn columnMeasureUnit_Id;
+            
+            private global::System.Data.DataColumn columnHasChildren;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ItemsDataTable() {
@@ -344,6 +348,22 @@ namespace Maklak.Service.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn MeasureUnit_IdColumn {
+                get {
+                    return this.columnMeasureUnit_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn HasChildrenColumn {
+                get {
+                    return this.columnHasChildren;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -379,12 +399,14 @@ namespace Maklak.Service.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ItemsRow AddItemsRow(int Id, int Parent_Id, string Name) {
+            public ItemsRow AddItemsRow(int Id, int Parent_Id, string Name, int MeasureUnit_Id, bool HasChildren) {
                 ItemsRow rowItemsRow = ((ItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         Parent_Id,
-                        Name};
+                        Name,
+                        MeasureUnit_Id,
+                        HasChildren};
                 rowItemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemsRow);
                 return rowItemsRow;
@@ -410,6 +432,8 @@ namespace Maklak.Service.DataSets {
                 this.columnId = base.Columns["Id"];
                 this.columnParent_Id = base.Columns["Parent_Id"];
                 this.columnName = base.Columns["Name"];
+                this.columnMeasureUnit_Id = base.Columns["MeasureUnit_Id"];
+                this.columnHasChildren = base.Columns["HasChildren"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,6 +445,10 @@ namespace Maklak.Service.DataSets {
                 base.Columns.Add(this.columnParent_Id);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
+                this.columnMeasureUnit_Id = new global::System.Data.DataColumn("MeasureUnit_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMeasureUnit_Id);
+                this.columnHasChildren = new global::System.Data.DataColumn("HasChildren", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHasChildren);
                 this.columnId.AllowDBNull = false;
             }
             
@@ -607,6 +635,38 @@ namespace Maklak.Service.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int MeasureUnit_Id {
+                get {
+                    try {
+                        return ((int)(this[this.tableItems.MeasureUnit_IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MeasureUnit_Id\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.MeasureUnit_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool HasChildren {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItems.HasChildrenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HasChildren\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.HasChildrenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsParent_IdNull() {
                 return this.IsNull(this.tableItems.Parent_IdColumn);
             }
@@ -627,6 +687,30 @@ namespace Maklak.Service.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetNameNull() {
                 this[this.tableItems.NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsMeasureUnit_IdNull() {
+                return this.IsNull(this.tableItems.MeasureUnit_IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetMeasureUnit_IdNull() {
+                this[this.tableItems.MeasureUnit_IdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsHasChildrenNull() {
+                return this.IsNull(this.tableItems.HasChildrenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetHasChildrenNull() {
+                this[this.tableItems.HasChildrenColumn] = global::System.Convert.DBNull;
             }
         }
         

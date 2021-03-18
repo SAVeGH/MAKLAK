@@ -11,28 +11,28 @@
 
 			@if (this.IsEditable)
 			{
-			<div style="position:relative">
-				<input type="button" value="Add" @onclick="OnAdd" />
-				<input type="button" value="Edit" @onclick="OnEdit" />
-				<input type="button" value="Delete" @onclick="OnDelete" />
-			</div>
+				<div style="position:relative">
+					<input type="button" value="Add" @onclick="OnAdd" />
+					<input type="button" value="Edit" @onclick="OnEdit" />
+					<input type="button" value="Delete" @onclick="OnDelete" />
+				</div>
 			}
 
-			<div class="itemsfilterSearchCell" >
+			<div class="itemsfilterSearchCell">
 				<input class="itemsfilterSearchInput" type="search" @bind="SearchText" @bind:event="oninput" />
 			</div>
 
 			<div class="itemsfilterItemsCell">
 
-					@*<div>*@
+				@*<div>*@
 
-						<ItemsTree Items=this.Items/>
-						
-					@*</div>*@
+				<ItemsTree Items=this.Items />
+
+				@*</div>*@
 			</div>
 
 		</div>
-</fieldset>
+	</fieldset>
 </div>
 
 

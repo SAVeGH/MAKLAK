@@ -16,10 +16,22 @@
 	}
 	else
 	{
-		<div class="@itemClass" @onclick="(e=>OnClick(row.Id))"> 
-			<input type="checkbox" />
-			@row.Name
-		</div>
+	<div class="@itemClass" @onclick="(e=>OnClick(row.Id))">
+		@if (!row.IsHasChildrenNull())
+		{
+			if (row.HasChildren)
+			{
+				<div style="display:inline-block; height:21px; width:21px;border-style:solid; border-color:black; border-width:1px;">+</div>
+			}
+			else
+			{
+				<div style="display:inline-block; height: 21px; width: 21px; border-style: solid; border-color: black; border-width: 1px;">&nbsp;</div>
+			}
+		}
+
+		<input type="checkbox" />
+		@row.Name
+	</div>
 	}
 
 	<div class="@contentPadding">

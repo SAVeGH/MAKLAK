@@ -39,7 +39,12 @@ namespace Maklak.Client.Web.Models.Filter
 			ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
 
 			if (currentSelectedRow != null)
+			{
 				currentSelectedRow.IsSelected = false;
+
+				if (currentSelectedRow.Id == itemId) // deselect
+					return;
+			}			
 
 			ItemsTreeDS.ItemsRow row = Items.FirstOrDefault(r => r.Id == itemId);
 
