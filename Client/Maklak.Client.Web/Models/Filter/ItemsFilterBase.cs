@@ -156,6 +156,11 @@ namespace Maklak.Client.Web.Models.Filter
 			LoadItems();
 		}
 
+		public virtual void Toggle(int itemId) 
+		{
+			int i = 0;
+		}
+
 		private void PopUpState_OnRefresh()
 		{
 			LoadItems();

@@ -56,10 +56,20 @@ namespace Maklak.Client.Web.Models.Filter
 
 		private void PopUpState_OnClose()
 		{
-			if (PopUpState.InputParameters.Id == null)
-				serviceProxy.AddPropertyItem(PopUpState.InputParameters.Id, SelectedMeasureId, Text);
-			else
+			if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Add) 
+			{				
+				serviceProxy.AddPropertyItem(PopUpState.InputParameters.Id, SelectedMeasureId, Text, PopUpState.InputParameters.Row == null/*true - property, false - property value*/);
+			}
+
+			if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Edit)
+			{
 				serviceProxy.EditPropertyItem(PopUpState.InputParameters.FilterType, null, PopUpState.InputParameters.Id, Text);
+			}
+
+			//if (PopUpState.InputParameters.Id == null)
+			//	serviceProxy.AddPropertyItem(PopUpState.InputParameters.Id, SelectedMeasureId, Text);
+			//else
+			//	serviceProxy.EditPropertyItem(PopUpState.InputParameters.FilterType, null, PopUpState.InputParameters.Id, Text);
 		}
 
 		private int selectedMeasureId;
@@ -73,14 +83,23 @@ namespace Maklak.Client.Web.Models.Filter
 			{
 				selectedMeasureId = value;
 
-				OnChange();
+				OnSelectedMeasureChanged();
 			}
 		}
 
-
-		public void OnChange()
+		public bool IsMeasureDisabled
 		{
+			get
+			{
+				return PopUpState.InputParameters.Row != null || PopUpState.InputParameters.PopUpAction != PopUpInput.ActionType.Add;					
+			}
+			
+		}
 
+
+		public void OnSelectedMeasureChanged()
+		{
+			// сбрость текущий флаг selected и установить на новый record
 			LookupDS.ItemsRow currentSelectedRow = this.MeasureUnits.Items.FirstOrDefault(r => r.IsSelected);
 
 			if (currentSelectedRow != null)			

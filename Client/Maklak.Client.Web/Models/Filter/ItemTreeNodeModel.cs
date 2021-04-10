@@ -11,8 +11,9 @@ using Maklak.Client.DataSets;
 namespace Maklak.Client.Web.Models.Filter
 {
 	public class ItemTreeNodeModel : ComponentBase
-	{		
-
+	{
+		[Parameter]
+		public Action<int> OnNodeToggle { get; set; } // делегат инициализируется функцией из ItemsTree в разметке
 		public IEnumerable<ItemsTreeDS.ItemsRow> Items 
 		{ 
 			get 
@@ -33,7 +34,7 @@ namespace Maklak.Client.Web.Models.Filter
 		public ItemsTreeDS.ItemsRow ParentRow { get; set; }
 		
 
-		public void OnClick(int itemId) 
+		public void OnNodeRowClicked(int itemId) 
 		{			
 
 			ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
@@ -52,6 +53,11 @@ namespace Maklak.Client.Web.Models.Filter
 				return;
 
 			row.IsSelected = true;
+		}
+
+		public void OnToggleNodeClicked(int itemId) 
+		{
+			OnNodeToggle?.Invoke(itemId); // вызов функции из ItemsTree
 		}
 
 	}

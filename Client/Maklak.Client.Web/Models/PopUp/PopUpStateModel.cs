@@ -60,6 +60,8 @@ namespace Maklak.Client.Web.Models.PopUp
 
 	public class PopUpInput
 	{
+		public enum ActionType { None, Add, Edit, Delete};
+
 		//public int? Id;
 		//public int? ParentId;
 		//public string Value;
@@ -70,6 +72,7 @@ namespace Maklak.Client.Web.Models.PopUp
 		public int Height;
 		public int Width;
 		public string Title;
+		public ActionType PopUpAction = ActionType.None;
 
 		public PopUpInput() 
 		{

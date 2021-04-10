@@ -25,9 +25,7 @@ namespace Maklak.Client.Web.Models.Filter
 			popUpInput.Width = 300;
 			popUpInput.Title = "Add";
 			popUpInput.SetDataRow(base.CurrentItemRow);
-			//popUpInput.Row = base.CurrentItemRow;
-			//popUpInput.Id = base.CurrentItemRow == null ? null : (int?)base.CurrentItemRow.Id;
-			//popUpInput.ParentId = base.CurrentItemRow == null ? null : (base.CurrentItemRow.IsParent_IdNull() ? null : (base.CurrentItemRow.Parent_Id == int.MaxValue ? null : (int?)base.CurrentItemRow.Parent_Id));
+			popUpInput.PopUpAction = PopUpInput.ActionType.Add;
 
 			popUpState.Show();
 		}

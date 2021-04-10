@@ -15,7 +15,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 		// так как разметка унаследована от этого класса, а обработка Add,Edit,Del своя для каждого лукапа - сделан класс с виртуальными методами куда 
 		// передаётся обработка событий. Иначе нужно дублировать разметку для лукапов 
-		// Например можно сделать модель PropertiesFilterModel : ItemsFilterModel, но придется делать отдельную разметку (копию ItemsFilter.razor) для PropertiesFilter что ыб от неё унаследоваться
+		// Например можно сделать модель PropertiesFilterModel : ItemsFilterModel, но придется делать отдельную разметку (копию ItemsFilter.razor) для PropertiesFilter что бы от неё унаследоваться
 		ItemsFilterBase iFilter;		
 
 		//[Inject]
@@ -81,11 +81,17 @@ namespace Maklak.Client.Web.Models.Filter
 			iFilter.ItemsFilterType = this.ItemsFilterType;
 			iFilter.IsEditable = this.IsEditable;
 
-			iFilter.OnInitialized();
+			iFilter.OnInitialized(); // загрузка данных
 
-			iFilter.OnStateHasChanged += this.StateHasChanged;
+			iFilter.OnStateHasChanged += this.InvokeStateHasChangedAsync; // объект управления должен вызвать обновление асинхронно
 			
 		}
+
+		private void InvokeStateHasChangedAsync() 
+		{
+			this.InvokeAsync(this.StateHasChanged); // нужно вызывать только асинхроно
+		}
+
 
 		private void CreateManagementInstance() 
 		{
@@ -112,6 +118,12 @@ namespace Maklak.Client.Web.Models.Filter
 		public void OnDelete() 
 		{
 			iFilter.DeleteItem();			
-		}				
+		}
+
+		// вызов обновления Items по клику expand/close на узле
+		public void OnNodeToggled(int itemId)
+		{
+			iFilter.Toggle(itemId);
+		}
 	}
 }

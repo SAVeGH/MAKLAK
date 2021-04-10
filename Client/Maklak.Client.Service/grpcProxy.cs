@@ -165,9 +165,9 @@ namespace Maklak.Client.Service
 			return response.Result;
 		}
 
-		public int AddPropertyItem(int? propertyId, int measureUnitId, string itemValue)
+		public int AddPropertyItem(int? propertyId, int measureUnitId, string itemValue, bool isPropertyValue)
 		{
-			ItemRequest request = new ItemRequest() { ItemType = "Property", ItemId = propertyId, MeasureUnitId = measureUnitId, ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = isPropertyValue ? "Property" : "PropertyValue", ItemId = propertyId, MeasureUnitId = measureUnitId, ItemValue = itemValue };
 			ItemResponse response = client.AddItem(request);
 			return response.Result;			
 		}
