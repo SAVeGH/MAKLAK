@@ -13,7 +13,7 @@ namespace Maklak.Client.Web.Models.Filter
 	public class ItemTreeNodeModel : ComponentBase
 	{
 		[Parameter]
-		public Action<int> OnNodeToggle { get; set; } // делегат инициализируется функцией из ItemsTree в разметке
+		public Action<ItemsTreeDS.ItemsRow> OnNodeToggle { get; set; } // делегат инициализируется функцией из ItemsTree в разметке
 		public IEnumerable<ItemsTreeDS.ItemsRow> Items 
 		{ 
 			get 
@@ -55,9 +55,9 @@ namespace Maklak.Client.Web.Models.Filter
 			row.IsSelected = true;
 		}
 
-		public void OnToggleNodeClicked(int itemId) 
-		{
-			OnNodeToggle?.Invoke(itemId); // вызов функции из ItemsTree
+		public void OnToggleNodeClicked(ItemsTreeDS.ItemsRow row) 
+		{			
+			OnNodeToggle?.Invoke(row); // вызов функции из ItemsTree. Дерево извещает о клике на узле вызовом события.
 		}
 
 	}

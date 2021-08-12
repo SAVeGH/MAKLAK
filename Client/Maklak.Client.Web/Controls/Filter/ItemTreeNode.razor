@@ -21,9 +21,9 @@
 		{
 			if (row.HasChildren)
 			{
-				// клик на expand/close вызывает метод OnToggleNodeClicked в модели. Это метод выдовет делегат переданный из ItemsTree в node верхнего уровня. Таким образом клик на любом узле 
+				// клик на expand/close вызывает метод OnToggleNodeClicked в модели. Это метод вызовет делегат переданный из ItemsTree в node верхнего уровня. Таким образом клик на любом узле 
 				// будет вызван один и тот же метод в ItemsTreeModel с передачей ему Id узла
-				<div style="display:inline-block; height:21px; width:21px;border-style:solid; border-color:black; border-width:1px;" @onclick="(e=>OnToggleNodeClicked(row.Id))">+</div>
+				<div style="display:inline-block; height:21px; width:21px;border-style:solid; border-color:black; border-width:1px;" @onclick="(e=>OnToggleNodeClicked(row))">+</div>
 			}
 			else
 			{

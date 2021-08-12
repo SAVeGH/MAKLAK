@@ -29,5 +29,21 @@ namespace Maklak.Client.Web.Models.Filter
 
 			popUpState.Show();
 		}
+
+		//public override string ItemsFilterType 
+		//{ 
+		//	get => base.ItemsFilterType; 
+		//	set => base.ItemsFilterType = value; 
+		//}
+
+		//protected override void LoadItems(int? itemId = null)
+		//{
+		//	// синхронная загрузка
+		//	base.serviceProxy.Search(ItemsFilterType, itemId, searchText, itemsDS, (itemId != null));
+
+		//	//StateHasChanged();
+		//	OnStateHasChanged?.Invoke();
+
+		//}
 	}
 }

@@ -50,7 +50,7 @@ namespace Maklak.Client.Web.Models.Filter
 			}
 		}
 		
-		public string ItemsFilterType
+		public virtual string ItemsFilterType
 		{
 			get; set;
 		}
@@ -83,10 +83,10 @@ namespace Maklak.Client.Web.Models.Filter
 			LoadItems();
 		}		
 
-		private void LoadItems()
+		protected virtual void LoadItems(int? itemId = null)
 		{
 			// синхронная загрузка
-			serviceProxy.Search(ItemsFilterType, null, searchText, itemsDS);
+			serviceProxy.Search(ItemsFilterType, itemId, searchText, itemsDS, (itemId != null));
 
 			//StateHasChanged();
 			OnStateHasChanged?.Invoke();
@@ -156,9 +156,9 @@ namespace Maklak.Client.Web.Models.Filter
 			LoadItems();
 		}
 
-		public virtual void Toggle(int itemId) 
+		public virtual void Toggle(ItemsTreeDS.ItemsRow row) 
 		{
-			int i = 0;
+			LoadItems(row.Id);
 		}
 
 		private void PopUpState_OnRefresh()

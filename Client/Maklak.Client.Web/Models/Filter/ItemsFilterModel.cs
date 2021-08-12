@@ -121,9 +121,9 @@ namespace Maklak.Client.Web.Models.Filter
 		}
 
 		// вызов обновления Items по клику expand/close на узле
-		public void OnNodeToggled(int itemId)
+		public void OnNodeToggled(ItemsTreeDS.ItemsRow row)
 		{
-			iFilter.Toggle(itemId);
+			iFilter.Toggle(row);
 		}
 	}
 }
