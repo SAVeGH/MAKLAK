@@ -85,11 +85,21 @@ namespace Maklak.Client.Web.Models.Filter
 
 		protected virtual void LoadItems(int? itemId = null)
 		{
+			SearchParameters searchParameters = new SearchParameters();
+			searchParameters.FilterType = ItemsFilterType;
+			searchParameters.ItemId = itemId;
+
+			ProcessParameters(searchParameters);
 			// синхронная загрузка
-			serviceProxy.Search(ItemsFilterType, itemId, searchText, itemsDS, (itemId != null));
+			serviceProxy.Search(searchParameters.FilterType, itemId, searchText, itemsDS);
 
 			//StateHasChanged();
 			OnStateHasChanged?.Invoke();
+		}
+
+		protected virtual void ProcessParameters(SearchParameters searchParameters) 
+		{
+			// функция нужна для подстановки 'PropertyValue' вместо 'Propety'. Перегружена в классе PropertyFilterModel
 		}
 
 		//private async Task LoadItems()
@@ -112,7 +122,7 @@ namespace Maklak.Client.Web.Models.Filter
 		//	StateHasChanged();
 		//}
 
-		
+
 
 		public virtual void AddItem()
 		{
@@ -171,4 +181,11 @@ namespace Maklak.Client.Web.Models.Filter
 
 		}
 	}
+
+	public class SearchParameters 
+	{
+		public string FilterType { get; set; }
+		public int? ItemId { get; set; }
+	}
+
 }

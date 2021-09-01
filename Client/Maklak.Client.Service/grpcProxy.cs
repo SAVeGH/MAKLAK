@@ -79,7 +79,7 @@ namespace Maklak.Client.Service
 			return response.Result;
 		}
 
-		public void Search(string itemType, int? itemId, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData, bool append = false)
+		public void Search(string itemType, int? itemId, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
 			SearchRequest request = new SearchRequest();
 
@@ -89,56 +89,127 @@ namespace Maklak.Client.Service
 
 			SearchResponse response = client.Search(request);
 
+
+			CleanUpNodes(itemId, itemsData);
+
+			AddRootRow(itemsData);
+
+			//int rootRowId = (itemId ?? int.MaxValue);
+
+			//if (!append)
+			//{
+
+			//	itemsData.Items.Clear();
+
+			//	ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
+			//	rootRow.Id = rootRowId;        // не существующий Id
+			//								   //rootRow.Parent_Id = int.MinValue; // вместо NULL
+			//	rootRow.SetParent_IdNull();
+			//	//rootRow.
+			//	rootRow.Name = "Root";
+			//	itemsData.Items.AddItemsRow(rootRow);
+
+			//	rootRowId = rootRow.Id;
+			//}
+			//else 
+			//{
+			//	ItemsTreeDS.ItemsRow newRow = itemsData.Items.NewItemsRow();
+			//	newRow.Id = int.MaxValue - 1;
+			//	//rootRow.Parent_Id = int.MinValue; // вместо NULL
+			//	newRow.Parent_Id = (int)itemId;
+			//	//rootRow.
+			//	newRow.Name = "NewRow";
+			//	itemsData.Items.AddItemsRow(newRow);
+
+			//	return;
+			//}			
+
+			//foreach (SearchResponse.Types.ItemsData item in response.Items)
+			//{
+			//	ItemsTreeDS.ItemsRow row = itemsData.Items.NewItemsRow();
+
+			//	row.Id = item.ItemId;
+			//	row.Parent_Id = rootRowId;
+			//	row.Name = item.ItemValue;
+			//	if (item.MeasureUnitId.HasValue)
+			//		row.MeasureUnit_Id = (int)item.MeasureUnitId;
+			//	if (item.HasChildren.HasValue)
+			//		row.HasChildren = (bool)item.HasChildren;
+
+			//	//row.Name = item.Name;
+
+			//	itemsData.Items.AddItemsRow(row);
+			//}
+			//return filterData;
+
+			AddChildNodes(itemId, response, itemsData);
+		}
+
+		private void AddChildNodes(int? itemId, SearchResponse response, ItemsTreeDS itemsData) 
+		{
 			int rootRowId = (itemId ?? int.MaxValue);
-
-			if (!append)
-			{
-
-				itemsData.Items.Clear();
-
-				ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
-				rootRow.Id = rootRowId;        // не существующий Id
-											   //rootRow.Parent_Id = int.MinValue; // вместо NULL
-				rootRow.SetParent_IdNull();
-				//rootRow.
-				rootRow.Name = "Root";
-				itemsData.Items.AddItemsRow(rootRow);
-
-				rootRowId = rootRow.Id;
-			}
-			else 
-			{
-				ItemsTreeDS.ItemsRow newRow = itemsData.Items.NewItemsRow();
-				newRow.Id = int.MaxValue - 1;
-				//rootRow.Parent_Id = int.MinValue; // вместо NULL
-				newRow.Parent_Id = (int)itemId;
-				//rootRow.
-				newRow.Name = "NewRow";
-				itemsData.Items.AddItemsRow(newRow);
-
-				return;
-			}
-
-			
 
 			foreach (SearchResponse.Types.ItemsData item in response.Items)
 			{
+				
+
 				ItemsTreeDS.ItemsRow row = itemsData.Items.NewItemsRow();
 
-				row.Id = item.ItemId;
+				row.Id = item.ItemId + (itemId == null ? 0 : 300) ;
 				row.Parent_Id = rootRowId;
 				row.Name = item.ItemValue;
-				if (item.MeasureUnitId != null)
+				if (item.MeasureUnitId.HasValue)
 					row.MeasureUnit_Id = (int)item.MeasureUnitId;
-				if (item.HasChildren != null)
-					row.HasChildren = (bool)item.HasChildren;
-				
-				//row.Name = item.Name;
+				if (item.HasChildren.HasValue)
+					row.HasChildren = (bool)item.HasChildren;				
 
 				itemsData.Items.AddItemsRow(row);
 			}
-			//return filterData;
 		}
+
+		private void AddRootRow(ItemsTreeDS itemsData) 
+		{
+			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.FirstOrDefault(item => item.Id == int.MaxValue);
+
+			if (rootRow != null)
+				return;
+
+			rootRow = itemsData.Items.NewItemsRow();
+			rootRow.Id = int.MaxValue;        // не существующий Id
+										   
+			rootRow.SetParent_IdNull();			
+			rootRow.Name = "Root";
+			itemsData.Items.AddItemsRow(rootRow);
+		}
+
+		private void CleanUpNodes(int? itemId, ItemsTreeDS itemsData) 
+		{
+			if (itemId == null)
+			{
+				itemsData.Items.Clear();
+				return; // перезапись всех узлов
+			}
+
+			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.FirstOrDefault(item => item.Id == itemId);
+			// удаление всех дочерних узлов
+			foreach (var row in itemsData.Items.Where(item => !item.IsParent_IdNull() && item.Parent_Id == rootRow.Id))
+				CleanUpChildNodes(row.Id, itemsData);			
+
+		}
+
+		private void CleanUpChildNodes(int? itemId, ItemsTreeDS itemsData) 
+		{
+			if (itemId == null)
+				return;
+
+			ItemsTreeDS.ItemsRow rootRow = itemsData.Items.FirstOrDefault(item => item.Id == itemId);			
+
+			foreach (var row in itemsData.Items.Where(item => !item.IsParent_IdNull() && item.Parent_Id == rootRow.Id))			
+				CleanUpChildNodes(row.Id, itemsData);			
+
+			itemsData.Items.RemoveItemsRow(rootRow);
+		}
+
 
 		public async Task SearchAsync(string itemType, int? itemId, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
