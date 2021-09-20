@@ -13,7 +13,7 @@ namespace Maklak.Client.Web.Models.Filter
 	public class ItemsTreeModel : ComponentBase
 	{
 		[Parameter]
-		public Action<ItemsTreeDS.ItemsRow> OnNodeToggled { get; set; } // сюда передается функция обънкта который требует уведомления о клике expand/close (функция конретного фильтра)
+		public Action<ItemsTreeDS.ItemsRow> OnNodeToggled { get; set; } // сюда передается функция объекта который требует уведомления о клике expand/close (функция конретного фильтра)
 
 		//[Inject]
 		//private grpcProxy serviceProxy { get; set; }

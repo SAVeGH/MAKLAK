@@ -102,7 +102,12 @@ namespace Maklak.Client.Web.Models.Filter
 			// функция нужна для подстановки 'PropertyValue' вместо 'Propety'. Перегружена в классе PropertyFilterModel
 		}
 
-		//private async Task LoadItems()
+		protected void CleanUpItems(int? itemId) 
+		{
+			serviceProxy.CleanUp(itemId, itemsDS);
+		}
+
+		//private async Task LoadItems() 
 		//{
 		//	//itemsDS.Clear();
 
@@ -168,7 +173,12 @@ namespace Maklak.Client.Web.Models.Filter
 
 		public virtual void Toggle(ItemsTreeDS.ItemsRow row) 
 		{
-			LoadItems(row.Id);
+			if (!row.IsOpened)
+				LoadItems(row.Id);
+			else
+				CleanUpItems(row.Id);
+
+			row.IsOpened = !row.IsOpened;
 		}
 
 		private void PopUpState_OnRefresh()

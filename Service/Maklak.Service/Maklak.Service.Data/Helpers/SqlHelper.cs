@@ -104,13 +104,23 @@ namespace Maklak.Service.Data.Helpers
 
         public static object ExecuteScalar(IDbCommand command) 
         {
-            SqlHelper.Open();
+			object result = null;
 
-            command.Prepare();
+			lock (lockObject)
+			{
+				try
+				{
+					SqlHelper.Open();
 
-            object result = command.ExecuteScalar();
+					command.Prepare();
 
-            SqlHelper.Close();
+					result = command.ExecuteScalar();
+				}
+				finally
+				{
+					SqlHelper.Close();
+				}				
+			}
 
             return result;
         }
@@ -122,7 +132,7 @@ namespace Maklak.Service.Data.Helpers
 			{
 				try
 				{
-					Open();
+					SqlHelper.Open();
 
 					using (IDataReader reader = command.ExecuteReader())
 					{
@@ -143,7 +153,7 @@ namespace Maklak.Service.Data.Helpers
 				}
 				finally 
 				{
-					Close();
+					SqlHelper.Close();
 				}
 				
 			}			

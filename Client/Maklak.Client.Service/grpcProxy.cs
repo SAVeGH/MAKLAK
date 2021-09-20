@@ -79,6 +79,11 @@ namespace Maklak.Client.Service
 			return response.Result;
 		}
 
+		public void CleanUp(int? itemId, ItemsTreeDS itemsData) 
+		{
+			CleanUpNodes(itemId, itemsData);
+		}
+
 		public void Search(string itemType, int? itemId, string inputValue, Maklak.Client.DataSets.ItemsTreeDS itemsData)
 		{
 			SearchRequest request = new SearchRequest();
@@ -89,58 +94,9 @@ namespace Maklak.Client.Service
 
 			SearchResponse response = client.Search(request);
 
-
 			CleanUpNodes(itemId, itemsData);
 
-			AddRootRow(itemsData);
-
-			//int rootRowId = (itemId ?? int.MaxValue);
-
-			//if (!append)
-			//{
-
-			//	itemsData.Items.Clear();
-
-			//	ItemsTreeDS.ItemsRow rootRow = itemsData.Items.NewItemsRow();
-			//	rootRow.Id = rootRowId;        // не существующий Id
-			//								   //rootRow.Parent_Id = int.MinValue; // вместо NULL
-			//	rootRow.SetParent_IdNull();
-			//	//rootRow.
-			//	rootRow.Name = "Root";
-			//	itemsData.Items.AddItemsRow(rootRow);
-
-			//	rootRowId = rootRow.Id;
-			//}
-			//else 
-			//{
-			//	ItemsTreeDS.ItemsRow newRow = itemsData.Items.NewItemsRow();
-			//	newRow.Id = int.MaxValue - 1;
-			//	//rootRow.Parent_Id = int.MinValue; // вместо NULL
-			//	newRow.Parent_Id = (int)itemId;
-			//	//rootRow.
-			//	newRow.Name = "NewRow";
-			//	itemsData.Items.AddItemsRow(newRow);
-
-			//	return;
-			//}			
-
-			//foreach (SearchResponse.Types.ItemsData item in response.Items)
-			//{
-			//	ItemsTreeDS.ItemsRow row = itemsData.Items.NewItemsRow();
-
-			//	row.Id = item.ItemId;
-			//	row.Parent_Id = rootRowId;
-			//	row.Name = item.ItemValue;
-			//	if (item.MeasureUnitId.HasValue)
-			//		row.MeasureUnit_Id = (int)item.MeasureUnitId;
-			//	if (item.HasChildren.HasValue)
-			//		row.HasChildren = (bool)item.HasChildren;
-
-			//	//row.Name = item.Name;
-
-			//	itemsData.Items.AddItemsRow(row);
-			//}
-			//return filterData;
+			AddRootRow(itemsData);			
 
 			AddChildNodes(itemId, response, itemsData);
 		}
@@ -155,9 +111,10 @@ namespace Maklak.Client.Service
 
 				ItemsTreeDS.ItemsRow row = itemsData.Items.NewItemsRow();
 
-				row.Id = item.ItemId + (itemId == null ? 0 : 300) ;
+				row.Id = item.ItemId;// + (itemId == null ? 0 : 300) ;
 				row.Parent_Id = rootRowId;
 				row.Name = item.ItemValue;
+				row.ItemType = item.ItemType;
 				if (item.MeasureUnitId.HasValue)
 					row.MeasureUnit_Id = (int)item.MeasureUnitId;
 				if (item.HasChildren.HasValue)
@@ -179,6 +136,7 @@ namespace Maklak.Client.Service
 										   
 			rootRow.SetParent_IdNull();			
 			rootRow.Name = "Root";
+			rootRow.ItemType = "Root";
 			itemsData.Items.AddItemsRow(rootRow);
 		}
 

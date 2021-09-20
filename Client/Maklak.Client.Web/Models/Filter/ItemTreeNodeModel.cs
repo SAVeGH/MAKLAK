@@ -20,8 +20,9 @@ namespace Maklak.Client.Web.Models.Filter
 			{
 				
 				int? parentId = ParentRow == null ? null : (int?)ParentRow.Id;				
-				
-				return ItemsSource.Where(i => parentId == null ? i.IsParent_IdNull() : ((!i.IsParent_IdNull()) && i.Parent_Id == parentId));
+				string parentType = ParentRow == null ? null : ParentRow.ItemType;
+
+				return ItemsSource.Where(i => parentId == null ? i.IsParent_IdNull() : ((!i.IsParent_IdNull()) && i.Parent_Id == parentId && i.ItemType == parentType));
 				
 			}
 			

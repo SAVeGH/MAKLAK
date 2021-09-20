@@ -283,6 +283,8 @@ namespace Maklak.Client.DataSets {
             
             private global::System.Data.DataColumn columnParent_Id;
             
+            private global::System.Data.DataColumn columnItemType;
+            
             private global::System.Data.DataColumn columnName;
             
             private global::System.Data.DataColumn columnMeasureUnit_Id;
@@ -290,6 +292,8 @@ namespace Maklak.Client.DataSets {
             private global::System.Data.DataColumn columnHasChildren;
             
             private global::System.Data.DataColumn columnIsSelected;
+            
+            private global::System.Data.DataColumn columnIsOpened;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -342,6 +346,14 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ItemTypeColumn {
+                get {
+                    return this.columnItemType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn NameColumn {
                 get {
                     return this.columnName;
@@ -369,6 +381,14 @@ namespace Maklak.Client.DataSets {
             public global::System.Data.DataColumn IsSelectedColumn {
                 get {
                     return this.columnIsSelected;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsOpenedColumn {
+                get {
+                    return this.columnIsOpened;
                 }
             }
             
@@ -409,15 +429,17 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ItemsRow AddItemsRow(int Id, int Parent_Id, string Name, int MeasureUnit_Id, bool HasChildren, bool IsSelected) {
+            public ItemsRow AddItemsRow(int Id, int Parent_Id, string ItemType, string Name, int MeasureUnit_Id, bool HasChildren, bool IsSelected, bool IsOpened) {
                 ItemsRow rowItemsRow = ((ItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         Parent_Id,
+                        ItemType,
                         Name,
                         MeasureUnit_Id,
                         HasChildren,
-                        IsSelected};
+                        IsSelected,
+                        IsOpened};
                 rowItemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemsRow);
                 return rowItemsRow;
@@ -442,10 +464,12 @@ namespace Maklak.Client.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnParent_Id = base.Columns["Parent_Id"];
+                this.columnItemType = base.Columns["ItemType"];
                 this.columnName = base.Columns["Name"];
                 this.columnMeasureUnit_Id = base.Columns["MeasureUnit_Id"];
                 this.columnHasChildren = base.Columns["HasChildren"];
                 this.columnIsSelected = base.Columns["IsSelected"];
+                this.columnIsOpened = base.Columns["IsOpened"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -455,6 +479,8 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnParent_Id = new global::System.Data.DataColumn("Parent_Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnParent_Id);
+                this.columnItemType = new global::System.Data.DataColumn("ItemType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnItemType);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
                 this.columnMeasureUnit_Id = new global::System.Data.DataColumn("MeasureUnit_Id", typeof(int), null, global::System.Data.MappingType.Element);
@@ -463,7 +489,10 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnHasChildren);
                 this.columnIsSelected = new global::System.Data.DataColumn("IsSelected", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsSelected);
+                this.columnIsOpened = new global::System.Data.DataColumn("IsOpened", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsOpened);
                 this.columnIsSelected.DefaultValue = ((bool)(false));
+                this.columnIsOpened.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -638,6 +667,22 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string ItemType {
+                get {
+                    try {
+                        return ((string)(this[this.tableItems.ItemTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ItemType\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.ItemTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Name {
                 get {
                     try {
@@ -702,6 +747,22 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsOpened {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItems.IsOpenedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsOpened\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.IsOpenedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableItems.IdColumn);
             }
@@ -722,6 +783,18 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetParent_IdNull() {
                 this[this.tableItems.Parent_IdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsItemTypeNull() {
+                return this.IsNull(this.tableItems.ItemTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetItemTypeNull() {
+                this[this.tableItems.ItemTypeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -770,6 +843,18 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetIsSelectedNull() {
                 this[this.tableItems.IsSelectedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsOpenedNull() {
+                return this.IsNull(this.tableItems.IsOpenedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsOpenedNull() {
+                this[this.tableItems.IsOpenedColumn] = global::System.Convert.DBNull;
             }
         }
         

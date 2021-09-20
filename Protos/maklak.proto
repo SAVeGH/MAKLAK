@@ -71,9 +71,10 @@ message SearchResponse{
     message ItemsData{
         int32 ItemId = 1;  
         google.protobuf.Int32Value ParentId = 2; //nullable type
-        string ItemValue = 3;       
-        google.protobuf.Int32Value MeasureUnitId = 4; //nullable type
-        google.protobuf.BoolValue HasChildren = 5; //nullable type
+        string ItemType = 3;
+        string ItemValue = 4;       
+        google.protobuf.Int32Value MeasureUnitId = 5; //nullable type
+        google.protobuf.BoolValue HasChildren = 6; //nullable type
     }
 
     repeated ItemsData Items = 1;

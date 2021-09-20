@@ -17,10 +17,12 @@
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
               <xs:element name="Parent_Id" msprop:Generator_ColumnVarNameInTable="columnParent_Id" msprop:Generator_ColumnPropNameInRow="Parent_Id" msprop:Generator_ColumnPropNameInTable="Parent_IdColumn" msprop:Generator_UserColumnName="Parent_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="ItemType" msprop:Generator_ColumnVarNameInTable="columnItemType" msprop:Generator_ColumnPropNameInRow="ItemType" msprop:Generator_ColumnPropNameInTable="ItemTypeColumn" msprop:Generator_UserColumnName="ItemType" type="xs:string" minOccurs="0" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
               <xs:element name="MeasureUnit_Id" msprop:Generator_ColumnVarNameInTable="columnMeasureUnit_Id" msprop:Generator_ColumnPropNameInRow="MeasureUnit_Id" msprop:Generator_ColumnPropNameInTable="MeasureUnit_IdColumn" msprop:Generator_UserColumnName="MeasureUnit_Id" type="xs:int" minOccurs="0" />
               <xs:element name="HasChildren" msprop:Generator_ColumnVarNameInTable="columnHasChildren" msprop:Generator_ColumnPropNameInRow="HasChildren" msprop:Generator_ColumnPropNameInTable="HasChildrenColumn" msprop:Generator_UserColumnName="HasChildren" type="xs:boolean" minOccurs="0" />
               <xs:element name="IsSelected" msprop:Generator_ColumnVarNameInTable="columnIsSelected" msprop:Generator_ColumnPropNameInRow="IsSelected" msprop:Generator_ColumnPropNameInTable="IsSelectedColumn" msprop:Generator_UserColumnName="IsSelected" type="xs:boolean" default="false" minOccurs="0" />
+              <xs:element name="IsOpened" msprop:Generator_ColumnVarNameInTable="columnIsOpened" msprop:Generator_ColumnPropNameInRow="IsOpened" msprop:Generator_ColumnPropNameInTable="IsOpenedColumn" msprop:Generator_UserColumnName="IsOpened" type="xs:boolean" default="false" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

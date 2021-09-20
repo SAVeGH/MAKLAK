@@ -58,7 +58,8 @@ namespace Maklak.Service
 				SearchResponse.Types.ItemsData respData = new SearchResponse.Types.ItemsData();
 
 				respData.ItemId = row.Id;
-				respData.ParentId = row.IsParent_IdNull() ? null : (int?)row.Parent_Id; 
+				respData.ParentId = row.IsParent_IdNull() ? null : (int?)row.Parent_Id;
+				respData.ItemType = row.ItemType;
 				respData.ItemValue = row.Name;
 				respData.MeasureUnitId = row.IsMeasureUnit_IdNull() ? null : (int?)row.MeasureUnit_Id;
 				respData.HasChildren = row.IsHasChildrenNull() ? null : (bool?)row.HasChildren;
