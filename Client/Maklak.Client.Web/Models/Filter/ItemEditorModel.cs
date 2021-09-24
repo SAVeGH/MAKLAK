@@ -41,9 +41,12 @@ namespace Maklak.Client.Web.Models.Filter
 				return;
 
 			// для Edit режима
-			ItemsTreeDS itemData = new ItemsTreeDS();
-			serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, null, itemData);
-			Text = itemData.Items.FirstOrDefault(r=> !r.IsParent_IdNull() && r.Parent_Id == int.MaxValue).Name;
+			//ItemsTreeDS itemData = new ItemsTreeDS();
+			//serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, null, itemData);
+			//Text = itemData.Items.FirstOrDefault(r=> !r.IsParent_IdNull() && r.Parent_Id == int.MaxValue).Name;
+
+			ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, null);			
+			Text = itemData.Items.FirstOrDefault().Name;
 		}
 		private void PopUpState_OnClose()
 		{

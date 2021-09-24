@@ -91,7 +91,13 @@ namespace Maklak.Client.Web.Models.Filter
 
 			ProcessParameters(searchParameters);
 			// синхронная загрузка
-			serviceProxy.Search(searchParameters.FilterType, itemId, searchText, itemsDS);
+			ItemsTreeDS searchData = serviceProxy.Search(searchParameters.FilterType, itemId, searchText);
+
+			CleanUpNodes(itemId, searchParameters.FilterType);
+
+			AddRootRow();
+
+			AddChildNodes(itemId, searchParameters.FilterType, searchData);
 
 			//StateHasChanged();
 			OnStateHasChanged?.Invoke();
@@ -102,9 +108,78 @@ namespace Maklak.Client.Web.Models.Filter
 			// функция нужна для подстановки 'PropertyValue' вместо 'Propety'. Перегружена в классе PropertyFilterModel
 		}
 
-		protected void CleanUpItems(int? itemId) 
+		//protected void CleanUpItems(int? itemId) 
+		//{
+		//	serviceProxy.CleanUp(itemId, itemsDS);
+		//}
+
+		private void CleanUpNodes(int? itemId, string itemType)
 		{
-			serviceProxy.CleanUp(itemId, itemsDS);
+			if (itemId == null)
+			{				
+				itemsDS.Items.Clear();
+				return; // перезапись всех узлов
+			}
+
+			ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == itemId && item.ItemType == itemType);
+			// удаление всех дочерних узлов
+			foreach (var row in itemsDS.Items.Where(item => !item.IsParent_IdNull() && item.Parent_Id == rootRow.Id && item.ItemType == itemType))
+				CleanUpChildNodes(row.Id, itemType);
+
+		}
+
+		private void CleanUpChildNodes(int? itemId, string itemType)
+		{
+			if (itemId == null)
+				return;
+
+			ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == itemId && item.ItemType == itemType);
+
+			foreach (var row in itemsDS.Items.Where(item => !item.IsParent_IdNull() && item.Parent_Id == rootRow.Id && item.ItemType == itemType))
+				CleanUpChildNodes(row.Id, itemType);
+
+			itemsDS.Items.RemoveItemsRow(rootRow);
+		}
+
+		private void AddChildNodes(int? itemId, string itemType, ItemsTreeDS searchData)
+		{
+			int rootRowId = (itemId ?? int.MaxValue);
+
+			//itemsDS.Items.Im
+
+			foreach (ItemsTreeDS.ItemsRow item in searchData.Items)
+			{
+
+
+				ItemsTreeDS.ItemsRow row = itemsDS.Items.NewItemsRow();
+
+				row.Id = item.Id;// + (itemId == null ? 0 : 300) ;
+				row.Parent_Id = rootRowId;
+				row.Name = item.Name;
+				row.ItemType = itemType;
+				if (!item.IsMeasureUnit_IdNull())
+					row.MeasureUnit_Id = (int)item.MeasureUnit_Id;
+				if (!item.IsHasChildrenNull())
+					row.HasChildren = (bool)item.HasChildren;
+
+				itemsDS.Items.AddItemsRow(row);
+			}
+		}
+
+		private void AddRootRow()
+		{
+			ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == int.MaxValue);
+
+			if (rootRow != null)
+				return;
+
+			rootRow = itemsDS.Items.NewItemsRow();
+			rootRow.Id = int.MaxValue;        // не существующий Id
+
+			rootRow.SetParent_IdNull();
+			rootRow.Name = "Root";
+			rootRow.ItemType = null;
+			itemsDS.Items.AddItemsRow(rootRow);
 		}
 
 		//private async Task LoadItems() 
@@ -176,7 +251,7 @@ namespace Maklak.Client.Web.Models.Filter
 			if (!row.IsOpened)
 				LoadItems(row.Id);
 			else
-				CleanUpItems(row.Id);
+				CleanUpNodes(row.Id, row.ItemType); //CleanUpItems(row.Id);
 
 			row.IsOpened = !row.IsOpened;
 		}
