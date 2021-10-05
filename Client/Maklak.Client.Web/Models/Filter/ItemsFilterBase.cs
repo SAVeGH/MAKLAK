@@ -122,12 +122,17 @@ namespace Maklak.Client.Web.Models.Filter
 			}
 
 			//ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == parentItemId && item.ItemType == itemType);
+			List<ItemsTreeDS.ItemsRow> deleteList = itemsDS.Items.Where(item => !item.IsParent_IdNull() &&
+																			 item.Parent_Id == rootRow.Id &&
+																			 !item.IsParentItemTypeNull() &&
+																			 item.ParentItemType == rootRow.ItemType)
+																  .ToList();
 			// удаление всех дочерних узлов. Сам rootRow не удаляется
-			foreach (ItemsTreeDS.ItemsRow row in itemsDS.Items.Where(item => !item.IsParent_IdNull() && 
-			                                                                 item.Parent_Id == rootRow.Id && 
-															                 !item.IsParentItemTypeNull() && 
-															                 item.ParentItemType == rootRow.ItemType))
+			foreach (ItemsTreeDS.ItemsRow row in deleteList)
 				CleanUpChildNodes(row);
+
+			//if(stateChanged)
+			//	OnStateHasChanged?.Invoke();
 
 		}
 
@@ -137,11 +142,13 @@ namespace Maklak.Client.Web.Models.Filter
 				return;
 
 			//ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == itemId && item.ItemType == itemType);
-
-			foreach (ItemsTreeDS.ItemsRow row in itemsDS.Items.Where(item => !item.IsParent_IdNull() &&
+			List<ItemsTreeDS.ItemsRow> deleteList = itemsDS.Items.Where(item => !item.IsParent_IdNull() &&
 																			 item.Parent_Id == rootRow.Id &&
 																			 !item.IsParentItemTypeNull() &&
-																			 item.ParentItemType == rootRow.ItemType))
+																			 item.ParentItemType == rootRow.ItemType)
+																 .ToList();
+
+			foreach (ItemsTreeDS.ItemsRow row in deleteList)
 				CleanUpChildNodes(row);
 
 			itemsDS.Items.RemoveItemsRow(rootRow);
@@ -257,11 +264,7 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			if (!row.IsOpened)
 			{
-				//ItemsTreeDS.ItemsDataTable table = new ItemsTreeDS.ItemsDataTable();
-				//table.ImportRow(row);
-				//ItemsTreeDS.ItemsRow openRow = table.FirstOrDefault();
-				//openRow.Parent_Id = openRow.Id;
-
+				
 				ItemsTreeDS.ItemsRow openRow = new ItemsTreeRowHelper(row).Row;
 				openRow.Parent_Id = openRow.Id;
 				LoadItems(openRow);
@@ -270,6 +273,8 @@ namespace Maklak.Client.Web.Models.Filter
 				CleanUpNodes(row); //CleanUpItems(row.Id);
 
 			row.IsOpened = !row.IsOpened;
+
+			OnStateHasChanged?.Invoke();
 		}
 
 		private void PopUpState_OnRefresh()

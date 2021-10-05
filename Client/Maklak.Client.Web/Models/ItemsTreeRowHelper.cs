@@ -33,6 +33,7 @@ namespace Maklak.Client.Web.Models
 
 			set 
 			{
+				innerTable.Clear();
 				innerTable.ImportRow(value);
 			}
 		}

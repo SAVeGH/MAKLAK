@@ -91,78 +91,13 @@ namespace Maklak.Client.Web.Models.PopUp
 			}
 		}
 
-		//public int? Id 
-		//{ 
-		//	get 
-		//	{
-		//		//if (innerRow == null)
-		//		//	return null;
-
-		//		//if (!innerRow.Table.Columns.Contains("Id"))
-		//		//	return null;
-
-		//		//DataColumn column = innerRow.Table.Columns["Id"];
-
-		//		//if (innerRow[column] == DBNull.Value)
-		//		//	return null;
-
-		//		//return (int?)innerRow[column];
-
-		//		if (innerRow == null)
-		//			return null;
-
-		//		return innerRow.Id;
-		//	} 
-		//}
-
-		//public int? ParentId
-		//{
-		//	get
-		//	{
-		//		//if (innerRow == null)
-		//		//	return null;
-
-		//		//if (!innerRow.Table.Columns.Contains("Parent_Id"))
-		//		//	return null;
-
-		//		//DataColumn column = innerRow.Table.Columns["Parent_Id"];
-
-		//		//if (innerRow[column] == DBNull.Value)
-		//		//	return null;
-
-		//		//return (int?)innerRow[column];
-
-		//		if (innerRow == null)
-		//			return null;
-
-		//		return innerRow.Parent_Id;
-		//	}
-		//}
+		
 
 		public void SetDataRow(ItemsTreeDS.ItemsRow row) 
 		{
 			// делается копия строки (иначе Row out of table exception)
 			rowHelper.Row = row;
-			//table.ImportRow(row);
-			//innerRow = table.FirstOrDefault();
-			//innerRow = row;
-			//if (row == null)
-			//	return;
-
-			//foreach (DataColumn column in row.Table.Columns) 
-			//{
-			//	DataColumn newColumn = new DataColumn(column.ColumnName, column.DataType);
-			//	table.Columns.Add(newColumn);
-			//}
-
-			//innerRow = table.NewRow();
-
-			//foreach (DataColumn column in row.Table.Columns)
-			//{
-			//	innerRow[column.ColumnName] = row[column.ColumnName];				
-			//}
-
-			//table.Rows.Add(innerRow);
+			
 		}
 
 
