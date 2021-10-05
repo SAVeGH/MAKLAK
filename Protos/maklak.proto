@@ -63,8 +63,9 @@ message SearchRequest{
 
     //repeated InputData SerchInput = 1;
     google.protobuf.Int32Value ItemId = 1;
-    string InputType = 2;
-    string InputValue = 3;
+    google.protobuf.Int32Value ParentItemId = 2;
+    string InputType = 3;
+    string InputValue = 4;
 }
 
 message SearchResponse{

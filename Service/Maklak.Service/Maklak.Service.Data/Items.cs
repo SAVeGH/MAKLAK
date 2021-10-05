@@ -13,11 +13,12 @@ namespace Maklak.Service.Data
 	{
 		
 
-		public static ItemsTreeDS GetItems(string itemType, int? itemId, string itemValue) 
+		public static ItemsTreeDS GetItems(string itemType, int? itemId, int? parentItemId, string itemValue) 
 		{
 			IDbCommand command = SqlHelper.GetDbCommand("sp_GetItems");
 
 			command.AddInParameter("@ItemId", DbType.Int32, (itemId == null ? DBNull.Value : (object)itemId));
+			command.AddInParameter("@ParentItemId", DbType.Int32, (parentItemId == null ? DBNull.Value : (object)parentItemId));
 			command.AddInParameter("@ItemType", DbType.String, 20, itemType);
 			command.AddInParameter("@ItemValue", DbType.String, 100, itemValue);
 

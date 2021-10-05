@@ -84,12 +84,13 @@ namespace Maklak.Client.Service
 		//	CleanUpNodes(itemId, itemsData);
 		//}
 
-		public Maklak.Client.DataSets.ItemsTreeDS Search(string itemType, int? itemId, string inputValue)
+		public Maklak.Client.DataSets.ItemsTreeDS Search(string itemType, ItemsTreeDS.ItemsRow row, string inputValue)
 		{
 			SearchRequest request = new SearchRequest();
 			Maklak.Client.DataSets.ItemsTreeDS searchData = new ItemsTreeDS();
 
-			request.ItemId = itemId; // ?? int.MaxValue;
+			request.ItemId = row == null ? null : (int?)row.Id; // ?? int.MaxValue;
+			request.ParentItemId = row == null ? null : (row.IsParent_IdNull() ? null : (row.Parent_Id == int.MaxValue ? null : (int?)row.Parent_Id));
 			request.InputType = itemType;
 			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
 
@@ -111,9 +112,10 @@ namespace Maklak.Client.Service
 				ItemsTreeDS.ItemsRow row = itemsData.Items.NewItemsRow();
 
 				row.Id = item.ItemId;// + (itemId == null ? 0 : 300) ;
-				//row.Parent_Id = rootRowId;
+				if (item.ParentId.HasValue)
+					row.Parent_Id = (int)item.ParentId;
 				row.Name = item.ItemValue;
-				//row.ItemType = item.ItemType;
+				row.ItemType = item.ItemType;
 				if (item.MeasureUnitId.HasValue)
 					row.MeasureUnit_Id = (int)item.MeasureUnitId;
 				if (item.HasChildren.HasValue)
@@ -241,9 +243,9 @@ namespace Maklak.Client.Service
 			
 		}
 
-		public int EditItem(string itemType, int? itemId, string itemValue)
+		public int EditItem(string itemType, ItemsTreeDS.ItemsRow row, string itemValue)
 		{
-			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = (itemId ?? int.MaxValue) , ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = row.Id , ItemValue = itemValue };
 			ItemResponse response = client.EditItem(request);
 			return response.Result;
 		}
@@ -255,16 +257,16 @@ namespace Maklak.Client.Service
 			return response.Result;
 		}
 
-		public int AddPropertyItem(int? propertyId, int measureUnitId, string itemValue, bool isPropertyValue)
+		public int AddPropertyItem(ItemsTreeDS.ItemsRow row, int measureUnitId, string itemValue)
 		{
-			ItemRequest request = new ItemRequest() { ItemType = isPropertyValue ? "Property" : "PropertyValue", ItemId = propertyId, MeasureUnitId = measureUnitId, ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = row.Id, MeasureUnitId = measureUnitId, ItemValue = itemValue };
 			ItemResponse response = client.AddItem(request);
 			return response.Result;			
 		}
 
-		public int EditPropertyItem(string itemType, int? itemParentId, int? itemId, string itemValue)
+		public int EditPropertyItem(ItemsTreeDS.ItemsRow row, string itemValue)
 		{
-			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = (itemId ?? int.MaxValue), ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = row.Id , ItemValue = itemValue };
 			ItemResponse response = client.EditItem(request);
 			return response.Result;
 		}

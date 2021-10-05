@@ -58,12 +58,12 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Add) 
 			{				
-				serviceProxy.AddPropertyItem(PopUpState.InputParameters.Id, SelectedMeasureId, Text, PopUpState.InputParameters.Row == null/*true - property, false - property value*/);
+				serviceProxy.AddPropertyItem(PopUpState.InputParameters.Row, SelectedMeasureId, Text);
 			}
 
 			if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Edit)
 			{
-				serviceProxy.EditPropertyItem(PopUpState.InputParameters.FilterType, null, PopUpState.InputParameters.Id, Text);
+				serviceProxy.EditPropertyItem(PopUpState.InputParameters.Row, Text);
 			}
 
 			//if (PopUpState.InputParameters.Id == null)

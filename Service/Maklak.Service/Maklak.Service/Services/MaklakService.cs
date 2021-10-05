@@ -49,7 +49,7 @@ namespace Maklak.Service
 		public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)		
 		{			
 
-			ItemsTreeDS ds = Items.GetItems(request.InputType, request.ItemId, request.InputValue);
+			ItemsTreeDS ds = Items.GetItems(request.InputType, request.ItemId, request.ParentItemId,  request.InputValue);
 
 			SearchResponse response = new SearchResponse();			
 

@@ -37,7 +37,7 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			PopUpState.OnClose += PopUpState_OnClose;
 
-			if (PopUpState.InputParameters.Id == null)
+			if (PopUpState.InputParameters.Row == null)
 				return;
 
 			// для Edit режима
@@ -45,17 +45,17 @@ namespace Maklak.Client.Web.Models.Filter
 			//serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, null, itemData);
 			//Text = itemData.Items.FirstOrDefault(r=> !r.IsParent_IdNull() && r.Parent_Id == int.MaxValue).Name;
 
-			ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, null);			
+			ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, null);			
 			Text = itemData.Items.FirstOrDefault().Name;
 		}
 		private void PopUpState_OnClose()
 		{
 			//PopUpState.OnClose -= PopUpState_OnClose;
 
-			if (PopUpState.InputParameters.Id == null) 
+			if (PopUpState.InputParameters.Row == null) 
 				serviceProxy.AddItem(PopUpState.InputParameters.FilterType, Text);
 			else
-				serviceProxy.EditItem(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, Text);
+				serviceProxy.EditItem(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, Text);
 			
 		}
 

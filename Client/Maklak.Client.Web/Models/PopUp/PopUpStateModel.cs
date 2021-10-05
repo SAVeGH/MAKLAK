@@ -3,6 +3,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Web.Models.PopUp
 {
@@ -65,8 +66,10 @@ namespace Maklak.Client.Web.Models.PopUp
 		//public int? Id;
 		//public int? ParentId;
 		//public string Value;
-		DataTable table;
-		DataRow innerRow;
+		//ItemsTreeDS.ItemsDataTable table;
+		//ItemsTreeDS.ItemsRow innerRow;
+		ItemsTreeRowHelper rowHelper;
+
 		public string FilterType;		
 		public Type dialogType;
 		public int Height;
@@ -76,55 +79,90 @@ namespace Maklak.Client.Web.Models.PopUp
 
 		public PopUpInput() 
 		{
-			table = new DataTable();
+			//table = new ItemsTreeDS.ItemsDataTable();
+			rowHelper = new ItemsTreeRowHelper();
 		}
 
-		public DataRow Row 
+		public ItemsTreeDS.ItemsRow Row 
 		{
 			get 
 			{
-				return innerRow;
+				return rowHelper.Row;
 			}
 		}
 
-		public int? Id 
-		{ 
-			get 
-			{
-				if (innerRow == null)
-					return null;
+		//public int? Id 
+		//{ 
+		//	get 
+		//	{
+		//		//if (innerRow == null)
+		//		//	return null;
 
-				if (!innerRow.Table.Columns.Contains("Id"))
-					return null;
+		//		//if (!innerRow.Table.Columns.Contains("Id"))
+		//		//	return null;
 
-				DataColumn column = innerRow.Table.Columns["Id"];
+		//		//DataColumn column = innerRow.Table.Columns["Id"];
 
-				if (innerRow[column] == DBNull.Value)
-					return null;
+		//		//if (innerRow[column] == DBNull.Value)
+		//		//	return null;
 
-				return (int?)innerRow[column];
-			} 
-		}
+		//		//return (int?)innerRow[column];
 
-		public void SetDataRow(DataRow row) 
+		//		if (innerRow == null)
+		//			return null;
+
+		//		return innerRow.Id;
+		//	} 
+		//}
+
+		//public int? ParentId
+		//{
+		//	get
+		//	{
+		//		//if (innerRow == null)
+		//		//	return null;
+
+		//		//if (!innerRow.Table.Columns.Contains("Parent_Id"))
+		//		//	return null;
+
+		//		//DataColumn column = innerRow.Table.Columns["Parent_Id"];
+
+		//		//if (innerRow[column] == DBNull.Value)
+		//		//	return null;
+
+		//		//return (int?)innerRow[column];
+
+		//		if (innerRow == null)
+		//			return null;
+
+		//		return innerRow.Parent_Id;
+		//	}
+		//}
+
+		public void SetDataRow(ItemsTreeDS.ItemsRow row) 
 		{
-			if (row == null)
-				return;
+			// делается копия строки (иначе Row out of table exception)
+			rowHelper.Row = row;
+			//table.ImportRow(row);
+			//innerRow = table.FirstOrDefault();
+			//innerRow = row;
+			//if (row == null)
+			//	return;
 
-			foreach (DataColumn column in row.Table.Columns) 
-			{
-				DataColumn newColumn = new DataColumn(column.ColumnName, column.DataType);
-				table.Columns.Add(newColumn);
-			}
+			//foreach (DataColumn column in row.Table.Columns) 
+			//{
+			//	DataColumn newColumn = new DataColumn(column.ColumnName, column.DataType);
+			//	table.Columns.Add(newColumn);
+			//}
 
-			innerRow = table.NewRow();
+			//innerRow = table.NewRow();
 
-			foreach (DataColumn column in row.Table.Columns)
-			{
-				innerRow[column.ColumnName] = row[column.ColumnName];				
-			}
+			//foreach (DataColumn column in row.Table.Columns)
+			//{
+			//	innerRow[column.ColumnName] = row[column.ColumnName];				
+			//}
 
-			table.Rows.Add(innerRow);
+			//table.Rows.Add(innerRow);
 		}
 
 
@@ -132,8 +170,9 @@ namespace Maklak.Client.Web.Models.PopUp
 		{
 			//Id = null;			
 			//Value = null;
-			table = new DataTable();
-			innerRow = null;
+			//table = new ItemsTreeDS.ItemsDataTable();
+			//innerRow = null;
+			rowHelper.Clear();
 			FilterType = null;
 			dialogType = null;
 		}

@@ -83,21 +83,21 @@ namespace Maklak.Client.Web.Models.Filter
 			LoadItems();
 		}		
 
-		protected virtual void LoadItems(int? itemId = null)
+		protected virtual void LoadItems(ItemsTreeDS.ItemsRow row = null)
 		{
-			SearchParameters searchParameters = new SearchParameters();
-			searchParameters.FilterType = ItemsFilterType;
-			searchParameters.ItemId = itemId;
+			//SearchParameters searchParameters = new SearchParameters();
+			//searchParameters.FilterType = ItemsFilterType;
+			//searchParameters.ItemId = itemId;
 
-			ProcessParameters(searchParameters);
+			//ProcessParameters(searchParameters);
 			// синхронная загрузка
-			ItemsTreeDS searchData = serviceProxy.Search(searchParameters.FilterType, itemId, searchText);
+			ItemsTreeDS searchData = serviceProxy.Search(ItemsFilterType, row, searchText);
 
-			CleanUpNodes(itemId, searchParameters.FilterType);
+			CleanUpNodes(row);
 
 			AddRootRow();
 
-			AddChildNodes(itemId, searchParameters.FilterType, searchData);
+			AddChildNodes(row, searchData);
 
 			//StateHasChanged();
 			OnStateHasChanged?.Invoke();
@@ -113,38 +113,44 @@ namespace Maklak.Client.Web.Models.Filter
 		//	serviceProxy.CleanUp(itemId, itemsDS);
 		//}
 
-		private void CleanUpNodes(int? itemId, string itemType)
+		private void CleanUpNodes(ItemsTreeDS.ItemsRow rootRow)
 		{
-			if (itemId == null)
+			if (rootRow == null || rootRow.IsParent_IdNull())
 			{				
 				itemsDS.Items.Clear();
 				return; // перезапись всех узлов
 			}
 
-			ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == itemId && item.ItemType == itemType);
-			// удаление всех дочерних узлов
-			foreach (var row in itemsDS.Items.Where(item => !item.IsParent_IdNull() && item.Parent_Id == rootRow.Id && item.ItemType == itemType))
-				CleanUpChildNodes(row.Id, itemType);
+			//ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == parentItemId && item.ItemType == itemType);
+			// удаление всех дочерних узлов. Сам rootRow не удаляется
+			foreach (ItemsTreeDS.ItemsRow row in itemsDS.Items.Where(item => !item.IsParent_IdNull() && 
+			                                                                 item.Parent_Id == rootRow.Id && 
+															                 !item.IsParentItemTypeNull() && 
+															                 item.ParentItemType == rootRow.ItemType))
+				CleanUpChildNodes(row);
 
 		}
 
-		private void CleanUpChildNodes(int? itemId, string itemType)
+		private void CleanUpChildNodes(ItemsTreeDS.ItemsRow rootRow)
 		{
-			if (itemId == null)
+			if (rootRow == null)
 				return;
 
-			ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == itemId && item.ItemType == itemType);
+			//ItemsTreeDS.ItemsRow rootRow = itemsDS.Items.FirstOrDefault(item => item.Id == itemId && item.ItemType == itemType);
 
-			foreach (var row in itemsDS.Items.Where(item => !item.IsParent_IdNull() && item.Parent_Id == rootRow.Id && item.ItemType == itemType))
-				CleanUpChildNodes(row.Id, itemType);
+			foreach (ItemsTreeDS.ItemsRow row in itemsDS.Items.Where(item => !item.IsParent_IdNull() &&
+																			 item.Parent_Id == rootRow.Id &&
+																			 !item.IsParentItemTypeNull() &&
+																			 item.ParentItemType == rootRow.ItemType))
+				CleanUpChildNodes(row);
 
 			itemsDS.Items.RemoveItemsRow(rootRow);
 		}
 
-		private void AddChildNodes(int? itemId, string itemType, ItemsTreeDS searchData)
+		private void AddChildNodes(ItemsTreeDS.ItemsRow rootRow, ItemsTreeDS searchData)
 		{
-			int rootRowId = (itemId ?? int.MaxValue);
-
+			int parentRowId = rootRow == null ? int.MaxValue : rootRow.Id;
+			string parentRowItemType = rootRow == null ? null : rootRow.ItemType;
 			//itemsDS.Items.Im
 
 			foreach (ItemsTreeDS.ItemsRow item in searchData.Items)
@@ -154,9 +160,10 @@ namespace Maklak.Client.Web.Models.Filter
 				ItemsTreeDS.ItemsRow row = itemsDS.Items.NewItemsRow();
 
 				row.Id = item.Id;// + (itemId == null ? 0 : 300) ;
-				row.Parent_Id = rootRowId;
+				row.Parent_Id = parentRowId;
 				row.Name = item.Name;
-				row.ItemType = itemType;
+				row.ItemType = item.ItemType;
+				row.ParentItemType = parentRowItemType;
 				if (!item.IsMeasureUnit_IdNull())
 					row.MeasureUnit_Id = (int)item.MeasureUnit_Id;
 				if (!item.IsHasChildrenNull())
@@ -178,7 +185,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 			rootRow.SetParent_IdNull();
 			rootRow.Name = "Root";
-			rootRow.ItemType = null;
+			rootRow.SetItemTypeNull();
 			itemsDS.Items.AddItemsRow(rootRow);
 		}
 
@@ -249,9 +256,18 @@ namespace Maklak.Client.Web.Models.Filter
 		public virtual void Toggle(ItemsTreeDS.ItemsRow row) 
 		{
 			if (!row.IsOpened)
-				LoadItems(row.Id);
+			{
+				//ItemsTreeDS.ItemsDataTable table = new ItemsTreeDS.ItemsDataTable();
+				//table.ImportRow(row);
+				//ItemsTreeDS.ItemsRow openRow = table.FirstOrDefault();
+				//openRow.Parent_Id = openRow.Id;
+
+				ItemsTreeDS.ItemsRow openRow = new ItemsTreeRowHelper(row).Row;
+				openRow.Parent_Id = openRow.Id;
+				LoadItems(openRow);
+			}
 			else
-				CleanUpNodes(row.Id, row.ItemType); //CleanUpItems(row.Id);
+				CleanUpNodes(row); //CleanUpItems(row.Id);
 
 			row.IsOpened = !row.IsOpened;
 		}
