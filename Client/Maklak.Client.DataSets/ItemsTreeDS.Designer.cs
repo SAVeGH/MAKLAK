@@ -293,6 +293,8 @@ namespace Maklak.Client.DataSets {
             
             private global::System.Data.DataColumn columnHasChildren;
             
+            private global::System.Data.DataColumn columnIsSelectable;
+            
             private global::System.Data.DataColumn columnIsSelected;
             
             private global::System.Data.DataColumn columnIsOpened;
@@ -388,6 +390,14 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsSelectableColumn {
+                get {
+                    return this.columnIsSelectable;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn IsSelectedColumn {
                 get {
                     return this.columnIsSelected;
@@ -439,7 +449,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ItemsRow AddItemsRow(int Id, int Parent_Id, string ItemType, string ParentItemType, string Name, int MeasureUnit_Id, bool HasChildren, bool IsSelected, bool IsOpened) {
+            public ItemsRow AddItemsRow(int Id, int Parent_Id, string ItemType, string ParentItemType, string Name, int MeasureUnit_Id, bool HasChildren, bool IsSelectable, bool IsSelected, bool IsOpened) {
                 ItemsRow rowItemsRow = ((ItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -449,6 +459,7 @@ namespace Maklak.Client.DataSets {
                         Name,
                         MeasureUnit_Id,
                         HasChildren,
+                        IsSelectable,
                         IsSelected,
                         IsOpened};
                 rowItemsRow.ItemArray = columnValuesArray;
@@ -480,6 +491,7 @@ namespace Maklak.Client.DataSets {
                 this.columnName = base.Columns["Name"];
                 this.columnMeasureUnit_Id = base.Columns["MeasureUnit_Id"];
                 this.columnHasChildren = base.Columns["HasChildren"];
+                this.columnIsSelectable = base.Columns["IsSelectable"];
                 this.columnIsSelected = base.Columns["IsSelected"];
                 this.columnIsOpened = base.Columns["IsOpened"];
             }
@@ -501,10 +513,13 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnMeasureUnit_Id);
                 this.columnHasChildren = new global::System.Data.DataColumn("HasChildren", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHasChildren);
+                this.columnIsSelectable = new global::System.Data.DataColumn("IsSelectable", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsSelectable);
                 this.columnIsSelected = new global::System.Data.DataColumn("IsSelected", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsSelected);
                 this.columnIsOpened = new global::System.Data.DataColumn("IsOpened", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsOpened);
+                this.columnIsSelectable.DefaultValue = ((bool)(true));
                 this.columnIsSelected.DefaultValue = ((bool)(false));
                 this.columnIsOpened.DefaultValue = ((bool)(false));
             }
@@ -761,6 +776,22 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsSelectable {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItems.IsSelectableColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsSelectable\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.IsSelectableColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsSelected {
                 get {
                     try {
@@ -873,6 +904,18 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetHasChildrenNull() {
                 this[this.tableItems.HasChildrenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsSelectableNull() {
+                return this.IsNull(this.tableItems.IsSelectableColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsSelectableNull() {
+                this[this.tableItems.IsSelectableColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

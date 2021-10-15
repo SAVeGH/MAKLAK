@@ -3,15 +3,17 @@ using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Maklak.Client.DataSets;
 
 namespace Maklak.Client.Web.Models.PopUp
 {
-	public class PopUpStateModel
+	public class PopUpStateModel 
 	{
 		private bool popUpState = false;
 
 		public event Action OnRefresh;
+		public event Action OnOpen;
 		public event Action OnClose;
 
 		public PopUpStateModel() 
@@ -32,6 +34,8 @@ namespace Maklak.Client.Web.Models.PopUp
 		{
 			popUpState = true;
 
+			// подписка в PopUpScreenModel
+			//this.OnOpen?.Invoke();	
 			this.OnRefresh?.Invoke();
 		}
 
@@ -47,6 +51,8 @@ namespace Maklak.Client.Web.Models.PopUp
 			InputParameters.Clear();
 
 			this.OnRefresh?.Invoke();
+
+			
 		}
 
 		private void CleanSubscriptions() 

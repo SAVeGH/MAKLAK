@@ -18,10 +18,12 @@ namespace Maklak.Client.Web.Models.PopUp
 		{
 			base.OnInitialized();
 
-			PopUpState.OnRefresh += PopUpState_Update;
+			PopUpState.OnRefresh += PopUpState_Refresh;
+
+			//PopUpState.OnOpen += PopUpState_Refresh;
 		}
 
-		private void PopUpState_Update()
+		private void PopUpState_Refresh()
 		{
 			this.InvokeAsync(StateHasChanged); // Только асинхронно т.к. выполняется не в контексте вызова 			
 		}
