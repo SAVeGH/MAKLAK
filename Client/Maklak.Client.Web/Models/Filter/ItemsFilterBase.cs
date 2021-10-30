@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-//using Microsoft.AspNetCore.Components; // for ComponentBase.
 using Maklak.Client.Service;
 using Maklak.Client.DataSets;
 using Maklak.Client.Web.Models.PopUp;
 
 namespace Maklak.Client.Web.Models.Filter
 {
-	public class ItemsFilterBase //: ComponentBase
+	public class ItemsFilterBase 
 	{
 		private ItemsTreeDS itemsDS;		
 
@@ -25,18 +24,9 @@ namespace Maklak.Client.Web.Models.Filter
 			serviceProxy = srvProxy;
 			popUpState = popUpStateModel;
 			
-		}
-
-		//[Inject]
-		//public StateModel StateStorage { get; set; }
-
-		//[Inject]
-		protected grpcProxy serviceProxy { get; set; }
-
-		//[Inject]
+		}		
+		protected grpcProxy serviceProxy { get; set; }		
 		protected PopUpStateModel popUpState { get; set; }
-
-
 
 		private string searchText;
 		
@@ -78,18 +68,11 @@ namespace Maklak.Client.Web.Models.Filter
 
 		public void OnInitialized()
 		{
-			popUpState.OnRefresh += PopUpState_OnRefresh;			
-
 			LoadItems();
 		}		
 
 		protected virtual void LoadItems(ItemsTreeDS.ItemsRow row = null)
-		{
-			//SearchParameters searchParameters = new SearchParameters();
-			//searchParameters.FilterType = ItemsFilterType;
-			//searchParameters.ItemId = itemId;
-
-			//ProcessParameters(searchParameters);
+		{			
 			// синхронная загрузка
 			ItemsTreeDS searchData = serviceProxy.Search(ItemsFilterType, row, searchText);
 
@@ -98,14 +81,8 @@ namespace Maklak.Client.Web.Models.Filter
 			AddRootRow();
 
 			AddChildNodes(row, searchData);
-
-			//StateHasChanged();
+			
 			OnStateHasChanged?.Invoke();
-		}
-
-		protected virtual void ProcessParameters(SearchParameters searchParameters) 
-		{
-			// функция нужна для подстановки 'PropertyValue' вместо 'Propety'. Перегружена в классе PropertyFilterModel
 		}		
 
 		private void CleanUpNodes(ItemsTreeDS.ItemsRow rootRow)
@@ -226,8 +203,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 			PopUpInput popUpInput = popUpState.InputParameters;
 			popUpInput.FilterType = this.ItemsFilterType;
-			//popUpInput.Id = this.CurrentItemRow.Id;
-			//popUpInput.Row = this.CurrentItemRow;
+			
 			popUpInput.SetDataRow(this.CurrentItemRow);
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
 			popUpInput.Height = 120;
@@ -259,24 +235,12 @@ namespace Maklak.Client.Web.Models.Filter
 				LoadItems(openRow);
 			}
 			else
-				CleanUpNodes(row); //CleanUpItems(row.Id);
+				CleanUpNodes(row); 
 
 			row.IsOpened = !row.IsOpened;
 
 			OnStateHasChanged?.Invoke();
-		}
-
-		private void PopUpState_OnRefresh()
-		{
-			//ItemsTreeDS.ItemsRow openRow = new ItemsTreeRowHelper(row).Row;
-			//openRow.Parent_Id = openRow.Id;
-			//LoadItems();
-
-			//this.InvokeAsync(StateHasChanged);
-
-			//this.StateHasChanged(); // Иначе содержимое не отображается		
-
-		}
+		}		
 	}
 
 	public class SearchParameters 

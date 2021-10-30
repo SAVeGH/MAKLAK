@@ -24,10 +24,13 @@ namespace Maklak.Client.Web.Models.PopUp
 		protected override void OnInitialized()
 		{
 			base.OnInitialized();
-
+			// обновление контента после закрытия окна. Нужно вызывать иначе окно "зависает"
 			PopUpState.OnRefresh += PopUpState_OnRefresh;
-		}
+			// обновление при открытии окна
+			PopUpState.OnOpen += PopUpState_OnRefresh;
 
+			
+		}
 		public RenderFragment Content 
 		{ 
 			get 

@@ -35,8 +35,7 @@ namespace Maklak.Client.Web.Models.PopUp
 			popUpState = true;
 
 			// подписка в PopUpScreenModel
-			//this.OnOpen?.Invoke();	
-			this.OnRefresh?.Invoke();
+			this.OnOpen?.Invoke();			
 		}
 
 		public void Close(bool isCancel = false) 
@@ -44,23 +43,25 @@ namespace Maklak.Client.Web.Models.PopUp
 			popUpState = false;
 
 			if(!isCancel)
-				this.OnClose?.Invoke();
+				this.OnClose?.Invoke(); // вызов только на Ok			
 
 			CleanSubscriptions();
 
 			InputParameters.Clear();
 
+			// подписки в PopUpScreenModel и PopUpContentModel. Вызывается InvokeAsync(StateHasChanged) при закрытии popUp окна
+			// нужно обязательно вызывать иначе popUp "зависает" - всплывает в состоянии предыдущего вызова.
 			this.OnRefresh?.Invoke();
 
-			
+
 		}
 
 		private void CleanSubscriptions() 
 		{
 			// освобождает все подписки на событие
-			Delegate[] subscriptions = this.OnClose.GetInvocationList();
+			Delegate[] closeSubscriptions = this.OnClose.GetInvocationList();
 
-			foreach (Delegate closeDelegate in subscriptions)			
+			foreach (Delegate closeDelegate in closeSubscriptions)			
 				this.OnClose -= (Action)closeDelegate;			
 		}
 	}	
@@ -114,8 +115,10 @@ namespace Maklak.Client.Web.Models.PopUp
 			//table = new ItemsTreeDS.ItemsDataTable();
 			//innerRow = null;
 			rowHelper.Clear();
+			rowHelper = new ItemsTreeRowHelper();
 			FilterType = null;
 			dialogType = null;
+			
 		}
 	}
 

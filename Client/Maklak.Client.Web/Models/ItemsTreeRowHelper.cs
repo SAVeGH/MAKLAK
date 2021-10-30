@@ -21,6 +21,9 @@ namespace Maklak.Client.Web.Models
 
 		public void Clear() 
 		{
+			if(innerTable != null)
+				innerTable.Clear();
+
 			innerTable = new ItemsTreeDS.ItemsDataTable();
 		}
 

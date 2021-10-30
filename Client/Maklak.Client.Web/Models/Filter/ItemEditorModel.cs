@@ -28,8 +28,6 @@ namespace Maklak.Client.Web.Models.Filter
 
 		protected override void OnInitialized()
 		{
-			//base.OnInitialized();
-
 			Init();
 		}
 
@@ -40,18 +38,13 @@ namespace Maklak.Client.Web.Models.Filter
 			if (PopUpState.InputParameters.Row == null)
 				return;
 
-			// для Edit режима
-			//ItemsTreeDS itemData = new ItemsTreeDS();
-			//serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Id, null, itemData);
-			//Text = itemData.Items.FirstOrDefault(r=> !r.IsParent_IdNull() && r.Parent_Id == int.MaxValue).Name;
+			// для Edit режима	
 
 			ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, null);			
 			Text = itemData.Items.FirstOrDefault().Name;
 		}
 		private void PopUpState_OnClose()
 		{
-			//PopUpState.OnClose -= PopUpState_OnClose;
-
 			if (PopUpState.InputParameters.Row == null) 
 				serviceProxy.AddItem(PopUpState.InputParameters.FilterType, Text);
 			else

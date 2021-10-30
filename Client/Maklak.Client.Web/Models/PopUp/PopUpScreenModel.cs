@@ -17,10 +17,10 @@ namespace Maklak.Client.Web.Models.PopUp
 		protected override void OnInitialized()
 		{
 			base.OnInitialized();
-
+			// refresh будет вызван после закрытия окна в любом случае (Ok/Cancel)
 			PopUpState.OnRefresh += PopUpState_Refresh;
-
-			//PopUpState.OnOpen += PopUpState_Refresh;
+			// вызов при открытии окна
+			PopUpState.OnOpen += PopUpState_Refresh;
 		}
 
 		private void PopUpState_Refresh()

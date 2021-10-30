@@ -28,16 +28,6 @@ namespace Maklak.Client.Web.Models.Filter
 			popUpInput.PopUpAction = PopUpInput.ActionType.Add;
 
 			popUpState.Show();
-		}
-
-		protected override void ProcessParameters(SearchParameters searchParameters)
-		{
-			if (searchParameters.ItemId == null)
-				return; // оставить по умолчанию 'Property'			
-
-			searchParameters.FilterType = "PropertyValue";
-		}
-
-		
+		}		
 	}
 }
