@@ -58,6 +58,9 @@ namespace Maklak.Client.Web.Models.PopUp
 
 		private void CleanSubscriptions() 
 		{
+			if (this.OnClose == null)
+				return;
+
 			// освобождает все подписки на событие
 			Delegate[] closeSubscriptions = this.OnClose.GetInvocationList();
 
@@ -69,12 +72,7 @@ namespace Maklak.Client.Web.Models.PopUp
 	public class PopUpInput
 	{
 		public enum ActionType { None, Add, Edit, Delete};
-
-		//public int? Id;
-		//public int? ParentId;
-		//public string Value;
-		//ItemsTreeDS.ItemsDataTable table;
-		//ItemsTreeDS.ItemsRow innerRow;
+		
 		ItemsTreeRowHelper rowHelper;
 
 		public string FilterType;		
@@ -85,9 +83,8 @@ namespace Maklak.Client.Web.Models.PopUp
 		public ActionType PopUpAction = ActionType.None;
 
 		public PopUpInput() 
-		{
-			//table = new ItemsTreeDS.ItemsDataTable();
-			rowHelper = new ItemsTreeRowHelper();
+		{			
+			rowHelper = new ItemsTreeRowHelper(null);
 		}
 
 		public ItemsTreeDS.ItemsRow Row 
@@ -109,13 +106,8 @@ namespace Maklak.Client.Web.Models.PopUp
 
 
 		public void Clear() 
-		{
-			//Id = null;			
-			//Value = null;
-			//table = new ItemsTreeDS.ItemsDataTable();
-			//innerRow = null;
-			rowHelper.Clear();
-			rowHelper = new ItemsTreeRowHelper();
+		{		
+			rowHelper.Clear();			
 			FilterType = null;
 			dialogType = null;
 			

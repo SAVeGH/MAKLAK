@@ -8,13 +8,9 @@ namespace Maklak.Client.Web.Models
 {
 	public class ItemsTreeRowHelper
 	{
-		ItemsTreeDS.ItemsDataTable innerTable;
-		public ItemsTreeRowHelper() 
-		{
-			Clear();
-		}
+		ItemsTreeDS.ItemsDataTable innerTable;		
 
-		public ItemsTreeRowHelper(ItemsTreeDS.ItemsRow row) : this()
+		public ItemsTreeRowHelper(ItemsTreeDS.ItemsRow row) 
 		{
 			Row = row;
 		}
@@ -26,6 +22,14 @@ namespace Maklak.Client.Web.Models
 
 			innerTable = new ItemsTreeDS.ItemsDataTable();
 		}
+		private void SetEmptyRow() 
+		{
+			if (innerTable == null)
+				return;
+
+			ItemsTreeDS.ItemsRow row = innerTable.NewItemsRow();
+			innerTable.AddItemsRow(row);
+		}
 
 		public ItemsTreeDS.ItemsRow Row
 		{
@@ -35,8 +39,15 @@ namespace Maklak.Client.Web.Models
 			}
 
 			set 
-			{
-				innerTable.Clear();
+			{				
+				Clear();
+
+				if (value == null) 
+				{
+					SetEmptyRow();
+					return;
+				}
+
 				innerTable.ImportRow(value);
 			}
 		}

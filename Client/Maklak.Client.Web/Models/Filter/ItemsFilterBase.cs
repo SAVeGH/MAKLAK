@@ -22,9 +22,29 @@ namespace Maklak.Client.Web.Models.Filter
 			this.IsEditable = true;
 
 			serviceProxy = srvProxy;
-			popUpState = popUpStateModel;
+			popUpState = popUpStateModel;			
 			
-		}		
+		}
+
+		private void PopUpState_AddItem()
+		{
+			
+			serviceProxy.AddItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);
+			popUpState.InputParameters.Row.ItemType = popUpState.InputParameters.FilterType;			
+			
+			LoadItems();
+		}
+
+		private void PopUpState_EditItem()
+		{
+			
+			serviceProxy.EditItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);
+			ItemsTreeDS.ItemsRow  parentRow = this.Items.Where(item => item.Id == popUpState.InputParameters.Row.Parent_Id).FirstOrDefault();
+				//parentId = popUpState.InputParameters.Row.Parent_Id;
+			
+			LoadItems(parentRow);
+		}
+
 		protected grpcProxy serviceProxy { get; set; }		
 		protected PopUpStateModel popUpState { get; set; }
 
@@ -188,11 +208,14 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			PopUpInput popUpInput = popUpState.InputParameters;
 			popUpInput.FilterType = this.ItemsFilterType;
+
+			popUpInput.SetDataRow(null);
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
 			popUpInput.Height = 120;
 			popUpInput.Width = 300;
 			popUpInput.Title = "Add";
-			
+			popUpState.OnClose += PopUpState_AddItem;
+
 			popUpState.Show();
 		}		
 
@@ -209,7 +232,8 @@ namespace Maklak.Client.Web.Models.Filter
 			popUpInput.Height = 120;
 			popUpInput.Width = 300;
 			popUpInput.Title = "Edit";
-			
+			popUpState.OnClose += PopUpState_EditItem;
+
 			popUpState.Show();
 		}		
 
@@ -229,7 +253,7 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			if (!row.IsOpened)
 			{
-				
+				// делается копия строки
 				ItemsTreeDS.ItemsRow openRow = new ItemsTreeRowHelper(row).Row;
 				openRow.Parent_Id = openRow.Id;
 				LoadItems(openRow);
@@ -242,11 +266,4 @@ namespace Maklak.Client.Web.Models.Filter
 			OnStateHasChanged?.Invoke();
 		}		
 	}
-
-	public class SearchParameters 
-	{
-		public string FilterType { get; set; }
-		public int? ItemId { get; set; }
-	}
-
 }

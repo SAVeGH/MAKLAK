@@ -89,7 +89,7 @@ namespace Maklak.Client.Service
 			SearchRequest request = new SearchRequest();
 			Maklak.Client.DataSets.ItemsTreeDS searchData = new ItemsTreeDS();
 
-			request.ItemId = row == null ? null : (int?)row.Id; // ?? int.MaxValue;
+			request.ItemId = row == null || row.IsIdNull() ? null : (int?)row.Id; // ?? int.MaxValue;
 			request.ParentItemId = row == null ? null : (row.IsParent_IdNull() ? null : (row.Parent_Id == int.MaxValue ? null : (int?)row.Parent_Id));
 			request.InputType = itemType;
 			request.InputValue = string.IsNullOrEmpty(inputValue) ? string.Empty : inputValue;
@@ -243,16 +243,16 @@ namespace Maklak.Client.Service
 			
 		}
 
-		public int EditItem(string itemType, ItemsTreeDS.ItemsRow row, string itemValue)
+		public int EditItem(string itemType, ItemsTreeDS.ItemsRow row)
 		{
-			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = row.Id , ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemId = row.Id , ItemValue = row.Name };
 			ItemResponse response = client.EditItem(request);
 			return response.Result;
 		}
 
-		public int AddItem(string itemType, string itemValue) 
+		public int AddItem(string itemType, ItemsTreeDS.ItemsRow row) 
 		{
-			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = itemType, ItemValue = row.Name };
 			ItemResponse response = client.AddItem(request);
 			return response.Result;
 		}

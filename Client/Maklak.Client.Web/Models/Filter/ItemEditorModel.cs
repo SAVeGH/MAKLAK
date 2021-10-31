@@ -33,9 +33,9 @@ namespace Maklak.Client.Web.Models.Filter
 
 		private void Init() 
 		{
-			PopUpState.OnClose += PopUpState_OnClose;
+			//PopUpState.OnClose += PopUpState_OnClose;
 
-			if (PopUpState.InputParameters.Row == null)
+			if (PopUpState.InputParameters.Row == null || PopUpState.InputParameters.Row.IsIdNull())
 				return;
 
 			// для Edit режима	
@@ -43,26 +43,33 @@ namespace Maklak.Client.Web.Models.Filter
 			ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, null);			
 			Text = itemData.Items.FirstOrDefault().Name;
 		}
-		private void PopUpState_OnClose()
-		{
-			if (PopUpState.InputParameters.Row == null) 
-				serviceProxy.AddItem(PopUpState.InputParameters.FilterType, Text);
-			else
-				serviceProxy.EditItem(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, Text);
+
+		//private void PopUpState_OnClose()
+		//{
+		//	if (PopUpState.InputParameters.Row == null) 
+		//		serviceProxy.AddItem(PopUpState.InputParameters.FilterType, Text);
+		//	else
+		//		serviceProxy.EditItem(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, Text);
 			
-		}
+		//}
 
 		[Parameter]
 		public string Text 
 		{
-			get;
-			//{
-			//	return PopUpState.OutputParameters.Value;
-			//}
-			set;
-			//{
-			//	PopUpState.OutputParameters.Value = value;
-			//}
+			get
+			{
+				if (PopUpState.InputParameters.Row == null || PopUpState.InputParameters.Row.IsNameNull())
+					return null;
+
+				return PopUpState.InputParameters.Row.Name;
+			}
+			set
+			{
+				if (PopUpState.InputParameters.Row == null)
+					return;
+
+				PopUpState.InputParameters.Row.Name = value;
+			}
 		}
 	}
 }
