@@ -1,5 +1,5 @@
 ﻿@inherits Maklak.Client.Web.Models.Filter.ItemsTreeModel
 @*делегат узела верхнего уровня инициализируется функцией модели. Далее она же передается в дочерние узлы. Таким образом клик на expand/close вызовет одну и ту же функцию в ItemsTreeModel 
 	и позволит обновить свойство Items*@
-<ItemTreeNode ItemsSource=this.Items OnNodeToggle=this.OnNodeToggle />
+<ItemTreeNode ItemsSource=this.Items OnNodeToggle=this.OnNodeToggle OnRefreshTree=this.OnRefreshTree />
 

@@ -16,7 +16,7 @@
 	}
 	else
 	{
-	<div class="@itemClass" @onclick="(e=>OnNodeRowClicked(row.Id))">
+	<div class="@itemClass" @onclick="(e=>OnNodeRowClicked(row))">
 		@if (!row.IsHasChildrenNull())
 		{
 			if (row.HasChildren)
@@ -38,7 +38,7 @@
 
 <div class="@contentPadding">
 	@* делегат OnNodeToggle инициализируем функцией модели. Это функция переданная из ItemsTree в node верхнего уровня. Далее передается всем дочерним узлам*@
-	<ItemTreeNode ItemsSource=ItemsSource ParentRow=row OnNodeToggle=this.OnNodeToggle />
+	<ItemTreeNode ItemsSource=ItemsSource ParentRow=row OnNodeToggle=this.OnNodeToggle OnRefreshTree=this.OnRefreshTree />
 </div>
 </div>
 

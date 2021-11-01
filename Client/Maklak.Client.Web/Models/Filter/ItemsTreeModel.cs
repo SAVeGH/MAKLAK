@@ -15,9 +15,11 @@ namespace Maklak.Client.Web.Models.Filter
 		[Parameter]
 		public Action<ItemsTreeDS.ItemsRow> OnNodeToggled { get; set; } // сюда передается функция объекта который требует уведомления о клике expand/close (функция конретного фильтра)
 
+		
+
 		//[Inject]
 		//private grpcProxy serviceProxy { get; set; }
-		
+
 
 		[Parameter]
 		public ItemsTreeDS.ItemsDataTable Items 
@@ -29,6 +31,11 @@ namespace Maklak.Client.Web.Models.Filter
 		public void OnNodeToggle(ItemsTreeDS.ItemsRow row) 
 		{
 			OnNodeToggled?.Invoke(row); // вызов уведомления внешнего объекта по клику expand/close на узле
+		}
+
+		public void OnRefreshTree()
+		{
+			this.InvokeAsync(this.StateHasChanged); // нужно вызывать только асинхроно
 		}
 	}
 }
