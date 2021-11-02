@@ -26,8 +26,15 @@ namespace Maklak.Client.Web.Models.Filter
 			popUpInput.Title = "Add";
 			popUpInput.SetDataRow(base.CurrentItemRow);
 			popUpInput.PopUpAction = PopUpInput.ActionType.Add;
+			popUpState.OnClose += PopUpState_AddItemComplete;
 
 			popUpState.Show();
-		}		
+		}
+
+		private void PopUpState_AddItemComplete()
+		{
+			// SelectedMeasureId не нужен т.к. есть в строке
+			//serviceProxy.AddPropertyItem(popUpState.InputParameters.Row, SelectedMeasureId, Text);
+		}
 	}
 }

@@ -24,26 +24,7 @@ namespace Maklak.Client.Web.Models.Filter
 			serviceProxy = srvProxy;
 			popUpState = popUpStateModel;			
 			
-		}
-
-		private void PopUpState_AddItem()
-		{
-			
-			serviceProxy.AddItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);
-			popUpState.InputParameters.Row.ItemType = popUpState.InputParameters.FilterType;			
-			
-			LoadItems();
-		}
-
-		private void PopUpState_EditItem()
-		{
-			
-			serviceProxy.EditItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);
-			ItemsTreeDS.ItemsRow  parentRow = this.Items.Where(item => item.Id == popUpState.InputParameters.Row.Parent_Id).FirstOrDefault();
-				//parentId = popUpState.InputParameters.Row.Parent_Id;
-			
-			LoadItems(parentRow);
-		}
+		}		
 
 		protected grpcProxy serviceProxy { get; set; }		
 		protected PopUpStateModel popUpState { get; set; }
@@ -209,15 +190,23 @@ namespace Maklak.Client.Web.Models.Filter
 			PopUpInput popUpInput = popUpState.InputParameters;
 			popUpInput.FilterType = this.ItemsFilterType;
 
-			popUpInput.SetDataRow(null);
+			popUpInput.SetDataRow(null); // установка пустой строки
+			popUpInput.Row.ItemType = this.ItemsFilterType;
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
 			popUpInput.Height = 120;
 			popUpInput.Width = 300;
 			popUpInput.Title = "Add";
-			popUpState.OnClose += PopUpState_AddItem;
+			popUpState.OnClose += PopUpState_AddItemComplete;
 
 			popUpState.Show();
-		}		
+		}
+
+		public virtual void AddItemComplete() 
+		{
+			serviceProxy.AddItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);
+
+			LoadItems();
+		}
 
 		public virtual void EditItem()
 		{
@@ -232,10 +221,27 @@ namespace Maklak.Client.Web.Models.Filter
 			popUpInput.Height = 120;
 			popUpInput.Width = 300;
 			popUpInput.Title = "Edit";
-			popUpState.OnClose += PopUpState_EditItem;
+			popUpState.OnClose += PopUpState_EditItemComplete;
 
 			popUpState.Show();
-		}		
+		}
+
+		public virtual void EditItemComplete() 
+		{
+			serviceProxy.EditItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);			
+
+			LoadItems();
+		}
+
+		private void PopUpState_AddItemComplete()
+		{
+			AddItemComplete(); // нужно перегружать для иерархических списков т.к. требует вызова LoadItems с параметрами. По умолчанию грузит только верхний уровень. 
+		}
+
+		private void PopUpState_EditItemComplete()
+		{
+			EditItemComplete();
+		}
 
 		public virtual void DeleteItem()
 		{

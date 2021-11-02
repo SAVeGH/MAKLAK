@@ -28,7 +28,7 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			FillLookup();
 
-			PopUpState.OnClose += PopUpState_OnClose;
+			//PopUpState.OnClose += PopUpState_OnClose;
 
 			//if (PopUpState.InputParameters.Id == null)
 			//	return;

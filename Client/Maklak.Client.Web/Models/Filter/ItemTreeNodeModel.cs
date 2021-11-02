@@ -52,34 +52,9 @@ namespace Maklak.Client.Web.Models.Filter
 			row.IsSelected = true;
 
 			// вызов рефреша всего дерева т.к. снятие/установка селекта могут происходить в разных компонентах (вложенных иерархически)
+			// метод находится в ItemTreeModel и передается по цепочке в разметке ItemsTree 
 			OnRefreshTree?.Invoke();
-		}
-
-		//private void InvokeStateHasChangedAsync()
-		//{
-		//	this.InvokeAsync(this.StateHasChanged); // нужно вызывать только асинхроно
-		//}
-
-		//public void OnNodeRowClicked(ItemsTreeDS.ItemsRow row) 
-		//{			
-
-		//	ItemsTreeDS.ItemsRow currentSelectedRow = this.ItemsSource.FirstOrDefault(r => r.IsSelected);
-
-		//	if (currentSelectedRow != null)
-		//	{
-		//		currentSelectedRow.IsSelected = false;
-
-		//		if (currentSelectedRow.Id == itemId) // deselect
-		//			return;
-		//	}			
-
-		//	ItemsTreeDS.ItemsRow row = ItemsSource.FirstOrDefault(r => r.Id == itemId);
-
-		//	if (row == null)
-		//		return;
-
-		//	row.IsSelected = true;
-		//}
+		}		
 
 		public void OnToggleNodeClicked(ItemsTreeDS.ItemsRow row) 
 		{			
