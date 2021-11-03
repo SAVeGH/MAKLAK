@@ -17,7 +17,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 		[Parameter]
 		public Action OnRefreshTree { get; set; } // делегат инициализируется функцией из ItemsTree в разметке
-		public IEnumerable<ItemsTreeDS.ItemsRow> Items 
+		public IEnumerable<ItemsTreeDS.ItemsRow> Items // все items верхнего узла (ParentRow) из ItemsSource 
 		{ 
 			get 
 			{
@@ -32,7 +32,7 @@ namespace Maklak.Client.Web.Models.Filter
 		}
 
 		[Parameter]
-		public ItemsTreeDS.ItemsDataTable ItemsSource { get; set; }
+		public ItemsTreeDS.ItemsDataTable ItemsSource { get; set; } // таблица со всеми items данного ItemType
 
 		[Parameter]
 		public ItemsTreeDS.ItemsRow ParentRow { get; set; }

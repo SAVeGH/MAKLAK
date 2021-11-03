@@ -257,16 +257,23 @@ namespace Maklak.Client.Service
 			return response.Result;
 		}
 
-		public int AddPropertyItem(ItemsTreeDS.ItemsRow row, int measureUnitId, string itemValue)
+		public int AddPropertyItem(ItemsTreeDS.ItemsRow row)
 		{
-			ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = row.Id, MeasureUnitId = measureUnitId, ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = (row.IsIdNull() ? null : (int?)row.Id), MeasureUnitId = row.MeasureUnit_Id, ItemValue = row.Name };
 			ItemResponse response = client.AddItem(request);
-			return response.Result;			
+			return response.Result;
 		}
+
+		//public int AddPropertyItem(ItemsTreeDS.ItemsRow row, int measureUnitId, string itemValue)
+		//{
+		//	ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = row.Id, MeasureUnitId = measureUnitId, ItemValue = itemValue };
+		//	ItemResponse response = client.AddItem(request);
+		//	return response.Result;			
+		//}
 
 		public int EditPropertyItem(ItemsTreeDS.ItemsRow row, string itemValue)
 		{
-			ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = row.Id , ItemValue = itemValue };
+			ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = (row.IsIdNull() ? null: (int?)row.Id) , ItemValue = itemValue };
 			ItemResponse response = client.EditItem(request);
 			return response.Result;
 		}

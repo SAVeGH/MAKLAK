@@ -25,6 +25,8 @@ namespace Maklak.Client.Web.Models.Filter
 			popUpInput.Width = 300;
 			popUpInput.Title = "Add";
 			popUpInput.SetDataRow(base.CurrentItemRow);
+			popUpInput.Row.Name = null; // удалить name из копии строки
+			popUpInput.Row.ItemType = popUpInput.Row.IsIdNull() ? this.ItemsFilterType : popUpInput.Row.ItemType;
 			popUpInput.PopUpAction = PopUpInput.ActionType.Add;
 			popUpState.OnClose += PopUpState_AddItemComplete;
 
@@ -34,7 +36,11 @@ namespace Maklak.Client.Web.Models.Filter
 		private void PopUpState_AddItemComplete()
 		{
 			// SelectedMeasureId не нужен т.к. есть в строке
-			//serviceProxy.AddPropertyItem(popUpState.InputParameters.Row, SelectedMeasureId, Text);
+			serviceProxy.AddPropertyItem(popUpState.InputParameters.Row);
+
+			//popUpState.InputParameters.Row
+
+			base.LoadItems(popUpState.InputParameters.Row);
 		}
 	}
 }

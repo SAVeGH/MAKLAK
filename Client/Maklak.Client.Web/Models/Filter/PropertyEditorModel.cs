@@ -41,57 +41,63 @@ namespace Maklak.Client.Web.Models.Filter
 			base.serviceProxy.GetLookupItems("MeasureUnits", MeasureUnits);
 
 			if (PopUpState.InputParameters.Row == null)
+				return;			
+
+			if (PopUpState.InputParameters.Row.IsMeasureUnit_IdNull())
 				return;
 
-			// Делается добавление с заселекченой строкой или Edit
+			// Делается Add с заселекченой строкой или Edit
 
-			int selectedMeasureId = (int)PopUpState.InputParameters.Row["MeasureUnit_Id"];
+			int selectedMeasureId = (int)PopUpState.InputParameters.Row.MeasureUnit_Id;
 
 			LookupDS.ItemsRow measureRow = MeasureUnits.Items.Where(mu => mu.Id == selectedMeasureId).FirstOrDefault();
 
-			measureRow.IsSelected = true;
+			measureRow.IsSelected = true;			
 
 			SelectedMeasureId = selectedMeasureId;
 		}
 
-		private void PopUpState_OnClose()
-		{
-			if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Add) 
-			{				
-				serviceProxy.AddPropertyItem(PopUpState.InputParameters.Row, SelectedMeasureId, Text);
-			}
+		//private void PopUpState_OnClose()
+		//{
+		//	if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Add) 
+		//	{				
+		//		serviceProxy.AddPropertyItem(PopUpState.InputParameters.Row, SelectedMeasureId, Text);
+		//	}
 
-			if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Edit)
-			{
-				serviceProxy.EditPropertyItem(PopUpState.InputParameters.Row, Text);
-			}
+		//	if (PopUpState.InputParameters.PopUpAction == PopUpInput.ActionType.Edit)
+		//	{
+		//		serviceProxy.EditPropertyItem(PopUpState.InputParameters.Row, Text);
+		//	}
 
-			//if (PopUpState.InputParameters.Id == null)
-			//	serviceProxy.AddPropertyItem(PopUpState.InputParameters.Id, SelectedMeasureId, Text);
-			//else
-			//	serviceProxy.EditPropertyItem(PopUpState.InputParameters.FilterType, null, PopUpState.InputParameters.Id, Text);
-		}
+		//	//if (PopUpState.InputParameters.Id == null)
+		//	//	serviceProxy.AddPropertyItem(PopUpState.InputParameters.Id, SelectedMeasureId, Text);
+		//	//else
+		//	//	serviceProxy.EditPropertyItem(PopUpState.InputParameters.FilterType, null, PopUpState.InputParameters.Id, Text);
+		//}
 
-		private int selectedMeasureId;
+		//private int selectedMeasureId;
 		public int SelectedMeasureId 
 		{ 
 			get 
-			{ 
-				return selectedMeasureId; 
+			{
+				if (PopUpState.InputParameters.Row.IsMeasureUnit_IdNull())
+					return int.MinValue;
+
+				return PopUpState.InputParameters.Row.MeasureUnit_Id; 
 			}
 			set 
 			{
-				selectedMeasureId = value;
+				PopUpState.InputParameters.Row.MeasureUnit_Id = value;
 
 				OnSelectedMeasureChanged();
 			}
 		}
 
-		public bool IsMeasureDisabled
+		public bool IsMeasureDisabled // толко для Add опреции
 		{
 			get
 			{
-				return PopUpState.InputParameters.Row != null || PopUpState.InputParameters.PopUpAction != PopUpInput.ActionType.Add;					
+				return !PopUpState.InputParameters.Row.IsIdNull();					
 			}
 			
 		}

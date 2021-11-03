@@ -124,8 +124,8 @@ namespace Maklak.Client.Web.Models.Filter
 
 		private void AddChildNodes(ItemsTreeDS.ItemsRow rootRow, ItemsTreeDS searchData)
 		{
-			int parentRowId = rootRow == null ? int.MaxValue : rootRow.Id;
-			string parentRowItemType = rootRow == null ? null : rootRow.ItemType;			
+			int parentRowId = rootRow == null || rootRow.IsIdNull() ? int.MaxValue : rootRow.Id;
+			string parentRowItemType = rootRow == null || rootRow.IsIdNull() ? null : rootRow.ItemType;			
 
 			foreach (ItemsTreeDS.ItemsRow item in searchData.Items)
 			{
