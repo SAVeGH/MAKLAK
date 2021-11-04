@@ -88,7 +88,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 		private void CleanUpNodes(ItemsTreeDS.ItemsRow rootRow)
 		{
-			if (rootRow == null || rootRow.IsParent_IdNull())
+			if (rootRow == null || rootRow.IsParent_IdNull() || rootRow.Parent_Id == int.MaxValue)
 			{				
 				itemsDS.Items.Clear();
 				return; // перезапись всех узлов

@@ -35,11 +35,23 @@ namespace Maklak.Client.Web.Models.Filter
 
 		private void PopUpState_AddItemComplete()
 		{
-			// SelectedMeasureId не нужен т.к. есть в строке
+			
 			serviceProxy.AddPropertyItem(popUpState.InputParameters.Row);
 
-			//popUpState.InputParameters.Row
+			//если Id null - добавление property в root
+			int? parentId = null;
 
+			// если id не null - добавление propertyvalue
+			if (!popUpState.InputParameters.Row.IsIdNull())			
+				parentId = popUpState.InputParameters.Row.IsOpened ? popUpState.InputParameters.Row.Id : popUpState.InputParameters.Row.Parent_Id;
+
+			if (parentId == null)
+				popUpState.InputParameters.Row.SetParent_IdNull();
+			else
+				popUpState.InputParameters.Row.Parent_Id = parentId??int.MaxValue;
+
+			popUpState.InputParameters.Row.SetIdNull();
+			//base.Toggle(popUpState.InputParameters.Row);
 			base.LoadItems(popUpState.InputParameters.Row);
 		}
 	}
