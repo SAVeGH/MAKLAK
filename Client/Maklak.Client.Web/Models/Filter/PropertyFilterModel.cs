@@ -18,6 +18,9 @@ namespace Maklak.Client.Web.Models.Filter
 
 		public override void AddItem()
 		{
+			if (base.CurrentItemRow != null && !base.CurrentItemRow.IsItemTypeNull() && base.CurrentItemRow.ItemType == "PropertyValue")
+				return;
+
 			PopUpInput popUpInput = popUpState.InputParameters;
 			popUpInput.FilterType = this.ItemsFilterType;
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.PropertyEditor);
@@ -38,21 +41,37 @@ namespace Maklak.Client.Web.Models.Filter
 			
 			serviceProxy.AddPropertyItem(popUpState.InputParameters.Row);
 
+
+			PrepareLoadRequestData();
+
+
+			base.LoadItems(popUpState.InputParameters.Row);
+		}
+
+		private void PrepareLoadRequestData() 
+		{
 			//если Id null - добавление property в root
 			int? parentId = null;
 
 			// если id не null - добавление propertyvalue
-			if (!popUpState.InputParameters.Row.IsIdNull())			
-				parentId = popUpState.InputParameters.Row.IsOpened ? popUpState.InputParameters.Row.Id : popUpState.InputParameters.Row.Parent_Id;
+			if (!popUpState.InputParameters.Row.IsIdNull())
+				if (popUpState.InputParameters.Row.IsOpened)
+				{
+					// если строка развернута
+					parentId = popUpState.InputParameters.Row.Id;
+				}
+				else
+				{
+					// если строка свернута
+					parentId = popUpState.InputParameters.Row.Parent_Id;
+					popUpState.InputParameters.Row.SetIdNull();
+				}
 
-			if (parentId == null)
+			// установить Parent_Id если он не null
+			if (parentId == null || parentId == int.MaxValue)
 				popUpState.InputParameters.Row.SetParent_IdNull();
 			else
-				popUpState.InputParameters.Row.Parent_Id = parentId??int.MaxValue;
-
-			popUpState.InputParameters.Row.SetIdNull();
-			//base.Toggle(popUpState.InputParameters.Row);
-			base.LoadItems(popUpState.InputParameters.Row);
+				popUpState.InputParameters.Row.Parent_Id = parentId ?? int.MaxValue;
 		}
 	}
 }
