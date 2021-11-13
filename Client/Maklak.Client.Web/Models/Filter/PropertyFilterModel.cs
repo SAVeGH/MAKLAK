@@ -48,6 +48,12 @@ namespace Maklak.Client.Web.Models.Filter
 			base.LoadItems(popUpState.InputParameters.Row);
 		}
 
+		protected override void AfterLoad() 
+		{
+			foreach(ItemsTreeDS.ItemsRow row in this.Items.Where(i => !i.IsItemTypeNull() && i.ItemType == "Property"))
+				row.IsCheckable = false;
+		}
+
 		private void PrepareLoadRequestData() 
 		{
 			//если Id null - добавление property в root

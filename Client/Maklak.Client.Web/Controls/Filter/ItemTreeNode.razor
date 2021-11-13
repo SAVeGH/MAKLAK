@@ -32,7 +32,11 @@
 			}
 		}
 
-		<input type="checkbox" />
+		@if(row.IsCheckable)
+		{
+			<input type="checkbox" @bind="row.IsChecked" />
+		}
+
 		@row.Name
 	</div>
 	}

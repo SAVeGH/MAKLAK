@@ -82,9 +82,16 @@ namespace Maklak.Client.Web.Models.Filter
 			AddRootRow();
 
 			AddChildNodes(row, searchData);
-			
+
+			AfterLoad();
+
 			OnStateHasChanged?.Invoke();
-		}		
+		}
+
+		protected virtual void AfterLoad() 
+		{
+			// метод для обработки данных после загрузки с сервера
+		}
 
 		private void CleanUpNodes(ItemsTreeDS.ItemsRow rootRow)
 		{

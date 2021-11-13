@@ -299,6 +299,10 @@ namespace Maklak.Client.DataSets {
             
             private global::System.Data.DataColumn columnIsOpened;
             
+            private global::System.Data.DataColumn columnIsCheckable;
+            
+            private global::System.Data.DataColumn columnIsChecked;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ItemsDataTable() {
@@ -414,6 +418,22 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsCheckableColumn {
+                get {
+                    return this.columnIsCheckable;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsCheckedColumn {
+                get {
+                    return this.columnIsChecked;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +469,7 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ItemsRow AddItemsRow(int Id, int Parent_Id, string ItemType, string ParentItemType, string Name, int MeasureUnit_Id, bool HasChildren, bool IsSelectable, bool IsSelected, bool IsOpened) {
+            public ItemsRow AddItemsRow(int Id, int Parent_Id, string ItemType, string ParentItemType, string Name, int MeasureUnit_Id, bool HasChildren, bool IsSelectable, bool IsSelected, bool IsOpened, bool IsCheckable, bool IsChecked) {
                 ItemsRow rowItemsRow = ((ItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -461,7 +481,9 @@ namespace Maklak.Client.DataSets {
                         HasChildren,
                         IsSelectable,
                         IsSelected,
-                        IsOpened};
+                        IsOpened,
+                        IsCheckable,
+                        IsChecked};
                 rowItemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemsRow);
                 return rowItemsRow;
@@ -494,6 +516,8 @@ namespace Maklak.Client.DataSets {
                 this.columnIsSelectable = base.Columns["IsSelectable"];
                 this.columnIsSelected = base.Columns["IsSelected"];
                 this.columnIsOpened = base.Columns["IsOpened"];
+                this.columnIsCheckable = base.Columns["IsCheckable"];
+                this.columnIsChecked = base.Columns["IsChecked"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,9 +543,15 @@ namespace Maklak.Client.DataSets {
                 base.Columns.Add(this.columnIsSelected);
                 this.columnIsOpened = new global::System.Data.DataColumn("IsOpened", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsOpened);
+                this.columnIsCheckable = new global::System.Data.DataColumn("IsCheckable", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsCheckable);
+                this.columnIsChecked = new global::System.Data.DataColumn("IsChecked", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsChecked);
                 this.columnIsSelectable.DefaultValue = ((bool)(true));
                 this.columnIsSelected.DefaultValue = ((bool)(false));
                 this.columnIsOpened.DefaultValue = ((bool)(false));
+                this.columnIsCheckable.DefaultValue = ((bool)(true));
+                this.columnIsChecked.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -824,6 +854,38 @@ namespace Maklak.Client.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCheckable {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItems.IsCheckableColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsCheckable\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.IsCheckableColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsChecked {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItems.IsCheckedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsChecked\' in table \'Items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItems.IsCheckedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableItems.IdColumn);
             }
@@ -940,6 +1002,30 @@ namespace Maklak.Client.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetIsOpenedNull() {
                 this[this.tableItems.IsOpenedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsCheckableNull() {
+                return this.IsNull(this.tableItems.IsCheckableColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsCheckableNull() {
+                this[this.tableItems.IsCheckableColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsCheckedNull() {
+                return this.IsNull(this.tableItems.IsCheckedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsCheckedNull() {
+                this[this.tableItems.IsCheckedColumn] = global::System.Convert.DBNull;
             }
         }
         
