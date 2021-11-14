@@ -36,6 +36,33 @@ namespace Maklak.Client.Web.Models.Filter
 			popUpState.Show();
 		}
 
+		public override void EditItem()
+		{
+			if (this.CurrentItemRow == null)
+				return;
+
+			PopUpInput popUpInput = popUpState.InputParameters;
+			popUpInput.FilterType = this.ItemsFilterType;
+
+			popUpInput.SetDataRow(this.CurrentItemRow);
+			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
+			popUpInput.Height = 120;
+			popUpInput.Width = 300;
+			popUpInput.Title = "Edit";
+			popUpState.OnClose += PopUpState_EditItemComplete;
+
+			popUpState.Show();
+		}
+
+		public void PopUpState_EditItemComplete()
+		{
+			serviceProxy.EditItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);
+
+			PrepareLoadRequestData();
+
+			LoadItems();
+		}
+
 		private void PopUpState_AddItemComplete()
 		{
 			
