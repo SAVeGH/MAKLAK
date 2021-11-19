@@ -42,7 +42,7 @@ namespace Maklak.Client.Web.Models.Filter
 				return;
 
 			PopUpInput popUpInput = popUpState.InputParameters;
-			popUpInput.FilterType = this.ItemsFilterType;
+			popUpInput.FilterType = this.CurrentItemRow.ItemType;
 
 			popUpInput.SetDataRow(this.CurrentItemRow);
 			popUpInput.dialogType = typeof(Maklak.Client.Web.Controls.Filter.ItemEditor);
@@ -60,7 +60,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 			PrepareLoadRequestData();
 
-			LoadItems();
+			LoadItems(popUpState.InputParameters.Row);
 		}
 
 		private void PopUpState_AddItemComplete()
