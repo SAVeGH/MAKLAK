@@ -1,4 +1,4 @@
---drop proc [dbo].[sp_AddItem]
+--drop proc [dbo].[sp_DeleteItem]
 CREATE PROCEDURE [dbo].[sp_DeleteItem]
 @ItemType nvarchar(250),
 @ItemId int
@@ -8,6 +8,19 @@ BEGIN
 	if(@ItemType = N'Name')
 	begin
 		delete Product
+		where Id = @ItemId;
+	end
+	else if(@ItemType = N'Property')
+	begin
+		delete PropertyValue
+		where Property_Id = @ItemId;
+
+		delete Property
+		where Id = @ItemId;
+	end
+	else if(@ItemType = N'PropertyValue')
+	begin
+		delete PropertyValue
 		where Id = @ItemId;
 	end
 

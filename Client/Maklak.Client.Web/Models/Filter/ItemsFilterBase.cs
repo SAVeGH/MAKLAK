@@ -215,6 +215,16 @@ namespace Maklak.Client.Web.Models.Filter
 			LoadItems();
 		}
 
+		public virtual void DeleteItemComplete() 
+		{
+			if (this.CurrentItemRow == null)
+				return;
+
+			serviceProxy.DeleteItem(ItemsFilterType, this.CurrentItemRow.Id);
+
+			LoadItems();
+		}
+
 		public virtual void EditItem()
 		{
 			if (this.CurrentItemRow == null)
@@ -252,14 +262,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 		public virtual void DeleteItem()
 		{
-			//ItemsTreeDS.ItemsRow currentSelectedRow = this.Items.FirstOrDefault(r => r.IsSelected);
-
-			if (this.CurrentItemRow == null)
-				return;
-
-			serviceProxy.DeleteItem(ItemsFilterType, this.CurrentItemRow.Id);
-
-			LoadItems();
+			DeleteItemComplete();
 		}
 
 		public virtual void Toggle(ItemsTreeDS.ItemsRow row) 

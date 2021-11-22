@@ -122,5 +122,29 @@ namespace Maklak.Client.Web.Models.Filter
 				popUpState.InputParameters.Row.Id = popUpState.InputParameters.Row.Parent_Id;
 			}			
 		}
+
+		public override void DeleteItem() 
+		{
+			if (this.CurrentItemRow == null)
+				return;
+
+			ItemsTreeRowHelper rowHelper = new ItemsTreeRowHelper(this.CurrentItemRow);
+
+			serviceProxy.DeleteItem(rowHelper.Row.ItemType, rowHelper.Row.Id);
+
+			if (rowHelper.Row.ItemType == "Property") 
+			{
+				rowHelper.Row.SetIdNull();
+				rowHelper.Row.SetParent_IdNull();
+			}
+
+			if (rowHelper.Row.ItemType == "PropertyValue") 
+			{
+				rowHelper.Row.ItemType = rowHelper.Row.ParentItemType;
+				rowHelper.Row.Id = rowHelper.Row.Parent_Id;
+			}
+
+			LoadItems(rowHelper.Row);
+		}
 	}
 }
