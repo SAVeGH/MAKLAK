@@ -58,7 +58,7 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			serviceProxy.EditItem(popUpState.InputParameters.FilterType, popUpState.InputParameters.Row);
 
-			PrepareLoadRequestData();
+			PrepareLoadRequestDataAfterEdit();
 
 			LoadItems(popUpState.InputParameters.Row);
 		}
@@ -69,7 +69,7 @@ namespace Maklak.Client.Web.Models.Filter
 			serviceProxy.AddPropertyItem(popUpState.InputParameters.Row);
 
 
-			PrepareLoadRequestData();
+			PrepareLoadRequestDataAfterAdd();
 
 
 			base.LoadItems(popUpState.InputParameters.Row);
@@ -81,7 +81,7 @@ namespace Maklak.Client.Web.Models.Filter
 				row.IsCheckable = false;
 		}
 
-		private void PrepareLoadRequestData() 
+		private void PrepareLoadRequestDataAfterAdd() 
 		{
 			//если Id null - добавление property в root
 			int? parentId = null;
@@ -105,6 +105,22 @@ namespace Maklak.Client.Web.Models.Filter
 				popUpState.InputParameters.Row.SetParent_IdNull();
 			else
 				popUpState.InputParameters.Row.Parent_Id = parentId ?? int.MaxValue;
+		}
+
+		private void PrepareLoadRequestDataAfterEdit()
+		{
+			if (popUpState.InputParameters.Row.ItemType == "Property")
+			{
+				popUpState.InputParameters.Row.SetIdNull(); // выбирать все property, а не конкретный item
+				popUpState.InputParameters.Row.SetParent_IdNull(); // зачистка всех узлов
+			}
+
+			if (popUpState.InputParameters.Row.ItemType == "PropertyValue") 
+			{
+				popUpState.InputParameters.Row.ItemType = "Property"; // родительский тип для PropertyValue
+				// установить Id property (root) от которого будут отбираться дочерние узлы. От этого же Id будет зачистка узлов.
+				popUpState.InputParameters.Row.Id = popUpState.InputParameters.Row.Parent_Id;
+			}			
 		}
 	}
 }
