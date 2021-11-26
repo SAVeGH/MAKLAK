@@ -14,6 +14,12 @@ BEGIN
 		values(@ItemValue);
 	end
 
+	if(@ItemType = N'Tag')
+	begin
+		insert into Tag([Name])
+		values(@ItemValue);
+	end
+
 	if(@ItemType = N'Property' OR @ItemType = N'PropertyValue')
 	begin
 		exec [dbo].[sp_AddPropertyItem] @Property_Id = @ItemId, @MeasureUnit_Id = @MeasureUnitId, @ItemValue = @ItemValue

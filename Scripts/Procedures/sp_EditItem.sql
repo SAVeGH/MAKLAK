@@ -1,15 +1,3 @@
-USE [Srv]
-GO
-
-/****** Object:  StoredProcedure [dbo].[sp_EditItem]    Script Date: 19.11.2021 13:45:51 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-
 --drop proc [dbo].[sp_EditItem]
 CREATE PROCEDURE [dbo].[sp_EditItem]
 @ItemType nvarchar(250),
@@ -28,6 +16,13 @@ BEGIN
 	if(@ItemType = N'Property')
 	begin
 		update Property 
+		set [Name] = @ItemValue
+		where Id = @ItemId;
+	end
+
+	if(@ItemType = N'Tag')
+	begin
+		update Tag 
 		set [Name] = @ItemValue
 		where Id = @ItemId;
 	end

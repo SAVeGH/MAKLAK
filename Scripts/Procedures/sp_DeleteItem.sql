@@ -23,6 +23,15 @@ BEGIN
 		delete PropertyValue
 		where Id = @ItemId;
 	end
+	else if(@ItemType = N'Tag')
+	begin
+		delete ProductTag
+		where Tag_Id = @ItemId;
+
+		delete Tag
+		where Id = @ItemId;
+	end
+
 
 	select @ItemId;
 END
