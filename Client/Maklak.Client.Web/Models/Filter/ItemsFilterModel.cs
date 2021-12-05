@@ -100,6 +100,9 @@ namespace Maklak.Client.Web.Models.Filter
 				case "Property":
 					iFilter = new PropertyFilterModel(popUpState, serviceProxy);
 					break;
+				case "Category":
+					iFilter = new CategoryFilterModel(popUpState, serviceProxy);
+					break;
 				default:
 					iFilter = new ItemsFilterBase(popUpState, serviceProxy);
 					break;
