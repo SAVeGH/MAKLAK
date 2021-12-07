@@ -264,6 +264,13 @@ namespace Maklak.Client.Service
 			return response.Result;
 		}
 
+		public int AddCategoryItem(ItemsTreeDS.ItemsRow row)
+		{
+			ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = (row.IsIdNull() ? null : (int?)row.Id), ItemValue = row.Name };
+			ItemResponse response = client.AddItem(request);
+			return response.Result;
+		}
+
 		//public int AddPropertyItem(ItemsTreeDS.ItemsRow row, int measureUnitId, string itemValue)
 		//{
 		//	ItemRequest request = new ItemRequest() { ItemType = row.ItemType, ItemId = row.Id, MeasureUnitId = measureUnitId, ItemValue = itemValue };

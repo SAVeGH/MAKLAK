@@ -1,3 +1,13 @@
+USE [Srv]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_GetItems]    Script Date: 06.12.2021 16:03:55 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
 
 --drop proc sp_GetItems
 CREATE PROCEDURE [dbo].[sp_GetItems]
@@ -104,6 +114,20 @@ BEGIN
 		(@ItemId is NULL or t.Id = @ItemId) -- 2147483647
 		and
 		(isnull(@ItemValue,'') = N'' or [Name] like '%' + @ItemValue + '%');
+	end
+	else if(@ItemType = N'Category')
+	begin
+		insert into @result(Id, Parent_Id, ItemType, [Name], HasChildren)
+		select 
+		pc.Id,pc.Parent_Id,@ItemType,pc.[Name], iif(pcq.Id is NULL, 0, 1)
+		from ProductCategory pc
+		outer apply( select top 1 pcs.Id from ProductCategory pcs where pcs.Parent_Id = pc.Id) as pcq
+		where
+		(@ItemId is NULL or pc.Id = @ItemId) -- 2147483647
+		and
+		(@ParentItemId is NULL or pc.Parent_Id = @ParentItemId)
+		and
+		(isnull(@ItemValue,'') = N'' or pc.[Name] like '%' + @ItemValue + '%');
 	end
 	
 

@@ -1,3 +1,14 @@
+USE [Srv]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_AddItem]    Script Date: 06.12.2021 15:56:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
 
 --drop proc [dbo].[sp_AddItem]
 CREATE PROCEDURE [dbo].[sp_AddItem]
@@ -26,6 +37,13 @@ BEGIN
 		return
 	end
 
+	if(@ItemType = N'Category')
+	begin
+		insert into ProductCategory(Parent_Id, [Name])
+		values(@ItemId, @ItemValue);
+	end
+
+
 	select @@IDENTITY;
 END
 
@@ -35,8 +53,5 @@ END
 
 
 GO
-
-
-
 
 
