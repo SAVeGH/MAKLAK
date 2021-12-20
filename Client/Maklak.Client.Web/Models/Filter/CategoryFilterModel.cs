@@ -44,21 +44,21 @@ namespace Maklak.Client.Web.Models.Filter
 
 		private void PrepareLoadRequestDataAfterAdd()
 		{
-			//если Id null - добавление property в root
+			//если Id null - добавление category в root
 			int? parentId = null;
 
-			// если id не null - добавление propertyvalue
+			// если id не null - добавление к другой category
 			if (!popUpState.InputParameters.Row.IsIdNull())
 				if (popUpState.InputParameters.Row.IsOpened)
 				{
-					// если строка развернута
+					// если строка развернута - то она является parent-ом для получаемой ветки дерева
 					parentId = popUpState.InputParameters.Row.Id;
 				}
 				else
 				{
-					// если строка свернута
+					// если строка свернута - то нужно взять её parent и вывети ветку дерева в котором она сама
 					parentId = popUpState.InputParameters.Row.Parent_Id;
-					popUpState.InputParameters.Row.SetIdNull();
+					//popUpState.InputParameters.Row.SetIdNull();
 				}
 
 			// установить Parent_Id если он не null

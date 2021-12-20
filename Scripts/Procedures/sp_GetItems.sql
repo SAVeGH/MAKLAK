@@ -117,17 +117,30 @@ BEGIN
 	end
 	else if(@ItemType = N'Category')
 	begin
-		insert into @result(Id, Parent_Id, ItemType, [Name], HasChildren)
-		select 
-		pc.Id,pc.Parent_Id,@ItemType,pc.[Name], iif(pcq.Id is NULL, 0, 1)
-		from ProductCategory pc
-		outer apply( select top 1 pcs.Id from ProductCategory pcs where pcs.Parent_Id = pc.Id) as pcq
-		where
-		(@ItemId is NULL or pc.Id = @ItemId) -- 2147483647
-		and
-		(@ParentItemId is NULL or pc.Parent_Id = @ParentItemId)
-		and
-		(isnull(@ItemValue,'') = N'' or pc.[Name] like '%' + @ItemValue + '%');
+		if(@ParentItemId is NULL)
+		begin
+			insert into @result(Id, Parent_Id, ItemType, [Name], HasChildren)
+			select 
+			pc.Id,pc.Parent_Id,@ItemType,pc.[Name], iif(pcq.Id is NULL, 0, 1)
+			from ProductCategory pc
+			outer apply( select top 1 pcs.Id from ProductCategory pcs where pcs.Parent_Id = pc.Id) as pcq
+			where
+			((@ItemId is NULL and pc.Parent_Id is NULL) or (@ItemId is not NULL and pc.Id = @ItemId)) -- 2147483647			
+			and
+			(isnull(@ItemValue,'') = N'' or pc.[Name] like '%' + @ItemValue + '%');
+		end
+		else
+		begin
+			insert into @result(Id, Parent_Id, ItemType, [Name], HasChildren)
+			select 
+			pc.Id,pc.Parent_Id,@ItemType,pc.[Name], iif(pcq.Id is NULL, 0, 1)
+			from ProductCategory pc
+			outer apply( select top 1 pcs.Id from ProductCategory pcs where pcs.Parent_Id = pc.Id) as pcq
+			where			
+			pc.Parent_Id = @ParentItemId
+			and
+			(isnull(@ItemValue,'') = N'' or pc.[Name] like '%' + @ItemValue + '%');
+		end
 	end
 	
 

@@ -129,6 +129,7 @@ namespace Maklak.Client.Web.Models.Filter
 			itemsDS.Items.RemoveItemsRow(rootRow);
 		}
 
+		// загрузка всегда в один уровень без рекурсии т.к. приходят данные parent-a
 		private void AddChildNodes(ItemsTreeDS.ItemsRow rootRow, ItemsTreeDS searchData)
 		{
 			int parentRowId = rootRow == null || rootRow.IsIdNull() ? int.MaxValue : rootRow.Id;

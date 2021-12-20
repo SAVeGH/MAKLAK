@@ -35,13 +35,15 @@ namespace Maklak.Client.Web.Models.Filter
 		{
 			//PopUpState.OnClose += PopUpState_OnClose;
 
-			if (PopUpState.InputParameters.Row == null || PopUpState.InputParameters.Row.IsIdNull())
+			if (PopUpState.InputParameters.Row == null || PopUpState.InputParameters.Row.IsIdNull() || PopUpState.InputParameters.Row.IsNameNull())
 				return;
 
 			// для Edit режима	
 
-			ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, null);			
-			Text = itemData.Items.FirstOrDefault().Name;
+			//ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, null);			
+			//Text = itemData.Items.FirstOrDefault().Name;
+			//ItemsTreeDS itemData = serviceProxy.Search(PopUpState.InputParameters.FilterType, PopUpState.InputParameters.Row, null);
+			Text = PopUpState.InputParameters.Row.Name;
 		}
 
 		//private void PopUpState_OnClose()
