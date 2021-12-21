@@ -93,9 +93,9 @@ namespace Maklak.Client.Web.Models.Filter
 			// метод для обработки данных после загрузки с сервера
 		}
 
-		private void CleanUpNodes(ItemsTreeDS.ItemsRow rootRow)
+		protected virtual void CleanUpNodes(ItemsTreeDS.ItemsRow rootRow)
 		{
-			if (rootRow == null || rootRow.IsParent_IdNull() /*|| rootRow.Parent_Id == int.MaxValue*/)
+			if (rootRow == null || rootRow.IsParent_IdNull())
 			{				
 				itemsDS.Items.Clear();
 				return; // перезапись всех узлов
@@ -112,7 +112,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 		}
 
-		private void CleanUpChildNodes(ItemsTreeDS.ItemsRow rootRow)
+		protected void CleanUpChildNodes(ItemsTreeDS.ItemsRow rootRow)
 		{
 			if (rootRow == null)
 				return;
@@ -130,14 +130,14 @@ namespace Maklak.Client.Web.Models.Filter
 		}
 
 		// загрузка всегда в один уровень без рекурсии т.к. приходят данные parent-a
-		private void AddChildNodes(ItemsTreeDS.ItemsRow rootRow, ItemsTreeDS searchData)
+		// подходит всем кроме Category. Там перегружена
+		protected virtual void AddChildNodes(ItemsTreeDS.ItemsRow rootRow, ItemsTreeDS searchData)
 		{
 			int parentRowId = rootRow == null || rootRow.IsIdNull() ? int.MaxValue : rootRow.Id;
-			string parentRowItemType = rootRow == null || rootRow.IsIdNull() ? null : rootRow.ItemType;			
+			string parentRowItemType = rootRow == null || rootRow.IsIdNull() ? null : rootRow.ItemType;
 
 			foreach (ItemsTreeDS.ItemsRow item in searchData.Items)
 			{
-
 
 				ItemsTreeDS.ItemsRow row = itemsDS.Items.NewItemsRow();
 
