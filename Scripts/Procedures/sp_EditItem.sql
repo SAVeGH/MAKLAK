@@ -27,6 +27,13 @@ BEGIN
 		where Id = @ItemId;
 	end
 
+	if(@ItemType = N'Category')
+	begin
+		update ProductCategory 
+		set [Name] = @ItemValue
+		where Id = @ItemId;
+	end
+
 	if(@ItemType = N'PropertyValue')
 	begin
 		
