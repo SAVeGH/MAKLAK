@@ -31,6 +31,28 @@ BEGIN
 		delete Tag
 		where Id = @ItemId;
 	end
+	else if (@ItemType = N'Category')
+	begin
+
+		declare @delCategories table(Id int);
+		with
+		delCategories as ( select Id from ProductCategory where Id = @ItemId
+						   union all
+        				   select pc.Id 
+        				   from 
+        				   ProductCategory pc
+        				   inner join delCategories dc on pc.Parent_Id = dc.Id)
+		insert into @delCategories
+		select Id from delCategories;
+
+		update ProductCategory
+		set Parent_Id = NULL
+		where Id in(select Id from @delCategories);
+
+		delete ProductCategory
+		where Id in(select Id from @delCategories);
+
+	end
 
 
 	select @ItemId;

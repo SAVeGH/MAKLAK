@@ -119,6 +119,35 @@ namespace Maklak.Client.Web.Models.Filter
 				popUpState.InputParameters.Row.Parent_Id = parentId ?? int.MaxValue;
 		}
 
+		public override void DeleteItem()
+		{
+			if (this.CurrentItemRow == null)
+				return;
+
+			ItemsTreeRowHelper rowHelper = new ItemsTreeRowHelper(this.CurrentItemRow);
+
+			serviceProxy.DeleteItem(rowHelper.Row.ItemType, rowHelper.Row.Id);
+
+			//если Id null - добавление category в root
+			int? parentId = null;
+
+			// если строка свернута - то нужно взять её parent и вывети ветку дерева в котором она сама
+			parentId = rowHelper.Row.Parent_Id;
+			rowHelper.Row.Id = parentId ?? int.MaxValue; // id определяет от какого узла вниз будет зачистка. Для закрытого узла это ветка его же парента
+
+			// установить Parent_Id если он не null
+			if (parentId == null || parentId == int.MaxValue)
+			{
+				rowHelper.Row.SetParent_IdNull();
+				rowHelper.Row.SetIdNull(); // зачистятся все узлы и запрос уйдет NULL,NULL
+			}
+			else
+				rowHelper.Row.Parent_Id = parentId ?? int.MaxValue;
+					
+
+			LoadItems(rowHelper.Row);
+		}
+
 
 		//protected override void AddChildNodes(ItemsTreeDS.ItemsRow rootRow, ItemsTreeDS searchData)
 		//{
