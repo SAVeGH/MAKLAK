@@ -70,7 +70,13 @@ namespace Maklak.Client.Web.Models.Filter
 			{				
 				return iFilter == null ? null : iFilter.Items;
 			}
-		}	
+		}
+
+		[Parameter]
+		public ItemsTreeDS.ItemsDataTable CheckedItems
+		{
+			get; set;
+		}
 
 		protected override void OnInitialized()
 		{

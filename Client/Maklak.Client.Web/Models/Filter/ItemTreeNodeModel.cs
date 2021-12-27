@@ -61,5 +61,11 @@ namespace Maklak.Client.Web.Models.Filter
 			OnNodeToggle?.Invoke(row); // вызов функции из ItemsTree. Дерево извещает о клике на узле вызовом события.
 		}
 
+		public void OnToggleNodeChecked(ItemsTreeDS.ItemsRow row)
+		{
+			//row.IsChecked.
+			row.IsChecked = !row.IsChecked;
+		}
+
 	}
 }

@@ -59,6 +59,12 @@ namespace Maklak.Client.Web.Models.Filter
 			}
 		}
 
+		//[Parameter]
+		//public ItemsTreeDS.ItemsDataTable CheckedItems
+		//{
+		//	get; set;
+		//}
+
 		public ItemsTreeDS.ItemsRow CurrentItemRow
 		{
 			get

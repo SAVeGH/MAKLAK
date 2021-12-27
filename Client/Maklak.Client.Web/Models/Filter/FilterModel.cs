@@ -12,6 +12,15 @@ namespace Maklak.Client.Web.Models.Filter
 	
 	public class FilterModel : ComponentBase // component inherits from this class. To do it  - class must be inherited from ComponentBase
 	{
-		
+		private ItemsTreeDS checkedItemsDS;
+
+		public ItemsTreeDS.ItemsDataTable CheckedItems
+		{
+			get
+			{
+				return checkedItemsDS.Items;
+			}
+		}
+
 	}
 }

@@ -34,7 +34,7 @@
 
 		@if(row.IsCheckable)
 		{
-			<input type="checkbox" @bind="row.IsChecked" />
+			<input type="checkbox" checked="@row.IsChecked" @onchange="((e)=>OnToggleNodeChecked(row))" />
 		}
 
 		@row.Name
