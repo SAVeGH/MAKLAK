@@ -59,11 +59,11 @@ namespace Maklak.Client.Web.Models.Filter
 			}
 		}
 
-		//[Parameter]
-		//public ItemsTreeDS.ItemsDataTable CheckedItems
-		//{
-		//	get; set;
-		//}
+		// передается из Filter
+		public ItemsTreeDS.ItemsDataTable CheckedItems
+		{
+			get; set;
+		}
 
 		public ItemsTreeDS.ItemsRow CurrentItemRow
 		{
@@ -89,10 +89,12 @@ namespace Maklak.Client.Web.Models.Filter
 
 			AddChildNodes(row, searchData);
 
+			RestoreCheckedState();
+
 			AfterLoad();
 
 			OnStateHasChanged?.Invoke();
-		}
+		}		
 
 		protected virtual void AfterLoad() 
 		{
@@ -287,6 +289,40 @@ namespace Maklak.Client.Web.Models.Filter
 			row.IsOpened = !row.IsOpened;
 
 			OnStateHasChanged?.Invoke();
-		}		
+		}
+
+		public virtual void Check(ItemsTreeDS.ItemsRow row)
+		{
+
+			if (!row.IsCheckable)
+				return;
+
+			row.IsChecked = !row.IsChecked;
+
+			if (row.IsChecked)
+			{
+				this.CheckedItems.ImportRow(row);
+			}
+			else
+			{
+				ItemsTreeDS.ItemsRow delRow = this.CheckedItems.FirstOrDefault(r => r.Id == row.Id && r.ItemType == row.ItemType);
+
+				if (delRow != null)
+					this.CheckedItems.RemoveItemsRow(delRow);
+			}
+		}
+
+		private void RestoreCheckedState()
+		{
+			foreach (ItemsTreeDS.ItemsRow row in itemsDS.Items) 
+			{
+				ItemsTreeDS.ItemsRow stateRow = this.CheckedItems.FirstOrDefault(r => r.Id == row.Id && r.ItemType == row.ItemType);
+
+				if (stateRow == null)
+					continue;
+
+				row.IsChecked = stateRow.IsChecked;
+			}
+		}
 	}
 }

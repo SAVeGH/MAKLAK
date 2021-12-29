@@ -2,17 +2,17 @@
 
 <div class="filterBase flexColumn">
 
-	<ItemsFilter ItemsFilterType="Name" />
+	<ItemsFilter ItemsFilterType="Name" CheckedItems=this.CheckedItems />
 
-	<ItemsFilter ItemsFilterType="Vendor" IsEditable="false"  />
+	<ItemsFilter ItemsFilterType="Vendor" IsEditable="false"  CheckedItems=this.CheckedItems />
 
 	<div style="position:relative; height:50px;"><h3>Price</h3></div>
 
-	<ItemsFilter ItemsFilterType="Property"  />
+	<ItemsFilter ItemsFilterType="Property" CheckedItems=this.CheckedItems />
 
-	<ItemsFilter ItemsFilterType="Category"  />
+	<ItemsFilter ItemsFilterType="Category" CheckedItems=this.CheckedItems />
 
-	<ItemsFilter ItemsFilterType="Tag"  />	
+	<ItemsFilter ItemsFilterType="Tag" CheckedItems=this.CheckedItems />	
 
 </div>
 

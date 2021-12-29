@@ -14,6 +14,11 @@ namespace Maklak.Client.Web.Models.Filter
 	{
 		private ItemsTreeDS checkedItemsDS;
 
+		public FilterModel() 
+		{
+			checkedItemsDS = new ItemsTreeDS();
+		}
+
 		public ItemsTreeDS.ItemsDataTable CheckedItems
 		{
 			get

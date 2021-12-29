@@ -43,7 +43,7 @@
 
 <div class="@contentPadding">
 	@* делегат OnNodeToggle инициализируем функцией модели. Это функция переданная из ItemsTree в node верхнего уровня. Далее передается всем дочерним узлам*@
-	<ItemTreeNode ItemsSource=ItemsSource ParentRow=row OnNodeToggle=this.OnNodeToggle OnRefreshTree=this.OnRefreshTree />
+	<ItemTreeNode ItemsSource=ItemsSource ParentRow=row OnNodeToggle=this.OnNodeToggle OnNodeChecked=this.OnNodeChecked OnRefreshTree=this.OnRefreshTree />
 </div>
 </div>
 

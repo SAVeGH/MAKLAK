@@ -73,9 +73,10 @@ namespace Maklak.Client.Web.Models.Filter
 		}
 
 		[Parameter]
-		public ItemsTreeDS.ItemsDataTable CheckedItems
+		public ItemsTreeDS.ItemsDataTable CheckedItems // передается из Filter
 		{
-			get; set;
+			get;
+			set;
 		}
 
 		protected override void OnInitialized()
@@ -86,6 +87,7 @@ namespace Maklak.Client.Web.Models.Filter
 
 			iFilter.ItemsFilterType = this.ItemsFilterType;
 			iFilter.IsEditable = this.IsEditable;
+			iFilter.CheckedItems = this.CheckedItems;
 
 			iFilter.OnInitialized(); // загрузка данных
 
@@ -133,6 +135,11 @@ namespace Maklak.Client.Web.Models.Filter
 		public void OnNodeToggled(ItemsTreeDS.ItemsRow row)
 		{
 			iFilter.Toggle(row);
+		}
+
+		public void OnNodeChecked(ItemsTreeDS.ItemsRow row)
+		{
+			iFilter.Check(row);
 		}
 	}
 }

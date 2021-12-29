@@ -16,6 +16,9 @@ namespace Maklak.Client.Web.Models.Filter
 		public Action<ItemsTreeDS.ItemsRow> OnNodeToggle { get; set; } // делегат инициализируется функцией из ItemsTree в разметке
 
 		[Parameter]
+		public Action<ItemsTreeDS.ItemsRow> OnNodeChecked { get; set; } // делегат инициализируется функцией из ItemsTree в разметке
+
+		[Parameter]
 		public Action OnRefreshTree { get; set; } // делегат инициализируется функцией из ItemsTree в разметке
 		public IEnumerable<ItemsTreeDS.ItemsRow> Items // все items верхнего узла (ParentRow) из ItemsSource 
 		{ 
@@ -63,8 +66,10 @@ namespace Maklak.Client.Web.Models.Filter
 
 		public void OnToggleNodeChecked(ItemsTreeDS.ItemsRow row)
 		{
-			//row.IsChecked.
-			row.IsChecked = !row.IsChecked;
+			////row.IsChecked.
+			//row.IsChecked = !row.IsChecked;
+
+			OnNodeChecked?.Invoke(row); // вызов функции из ItemsTree. Дерево извещает о чеке на узле вызовом события.
 		}
 
 	}

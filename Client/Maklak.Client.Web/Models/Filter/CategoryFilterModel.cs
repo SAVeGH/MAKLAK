@@ -147,32 +147,6 @@ namespace Maklak.Client.Web.Models.Filter
 
 			LoadItems(rowHelper.Row);
 		}
-
-
-		//protected override void AddChildNodes(ItemsTreeDS.ItemsRow rootRow, ItemsTreeDS searchData)
-		//{
-		//	int parentRowId = rootRow == null || rootRow.IsIdNull() ? int.MaxValue : rootRow.Id;
-		//	string parentRowItemType = rootRow == null || rootRow.IsIdNull() ? null : rootRow.ItemType;
-
-		//	foreach (ItemsTreeDS.ItemsRow item in searchData.Items)
-		//	{
-
-
-		//		ItemsTreeDS.ItemsRow row = Items.NewItemsRow();
-
-		//		row.Id = item.Id;
-		//		row.Parent_Id = parentRowId;
-		//		row.Name = item.Name;
-		//		row.ItemType = item.ItemType;
-		//		row.ParentItemType = parentRowItemType;
-		//		if (!item.IsMeasureUnit_IdNull())
-		//			row.MeasureUnit_Id = (int)item.MeasureUnit_Id;
-		//		if (!item.IsHasChildrenNull())
-		//			row.HasChildren = (bool)item.HasChildren;
-
-		//		Items.AddItemsRow(row);
-
-		//	}
-		//}
+		
 	}
 }
