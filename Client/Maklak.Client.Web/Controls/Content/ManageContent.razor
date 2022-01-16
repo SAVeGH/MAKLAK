@@ -1,5 +1,26 @@
-﻿<h3>ManageContent</h3>
+﻿@inherits Maklak.Client.Web.Models.Content.ManageContentModel
 
-@code {
-
+@{
+	string editorItemState = this.IsEditorVisible ? "editorItemVisible" : "editorItemHidden";
 }
+
+<div>
+	<div>
+		<button @onclick="OnAddClicked">Add</button>
+		<button @onclick="OnEditClicked">Edit</button>
+		<button @onclick="OnDeleteClicked">Delete</button>
+	</div>
+
+	@*отобразить айтем для редактирования*@
+	<div class="@editorItemState">
+
+		Add block
+	</div>
+
+	@*отобразить все продукты пользователя*@
+	<div>
+
+		Content
+	</div>
+
+</div>
